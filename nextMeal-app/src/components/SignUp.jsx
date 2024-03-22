@@ -1,12 +1,15 @@
 import { React } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { signUp } from '../features/auth/authSlice';
 
 function SignUp() {
    const dispatch = useDispatch();
+   const navigate = useNavigate();
 
    const handleSubmit = event => {
-       // LOgic 
+       dispatch(signUp());
+       navigate('/sigin');
    }
     
     return (

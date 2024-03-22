@@ -20,9 +20,8 @@ export default {
         'montserrat': ['Montserrat', 'sans-serif'],
       },
       backgroundImage: {
-        'graphicDots': "url('/img/graphic_dots.svg')",
+        'graphicDots': "url('assets/img/graphic_dots.svg')",
         'graphicRectangles': "url('/assets/img/graphic-rectangles.webp')",
-        'footer-texture': "url('/img/footer-texture.png')",
       }
     },
   },
