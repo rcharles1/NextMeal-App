@@ -1,28 +1,26 @@
-import { useSelector } from 'react-redux';
-import SignUp from '/src/components/SignUp.jsx';
+import React from 'react';
+import SignUp from '../components/SignUp.jsx';
 import SignIn from '../components/SignIn';
-import HomePage from '../components/Home';
-import NavBar from '../components/NavBar.jsx';
+import Root from '../components/Root';
 import Restaurants from '../components/RestaurantList';
-import Footer from '../components/Footer';
+
+import { useSelector } from 'react-redux';
+import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
+
+const router = createBrowserRouter(createRoutesFromElements(
+  <Route path='/'  element={ <Root/> }>
+    
+  </Route>
+));
 
 function App() {
  const state = useSelector(state => state.state);
 
   return (
     <div>
-      <div className="flex flex-col bg-bg_variant1 p-3 h-screen w-100">
-        <div className="">
-          <NavBar />
-        </div>
-        <div className="bg-graphicDots bg-no-repeat bg-right-top">
-         <HomePage />
-        </div>
-      </div>
-      <Restaurants />
-      <Footer />
+      <RouterProvider router={ router } />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
