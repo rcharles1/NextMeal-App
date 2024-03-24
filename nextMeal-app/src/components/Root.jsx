@@ -3,6 +3,10 @@ import Search from './Search';
 import Location from './LocationBox';
 import Header from './Header';
 import Footer from './Footer';
+import Restaurants from './Restaurants';
+import Meals from './Meals';
+
+
 import { Outlet } from 'react-router-dom';
 
 function Root() {
@@ -21,8 +25,10 @@ function Root() {
                         <div className="cursor-pointer shadow-xl"><Location /></div>
                     </div>
                 </div>
-                <div className="bg-slate_white h-lvh">
-                    
+                <div className="bg-bg_variant2 h-lvh">
+                    <Restaurants />
+                    <Meals />
+
                 </div>
                 <div className="">
                     <Footer />
