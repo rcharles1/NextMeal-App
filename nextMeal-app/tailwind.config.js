@@ -12,7 +12,7 @@ export default {
       slate_white: '#F5F5F5',
       default: '#000000',
       bg_variant1: '#f8382f',
-      bg_variant2: '#fff5ec',
+      bg_variant2: '#fafafa',
       headings: '#433f4d',
       graphic_light: '#433f4d/90',
       graphic_dark: '#ffffff/50',

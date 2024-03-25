@@ -3,11 +3,12 @@ import RestaurantCard from './RestaurantCard';
 
 function Restaurants() {
     return (
-        <div className="h-1/2 w-100 mt-10 flex flex-col space-y-3 text-center">
-                <div className="mt-5 h-20 py-2 pl-4 text-2xl font-semibold text-heading">
-                    <h2 className="h-12 tracking-normal">Find the best places to eat, at home or out! </h2>
+        <div className="flex flex-col space-y-8 h-1/2 w-100 mt-10">
+                <div className="flex flex-col space-y-3 text-center">
+                    <span className="text-3xl font-semibold text-heading">Know Restaurants </span>
+                    <span className="font-semibold px-3 leading-5 block text-base text-pretty text-default/65">Uncover and enjoy a meal at the most exquisite eatery in the city. </span>
                 </div>
-                <div className="container-snap overflow-x-auto rounded-sm h-80 w-100 pt-3 px-4 flex flex-row space-x-4">
+                <div className="container-snap overflow-x-auto rounded-sm h-80 w-100 px-6 flex flex-row space-x-4">
                     <div>
                         <RestaurantCard />
                     </div>

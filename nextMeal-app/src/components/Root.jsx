@@ -5,6 +5,7 @@ import Header from './Header';
 import Footer from './Footer';
 import Restaurants from './Restaurants';
 import Meals from './Meals';
+import Services from './Services';
 
 
 import { Outlet } from 'react-router-dom';
@@ -25,12 +26,12 @@ function Root() {
                         <div className="cursor-pointer shadow-xl"><Location /></div>
                     </div>
                 </div>
-                <div className="bg-bg_variant2 h-lvh">
+                <div className="flex flex-col space-y-10 bg-bg_variant2 h-fit">
                     <Restaurants />
                     <Meals />
-
+                    <Services />
                 </div>
-                <div className="">
+                <div className="p-0 mt-10">
                     <Footer />
                 </div>
             </main>

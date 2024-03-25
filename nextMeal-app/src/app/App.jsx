@@ -2,7 +2,7 @@ import React from 'react';
 import SignUp from '../components/SignUp.jsx';
 import SignIn from '../components/SignIn';
 import Root from '../components/Root';
-import Restaurants from '../components/RestaurantList';
+import Restaurants from '../components/Restaurants';
 
 import { useSelector } from 'react-redux';
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';

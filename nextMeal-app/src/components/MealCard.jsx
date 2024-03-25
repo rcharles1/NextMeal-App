@@ -4,11 +4,11 @@ function MealCard() {
     return (
         <div className="flex flex-col space-y-3.5 items-center justify-center h-80 w-48 rounded-2xl px-2 py-1.5 text-sm bg-pure_white">
             <div className="relative h-36 w-full mx-auto rounded-xl overflow-hidden">
-                <div className="absolute inset-0"><img src='/assets/img/data/ugali-nyama-choma2.png' alt='restaurant photo' /></div>
+                <div className="absolute inset-0 "><img src='/assets/img/data/ugali-nyama-choma2.png' alt='restaurant photo' /></div>
                 <div className="absolute top-2 right-2 size-6" ><img src='/assets/icon/favorite.svg' /></div>
             </div>
             <div className="flex flex-col space-y-1  h-18 w-full px-3 justify-center items-center" >
-               <div className="text-lg text-center font-semibold">Ugali Nyama Choma</div>
+               <div className="text-base text-center font-semibold">Ugali Nyama Choma</div>
 
                <div className="flex flex-row space-x-0.5">
                    <span className="w-20 mt-0.5"><img src='/assets/icon/ratings.svg' alt='Location icon'/></span>
