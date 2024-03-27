@@ -2,7 +2,7 @@ import { React } from 'react';
 
 function Footer() {
     return (
-        <div className="flex flex-col space-y-3 h-fit p-8 justify-center items-center text-pure_white w-100 bg-bg_variant1  text-sm">
+        <div className="flex flex-col space-y-3 h-fit p-8 justify-center items-center text-pure_white w-100 bg-bg_variant1 text-sm">
             <div className="h-36 w-64 flex flex-col items-center justify-center">
                 <h1 className="text-base font-bold mb-2">What's there to Explore?</h1>
                 <ul className="list-inside px-5 text-slate-white font-medium text-sm">

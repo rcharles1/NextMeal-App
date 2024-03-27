@@ -23,3 +23,6 @@
         </div>
     );
 }
+
+
+<p className="p-4">{slide.text}</p>

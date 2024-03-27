@@ -12,14 +12,12 @@ function Header() {
     }
 
     return (
-        <div className="p-3">
-            <div className="h-20 w-full p-3 rounded-md flex flex-row justify-between caret-bg_variant1 cursor-pointer">
-                <div className="w-40 ">
-                    <img src='/assets/img/next-meal-white.png' />
-                </div>
-                <div className="w-fit">
-                    {isAuthenticated === false ? <Link href='' className=' w-fit outline outline-1 mt-2 text-pure_white font-bold w-14 h-12 p-2 focus:bg-pure_white/70 focus: rounded-md'>Sign in</Link> : <Menu /> }
-                </div>
+        <div className="h-28 w-full p-4 py-6 flex flex-row justify-between bg-bg_variant1 caret-bg_variant1 cursor-pointer">
+            <div className="w-40 ">
+                <img src='/assets/img/next-meal-white.png' />
+            </div>
+            <div className="w-fit h-fit mt-5">
+                {isAuthenticated === false ? <Link href='' className=' w-fit outline outline-2 mt-2 text-pure_white font-bold w-14 h-12 p-2 focus:bg-pure_white/70 focus: rounded-md'>Sign in</Link> : <Menu /> }
             </div>
         </div>
     );
