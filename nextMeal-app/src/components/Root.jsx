@@ -9,12 +9,13 @@ import Beverages from './Beverages';
 import { Outlet } from 'react-router-dom';
 import HomePage from './HomePage';
 
-
 function Root() {
     return (
         <div className="h-lvh w-100 flex flex-col space-y-0 ">
-            <Header />
             <main className="h-fit w-100">
+                <div className="sticky top-0 z-10">
+                    <Header />
+                </div>
                 <div className="h-screen bg-bg_variant1">
                     <HomePage />
                 </div>

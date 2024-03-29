@@ -15,6 +15,7 @@ export default {
       bg_variant2: '#fafafa',
       headings: '#433f4d',
       graphic_light: '#433f4d/90',
+      faint_default:'#433F4D',
       graphic_dark: '#ffffff/50',
       light_dark: '#B3ADA7'
     },

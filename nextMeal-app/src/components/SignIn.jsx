@@ -9,7 +9,7 @@ function SignIn() {
 
    const handleSubmit = event => {
        dispatch(signIn());
-       navigate('/homepage');
+       navigate('/');
    }
     
     return (
@@ -33,7 +33,9 @@ function SignIn() {
                         <span>Don't have an account?</span>
                         <span className="font-semibold"><a href="/SignUp">Sign Up</a></span>
                     </div>
-                    <button className="h-12 rounded-md w-full mt-4 text-lg text-slate_white font-semibold bg-bg_variant1">Sign In</button>
+                    <button className="h-12 rounded-md w-full mt-4 text-lg text-slate_white font-semibold bg-bg_variant1">
+                        Sign In
+                    </button>
                 </form>
                 <div className="mx-auto h-40 flex flex-col space-y-2">
                     <h3 className="mx-auto border w-48 border-light_dark mt-5"></h3>

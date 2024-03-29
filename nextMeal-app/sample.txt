@@ -26,3 +26,7 @@
 
 
 <p className="p-4">{slide.text}</p>
+
+<Route path='/'  element={ <Root/> }>
+    
+  </Route>
