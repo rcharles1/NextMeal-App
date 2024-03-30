@@ -1,7 +1,11 @@
 import { React, useState } from 'react';
+import Details from './Details';
+import Menu from './Menus';
+import Reviews from './Reviews';
 
 function RestaurantProfile() {
     const [isExpanded, setIsExpanded] = useState(false);
+    const [activeTab, setActiveTab ] = useState(null);
 
     const text = `Welcome to Kitisa, your go-to fast-food restaurant in Tanzania! Located in the bustling city of Dar es Salaam, Kitisa offers a delightful blend of speedy service and mouth-watering meals.
 
@@ -11,18 +15,41 @@ function RestaurantProfile() {
 
         So why wait? Visit Kitisa today for a fast, flavorful feast that's sure to leave you coming back for more!`;
 
-    const truncatedText = text.slice(0, 200) + '...';
+    const truncatedText = text.slice(0, 215) + '...';
+
+    const handleClick = (id) => {
+        let displayTab;
+        switch (id) {
+            case 'detailsTab':
+                displayTab = 'details';
+                break;
+            case 'menusTab':
+                displayTab = 'menus';
+                break;
+            case 'reviewsTab':
+                displayTab = 'reviews';
+                break;
+            default:
+                displayTab = 'details';
+                break;
+        }
+    }
 
     return (
         <div className="mx-auto text-sm font-normal h-screen w-100 space-y-0"> 
-            <div className="rounded-t-lg h-1/3  overflow-hidden">
+            <div className="relative rounded-t-lg h-1/3 outline overflow-hidden">
                 <img src='/assets/img/data/spicy-biryani.jpg'/>
+                <div className='absolute top-6 left-4 z-10 size-8 items-center justify-center overflow-hidden rounded-full'> 
+                    <button className='size-8 rounded-full shadow'>
+                        <img src='/assets/icon/previous-filled.svg' />
+                    </button>
+                </div>
             </div>
-            <div className="flex flex-col space-y-2 p-5 h-2/3">
-                <div className='flex flex-row space-x-7 items-center'>
-                    <div>
-                        <h2 className="text-xl font-semibold w-72 text-wrap">Kitisa Fast Food Restaurant</h2>
-                        <div className='flex flex-row text-default/60 w-fit space-x-2 text-base font-normal items-center'>
+            <div className="flex flex-col p-5 h-2/3">
+                <div className='flex flex-row space-x-7 mt-3 items-center'>
+                    <div className="space-y-1">
+                        <h2 className="text-2xl font-bold w-72 text-wrap">Kitisa Fast Food</h2>
+                        <div className='flex flex-row text-default/60 w-fit space-x-2 text-sm font-normal items-center'>
                             <span>4</span>
                             <div className="flex flex-row space-x-0">
                                 <span className="size-5 object-scale-down"><img src='/assets/icon/star-6.svg' /></span>
@@ -33,22 +60,59 @@ function RestaurantProfile() {
                             <span className="text-default/30">(1.2K)</span>
                         </div>
                     </div>
-                    <div className='bg-bg_variant1 h-10 w-10 items-center justify-center overflow-hidden rounded-full'> 
-                        <button className='h-6 w-6 mx-2 mt-2 rounded-full shadow'>
+                    <div className='bg-bg_variant1 size-8 items-center justify-center overflow-hidden rounded-full'> 
+                        <button className='size-5 mx-1 mt-1.5 rounded-full shadow'>
                             <img src='/assets/icon/navigate.svg' />
                         </button>
                     </div>
                 </div>
 
-                <p className='tracking-normal leading-relaxed font-medium text-default/65'>
+                <p className='leading-relaxed font-medium text-base mt-5 text-default/65'>
                    {isExpanded ? text : truncatedText }
                 </p>
-                <button onClick={() => setIsExpanded(!isExpanded)} className="text-blue ml-72 mt-2">
+                <button onClick={() => setIsExpanded(!isExpanded)} className="text-blue ml-72 ">
                     {isExpanded ? 'Read Less' : 'Read More'}
                 </button>
 
-                <div>
-                    Details Menu Reviews
+                <div className="flex flex-col mt-8 space-y-1">
+                    <div className="flex justify-start space-x-8 w-64 items-center  border-b-2 border-faint_default/15 h-8 text-headings/70 font-semibold text- caret-pure_white">
+                        <div>
+                            <button onClick={() => {
+                                    let id = 'detailsTab';
+                                    setActiveTab(id);
+                                    handleClick(id);
+                                }} className="p-1 h-9 cursor-pointer transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 focus:text-headings/100 focus:border-b-2 focus:border-bg_variant1"
+                                >
+                                    DETAILS
+                            </button>
+                        </div>
+                        <div>
+                            <button onClick={() => {
+                                let id = 'menusTab';
+                                setActiveTab(id);
+                                handleClick(id);
+                                }} 
+                                className="p-1 h-9 cursor-pointer transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 focus:text-headings/100 focus:font-semibold focus:border-b-2 focus:border-bg_variant1"
+                                >
+                                    MENU
+                            </button>
+                        </div>
+                        <div>
+                            <button 
+                                onClick={() => {
+                                    let id = 'reviewsTab';
+                                    setActiveTab(id);
+                                    handleClick(id);
+                                }} 
+                                className="p-1 h-9 cursor-pointer transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 focus:text-headings/100 focus:font-semibold focus:border-b-2 focus:border-bg_variant1"
+                                >
+                                    REVIEWS
+                            </button>
+                        </div>
+                    </div>
+                    <div className="grid grid-cols-1 h-48 rounded-md divide-y divide-faint_default/15 px-3">
+                        { activeTab === 'detailsTab' ? <Details /> : activeTab === 'menusTab' ? <Menu /> : <Reviews />}
+                    </div>
                 </div>
             </div>
         </div>

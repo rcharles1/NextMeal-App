@@ -1,5 +1,5 @@
 import { React } from 'react';
-import Menu from './Menu.jsx';
+import MenuIcon from './MenuIcon.jsx';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
@@ -28,7 +28,7 @@ function Header() {
             </div>
             <div className="flex flex-row space-x-3 items-center py-1 w-fit h-fit">
                 {isAuthenticated === false ? <Link to='/signin' className= {`w-fit h-fit outline outline-2 text-sm text-${colorTheme} font-bold w-14 h-12 p-2 focus:bg-${secColorTheme} hover:bg-${secColorTheme} rounded-md`}>Sign in</Link> : <Menu /> }
-                <Menu />
+                <MenuIcon />
             </div>
         </div>
     );

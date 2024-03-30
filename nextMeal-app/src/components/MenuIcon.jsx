@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { toggleMenu } from '../features/menu/menuSlice.js';
 
-function Menu() {
+function MenuIcon() {
     const dispatch = useDispatch();
     const isOpen = useSelector(state => state.menu.isOpen);
     const location = useLocation();
@@ -50,4 +50,4 @@ function Menu() {
     );
 }
 
-export default Menu;
+export default MenuIcon;

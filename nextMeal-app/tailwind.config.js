@@ -14,10 +14,11 @@ export default {
       bg_variant1: '#f8382f',
       bg_variant2: '#fafafa',
       headings: '#433f4d',
-      graphic_light: '#433f4d/90',
+      graphic_light: '#433f4d',
       faint_default:'#433F4D',
       blue: '#0000ff',
-      graphic_dark: '#ffffff/50',
+      gray: '#e5e7eb',
+      graphic_dark: '#ffffff',
       light_dark: '#B3ADA7'
     },
     extend: {
