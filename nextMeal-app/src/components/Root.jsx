@@ -5,8 +5,6 @@ import Restaurants from './Restaurants';
 import Meals from './Meals';
 import Services from './Services';
 import Beverages from './Beverages';
-
-import { Outlet } from 'react-router-dom';
 import HomePage from './HomePage';
 
 function Root() {

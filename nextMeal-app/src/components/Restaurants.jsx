@@ -1,7 +1,6 @@
 import { React } from 'react';
 import RestaurantCard from './RestaurantCard';
 
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 function Restaurants() {
@@ -9,10 +8,9 @@ function Restaurants() {
 
     const handleClick = event => {
         navigate('/restaurantsList');
-        console.log('cl');
     }
     return (
-        <div className="flex flex-col space-y-8 justify-center items-center h-1/2 w-100">
+        <div className="flex flex-col space-y-8 justify-center items-center h-1/2 w-100 caret-transparent">
                 <div className="flex flex-col space-y-3 text-center px-3.5">
                     <span className="text-3xl font-semibold text-heading">
                         Uncover Dining Delights! 
@@ -23,11 +21,11 @@ function Restaurants() {
                 </div>
                 <div className="flex flex-col space-y-2 rounded-sm w-full p-2">
                     <div>
-                        <div className="flex flex-row space-x-10 ml-7 font-semibold text-default/80 text-base mx-2">
-                            <span>
+                        <div className="flex flex-row space-x-20 ml-7 font-semibold text-default/80  mx-2">
+                            <span className="text-sm">
                                 Recommended Restaurants
                             </span>
-                            <span className="text-xs mt-1">
+                            <span className="text-xs mt-0.5">
                                 <button onClick={handleClick} className="underline underline-offset-2">Show All</button>
                             </span>
                         </div>

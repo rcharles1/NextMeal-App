@@ -2,10 +2,10 @@ import { React } from 'react';
 
 function Footer() {
     return (
-        <div className="flex flex-col space-y-3 h-fit p-8 justify-center items-center text-pure_white w-100 bg-bg_variant1 text-sm">
+        <div className="flex flex-col space-y-6 h-fit p-8 justify-center items-center text-pure_white w-100 bg-bg_variant1 caret-transparent text-sm">
             <div className="h-36 w-64 flex flex-col items-center justify-center">
-                <h1 className="text-base font-bold mb-2">What's there to Explore?</h1>
-                <ul className="list-inside px-5 text-slate-white font-medium text-sm">
+                <h1 className="text-lg font-bold mb-1">What's there to Explore?</h1>
+                <ul className="list-inside w-48 text-center text-slate-white font-medium text-sm">
                     <li><a href="#" >Top Meals</a></li>
                     <li><a href="#" >Top Drinks & Beverages</a></li>
                     <li><a href="#" >Top Restaurants</a></li>
@@ -14,12 +14,16 @@ function Footer() {
                 </ul>
             </div>
             <div className="h-28 w-64 flex flex-col items-center justify-center">
-                <h1 className="text-base font-bold mb-2">Get to Know Us</h1>
-                <p className="font-medium text-center">At NextMeal we are devoted to helping you to discover and connect to restaurants that serve your next meal.</p>
+                <h1 className="text-lg font-bold mb-1">Get to Know Us</h1>
+                <p className="font-medium text-center">
+                    At NextMeal we are devoted to
+                    helping you to discover and connect to restaurants that serve your next
+                    meal.
+                </p>
             </div>
             <div className="h-28 w-64 flex flex-col items-center justify-center">
-                <h1 className="text-base font-bold mb-2">Doing Business</h1>
-                <ul className="list-inside px-5 text-slate-white font-medium text-sm">
+                <h1 className="text-lg font-bold mb-1">Doing Business</h1>
+                <ul className="list-inside px-5 text-slate-white text-center font-medium text-sm">
                     <li><a href="#" >Become a Partner</a></li>
                     <li><a href="#" >List Your Business</a></li>
                     <li><a href="#" >Help</a></li>

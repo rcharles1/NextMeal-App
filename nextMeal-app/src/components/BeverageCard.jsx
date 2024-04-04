@@ -1,8 +1,16 @@
 import React from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 function BeverageCard() {
+    const navigate = useNavigate();
+
+    const handleClick = event => {
+        navigate('/mealitem');
+    }
+
     return (
-        <div className="flex flex-col space-y-5 items-start justify-start h-72  max-w-40 rounded-xl sm:rounded-2xl drop-shadow px-2 py-2 text-sm bg-pure_white sm:h-80 sm:w-48">
+        <div className="flex flex-col space-y-5 items-start justify-start h-72  max-w-40 rounded-xl sm:rounded-2xl drop-shadow px-2 py-2 text-sm caret-transparent bg-pure_white sm:h-80 sm:w-48">
             <div className="relative h-32  sm:h-36 w-full mx-auto rounded-md sm:rounded-xl overflow-hidden">
                 <div className="absolute inset-0 "><img src='/assets/img/data/ugali-nyama-choma2.png' alt='restaurant photo' /></div>
                 <div className="absolute top-2 right-0 sm:right-2 size-6 sm:size-7" ><img src='/assets/icon/favorite.svg' /></div>
@@ -15,7 +23,7 @@ function BeverageCard() {
                <span className="truncate w-28 h-fit text-xs ">Drink Description: type, flavors </span>
             </div>
             <div className="w-fit h-fit mx-3 border-b-2 justify-center flex flex-row space-x-1">
-                <span><a className="font-semibold text-xs truncate">Available Places</a></span>
+                <span><button onClick={handleClick} className="font-semibold text-xs truncate">Available Places</button></span>
                 <span className="size-3.5 sm:size-4 mt-0.5 pt-0.5"><img src='assets/icon/arrow-right.svg' alt='arrow-right image'/></span>
             </div>
         </div>

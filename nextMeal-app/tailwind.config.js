@@ -22,6 +22,15 @@ export default {
       light_dark: '#B3ADA7'
     },
     extend: {
+      caretColor: {
+        transparent: 'transparent',
+      },
+      zIndex: {
+        '-10': '-10',
+      },
+      backdropFilter: {
+        'blur': 'blur(10px)',
+      },
       fontFamily: {
         'montserrat': ['Montserrat', 'sans-serif'],
       },
