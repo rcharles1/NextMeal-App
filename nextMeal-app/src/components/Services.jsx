@@ -7,9 +7,9 @@ import deliveryAnimation from '/public/assets/lotties/food-delivery.json';
 function Services() {
     return (
         <div className="flex flex-col w-100 h-2/3 space-y-8 justify-center items-center sm:space-y-1">
-            <div className="font-semibold text-3xl flex flex-col space-y-3 text-center "> 
+            <div className="font-semibold text-3xl sm:text-5xl flex flex-col space-y-3 text-center "> 
                 <span>We are more than you think </span>
-                <span className="font-semibold px-3 leading-5 block text-base text-pretty text-default/60">
+                <span className="font-semibold px-3 leading-5 block text-base sm:text-xl sm:px-10 text-pretty text-default/60">
                     Away from helping you discover where and what you will get the next food for pleasure, we do the following in addition
                 </span>
             </div>

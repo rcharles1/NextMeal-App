@@ -28,11 +28,11 @@ const MenuIcon = () => {
             <div className="w-auto" onClick={handleMenuToggle}>
                 {!isOpen && 
                     <Link to="#">
-                        <img src={imgSrc} className="transition-transform duration-1200 ease-in-out transform rotate-180"/>
+                        <img src={imgSrc} className="transition-transform duration-1200 ease-in-out sm:size-10 transform rotate-180"/>
                     </Link>
                 }
                 {isOpen && 
-                    <img src='/assets/icon/close.svg' className={`cursor-pointer transition-transform duration-500 ease-in-out transform rotate-180`}/>
+                    <img src='/assets/icon/close.svg' className={`cursor-pointer sm:size-10 transition-transform duration-500 ease-in-out transform rotate-180`}/>
                 }
             </div>
             {isOpen && (
