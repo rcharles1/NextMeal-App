@@ -3,7 +3,7 @@ import { React } from 'react';
 function Footer() {
     return (
         <div className="flex flex-col space-y-6 h-fit p-8 justify-center items-center text-pure_white w-100 bg-bg_variant1 caret-transparent text-sm">
-            <div className="flex sm:flow-row sm:justify-around w-full text-start">
+            <div className="flex flex-col space-y-6 justify-center px-10  sm:flow-row sm:justify-around w-full text-start">
                 <div className="h-36 w-64 flex flex-col items-center justify-center">
                     <h1 className="text-lg sm:text-xl sm:w-72 font-bold mb-1">What's there to Explore</h1>
                     <ul className="list-inside w-48 text-center sm:text-start text-slate-white font-medium text-sm">

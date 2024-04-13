@@ -1,10 +1,13 @@
 import { React, useState } from 'react';
 import Details from './Details';
 import Header from './Header';
+import Footer from './Footer';
 import Menu from './Menus';
+import RestaurantServices from './RestaurantServices';
 import Reviews from './Reviews';
 import MenuIcon from './MenuIcon';
 import Breadcrumbs from './BreadCrumbs';
+
 
 function RestaurantProfile() {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -112,16 +115,20 @@ function RestaurantProfile() {
                                     }} 
                                     className="p-1 h-9 cursor-pointer transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 focus:text-headings/100 focus:font-semibold focus:border-b-2 focus:border-bg_variant1"
                                     >
-                                        REVIEWS
+                                        SERVICES
                                 </button>
                             </div>
                         </div>
                         <div className="grid grid-cols-1 h-48 rounded-md divide-y divide-faint_default/15 px-3">
-                            { activeTab === 'detailsTab' ? <Details /> : activeTab === 'menusTab' ? <Menu /> : <Reviews />}
+                            { activeTab === 'detailsTab' ? <Details /> : activeTab === 'menusTab' ? <Menu /> : <RestaurantServices />}
                         </div>
                     </div>
                 </div>
+                <div className="p-5 mb-8 h-64">
+                   <h1 className="font-semibold text-lg ">Reviews</h1>
+                </div>
             </div>
+            <Footer />
         </div>
     );
 }
