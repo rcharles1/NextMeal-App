@@ -3,7 +3,7 @@ import Search from './Search';
 import Location from './LocationBox';
 
 import Lottie from 'lottie-react';
-import menuAnimation from '/public/assets/lotties/menu-slideshow.json';
+import menuAnimation from '/public/assets/lotties/fast-food.json';
 
 function HomePage() {
 
@@ -16,7 +16,7 @@ function HomePage() {
                 <div><Search/></div>
                 <div className="cursor-pointer"><Location /></div>
                 <div className="rounded w-full p-1 h-fit sm:size-96">
-                 <Lottie animationData={menuAnimation} loop={false}/>
+                 <Lottie animationData={menuAnimation} loop={true} speed={0.5}/>
                 </div>
             </div>
         </div>

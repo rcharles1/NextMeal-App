@@ -1,6 +1,6 @@
 import { React } from 'react';
 
-function Menu() {
+function Menu({ restaurantDoc}) {
     return (
         <>
             <div className="transition-all duration-500 ease-in-out text-sm leading-relaxed">
@@ -9,12 +9,14 @@ function Menu() {
                     diverse menu. We've crafted a variety of dishes for your enjoyment. Can't 
                     wait to serve you! Enjoy your meal! 😊
                 </p>
-                <a href="/path/to/your/file.pdf" target="_blank" rel="noopener noreferrer" className="flex mt-2 flex-row space-x-1 text-blue font-medium">
-                    <span>Explore Our Menu</span>
-                    <span className="size-5">
-                        <img src='/assets/icon/link-out.svg'/>
-                    </span>
-                </a>
+                { restaurantDoc ? (
+                    <a href={`${restaurantDoc.menu}`} target="_blank" rel="noopener noreferrer" className="flex mt-2 flex-row space-x-1 text-blue font-medium">
+                        <span>Explore Our Menu</span>
+                        <span className="size-5">
+                            <img src='/assets/icon/link-out.svg'/>
+                        </span>
+                    </a>
+                ) : <p>Loading..</p>}
             </div>
         </>
     );

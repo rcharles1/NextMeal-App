@@ -9,6 +9,7 @@ function Restaurants() {
     const handleClick = event => {
         navigate('/restaurantsList');
     }
+    
     return (
         <div className="flex flex-col space-y-8 justify-center items-center h-1/2 w-100 caret-transparent">
             <div className="flex flex-col space-y-3 text-center px-3.5">
@@ -30,8 +31,7 @@ function Restaurants() {
                         </span>
                     </div>
                 </div>
-                <div className="flex flex-row outline h-64 space-x-5 justify-center overflow-hidden py-2 mx-auto w-full">
-                    <RestaurantCard />
+                <div className="bg-bg_variant2 justify-center overflow-hidden py-2 pr-0.5 pl-0.5 w-full">
                     <RestaurantCard />
                 </div>
             </div>

@@ -16,34 +16,43 @@ const MenuIcon = () => {
         event.stopPropagation();
         if(isOpen) {
             dispatch(toggleMenu());
-            console.log('Menu closed');
         }
     };
 
-    const imgSrc = location.pathname === '/' ? '/assets/icon/menu-line.svg' : '/assets/icon/menu-line-dark.svg';
-    const marginTop = location.pathname === '/' ? 'mt-14' : 'mt-0';
+    const imgSrc1 = location.pathname === '/' ? '/assets/icon/menu-to-close-light.svg' : '/assets/icon/menu-to-close.svg';
+    const imgSrc2 = location.pathname === '/' ? '/assets/icon/close-to-menu-light.svg' : '/assets/icon/close-to-menu.svg';
+    const bg = location.pathname === '/' ? 'bg-pure_white/80' : 'bg-pure_white';
+    const marginLeft = location.pathname === '/' ? 'right-56': '';
+
+    const links = [
+        { to: "/", text: "Home" },
+        { to: "/about", text: "About" },
+        { to: "/restaurantslist", text: "Restaurants" },
+        { to: "/mealslist", text: "Meals" },
+        { to: "/mealslist", text: "Beverages" },
+        { to: "/services", text: "Services" },
+        { to: "/contact", text: "Contacts" },
+    ];
 
     return (
         <>
-            <div className="w-auto" onClick={handleMenuToggle}>
-                {!isOpen && 
-                    <Link to="#">
-                        <img src={imgSrc} className="transition-transform duration-1200 ease-in-out sm:size-10 transform rotate-180"/>
-                    </Link>
-                }
-                {isOpen && 
-                    <img src='/assets/icon/close.svg' className={`cursor-pointer sm:size-10 transition-transform duration-500 ease-in-out transform rotate-180`}/>
-                }
-            </div>
-            {isOpen && (
-                <div className={`fixed inset-0 backdrop-blur-2xl bg-opacity-100 bg-pure_white ${marginTop} opacity-95 h-screen w-56 flex items-start justify-left py-6 `}  onClick={closeMenu} style={{left: 0, transition: 'width 0.5s'}}>
-                    <div className="h-fit w-80 items-center justify-center pt-5 px-4 space-y-2 font-medium text-base">
-                        <Link to="/about" className="block border-l-4 border-gray/90  p-2">About</Link>
-                        <Link to="/services" className="block  p-2">Services</Link>
-                        <Link to="/contact" className="block  p-2">Contact</Link>
+           <div className="w-fit flex flex-col space-y-0 h-fit " onClick={handleMenuToggle}>
+                {isOpen ? (
+                    <div className="fixed -mt-4 w-8 h-8 space-y-5">
+                        <div><img src={imgSrc1} className="size-8 sm:size-10"/></div>
+                        <div className={`${bg} ${marginLeft} relative w-64 h-96 rounded-md`} style={{ backdropFilter: 'blur(5px)' }}>
+                            <div className="h-lvh w-80 items-center justify-center pt-3 px-4 space-y-2 font-semibold text-default/70 text-lg">
+                                {links.map((link, index) => (
+                                    <Link key={index} to={link.to} className={`block ${index === 0 ? 'border-l-4 border-gray/90' : ''} p-2`}>{link.text}</Link>
+                                ))}
+                            </div>
+                        </div>
                     </div>
-                </div>
-            )}
+
+                ) :  <img src={imgSrc2} className="size-8 sm:size-10"/>}
+            </div>
+
+            
         </>
     );
 }

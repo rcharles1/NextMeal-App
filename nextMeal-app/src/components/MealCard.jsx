@@ -9,6 +9,7 @@ function MealCard() {
         navigate('/mealitem');
     }
 
+    
     return (
         <div className="flex flex-col space-y-5 items-start justify-start h-72  max-w-40 rounded-xl sm:rounded-2xl drop-shadow px-2 py-2 text-sm bg-pure_white sm:h-80 sm:w-48">
             <div className="relative h-32  sm:h-36 w-full mx-auto rounded-md sm:rounded-xl overflow-hidden">

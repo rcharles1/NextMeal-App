@@ -23,7 +23,7 @@ connectToDb((err) => {
 app.get('/restaurants', (req, res) => {
     // Pagination of results
     const page = req.query.p || 0
-    const restaurantsPerPage = 3
+    const restaurantsPerPage = 4
 
     let restaurants = [];
 
@@ -41,7 +41,7 @@ app.get('/restaurants', (req, res) => {
         })
 })
 
-app.get('/restaurants/:id', (req, res) => {
+app.get('/restaurant/:id', (req, res) => {
 
     if (ObjectId.isValid(req.params.id)) {
         db.collection('restaurants')
