@@ -27,9 +27,8 @@ function Beverages() {
                         </span>
                     </div>
                 </div>
-                <div className="flex flex-row space-x-5 justify-center pb-2 w-full">
+                <div className="bg-bg_variant2 justify-center overflow-hidden py-2 pr-0.5 pl-0.5 w-full">
                     <BeverageCard />
-                    <BeverageCard/>
                 </div>
             </div>
         </div>

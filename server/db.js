@@ -8,6 +8,7 @@ module.exports = {
             .then((client) => {
                 dbConnection = client.db()
                 return cb();
+                console.log("We are In!")
             })
             .catch(err => {
                 console.log(err);

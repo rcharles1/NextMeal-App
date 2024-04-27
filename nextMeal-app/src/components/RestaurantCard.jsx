@@ -8,7 +8,7 @@ function RestaurantCard() {
     useEffect(() => {
         const fetchRestaurantDetails = async () => {
             try {
-                const response = await fetch('http://localhost:3000/restaurants');
+                const response = await fetch('http://localhost:3000/restaurants/');
                 const data = await response.json();
                 setRestaurants(data);
             } catch (error) {
@@ -17,7 +17,7 @@ function RestaurantCard() {
         };
 
         fetchRestaurantDetails();
-    }, [ ])
+    }, [])
 
     return (
         <>
@@ -35,7 +35,7 @@ function RestaurantCard() {
                                 <span className="size-3 sm:size-3.5 mt-0.5"><img src='/assets/icon/location-fill.svg' alt='Location icon'/></span>
                                 <span className="text-xs font-extralight">{restaurant.details.address[0]}</span>
                             </div>
-                            <span className="line-clamp-2 sm:line-clamp-3 text-xs w-32 h-8 mx-auto font-base">Enjoy the best Biryani, Iftar. Open 8Am-pm</span>
+                            <span className="line-clamp-2 sm:line-clamp-3 text-xs w-32 h-8 mx-auto font-base">{restaurant.description}</span>
                         </div>
                         <div className="w-fit ml-12 border-b-2 active:border-bg_variant1 justify-center flex flex-row space-x-1">
                             <span><NavLink to={`/restaurantprofile/${restaurant._id}`} className="font-semibold text-xs sm:text-base active:text-bg_variant1">Learn More</NavLink></span>
