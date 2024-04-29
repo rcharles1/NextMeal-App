@@ -19,18 +19,12 @@ function Meal() {
                 </span>
             </div>
             <div className="flex flex-col space-y-3 rounded-sm w-full p-2">
-                <div>
-                    <div className="flex flex-row space-x-32 ml-7 sm:w-11/12 sm:justify-between font-semibold text-default/80 ">
-                        <span className="text-sm sm:text-base">
-                            Recommended Meals
-                        </span>
-                        <span className="text-xs sm:text-sm mt-0.5">
-                            <button onClick={handleClick} className="underline underline-offset-2">Show All</button>
-                        </span>
-                    </div>
-                </div>
-                <div className="bg-bg_variant2 outline justify-center overflow-hidden py-2 pr-0.5 pl-0.5 w-full">
+                
+                <div className="bg-bg_variant2 justify-center overflow-hidden py-2 pr-0.5 pl-0.5 w-full">
                     <MealCard />
+                </div>
+                <div className="flex ml-72 text-xs sm:text-sm mt-0.5 sm:w-11/12 sm:justify-end font-semibold text-default/80 hover:text-bg_variant1">
+                   <button onClick={handleClick} className="underline underline-offset-2">Show All</button>
                 </div>
             </div>
         </div>

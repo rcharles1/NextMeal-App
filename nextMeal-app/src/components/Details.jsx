@@ -5,7 +5,7 @@ function Details({ restaurantDoc }) {
     return (
         <>
             {restaurantDoc ? (
-                <div className="grid grid-cols-1 divide-y-2 gap-3 divide-faint_default/10">
+                <div className="grid grid-cols-1 divide-y-2 gap-3 divide-faint_default/10 antialiased">
                     <div className="flex flex-row justify-between items-top p-1">
                         <span className="">
                             Address
@@ -35,17 +35,17 @@ function Details({ restaurantDoc }) {
                         <span>
                             Platforms 
                         </span>
-                        <span className="font-medium">
+                        <span className="font-medium w-48">
                             <a href={`${restaurantDoc.details.platforms.website}`} target="_blank" rel="noopener noreferrer" className="flex text-blue">
                                 {`${restaurantDoc.name}'s Website`}
-                                <span className="size-4">
+                                <span className="size-8">
                                     <img src='/assets/icon/link-out.svg'/>
                                 </span>
                             </a>
                         </span>
                     </div>
                 </div>
-            ) : <p>Loading...</p>}
+            ) : <p>Fetching data. Please wait...</p>}
         </>
     );
 }

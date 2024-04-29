@@ -41,7 +41,6 @@ router.get('/:id', (req, res) => {
     } else {
         res.status(500).json({error: 'Not a valid doc id'})
     }
-
 })
 
 // Create one restaurant

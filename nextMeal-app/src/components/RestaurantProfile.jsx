@@ -10,7 +10,6 @@ import Breadcrumbs from './BreadCrumbs';
 
 import { useParams } from 'react-router-dom';
 
-
 function RestaurantProfile() {
     const [activeTab, setActiveTab ] = useState(null);
     const { id } = useParams();
@@ -19,7 +18,7 @@ function RestaurantProfile() {
     useEffect(() => {
         const fetchRestaurantDoc = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/restaurant/${id}`);
+                const response = await fetch(`http://localhost:3000/restaurants//${id}`);
                 const data = await response.json();
                 setRestaurantDoc(data);
             } catch (error) {
@@ -49,16 +48,16 @@ function RestaurantProfile() {
     }
 
     return (
-        <div className="mx-auto text-sm font-normal h-screen w-100 "> 
+        <div className="mx-auto text-base font-normal h-screen w-100 antialiased "> 
             <div className="sticky top-0 z-10  w-full">
                 <Header/>
            </div>
             <div className='sticky top-20 sm:top28 z-10 px-4 flex flex-row space-x-3 items-center justify-start caret-bg_variant2 py-2 border-b-2 border-gray backdrop-blur bg-opacity-70'> 
                 <div className="z-0"><MenuIcon /></div>
-                <div className="capitalize h-6 items-center flex  w-full"><Breadcrumbs restaurantDoc={restaurantDoc}/></div>
+                <div className="capitalize h-6 items-center text-sm flex w-full"><Breadcrumbs restaurantDoc={restaurantDoc}/></div>
             </div>
             { restaurantDoc ? (
-                <div className=" mt-3">
+                <div className="mt-3">
                     <div className="p-1 h-1/3 rounded overflow-hidden">
                         <img src={`/assets/img/gallery/restaurants/${restaurantDoc.gallery.img1}.webp`} alt="restaurant-photo" />
                     </div>
@@ -84,13 +83,13 @@ function RestaurantProfile() {
                         </p>
 
                         <div className="flex flex-col mt-8 space-y-1 z-0 ">
-                            <div className="flex justify-start space-x-8 w-100 items-center border-b-2 border-faint_default/15 h-8 text-headings/70 font-semibold text- caret-pure_white">
+                            <div className="flex justify-start space-x-8 w-100 items-center border-b-2 border-faint_default/15 h-8 text-headings/70 font-semibold caret-transparent">
                                 <div>
                                     <button onClick={() => {
                                             let id = 'detailsTab';
                                             setActiveTab(id);
                                             handleClick(id);
-                                        }} className="p-1 h-9 cursor-pointer transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 focus:text-headings/100 focus:border-b-2 focus:border-bg_variant1"
+                                        }} className="p-1 h-9 cursor-pointer transition duration-300 ease-in-out focus:text-bg_variant1 focus:text-headings/100 focus:font-bold focus:border-b-2 focus:border-bg_variant1"
                                         >
                                             DETAILS
                                     </button>
@@ -101,7 +100,7 @@ function RestaurantProfile() {
                                         setActiveTab(id);
                                         handleClick(id);
                                         }} 
-                                        className="p-1 h-9 cursor-pointer transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 focus:text-headings/100 focus:font-semibold focus:border-b-2 focus:border-bg_variant1"
+                                        className="p-1 h-9 cursor-pointer transition duration-300 ease-in-out focus:text-bg_variant1 focus:text-headings/100 focus:font-bold focus:border-b-2 focus:border-bg_variant1"
                                         >
                                             MENU
                                     </button>
@@ -113,7 +112,7 @@ function RestaurantProfile() {
                                             setActiveTab(id);
                                             handleClick(id);
                                         }} 
-                                        className="p-1 h-9 cursor-pointer transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 focus:text-headings/100 focus:font-semibold focus:border-b-2 focus:border-bg_variant1"
+                                        className="p-1 h-9 cursor-pointer transition duration-300 ease-in-out focus:text-bg_variant1 focus:text-headings/100 focus:font-bold focus:border-b-2 focus:border-bg_variant1"
                                         >
                                             SERVICES
                                     </button>
