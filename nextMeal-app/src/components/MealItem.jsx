@@ -34,7 +34,7 @@ function MealItem() {
                 <div className="capitalize font-base h-6 w-fit"><Breadcrumbs/></div>
             </div>
            {mealDetails ? (
-                <div className="flex flex-col px-5 py-1 h-fit transition-all duration-500">
+                <div key={mealDetails._id} className="flex flex-col px-5 py-1 h-fit transition-all duration-500">
                     <h1 className="font-bold text-center text-3xl sm:text-3xl">{mealDetails.name}</h1>
                     <h3 className="font-bold text-center text-xl text-default/70 sm:text-2xl">{mealDetails.course}</h3>
                     <div className="rounded-lg p-1 h-80 sm:h-96 w-92 mx-auto overflow-hidden">

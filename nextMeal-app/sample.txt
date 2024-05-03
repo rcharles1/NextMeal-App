@@ -83,3 +83,26 @@ export default App;
         </div>
     </>
 }
+
+
+
+<div key={beverageDetails._id} className="flex outline mt-2 flex-col mx-auto py-1 mb-12 h-fit transition-all duration-500">
+    <h1 className="font-bold text-center text-3xl sm:text-3xl">{beverageDetails.name}</h1>
+    <h3 className="font-bold text-center text-xl text-default/70 sm:text-2xl">{beverageDetails.type}</h3>
+    <div className="rounded-lg p- h-80 sm:h-96 w-92 mx-auto overflow-hidden">
+        <img src={`/assets/img/gallery/meals/beverages/${beverageDetails.img}.webp`} alt="beverages-img" className="h-full object-scale-down w-full -mx-2" />
+    </div>
+    <div className="flex flex-col mt-8 h-32 w-92 mx-auto drop-shadow">
+        <h2 className="font-bold text-xl text-default/75">Description</h2>
+        <span className="flex space-x-3 mt-2 px-2 font-semibold text-bg_variant1/45 text-sm">
+            <p>{beverageDetails.size}</p>
+            <ol className="list-disc flex space-x-1.5">{beverageDetails.category.map(item => {
+                return <li>{item}</li>
+            })}</ol>
+        </span>
+        <span className="text-left p-2 leading-relaxed text-default/75 font-normal indent-4 antialiased">{beverageDetails.volume}</span>
+    </div>
+    <button className="bg-bg_variant1 -ml-1.5 p-3 w-full text-pure_white/80 font-bold rounded-lg shadow shadow-bg_variant1 active:bg-bg_variant1/80">
+        ADD TO CART
+    </button>
+</div>

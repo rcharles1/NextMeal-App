@@ -6,6 +6,7 @@ import RestaurantsList from '../components/RestaurantsList';
 import RestaurantProfile from '../components/RestaurantProfile';
 import MealsList from '../components/MealsList';
 import MealItem from '../components/MealItem';
+import BeverageItem from '../components/BeverageItem';
 
 import { useSelector } from 'react-redux';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -22,6 +23,7 @@ function App() {
         <Route path="/restaurantprofile/:id" element={<RestaurantProfile />} />
         <Route path="mealslist" element={<MealsList />} />
         <Route path="mealitem/:id" element={<MealItem />} />
+        <Route path="beverageitem/:id" element={<BeverageItem />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>

@@ -10,5 +10,4 @@ export const moods = [
     { svg: PizzaSvg, text: 'Quick Eats'},
     { svg: WineGlass, text: 'Drinks'},
     { svg: Teacup, text: 'Breakfast'}
-    
-]
+];

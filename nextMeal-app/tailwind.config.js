@@ -28,6 +28,11 @@ export default {
       zIndex: {
         '-10': '-10',
       },
+      backgroundOpacity: {
+        '10': '0.1',
+        '20': '0.2',
+        '95': '0.95',
+      },
       backdropFilter: {
         'blur': 'blur(10px)',
       },

@@ -1,17 +1,28 @@
-import { React } from  'react';
+import { React, useState } from  'react';
 import { moods } from '../utilities/moods';
 
 function MealCategory() {
-    return (
-      <div className=" w-full  flex flex-row h-fit space-x-2">
-        {moods.map((item, index) => (
-          <div key={index} className="flex  flex-col space-y-1">
-            <div className="flex flex-row justify-center itmes-center w-fit bg-pure_white rounded-full p-3"><item.svg fill="black" height="35" width="35"/></div>
-            <p className="text-xs font-medium text-default/65 text-center">{item.text}</p>
+  const [selected, setSelected] = useState(null);
+
+  const handleClick = index => {
+    setSelected(index);
+  };
+
+  return (
+    <div className="w-full flex flex-row h-fit space-x-2">
+      {moods.map((item, index) => (
+        <div key={index} className="flex flex-col space-y-1">
+          <div 
+            className={`flex flex-row justify-center items-center  w-fit bg-pure_white rounded-full p-3 ${selected === index ? 'text-red-500' : 'text-black'} ${selected === index ? 'shadow-sm shadow-bg_variant1' : ''}`} 
+            onClick={() => handleClick(index)}
+          >
+            <item.svg fill={selected === index ? 'red' : 'black'} height="35" width="35"/>
           </div>
-        ))}
-      </div>
-    )
+          <p className={`text-xs font-medium  text-center ${selected === index ? 'text-bg_variant1' : 'text-default/65'}`}>{item.text}</p>
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export default MealCategory;
