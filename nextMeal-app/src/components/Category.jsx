@@ -1,11 +1,13 @@
 import { React, useState } from  'react';
 import { moods } from '../utilities/moods';
 
-function MealCategory() {
+function MealCategory({ onCategorySelect, resetPage }) {
   const [selected, setSelected] = useState(null);
 
   const handleClick = index => {
     setSelected(index);
+    onCategorySelect(index);
+    resetPage();
   };
 
   return (

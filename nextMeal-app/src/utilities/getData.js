@@ -40,7 +40,7 @@ export const fetchAllBeverages = async (page) => {
 };
 
 // Fetch Meals or Beverages
-export const fetchMealsOrBeverages = async (page, entrypoint) => {
+export const fetchMealsOrBeverages = async (page, entrypoint, category) => {
     let url, item;
     if (entrypoint === 'meals'){
         url = `http://localhost:3000/meals/?p=${page}`;
@@ -48,6 +48,9 @@ export const fetchMealsOrBeverages = async (page, entrypoint) => {
     } else {
         url = `http://localhost:3000/beverages/?p=${page}`;
         item = 'beverages';
+    }
+    if (category) {
+        url += `&category=${category}`;
     }
     try {
         const response = await fetch(url);
@@ -85,7 +88,6 @@ export const fetchBeverageDoc = async () => {
         console.error('Error fetching Brverage document:', error);
     }
 };
-
 
 // Fetch one Restaurant
 export const fetchRestaurantDoc = async () => {

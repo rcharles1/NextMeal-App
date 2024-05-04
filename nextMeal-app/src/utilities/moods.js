@@ -5,9 +5,9 @@ import { Wine, WineGlass } from '/src/components/svgs/DrinksSvg';
 import { Teacup, Coffee } from '/src/components/svgs/BreakfastSvgs';
 
 export const moods = [
-    { svg: CilDinner, text: 'Diner'},
+    { svg: CilDinner, text: 'Dinner'},
     { svg: BbqSvg, text: 'Grills'},
-    { svg: PizzaSvg, text: 'Quick Eats'},
+    { svg: PizzaSvg, text: 'Quick Bites'},
     { svg: WineGlass, text: 'Drinks'},
     { svg: Teacup, text: 'Breakfast'}
 ];

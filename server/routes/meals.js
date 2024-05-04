@@ -7,13 +7,15 @@ let db = getDatabase();
 
 // Get all meals in pagination
 router.get('/', (req, res) => {
-    const page = req.query.p || 0
-    const mealsPerPage = 6
+    const page = req.query.p || 0;
+    const category = req.query.category || null;
+    const mealsPerPage = 6;
 
     let meals = [];
+    let query = category ? { category: category } : {};
 
     db.collection('meals')
-        .find()
+        .find(query)
         .sort({name: 1})
         .skip(page * mealsPerPage)
         .limit(mealsPerPage)

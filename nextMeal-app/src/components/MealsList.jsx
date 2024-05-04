@@ -9,6 +9,7 @@ import MealCategory from './Category';
 import Footer from './Footer';
 
 import { fetchMealsOrBeverages } from '../utilities/getData';
+import { moods } from '../utilities/moods';
 import { useLocation } from 'react-router-dom';
 
 function MealsList() {
@@ -18,29 +19,34 @@ function MealsList() {
 
     const location = useLocation();
     const entryPoint = location.state.entryPoint;
-
+  
     useEffect(() => {
-        const fetchMealsBeverages = async () => {
-            try {
-                const data = await fetchMealsOrBeverages(page, entryPoint);
-                setMealItem(prevMealItems => {
-                    let newMealItems = [...prevMealItems];
-                    let ids = new Set(newMealItems.map(item => item._id));
-                    for (let item of data) {
-                        if (!ids.has(item._id)) {
-                            newMealItems.push(item);
-                            ids.add(item._id);
-                        }
-                    }
-                    return newMealItems;
-                });
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
-        fetchMealsBeverages();
-    }, [page, entryPoint]);    
+      const fetchMealsBeverages = async () => {
+        try {
+          const category = selectedCategory !== null ? moods[selectedCategory].text : null;
+          const data = await fetchMealsOrBeverages(page, entryPoint, category);
+          
+          setMealItem(prevMealItems => {
+            // If a new category is selected or it's the first page, replace the existing items
+            // Otherwise, append the new items to the existing items
+            const newMealItems = selectedCategory !== null || page === 0
+              ? [...data]
+              : [...prevMealItems, ...data];
+            
+            // Create a new array that only includes unique items
+            const uniqueMealItems = Array.from(new Set(newMealItems.map(item => item._id)))
+              .map(id => newMealItems.find(item => item._id === id));
+            
+            return uniqueMealItems;
+          });
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+      fetchMealsBeverages();
+    }, [page, entryPoint, selectedCategory]);
     
+      
     const handleShowMore = () => {
         setPage(prevPage => prevPage + 1);
     }
@@ -62,11 +68,11 @@ function MealsList() {
                 <div className="flex flex-col space-y-2 px-5 caret-transparent">
                     <h2 className="text-base font-semibold ">What's your mood?</h2>
                     <div className="flex flex-row w-full space-x-2 p-3 overflow-hidden">
-                       <MealCategory />
+                       <MealCategory onCategorySelect={setSelectedCategory} resetPage={() => setPage(0)}/>
                     </div>
                 </div>
                 <div className="flex flex-col space-y-1 px-5">
-                    <h1 className='text-base font-semibold'>Featured</h1>
+                    <h1 className='text-base font-semibold'>Recommended</h1>
                     <div id='container' className='-mx-2.5'>
                        
                     </div>
