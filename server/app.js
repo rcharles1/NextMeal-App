@@ -23,6 +23,9 @@ connectToDb((err) => {
         const beveragesRouter = require('./routes/beverages');
         app.use('/beverages', beveragesRouter);
 
+        const searchRouter = require('./routes/search');
+        app.use('/search', searchRouter);
+
         app.listen(3000, () => {
             console.log('app listening on port 3000');
         });

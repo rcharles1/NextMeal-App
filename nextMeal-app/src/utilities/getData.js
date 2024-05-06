@@ -13,9 +13,13 @@ export const fetchAllMeals = async (page) => {
 };
 
 // Fetch All Restaurants
-export const fetchAllRestaurants = async (page) => {
+export const fetchAllRestaurants = async (page, category) => {
+    let url = `http://localhost:3000/restaurants/?p=${page}`;
+    if (category) {
+        url += `&category=${category}`;
+    } 
     try {
-        const response = await fetch(`http://localhost:3000/restaurants/?p=${page}`);
+        const response = await fetch(url);
        if (response.ok) {
         const data = await response.json();
         return data;
@@ -49,21 +53,28 @@ export const fetchMealsOrBeverages = async (page, entrypoint, category) => {
         url = `http://localhost:3000/beverages/?p=${page}`;
         item = 'beverages';
     }
+    let openCard;
     if (category) {
         url += `&category=${category}`;
+        if ((entrypoint === 'meals') && (category === 'Drinks')) {
+            openCard = 'beverages';
+            url = `http://localhost:3000/beverages/?p=${page}`;
+        } else {
+            openCard = 'meals';
+        }
     }
     try {
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
-            return data;
+            return { openCard, data };
         } else {
             console.error(`Error fetching ${item}: Response not OK`);
-            return []; 
+            return { openCard, data: [] }; 
         }
     } catch (error) {
         console.error(`Error fetching ${item}:`, error);
-        return []; 
+        return { openCard, data: [] }; 
     }
 };
 
@@ -94,12 +105,17 @@ export const fetchRestaurantDoc = async () => {
     try {
         const response = await fetch(`http://localhost:3000/restaurants//${id}`);
         const data = await response.json();
-        setRestaurantDoc(data);
     } catch (error) {
         console.error('Error fetching restaurant document:', error);
     }
 };
 
+
+
+
+
+
+// To be implemented at later days
 export const fetchMealsAndBeverages = async () => {
     try {
         const mealsResponse = fetch('http://localhost:3000/meals/');

@@ -46,7 +46,6 @@ function Beverages() {
                 </div>
             </div>
         </div>
-        
     );
 }
 

@@ -15,7 +15,7 @@ function Meal() {
                 const data = await fetchAllMeals();
                 setMeals(data);
             } catch (error) {
-                console.error('Error fetching meal details:', error);
+                console.error('Error fetching meals:', error);
             }
         };
         fetchMeals();

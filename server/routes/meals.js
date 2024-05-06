@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
             res.status(200).json(meals)
         })
         .catch(() => {
-            res.status(500).json({error: 'Could not fetch the documents'})
+            res.status(500).json({error: 'Could not fetch meal documents'})
         })
 })
 

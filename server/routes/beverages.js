@@ -7,13 +7,15 @@ let db = getDatabase();
 
 // Get all beverages in pagination
 router.get('/', (req, res) => {
-    const page = req.query.p || 0
-    const beveragesPerPage = 6
+    const page = req.query.p || 0;
+    const category = req.query.category || null;
+    const beveragesPerPage = 6;
 
     let beverages = [];
+    let query = category ? { category: category } : {};
 
     db.collection('beverages')
-        .find()
+        .find(query)
         .sort({name: 1})
         .skip(page * beveragesPerPage)
         .limit(beveragesPerPage)
@@ -22,7 +24,7 @@ router.get('/', (req, res) => {
             res.status(200).json(beverages)
         })
         .catch(() => {
-            res.status(500).json({error: 'Could not fetch the documents'})
+            res.status(500).json({error: 'Could not fetch beverage documents'})
         })
 })
 

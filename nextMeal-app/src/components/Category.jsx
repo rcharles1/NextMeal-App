@@ -15,12 +15,15 @@ function MealCategory({ onCategorySelect, resetPage }) {
       {moods.map((item, index) => (
         <div key={index} className="flex flex-col space-y-1">
           <div 
-            className={`flex flex-row justify-center items-center  w-fit bg-pure_white rounded-full p-3 ${selected === index ? 'text-red-500' : 'text-black'} ${selected === index ? 'shadow-sm shadow-bg_variant1' : ''}`} 
-            onClick={() => handleClick(index)}
-          >
-            <item.svg fill={selected === index ? 'red' : 'black'} height="35" width="35"/>
+              className={`flex flex-row justify-center items-center w-fit bg-pure_white rounded-full p-3 ${selected === index ? 'text-red-500' : 'text-black'} ${selected === index ? 'shadow-sm shadow-bg_variant1' : ''}`} 
+              onClick={() => handleClick(index)}
+              style={{
+                boxShadow: selected === index ? '10px 10px 20px #d9d9d9, -10px -10px 20px #ffffff' : '5px 5px 15px #aeaec0, -5px -5px 15px #ffffff'
+              }}
+            >
+              <item.svg fill={selected === index ? 'red' : 'black'} height="35" width="35"/>
           </div>
-          <p className={`text-xs font-medium  text-center ${selected === index ? 'text-bg_variant1' : 'text-default/65'}`}>{item.text}</p>
+          <p className={`text-xs font-medium text-center ${selected === index ? 'text-bg_variant1' : 'text-default/65'}`}>{item.text}</p>
         </div>
       ))}
     </div>
