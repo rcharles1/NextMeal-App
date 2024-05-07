@@ -13,3 +13,16 @@ export const searchForMealOrBeverage = async (searchTerm) => {
         return { data: [], resultCard }; 
     }
 };
+
+export const searchRestaurant = async (searchTerm) => {
+    try {
+        const response = await fetch(`http://localhost:3000/search/restaurants/${searchTerm}`);
+       if (response.ok) {
+            const data = await response.json();
+            return data;
+       }
+       throw new Error(`HTTP error! status: ${response.status}` )
+    } catch (error) {
+        console.error('Error:', error);
+    }
+};

@@ -25,12 +25,12 @@ function Header() {
     }
 
     return (
-        <div className={`h-20 sm:h-28  px-3 sm:px-8 py-5 flex flex-row space-x-40 ${bgColor} caret-transparent cursor-pointer`}>
+        <div className={`h-20 sm:h-28 px-3 sm:px-8 py-5 flex flex-row justify-between ${bgColor} caret-transparent cursor-pointer`}>
             <div className="w-28 sm:w-48">
                 <img src={imgSrc} />
             </div>
-            <div className="flex flex-row space-x-3  justify-between items-center py-1 w-fit h-fit sm:w-36 sm:mt-2">
-                {isAuthenticated === false ? <Link to='/signin' className= {`w-fit h-fit z-10 outline outline-2 sm:outline-4 text-sm text-${colorTheme} caret-transparent font-bold w-14 h-12 p-2 sm:h-11 sm:p-2.5 sm:text-base focus:bg-${secColorTheme} hover:bg-${secColorTheme} rounded-md`}>Sign in</Link> : <ProfileIcon /> }
+            <div className="flex flex-row space-x-3 justify-end items-center py-1 w-fit h-fit sm:w-36 sm:mt-2">
+                {isAuthenticated === false ? <Link to='/signin' className= {`w-fit h-fit z-10 outline outline-2 sm:outline-4 text-sm text-${colorTheme} caret-transparent font-semibold w-14 h-12 p-2 sm:h-11 sm:p-2.5 sm:text-base focus:bg-${secColorTheme} hover:bg-${secColorTheme} rounded-md`}>Sign in</Link> : <ProfileIcon /> }
                 {setVisibility === 'visible' && <div className={`${setVisibility}`}><MenuIcon /></div>}
             </div>
         </div>

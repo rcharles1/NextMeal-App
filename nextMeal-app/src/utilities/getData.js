@@ -13,11 +13,9 @@ export const fetchAllMeals = async (page) => {
 };
 
 // Fetch All Restaurants
-export const fetchAllRestaurants = async (page, category) => {
+export const fetchAllRestaurants = async (page) => {
     let url = `http://localhost:3000/restaurants/?p=${page}`;
-    if (category) {
-        url += `&category=${category}`;
-    } 
+   
     try {
         const response = await fetch(url);
        if (response.ok) {

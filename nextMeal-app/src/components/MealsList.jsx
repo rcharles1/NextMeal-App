@@ -50,12 +50,10 @@ function MealsList() {
 
   const handleSearch = (result) => {
     setSearchResults(result);
-    console.log(result);
   } 
 
   const handleResultCard = (resultCard) => {
     setSearchResultCard(resultCard);
-    console.log(resultCard);
   } 
    
   const handleShowMore = () => {
@@ -90,7 +88,7 @@ function MealsList() {
         </div>
 
         {searchResults && searchResults.length > 0 ? (
-          <div className="flex flex-col space-y-1 px-5">
+          <div className="flex flex-col space-y-1 px-5 py-2">
             <h1 className='text-base font-semibold'>Featured</h1>
             <div id='container' className='mx-auto w-full grid grid-cols-2 gap-y-2 gap-x-2 sm:grid-cols-3 sm:gap-8 lg:gap-5'>
               {(searchResultCard === 'beverages') ? searchResults.map((item) => <BeverageCard key={item._id} beverage={item}/> ) :  searchResults.map((item) => <MealCard key={item._id} meal={item} />)}
@@ -100,7 +98,7 @@ function MealsList() {
 
         {mealitem ? (
           <div className="flex flex-col space-y-1 w-full">
-              <h1 className='text-base font-semibold px-5'>All To Explore</h1>
+              <h1 className='text-base font-semibold px-5'>Browse all</h1>
               <div id='container' className='mx-auto px-2.5 w-96 grid grid-cols-2 gap-y-2 gap-x-2 sm:grid-cols-3 sm:gap-8 lg:gap-5'>
                   {(entryPoint === 'beverages' || entryPoint === 'meals') && (card === 'beverages') ? mealitem.map((item) => <BeverageCard key={item._id} beverage={item}/> ) :  mealitem.map((item) => <MealCard key={item._id} meal={item} />)}
               </div>
