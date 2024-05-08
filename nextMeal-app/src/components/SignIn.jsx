@@ -13,8 +13,8 @@ function SignIn() {
    }
     
     return (
-        <div className="h-screen w-100 bg-pure_white">
-            <div className="h-1/2 bg-graphicRectangles bg-cover w-100 relative">
+        <div className="h-screen w-100 bg-pure_white antialised text-default/75">
+            <div className="h-1/2 bg-graphicRectangles bg-cover caret-transparent w-100 relative">
                <div className="w-56 absolute mt-1 top-36 left-28"><img src='/assets/img/next-meal-white.png' /></div>
                <h1 className="absolute top-96 left-8 text-3xl mt-2 font-bold">Greetings!</h1>
             </div>

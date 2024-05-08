@@ -5,6 +5,9 @@ import RestaurantCard from './RestaurantCard';
 import MenuIcon from './MenuIcon';
 import Breadcrumbs from './BreadCrumbs';
 import Footer from './Footer';
+import FilterWidget from './FilterWidget';
+import SortWidget from './SortWidget';
+import { Filter, Sort } from '/src/components/svgs/UiSvg';
 
 import { fetchAllRestaurants } from '../utilities/getData';
 import RestaurantCarousel from './Carousel';
@@ -13,6 +16,8 @@ function RestaurantsList() {
     const [restaurants, setRestaurants] = useState([]);
     const [page, setPage] = useState(0);
     const [searchResults, setSearchResults] = useState([]);
+    const [isFilterActive, setFilterActive] = useState(false);
+    const [isSortActive, setSortActive] = useState(false);
 
     useEffect(() => {
         const fetchRestaurants = async () => {
@@ -41,7 +46,7 @@ function RestaurantsList() {
     }
 
     return (
-        <div className="flex flex-col h-lvh w-100 bg-bg_variant2 text-sm font-normal"> 
+        <div className="flex flex-col h-lvh w-100 bg-bg_variant2 text-sm font-normal antialiased"> 
            <div className="sticky top-0 z-50 w-full">
                 <Header/>
            </div>
@@ -68,8 +73,28 @@ function RestaurantsList() {
                     </div>
                 ) : ''}
                 {restaurants ? (
-                    <div className="flex flex-col w-full space-y-1">
+                    <div className="flex flex-col w-full space-y-2">
                         <h1 className='text-base font-semibold '>Browse all</h1>
+                        <div className="flex flex-col p-1 justify-end space-y-1.5">
+                            <div className="flex h-fit space-x-1 items-center justify-end rounded-md">
+                                <button 
+                                    onClick={() => setFilterActive(!isFilterActive)}
+                                    className={`flex space-x-1 grow-0 border rounded p-1 h-7 w-16 items-center justify-center caret-transparent ${isFilterActive ? 'bg-bg_variant1 text-pure_white/75' : ''} focus:text-pure_white/75 focus:bg-bg_variant1`}
+                                >
+                                    <span>Filter </span>
+                                    <Filter fill={isFilterActive ? 'white' : 'black'} height="20" width="18" />
+                                </button>
+                                <button 
+                                    onClick={() => setSortActive(!isSortActive)}
+                                    className={`flex space-x-1 grow-0 border p-2 h-7 w-16 rounded items-center justify-center caret-transparent ${isSortActive ? 'bg-bg_variant1 text-pure_white/75' : ''} focus:text-pure_white/75 focus:bg-bg_variant1`}
+                                >
+                                    <span>Sort</span>
+                                    <Sort fill={isSortActive ? 'white' : 'black'} height="20" width="18"/>
+                                </button>
+                            </div>
+                            {isFilterActive && <FilterWidget />} 
+                            {isSortActive && <SortWidget />}
+                        </div>
                         <div id='container' className='mx-auto w-full grid grid-cols-2 gap-y-2 gap-x-2 sm:grid-cols-3 sm:gap-8 lg:gap-5'>
                             {restaurants.map((restaurant, i) => <RestaurantCard key={i} restaurant={restaurant} />)}
                         </div>

@@ -83,7 +83,18 @@ export default App;
         </div>
     </>
 }
-<div className="flex flex-row h-48 w-full space-x-2 p-2">
-                       <img src="/assets/img/gallery/restaurants/kfc2.webp" className={`w-72 h-40 rounded-md object-cover`} />
-                       <img src="/assets/img/gallery/restaurants/cairo2.webp" className={`w-72 h-40 rounded-md object-cover`} />
-                    </div>
+
+<option value="">All Cuisines</option>
+<option value="african">African</option>
+<option value="arab">Arab</option>
+<option value="bakery foods">Bakery</option>
+<option value="bar">Bar</option>
+<option value="breakfast items">Breakfast</option>
+<option value="chinese">Chinese</option>
+<option value="italian">Italian</option>
+<option value="mexican">Indian</option>
+<option value="italian">Italian</option>
+<option value="kitimoto">Kitimoto</option>
+<option value="nyama choma">Nyama Choma (Grills)</option>
+<option value="smooothie & juice bar">Smoothie & Juice Bar</option>
+<option value="visinia">Visinia</option>

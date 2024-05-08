@@ -5,9 +5,9 @@ function Details({ restaurantDoc }) {
     return (
         <>
             {restaurantDoc ? (
-                <div className="grid grid-cols-1 divide-y-2 gap-3 divide-faint_default/10 antialiased">
+                <div className="grid grid-cols-1 divide-y-2 gap-3 divide-light_dark/5 antialiased">
                     <div className="flex flex-row justify-between items-top p-1">
-                        <span className="">
+                        <span>
                             Address
                         </span>
                         <span className="font-medium w-58 text-wrap">
