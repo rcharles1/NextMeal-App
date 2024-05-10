@@ -10,7 +10,7 @@ import BeverageItem from '../components/BeverageItem';
 
 import { useSelector } from 'react-redux';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
+import PageError from '../components/PageError';
 
 function App() {
  const state = useSelector(state => state.state);
@@ -19,6 +19,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Root />}  />
+        <Route path="pageNotFound" element={<PageError />} />
         <Route path="restaurantslist" element={<RestaurantsList />} />
         <Route path="/restaurantprofile/:id" element={<RestaurantProfile />} />
         <Route path="mealslist" element={<MealsList />} />

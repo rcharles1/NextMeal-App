@@ -38,7 +38,7 @@ function Footer() {
                     <div className="size-8 mt-0.1"><img src='/assets/icon/instagram-filled.svg' alt='facebook icon' /></div>
                 </div>
                 <div className="flex flex-col space-y-1 items-center justify-center">
-                    <div className="w-40 sm:w-48 p-2"><img src='/assets/img/next-meal-white.png' /></div>
+                    <div className="w-40 sm:w-48 p-2"><img src='/assets/img/next-meal-white.png' alt="logo" /></div>
                     <div className="flex flex-row text-sm space-x-3 justify">
                         <div>Terms <span className="font-semibold">|</span> Privacy </div>
                         <div className="size-4 mt-0.5"><img src='/assets/icon/copyright.svg' /> </div> 

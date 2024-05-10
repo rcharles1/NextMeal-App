@@ -30,3 +30,20 @@ export const filterAmenities = [
     {value: 'parking', text: 'Car Parking'},
     {value: 'childrenGrounds', text: 'Children Grounds'}
 ];
+
+const sortOptins = ['Ascending', 'Descending', 'Price: Low to High', 'Price: High to Low'];
+
+export const sortOptions = [
+    {
+        "name": [
+            { value: '1', icon: 'Ascending'},
+            { value: '-1', icon: 'Descending'}
+        ]
+    },
+    {
+        "price": [
+            { value: '1', icon: 'Price: Low to High'},
+            { value: '-1', icon: 'Price: High to Low'}
+        ]
+    }
+]

@@ -26,12 +26,12 @@ const MenuIcon = () => {
 
     const links = [
         { to: "/", text: "Home" },
-        { to: "/about", text: "About" },
+        { to: "/pageNotFound", text: "About" },
         { to: "/restaurantslist", text: "Restaurants" },
         { to: "/mealslist", text: "Meals" },
         { to: "/mealslist", text: "Beverages" },
         { to: "/services", text: "Services" },
-        { to: "/contact", text: "Contacts" },
+        { to: "/pageNotFound", text: "Contacts" },
     ];
 
     return (

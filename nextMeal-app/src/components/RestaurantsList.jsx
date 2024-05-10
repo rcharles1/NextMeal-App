@@ -11,39 +11,84 @@ import { Filter, Sort } from '/src/components/svgs/UiSvg';
 
 import { fetchAllRestaurants } from '../utilities/getData';
 import RestaurantCarousel from './Carousel';
+import Error from './Error';
 
 function RestaurantsList() {
     const [restaurants, setRestaurants] = useState([]);
     const [page, setPage] = useState(0);
     const [searchResults, setSearchResults] = useState([]);
     const [isFilterActive, setFilterActive] = useState(false);
+    const [error, setError] = useState('');
     const [isSortActive, setSortActive] = useState(false);
+    const [isFilterWidgetVisible, setIsFilterWidgetVisible] = useState(false);
+    const [filters, setFilters] = useState({
+        cuisines: [],
+        openHours: [],
+        services: [],
+        amenities: []
+    });
+
+    const handleFiltersChange = (newFilters) => {
+        setFilters(newFilters);
+    };
 
     useEffect(() => {
         const fetchRestaurants = async () => {
             try {
-                const data = await fetchAllRestaurants(page);
+                const data = await fetchAllRestaurants(page, filters);
+                if (!Array.isArray(data)) {
+                    throw new Error('Unexpected data format');
+                }
+                if (data.length === 0) {
+                    setError('No restaurants found for the given filters');
+                    return;
+                }
                 setRestaurants(prevRestaurants => {
-                    const newRestaurants = [...prevRestaurants, ...data];
-                    const uniqueRestaurants = Array.from(new Set(newRestaurants.map(item => item._id)))
-                      .map(id => newRestaurants.find(item => item._id === id));
-                  
+                    const combinedRestaurants = page > 1 ? [...prevRestaurants, ...data] : [...data];
+                    const uniqueRestaurants = Array.from(new Set(combinedRestaurants.map(item => item._id)))
+                        .map(id => combinedRestaurants.find(item => item._id === id));
                     return uniqueRestaurants;
-                  });
-                  
+                });
             } catch (error) {
-                console.error('Error fetching restaurants:', error);
+                setError('No restaurants found for the given filters. Try setting preferences again');
             }
         };
+        if (page === 1) {
+            setRestaurants([]);
+        }
         fetchRestaurants();
-    }, [page]);
+    }, [page, filters]);     
 
     const handleSearch = (result) => {
         setSearchResults(result);
-    }
+    };
+
     const handleShowMore = () => {
         setPage(prevPage => prevPage + 1);
+    };
+
+    const areFiltersActive = () => {
+        return filters.cuisines.length > 0 || filters.openHours.length > 0 || filters.services.length > 0 || filters.amenities.length > 0;
+    };    
+
+    const resetFilters = () => {
+        setFilters({
+            cuisines: [],
+            openHours: [],
+            services: [],
+            amenities: []
+        });
+        closeFilterWidget();
+    };    
+
+    const restError = () => {
+        setError('');
     }
+
+    const closeFilterWidget = () => {
+        setIsFilterWidgetVisible(false);
+        setFilterActive(false);
+    };
 
     return (
         <div className="flex flex-col h-lvh w-100 bg-bg_variant2 text-sm font-normal antialiased"> 
@@ -78,27 +123,34 @@ function RestaurantsList() {
                         <div className="flex flex-col p-1 justify-end space-y-1.5">
                             <div className="flex h-fit space-x-1 items-center justify-end rounded-md">
                                 <button 
-                                    onClick={() => setFilterActive(!isFilterActive)}
-                                    className={`flex space-x-1 grow-0 border rounded p-1 h-7 w-16 items-center justify-center caret-transparent ${isFilterActive ? 'bg-bg_variant1 text-pure_white/75' : ''} focus:text-pure_white/75 focus:bg-bg_variant1`}
+                                    onClick={() => setIsFilterWidgetVisible(!isFilterWidgetVisible)}
+                                    className={`flex space-x-1 grow-0 border rounded p-1 h-8 w-fit items-center justify-center caret-transparent cursor-pointer ${(isFilterWidgetVisible || areFiltersActive()) ? 'bg-bg_variant1 text-pure_white/75' : ''} focus:text-pure_white/75 focus:bg-bg_variant1`}
                                 >
-                                    <span>Filter </span>
-                                    <Filter fill={isFilterActive ? 'white' : 'black'} height="20" width="18" />
+                                    <span>Filter by</span>
+                                    <Filter fill={(isFilterWidgetVisible || areFiltersActive()) ? 'white' : 'black'} height="18" width="16" />
                                 </button>
                                 <button 
                                     onClick={() => setSortActive(!isSortActive)}
-                                    className={`flex space-x-1 grow-0 border p-2 h-7 w-16 rounded items-center justify-center caret-transparent ${isSortActive ? 'bg-bg_variant1 text-pure_white/75' : ''} focus:text-pure_white/75 focus:bg-bg_variant1`}
+                                    className={`flex space-x-1 grow-0 border p-2 h-8 w-fit rounded items-center justify-center caret-transparent cursor-pointer ${isSortActive ? 'bg-bg_variant1 text-pure_white/75' : ''} focus:text-pure_white/75 focus:bg-bg_variant1`}
                                 >
-                                    <span>Sort</span>
-                                    <Sort fill={isSortActive ? 'white' : 'black'} height="20" width="18"/>
+                                    <span>Sort by</span>
+                                    <Sort fill={isSortActive ? 'white' : 'black'} height="18" width="16"/>
                                 </button>
                             </div>
-                            {isFilterActive && <FilterWidget />} 
+                            {(isFilterWidgetVisible || isFilterActive) && <FilterWidget onFiltersChange={handleFiltersChange} 
+                                onClose={closeFilterWidget}
+                                filters={filters}
+                                onReset={resetFilters}
+                            />} 
                             {isSortActive && <SortWidget />}
                         </div>
                         <div id='container' className='mx-auto w-full grid grid-cols-2 gap-y-2 gap-x-2 sm:grid-cols-3 sm:gap-8 lg:gap-5'>
-                            {restaurants.map((restaurant, i) => <RestaurantCard key={i} restaurant={restaurant} />)}
+                            {restaurants && (error === '') ? (
+                                restaurants.map((restaurant, i) => <RestaurantCard key={i} restaurant={restaurant} />)
+                            ) : '' }
                         </div>
-                        {restaurants.length > 0 && <button onClick={handleShowMore} className="ml-72 font-medium text-xs underline w-fit hover:text-bg_variant1">Show More</button>}
+                        {(restaurants.length > 0) && (error === '') && <button onClick={handleShowMore} className="ml-72 font-medium text-xs underline w-fit hover:text-bg_variant1">Show More</button>}
+                        {error !== '' ? <Error message={error} onReset={restError} onClose={closeFilterWidget}/> : ''}
                     </div>
                 ) : <p className="mx-auto font-bold text-sm text-default/55">Loading...</p> }
            </div>

@@ -4,28 +4,41 @@ const router = express.Router();
 
 let { getDatabase } = require('../app');
 let db = getDatabase();
-
+ 
 // Get all restaurants
 router.get('/', (req, res) => {
     // Pagination of results
-    const page = req.query.p || 0
-    const restaurantsPerPage = 6
+    const page = req.query.p || 0;
+    const restaurantsPerPage = 6;
 
-    let restaurants = [];
+    // Filters
+    const cuisine = req.query.cuisine ? {cuisine: {$in: req.query.cuisine.split(',')}} : {};
+    const openHours = req.query.openHours ? {openHours: {$in: req.query.openHours.split(',')}} : {};
+    const services = req.query.services ? {['services.' + req.query.services]: 1} : {};
+    const amenities = req.query.amenities ? {['amenities.' + req.query.amenities]: 1} : {};
+
+    const filters = {...cuisine, ...openHours, ...services, ...amenities};
 
     db.collection('restaurants')
-        .find()
+        .find(filters)
         .sort({name: 1})
         .skip(page * restaurantsPerPage)
         .limit(restaurantsPerPage)
-        .forEach(restaurant => restaurants.push(restaurant))
-        .then(() => {
-            res.status(200).json(restaurants)
+        .toArray()
+        .then(restaurants => {
+            if (restaurants.length === 0) {
+                res.status(404).json({error: 'No matching records found'});
+            } else {
+                res.status(200).json(restaurants);
+            }
         })
-        .catch(() => {
-            res.status(500).json({error: 'Could not fetch the documents'})
-        })
-})
+        .catch(err => {
+            console.error(err);
+            res.status(500).json({error: 'Could not fetch the documents'});
+        });
+});
+
+
 
 // Get one restaurant
 router.get('/:id', (req, res) => {

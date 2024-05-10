@@ -13,9 +13,12 @@ export const fetchAllMeals = async (page) => {
 };
 
 // Fetch All Restaurants
-export const fetchAllRestaurants = async (page) => {
-    let url = `http://localhost:3000/restaurants/?p=${page}`;
-   
+export const fetchAllRestaurants = async (page, filters) => {
+    let url = `http://localhost:3000/restaurants/?`;
+    let params =  {p: page, ...filters};
+    let queryParams = Object.keys(params).map(key => `${key}=${params[key]}`).join('&');
+    url += queryParams;
+
     try {
         const response = await fetch(url);
        if (response.ok) {

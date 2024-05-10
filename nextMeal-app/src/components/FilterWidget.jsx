@@ -1,59 +1,49 @@
 import React, { useState } from 'react';
 import { filterCuisines, filterOpenHours, filterServices, filterAmenities } from '../utilities/prefences';
 
-function FilterWidget() {
-    const [selectedCuisines, setSelectedCuisines] = useState([]);
-    const [selectedOpenHours, setSelectedOpenHours] = useState([]);
-    const [selectedServices, setSelectedServices] = useState([]);
-    const [selectedAmenities, setSelectedAmenities] = useState([]);
-    const [region, setRegion] = useState([]);
+function FilterWidget({ onFiltersChange, filters, onReset, onClose }) {
+    const [selectedFilters, setSelectedFilters] = useState(filters);
 
-    const handleCuisineClick = (value) => {
-        if (selectedCuisines.includes(value)) {
-            setSelectedCuisines(selectedCuisines.filter(cuisine => cuisine !== value));
-        } else {
-            setSelectedCuisines([...selectedCuisines, value]);
-        }
+    const handleFilterClick = (filterType, value) => {
+        setSelectedFilters(prevFilters => {
+            const selectedFilter = prevFilters[filterType];
+            if (selectedFilter.includes(value)) {
+                return { ...prevFilters, [filterType]: selectedFilter.filter(filter => filter !== value) };
+            } else {
+                return { ...prevFilters, [filterType]: [...selectedFilter, value] };
+            }
+        });
     };
 
-    const handleOpenHoursClick = (value) => {
-        if (selectedOpenHours.includes(value)) {
-            setSelectedOpenHours(selectedOpenHours.filter(hour => hour !== value));
-        } else {
-            setSelectedOpenHours([...selectedOpenHours, value]);
-        }
+    const handleApplyClick = () => {
+        onFiltersChange(selectedFilters);
+        onClose();
+    };
+    
+    const handleCancelClick = () => {
+        setSelectedFilters(filters);
+        onClose();
     };
 
-    const handleServicesClick = (value) => {
-        if (selectedServices.includes(value)) {
-            setSelectedServices(selectedServices.filter(service => service !== value));
-        } else {
-            setSelectedServices([...selectedServices, value]);
-        }
-    };
-
-    const handleAmenitiesClick = (value) => {
-        if (selectedAmenities.includes(value)) {
-            setSelectedAmenities(selectedAmenities.filter(amenity => amenity !== value));
-        } else {
-            setSelectedAmenities([...selectedAmenities, value]);
-        }
-    };
+    const hasChanges = JSON.stringify(selectedFilters) !== JSON.stringify(filters);
 
     return (
-        <div className="w-full mx-auto p-3 bg-white border-b-2 border-bg_variant1/10 shadow rounded-md caret-transparent">
+        <div className="w-full mx-auto p-1 pb-2 bg-pure_white border-b-2 border-bg_variant1/10 shadow-sm rounded-md caret-transparent">
+            <button onClick={handleCancelClick} className="rounded ml-80 mb-2.5 border border-light_dark/10 cursor-pointer ">
+                <img src="/assets/icon/close.svg" alt="close-icon" className="size-6"/>
+            </button>
             <div className="grid grid-cols-1 divide-y-2 gap-1 divide-light_dark/10">
                 {/* Filter by Cuisine */}
                 <div className="flex flex-row justify-between items-start items-top p-1">
                     <span className="mt-2 font-medium text-start">Cuisine:</span>
                     <div className="flex flex-wrap w-52 h-16 px-0.5 pb-0.5 oveflow-hidden overflow-y-auto ">
                         {filterCuisines.map((cuisine, index) => {
-                            const isSelected = selectedCuisines.includes(cuisine.value);
+                            const isSelected = selectedFilters.cuisines.includes(cuisine.value);
                             return (
                                 <div 
                                     key={index} 
-                                    onClick={() => handleCuisineClick(cuisine.value)} 
-                                    className={`outline outline-1 justify-center mr-2 mt-2 rounded h-fit w-fit p-0.5 px-1 ${isSelected ? 'bg-bg_variant1 text-pure_white/75' : ''}`}
+                                    onClick={() => handleFilterClick('cuisines', cuisine.value)} 
+                                    className={`outline outline-1 justify-center mr-2 mt-2 cursor-pointer rounded h-fit w-fit p-0.5 px-1 ${isSelected ? 'bg-bg_variant1 text-pure_white/75' : ''}`}
                                 >
                                     {cuisine.text}
                                 </div>
@@ -66,12 +56,12 @@ function FilterWidget() {
                     <span className="mt-2 font-medium text-start">Open Hours:</span>
                     <div className="flex flex-wrap w-52 h-fit px-0.5 pb-2 oveflow-hidden overflow-y-auto ">
                         {filterOpenHours.map((hour, index) => {
-                            const isSelected = selectedOpenHours.includes(hour.value);
+                            const isSelected = selectedFilters.openHours.includes(hour.value);
                             return (
                                 <div 
                                     key={index} 
-                                    onClick={() => handleOpenHoursClick(hour.value)} 
-                                    className={`outline outline-1 justify-center mr-2 mt-2 rounded h-fit w-fit p-0.5 px-1 ${isSelected ? 'bg-bg_variant1 text-pure_white/75' : ''}`}
+                                    onClick={() => handleFilterClick('openHours', hour.value)} 
+                                    className={`outline outline-1 justify-center mr-2 mt-2 cursor-pointer rounded h-fit w-fit p-0.5 px-1 ${isSelected ? 'bg-bg_variant1 text-pure_white/75' : ''}`}
                                 >
                                     {hour.text}
                                 </div>
@@ -79,17 +69,17 @@ function FilterWidget() {
                         })}
                     </div>
                 </div>
-                {/* Filter by Services */}
-                <div className="flex flex-row justify-between items-start items-top p-1">
+                 {/* Filter by Services */}
+                 <div className="flex flex-row justify-between items-start items-top p-1">
                     <span className="mt-2 font-medium text-start">Services:</span>
                     <div className="flex flex-wrap w-52 h-fit px-0.5 pb-2 oveflow-hidden overflow-y-auto ">
                         {filterServices.map((service, index) => {
-                            const isSelected = selectedServices.includes(service.value);
+                            const isSelected = selectedFilters.services.includes(service.value);
                             return (
                                 <div 
                                     key={index} 
-                                    onClick={() => handleServicesClick(service.value)} 
-                                    className={`outline outline-1 justify-center mr-2 mt-2 rounded h-fit w-fit p-0.5 px-1 ${isSelected ? 'bg-bg_variant1 text-pure_white/75' : ''}`}
+                                    onClick={() => handleFilterClick('services', service.value)} 
+                                    className={`outline outline-1 justify-center mr-2 mt-2 cursor-pointer rounded h-fit w-fit p-0.5 px-1 ${isSelected ? 'bg-bg_variant1 text-pure_white/75' : ''}`}
                                 >
                                     {service.text}
                                 </div>
@@ -102,12 +92,12 @@ function FilterWidget() {
                     <span className="mt-2 font-medium text-start">Amenities:</span>
                     <div className="flex flex-wrap w-52 h-fit px-0.5 pb-2 oveflow-hidden overflow-y-auto ">
                         {filterAmenities.map((amenity, index) => {
-                            const isSelected = selectedAmenities.includes(amenity.value);
+                            const isSelected = selectedFilters.amenities.includes(amenity.value);
                             return (
                                 <div 
                                     key={index} 
-                                    onClick={() => handleAmenitiesClick(amenity.value)} 
-                                    className={`outline outline-1 justify-center mr-2 mt-2 rounded h-fit w-fit p-0.5 px-1 ${isSelected ? 'bg-bg_variant1 text-pure_white/75' : ''}`}
+                                    onClick={() => handleFilterClick('amenities', amenity.value)} 
+                                    className={`outline outline-1 justify-center mr-2 mt-2 rounded h-fit w-fit cursor-pointer p-0.5 px-1 ${isSelected ? 'bg-bg_variant1 text-pure_white/75' : ''}`}
                                 >
                                     {amenity.text}
                                 </div>
@@ -115,6 +105,10 @@ function FilterWidget() {
                         })}
                     </div>
                 </div>
+            </div>
+            <div className="flex flex-row space-x-2 w-fit mt-2.5 mx-auto items-center justify-center p-1">
+                <button onClick={onReset} className="rounded-md w-40 h-8 drop-shadow-xl cursor-pointer border text-default/70 font-bold">RESET</button>
+                <button onClick={handleApplyClick} disabled={!hasChanges} className="rounded-md cursor-pointer w-40 p-1 h-8 bg-bg_variant1 text-pure_white/75 font-bold">APPLY</button>
             </div>
         </div>
     );
