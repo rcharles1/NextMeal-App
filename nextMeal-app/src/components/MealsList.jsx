@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState, useEffect, useCallback } from 'react';
 import Header from './Header';
 import SearchItem from './SearchItem';
 import MealCard from './MealCard';
@@ -6,9 +6,13 @@ import BeverageCard from './BeverageCard';
 import MenuIcon from './MenuIcon';
 import Breadcrumbs from './BreadCrumbs';
 import MealCategory from './Category';
+import FilterWidget from './FilterWidget';
+import SortWidget from './SortWidget';
+import { Filter, Sort } from '/src/components/svgs/InterfaceSvg';
 import Footer from './Footer';
 
 import { fetchMealsOrBeverages } from '../utilities/getData';
+import { beverageFilterOptions, mealFilterOptions } from '../utilities/prefences';
 import { moods } from '../utilities/moods';
 import { useLocation } from 'react-router-dom';
 
@@ -20,15 +24,37 @@ function MealsList() {
   const [card, setCard] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
   const [searchResultCard, setSearchResultCard] = useState(null);
+  const [isFilterActive, setFilterActive] = useState(false);
+  const [isFilterWidgetVisible, setIsFilterWidgetVisible] = useState(false);
+  const [error, setError] = useState('');
+  const [isSortActive, setSortActive] = useState(false);
+  const [isSortWidgetVisible, setIsSortWidgetVisible] = useState(false);
+  const [sort, setSort] = useState({text: 'Ascending', value: '1', icon: 'Ascending'});
+  const [filters, setFilters] = useState({
+    cuisines: [],
+    mealType: [],
+    course: [],
+    beverageType: [],
+    category: []
+  });
 
   const location = useLocation();
-  const entryPoint = location.state.entryPoint;
+  const entryPoint = location.state?.entryPoint || 'meals';
+  const filterOption = entryPoint === 'meals' ? mealFilterOptions :  beverageFilterOptions;
+
+  const handleFiltersChange = useCallback((newFilters) => {
+    setFilters(newFilters);
+  }, []);
+
+  const handleSortChange = useCallback((newSort) => {
+    setSort(newSort);
+  }, []);
 
   useEffect(() => {
     const fetchMealsBeverages = async () => {
       try {
         const category = selectedCategory !== null ? moods[selectedCategory].text : null;
-        const { openCard, data} = await fetchMealsOrBeverages(page, entryPoint, category);
+        const { openCard, data} = await fetchMealsOrBeverages(page, entryPoint, category, filters, sort);
         setCard(openCard);
         // Updates Mealitem state, it also prevents duplication of data items by creating a new array
         setMealItem(prevMealItems => {
@@ -59,18 +85,46 @@ function MealsList() {
   const handleShowMore = () => {
     setPage(prevPage => prevPage + 1);
   }
+  const areFiltersActive = () => {
+    return filters.cuisines !== null || filters.openHours !== null || filters.services !== null || filters.amenities !== null;
+  };  
+
+  const isSortOptionActive = () => {
+    return sort.text !== null || sort.value !== null || sort.icon !== null;
+  };
+  const resetFilters = () => {
+    setFilters({
+      cuisines: [],
+      openHours: [],
+      services: [],
+      amenities: []
+    });
+    closeFilterWidget();
+  };    
+
+  const restError = () => {
+    setError('');
+  }
+
+  const closeFilterWidget = () => {
+    setIsFilterWidgetVisible(false);
+    setFilterActive(false);
+  };
+
+  const closeSortWidget = () => {
+    setIsSortWidgetVisible(false);
+    setSortActive(false);
+  };
 
   return (
     <div className="flex flex-col h-lvh w-100 bg-bg_variant2 text-sm font-normal"> 
       <div className="sticky top-0 z-50 w-full">
         <Header/>
       </div>
-
       <div className='sticky w-full caret-transparent top-20 sm:top-28 z-50 px-1 flex flex-row space-x-14 items-center justify-start caret-pure_white overflow-visible py-2 border-b-2 border-bg_variant2 backdrop-blur bg-opacity-70'> 
         <div className="ml-3 sticky"><MenuIcon /></div>
         <div className="capitalize font-base h-6 w-fit"><Breadcrumbs/></div>
       </div>
-
       <div id='container' className="flex flex-col w-full mb-12 space-y-5  py-1 h-fit transition-all duration-500">
         <div className="flex flex-col px-5 space-y-2">
           <h1 className="w-fit text-2xl font-bold">Meals & Beverages</h1>
@@ -96,16 +150,44 @@ function MealsList() {
           </div>
         ) : ''}
 
-        {mealitem ? (
-          <div className="flex flex-col space-y-1 w-full">
-              <h1 className='text-base font-semibold px-5'>Browse all</h1>
-              <div id='container' className='mx-auto px-2.5 w-96 grid grid-cols-2 gap-y-2 gap-x-2 sm:grid-cols-3 sm:gap-8 lg:gap-5'>
-                  {(entryPoint === 'beverages' || entryPoint === 'meals') && (card === 'beverages') ? mealitem.map((item) => <BeverageCard key={item._id} beverage={item}/> ) :  mealitem.map((item) => <MealCard key={item._id} meal={item} />)}
-              </div>
-              {mealitem.length > 0 && <button onClick={handleShowMore} className="ml-72 font-medium text-xs underline px-3 w-fit hover:text-bg_variant1">Show More</button>}
+      {mealitem ? (
+        <div className="flex flex-col space-y-1 w-full">
+          <h1 className='text-base font-semibold px-5'>Browse all</h1>
+          <div className="flex flex-col p-1 justify-end space-y-1.5">
+            <div className="flex h-fit space-x-1 items-center justify-end mr-4 rounded-md">
+              <button 
+                onClick={() => setIsFilterWidgetVisible(!isFilterWidgetVisible)}
+                className={`flex space-x-1 grow-0 border rounded p-1 h-8 w-fit items-center justify-center caret-transparent cursor-pointer ${(isFilterWidgetVisible || areFiltersActive()) ? 'bg-bg_variant1 text-pure_white/75' : ''} focus:text-pure_white/75 focus:bg-bg_variant1`}
+              >
+                <span className="font-medium">Filter by</span>
+                <Filter fill={(isFilterWidgetVisible || areFiltersActive()) ? 'white' : 'black'} height="18" width="16" />
+              </button>
+              <button 
+                onClick={() => setIsSortWidgetVisible(!isSortWidgetVisible)}
+                className={`flex space-x-1 grow-0 border p-2 h-8 w-fit rounded items-center justify-center caret-transparent cursor-pointer ${(isSortWidgetVisible || isSortOptionActive()) ? 'bg-bg_variant1 text-pure_white/75' : ''} focus:text-pure_white/75 focus:bg-bg_variant1`}
+              >
+                <span className="font-medium">Sort by</span>
+                <Sort fill={(isSortWidgetVisible || isSortOptionActive()) ? 'white' : 'black'} height="18" width="16"/>
+              </button>
+            </div>
+            {(isFilterWidgetVisible || isFilterActive) && <FilterWidget onFiltersChange={handleFiltersChange} 
+              onClose={closeFilterWidget}
+              filters={filters}
+              onReset={resetFilters}
+              filterOptions={filterOption}
+            />} 
+            {(isSortWidgetVisible || isSortActive) && <SortWidget onSortChange={handleSortChange} 
+              onClose={closeSortWidget}
+              sort={sort}
+            />}
           </div>
-        ) : <p className="mx-auto font-bold text-sm text-default/55"> Fetching data. Please wait...</p>}
+          <div id='container' className='mx-auto px-2.5 w-96 grid grid-cols-2 gap-y-2 gap-x-2 sm:grid-cols-3 sm:gap-8 lg:gap-5'>
+              {(entryPoint === 'beverages' || entryPoint === 'meals') && (card === 'beverages') ? mealitem.map((item) => <BeverageCard key={item._id} beverage={item}/> ) :  mealitem.map((item) => <MealCard key={item._id} meal={item} />)}
+          </div>
+          {mealitem.length > 0 && <button onClick={handleShowMore} className="ml-72 font-medium text-xs underline px-3 w-fit hover:text-bg_variant1">Show More</button>}
       </div>
+      ) : <p className="mx-auto font-bold text-sm text-default/55"> Fetching data. Please wait...</p>}
+    </div>
       <Footer />
     </div>
   );

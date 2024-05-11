@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState, useEffect, useCallback } from 'react';
 import Header from './Header';
 import SearchItem from './SearchItem';
 import RestaurantCard from './RestaurantCard';
@@ -7,9 +7,10 @@ import Breadcrumbs from './BreadCrumbs';
 import Footer from './Footer';
 import FilterWidget from './FilterWidget';
 import SortWidget from './SortWidget';
-import { Filter, Sort } from '/src/components/svgs/UiSvg';
+import { Filter, Sort } from '/src/components/svgs/InterfaceSvg';
 
 import { fetchAllRestaurants } from '../utilities/getData';
+import { restaurantFilterOptions } from '../utilities/prefences';
 import RestaurantCarousel from './Carousel';
 import Error from './Error';
 
@@ -18,24 +19,31 @@ function RestaurantsList() {
     const [page, setPage] = useState(0);
     const [searchResults, setSearchResults] = useState([]);
     const [isFilterActive, setFilterActive] = useState(false);
+    const [isFilterWidgetVisible, setIsFilterWidgetVisible] = useState(false);
     const [error, setError] = useState('');
     const [isSortActive, setSortActive] = useState(false);
-    const [isFilterWidgetVisible, setIsFilterWidgetVisible] = useState(false);
+    const [isSortWidgetVisible, setIsSortWidgetVisible] = useState(false);
     const [filters, setFilters] = useState({
         cuisines: [],
         openHours: [],
         services: [],
         amenities: []
     });
+    const [sort, setSort] = useState({text: 'Ascending', value: '1', icon: 'Ascending'});
 
-    const handleFiltersChange = (newFilters) => {
+
+    const handleFiltersChange = useCallback((newFilters) => {
         setFilters(newFilters);
-    };
+    }, []);
+
+    const handleSortChange = useCallback((newSort) => {
+        setSort(newSort);
+    }, []);
 
     useEffect(() => {
         const fetchRestaurants = async () => {
             try {
-                const data = await fetchAllRestaurants(page, filters);
+                const data = await fetchAllRestaurants(page, filters, sort);
                 if (!Array.isArray(data)) {
                     throw new Error('Unexpected data format');
                 }
@@ -57,19 +65,23 @@ function RestaurantsList() {
             setRestaurants([]);
         }
         fetchRestaurants();
-    }, [page, filters]);     
+    }, [page, sort, filters]);     
 
     const handleSearch = (result) => {
         setSearchResults(result);
     };
 
-    const handleShowMore = () => {
+    const handleShowMore = useCallback(() => {
         setPage(prevPage => prevPage + 1);
-    };
+    }, []);
 
     const areFiltersActive = () => {
         return filters.cuisines.length > 0 || filters.openHours.length > 0 || filters.services.length > 0 || filters.amenities.length > 0;
-    };    
+    };  
+    
+    const isSortOptionActive = () => {
+        return sort.text !== null || sort.value !== null || sort.icon !== null;
+    }
 
     const resetFilters = () => {
         setFilters({
@@ -81,13 +93,18 @@ function RestaurantsList() {
         closeFilterWidget();
     };    
 
-    const restError = () => {
+    const resetError = () => {
         setError('');
     }
 
     const closeFilterWidget = () => {
         setIsFilterWidgetVisible(false);
         setFilterActive(false);
+    };
+    
+    const closeSortWidget = () => {
+        setIsSortWidgetVisible(false);
+        setSortActive(false);
     };
 
     return (
@@ -126,23 +143,27 @@ function RestaurantsList() {
                                     onClick={() => setIsFilterWidgetVisible(!isFilterWidgetVisible)}
                                     className={`flex space-x-1 grow-0 border rounded p-1 h-8 w-fit items-center justify-center caret-transparent cursor-pointer ${(isFilterWidgetVisible || areFiltersActive()) ? 'bg-bg_variant1 text-pure_white/75' : ''} focus:text-pure_white/75 focus:bg-bg_variant1`}
                                 >
-                                    <span>Filter by</span>
+                                    <span className="font-medium">Filter by</span>
                                     <Filter fill={(isFilterWidgetVisible || areFiltersActive()) ? 'white' : 'black'} height="18" width="16" />
                                 </button>
                                 <button 
-                                    onClick={() => setSortActive(!isSortActive)}
-                                    className={`flex space-x-1 grow-0 border p-2 h-8 w-fit rounded items-center justify-center caret-transparent cursor-pointer ${isSortActive ? 'bg-bg_variant1 text-pure_white/75' : ''} focus:text-pure_white/75 focus:bg-bg_variant1`}
+                                    onClick={() => setIsSortWidgetVisible(!isSortWidgetVisible)}
+                                    className={`flex space-x-1 grow-0 border p-2 h-8 w-fit rounded items-center justify-center caret-transparent cursor-pointer ${(isSortWidgetVisible || isSortOptionActive()) ? 'bg-bg_variant1 text-pure_white/75' : ''} focus:text-pure_white/75 focus:bg-bg_variant1`}
                                 >
-                                    <span>Sort by</span>
-                                    <Sort fill={isSortActive ? 'white' : 'black'} height="18" width="16"/>
+                                    <span className="font-medium">Sort by</span>
+                                    <Sort fill={(isSortWidgetVisible || isSortOptionActive()) ? 'white' : 'black'} height="18" width="16"/>
                                 </button>
                             </div>
                             {(isFilterWidgetVisible || isFilterActive) && <FilterWidget onFiltersChange={handleFiltersChange} 
                                 onClose={closeFilterWidget}
                                 filters={filters}
                                 onReset={resetFilters}
+                                filterOptions={restaurantFilterOptions}
                             />} 
-                            {isSortActive && <SortWidget />}
+                            {(isSortWidgetVisible || isSortActive) && <SortWidget onSortChange={handleSortChange} 
+                                onClose={closeSortWidget}
+                                sort={sort}
+                            />}
                         </div>
                         <div id='container' className='mx-auto w-full grid grid-cols-2 gap-y-2 gap-x-2 sm:grid-cols-3 sm:gap-8 lg:gap-5'>
                             {restaurants && (error === '') ? (
@@ -150,7 +171,7 @@ function RestaurantsList() {
                             ) : '' }
                         </div>
                         {(restaurants.length > 0) && (error === '') && <button onClick={handleShowMore} className="ml-72 font-medium text-xs underline w-fit hover:text-bg_variant1">Show More</button>}
-                        {error !== '' ? <Error message={error} onReset={restError} onClose={closeFilterWidget}/> : ''}
+                        {error !== '' ? <Error message={error} onReset={resetError} onClose={closeFilterWidget}/> : ''}
                     </div>
                 ) : <p className="mx-auto font-bold text-sm text-default/55">Loading...</p> }
            </div>

@@ -13,9 +13,9 @@ export const fetchAllMeals = async (page) => {
 };
 
 // Fetch All Restaurants
-export const fetchAllRestaurants = async (page, filters) => {
+export const fetchAllRestaurants = async (page, filters, sort) => {
     let url = `http://localhost:3000/restaurants/?`;
-    let params =  {p: page, ...filters};
+    let params =  {p: page, sort:JSON.stringify(sort), ...filters};
     let queryParams = Object.keys(params).map(key => `${key}=${params[key]}`).join('&');
     url += queryParams;
 

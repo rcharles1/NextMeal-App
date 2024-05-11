@@ -11,17 +11,29 @@ router.get('/', (req, res) => {
     const page = req.query.p || 0;
     const restaurantsPerPage = 6;
 
-    // Filters
+    // Filtering results
     const cuisine = req.query.cuisine ? {cuisine: {$in: req.query.cuisine.split(',')}} : {};
     const openHours = req.query.openHours ? {openHours: {$in: req.query.openHours.split(',')}} : {};
     const services = req.query.services ? {['services.' + req.query.services]: 1} : {};
     const amenities = req.query.amenities ? {['amenities.' + req.query.amenities]: 1} : {};
 
     const filters = {...cuisine, ...openHours, ...services, ...amenities};
+ 
+    // Sorting
+    const sortParam = req.query.sort ? JSON.parse(req.query.sort) : null;
+    let sortObject = {};
+
+    if (sortParam && sortParam.text && typeof sortParam.text === 'string') {
+        if (sortParam.text.includes('Price')) {
+            sortObject = { price: parseInt(sortParam.value) };
+        } else {
+            sortObject = { name: parseInt(sortParam.value) };
+        }
+    }
 
     db.collection('restaurants')
         .find(filters)
-        .sort({name: 1})
+        .sort(sortObject)
         .skip(page * restaurantsPerPage)
         .limit(restaurantsPerPage)
         .toArray()

@@ -1,30 +1,41 @@
-import { React, useState } from 'react';
+import  React,{ useState } from 'react';
 import { sortOptions } from '../utilities/prefences'
 
-import { Ascending, Descending, Rise, Fall } from './svgs/UiSvg';
+import { Ascending, Descending, Rise, Fall } from './svgs/InterfaceSvg';
 
-function SortWidget( ) {
-    const [selectedSort, setSelectedSort] = useState(null);
+function SortWidget({ onSortChange, sort, onClose}) {
+    const [selectedSort, setSelectedSort] = useState(sort);
+
+    const iconComponents = {
+        'Ascending': Ascending,
+        'Descending': Descending,
+        'Rise': Rise,
+        'Fall': Fall
+      };
 
     const handleClick = (sort) => {
-        setSelectedSort(selectedSort === sort ? null : sort);
+        setSelectedSort(sort);
+        onSortChange(sort);
+        onClose();
     };
-
+    
     return (
-        <div className="w-fit ml-48 p-1 text-sm bg-pure_white rounded-md drop-shadow-sm caret-transparent">
+        <div className="w-48 ml-44 mx-auto p-1 pb-1 text-sm bg-pure_white rounded-md drop-shadow-sm caret-transparent">
            <div className="grid grid-cols-1 divide-y-2 gap-1 divide-light_dark/5 antialiased">
-                {sortOptions.map((sortOption, index) => (
-                    <div 
-                    key={index}
-                    onClick={() => handleClick(sortOption)}
-                    className={`flex flex-row justify-between items-top p-1 ${selectedSort === sortOption ? 'text-bg_variant1/75' : ''}`}
-                    >
-                        <div className="flex space-x-2 items-center font-medium">
-                            <Ascending fill={'red'} height="18" width="18"/>
-                            <span>{sortOption}</span>
+                {sortOptions.map((option, index) => {
+                    const IconComponent = iconComponents[option.icon];
+                    return (
+                        <div 
+                            key={index}
+                            className={`flex flex-col space-y-2 items-top p-1 `}
+                            >
+                            <div onClick={() => handleClick(option)} className={`flex flex-row space-x-2 items-center font-medium`}>
+                                <IconComponent fill={selectedSort === option ? 'red' : 'gray'} height="18" width="18"/>
+                                <span className={`w-full ${selectedSort === option ? 'text-bg_variant1/75' : ''}`}>{option.text}</span>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    );
+                })}
             </div>
         </div>
     );
