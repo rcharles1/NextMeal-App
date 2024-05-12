@@ -106,65 +106,41 @@ export const beverageFilterOptions = [
         title: 'Drink Category',
         type: 'category',
         values: [
-            // Types of water
-            {value: 'Water', text: 'Water'},
-            {value: 'Soda Water', text: 'Soda Water'},
-            {value: 'Tonic Water', text: 'Tonic Water'},
-
-            // Group all types of wine
-            {value: 'Red Wine', text: 'Red Wine'},
-            {value: 'White Wine', text: 'White Wine'},
-            {value: 'Wine', text: 'Wine'},
-            {value: 'Sparkling', text: 'Sparkling Wine'},
-
-            // Group all types of whiskey
-            {value: 'Irish Whiskey', text: 'Irish Whiskey'},
-            {value: 'Scotch Whiskey', text: 'Scotch Whiskey'},
-            {value: 'Whiskey', text: 'Whiskey'},
-
-            // Soft drinks
-            
-            {value: 'Soda', text: 'Soda'},
+            {value: 'Ale', text: 'Ale'},
+            {value: 'Beer', text: 'Beer'},
+            {value: 'Champagne', text: 'Champagne'},
+            {value: 'Cider', text: 'Cider'},
+            {value: 'Coffee', text: 'Coffee'},
+            {value: 'Cognac', text: 'Cognac'},
+            {value: 'Digestif', text: 'Digestif'},
             {value: 'Energy Drink', text: 'Energy Drinks'},
+            {value: 'Gin', text: 'Gin'},
+            {value: 'Irish Whiskey', text: 'Irish Whiskey'},
+            {value: 'Juice', text: 'Juice'},
             {value: 'Lager', text: 'Lager'},
-
+            {value: 'Liqueur', text: 'Liqueur'},
+            {value: 'Light Lager', text: 'Light Lager'},
+            {value: 'Malt Drink', text: 'Malt'},
+            {value: 'Milkshake', text: 'Milkshakes'},
+            {value: 'Red Wine', text: 'Red Wine'},
+            {value: 'Rum', text: 'Rum'},
+            {value: 'Scotch Whiskey', text: 'Scotch Whiskey'},
+            {value: 'Soda Water', text: 'Soda Water'},
+            {value: 'Smoothie', text: 'Smoothies'},
+            {value: 'Spirits', text: 'Spirits'},
+            {value: 'Stout', text: 'Stout'},
+            {value: 'Tea', text: 'Tea'},
+            {value: 'Tonic Water', text: 'Tonic Water'},
+            {value: 'Water', text: 'Water'},
+            {value: 'White Wine', text: 'White Wine'},
+            {value: 'Whiskey', text: 'Whiskey'},
+            {value: 'Wine', text: 'Wine'},
+            {value: 'Vodka', text: 'Vodka'},
+            {value: 'Sparkling', text: 'Sparkling Wine'},
         ]
     }
-]
+] 
 
-const values = [
-    {value: 'Ale', text: 'Ale'},
-    {value: 'Beer', text: 'Beer'},
-    {value: 'Champagne', text: 'Champagne'},
-    {value: 'Cider', text: 'Cider'},
-    {value: 'Coffee', text: 'Coffee'},
-    {value: 'Cognac', text: 'Cognac'},
-    {value: 'Digestif', text: 'Digestif'},
-    {value: 'Energy Drink', text: 'Energy Drinks'},
-    {value: 'Gin', text: 'Gin'},
-    {value: 'Irish Whiskey', text: 'Irish Whiskey'},
-    {value: 'Juice', text: 'Juice'},
-    {value: 'Lager', text: 'Lager'},
-    {value: 'Liqueur', text: 'Liqueur'},
-    {value: 'Light Lager', text: 'Light Lager'},
-    {value: 'Malt Drink', text: 'Malt'},
-    {value: 'Milkshake', text: 'Milkshakes'},
-    {value: 'Red Wine', text: 'Red Wine'},
-    {value: 'Rum', text: 'Rum'},
-    {value: 'Scotch Whiskey', text: 'Scotch Whiskey'},
-    {value: 'Soda Water', text: 'Soda Water'},
-    {value: 'Smoothie', text: 'Smoothies'},
-    {value: 'Spirits', text: 'Spirits'},
-    {value: 'Stout', text: 'Stout'},
-    {value: 'Tea', text: 'Tea'},
-    {value: 'Tonic Water', text: 'Tonic Water'},
-    {value: 'Water', text: 'Water'},
-    {value: 'White Wine', text: 'White Wine'},
-    {value: 'Whiskey', text: 'Whiskey'},
-    {value: 'Wine', text: 'Wine'},
-    {value: 'Vodka', text: 'Vodka'},
-    {value: 'Sparkling', text: 'Sparkling Wine'},
-]
 
 export const sortOptions = [
     { text: 'Ascending', value: '1', icon: 'Ascending'},

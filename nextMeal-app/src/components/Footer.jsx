@@ -2,10 +2,10 @@ import { React } from 'react';
 
 function Footer() {
     return (
-        <div className="antialiased flex flex-col space-y-6 h-fit p-8 justify-center items-center text-pure_white w-100 bg-bg_variant1 caret-transparent text-base">
-            <div className="flex flex-col space-y-12 justify-center px-10 sm:flow-row sm:justify-around w-full text-start">
-                <div className="h-36 w-64 flex flex-col items-center justify-center">
-                    <h1 className="text-xl sm:text-2xl sm:w-72 font-bold mb-1">What's there to Explore</h1>
+        <div className="antialiased flex flex-col space-y-6 h-fit p-8 sm:p-6 justify-center items-center text-pure_white w-100 bg-bg_variant1 caret-transparent text-base">
+            <div className="flex flex-col sm:flex-row sm:items-top sm:space-y-0 space-y-12 justify-center px-10 sm:px-0 sm:flow-row sm:space-x-4 sm:items-top w-full text-start">
+                <div className="h-36 sm:h-fit sm:w-64 w-64 flex flex-col items-center justify-center sm:items-start">
+                    <h1 className="text-xl sm:text-2xl sm:w-64 font-bold mb-1">What's there to Explore</h1>
                     <ul className="list-inside w-48 text-center sm:text-start text-slate-white font-medium">
                         <li><a href="#" >Top Meals</a></li>
                         <li><a href="#" >Top Drinks & Beverages</a></li>
@@ -14,7 +14,7 @@ function Footer() {
                         <li><a href="#" >The Local's Choice</a></li>
                     </ul>
                 </div>
-                <div className="h-28 w-64 flex flex-col items-center justify-center">
+                <div className="h-28 w-64 sm:h-fit sm:w-64 flex flex-col items-center justify-center sm:items-start">
                     <h1 className="text-xl sm:text-2xl font-bold mb-1">Get to Know Us</h1>
                     <p className="font-medium text-center sm:text-start">
                         At NextMeal we are devoted to
@@ -22,7 +22,7 @@ function Footer() {
                         meal.
                     </p>
                 </div>
-                <div className="h-28 w-64 flex flex-col items-center justify-center">
+                <div className="h-28 w-64 sm:h-fit sm:w-64 flex flex-col items-center justify-center sm:items-start">
                     <h1 className="text-xl sm:text-2xl font-bold mb-1">Doing Business</h1>
                     <ul className="list-inside px-5 text-slate-white text-center sm:text-start font-medium">
                         <li><a href="#" >Become a Partner</a></li>

@@ -40,7 +40,7 @@ function SearchItem({ item, onSearch }) {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-row -space-x-0.5 rounded-lg w-11/12 mx-auto flex-row drop-shadow backdrop-filter backdrop-blur-lg">
+        <form onSubmit={handleSubmit} className="flex flex-row -space-x-0.5 rounded-lg w-11/12 sm:w-6/12 mx-auto flex-row drop-shadow backdrop-filter backdrop-blur-lg">
             <input
                 required
                 value={searchTerm}

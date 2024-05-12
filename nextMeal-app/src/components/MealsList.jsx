@@ -31,7 +31,7 @@ function MealsList() {
   const [isSortWidgetVisible, setIsSortWidgetVisible] = useState(false);
   const [sort, setSort] = useState({text: 'Ascending', value: '1', icon: 'Ascending'});
   const [filters, setFilters] = useState({
-    cuisines: [],
+    cuisine: [],
     mealType: [],
     course: [],
     beverageType: [],
@@ -44,6 +44,8 @@ function MealsList() {
 
   const handleFiltersChange = useCallback((newFilters) => {
     setFilters(newFilters);
+    console.log(newFilters);
+    
   }, []);
 
   const handleSortChange = useCallback((newSort) => {
@@ -76,35 +78,38 @@ function MealsList() {
 
   const handleSearch = (result) => {
     setSearchResults(result);
-  } 
+  };
 
   const handleResultCard = (resultCard) => {
     setSearchResultCard(resultCard);
-  } 
+  }; 
    
   const handleShowMore = () => {
     setPage(prevPage => prevPage + 1);
-  }
+  };
+
   const areFiltersActive = () => {
-    return filters.cuisines !== null || filters.openHours !== null || filters.services !== null || filters.amenities !== null;
-  };  
+    return filters.cuisine.length > 0 || filters.mealType.length > 0 || filters.course.length > 0 || filters.beverageType.length > 0 || filters.category.length > 0;
+  }; 
 
   const isSortOptionActive = () => {
     return sort.text !== null || sort.value !== null || sort.icon !== null;
   };
+
   const resetFilters = () => {
     setFilters({
-      cuisines: [],
-      openHours: [],
-      services: [],
-      amenities: []
+      cuisine: [],
+      mealType: [],
+      course: [],
+      beverageType: [],
+      category: []
     });
     closeFilterWidget();
   };    
 
   const restError = () => {
     setError('');
-  }
+  };
 
   const closeFilterWidget = () => {
     setIsFilterWidgetVisible(false);
@@ -117,7 +122,7 @@ function MealsList() {
   };
 
   return (
-    <div className="flex flex-col h-lvh w-100 bg-bg_variant2 text-sm font-normal"> 
+    <div className="flex flex-col h-lvh sm:w-full  w-100 bg-bg_variant2 text-sm sm:text-base font-normal"> 
       <div className="sticky top-0 z-50 w-full">
         <Header/>
       </div>
@@ -125,9 +130,9 @@ function MealsList() {
         <div className="ml-3 sticky"><MenuIcon /></div>
         <div className="capitalize font-base h-6 w-fit"><Breadcrumbs/></div>
       </div>
-      <div id='container' className="flex flex-col w-full mb-12 space-y-5  py-1 h-fit transition-all duration-500">
+      <div id='container' className="flex flex-col w-full mb-12 space-y-5 py-1 sm:py-2 h-fit transition-all duration-500">
         <div className="flex flex-col px-5 space-y-2">
-          <h1 className="w-fit text-2xl font-bold">Meals & Beverages</h1>
+          <h1 className="w-fit text-2xl sm:text-3xl font-bold">Meals & Beverages</h1>
           <SearchItem item={'Meals & Beverages'} onSearch={(result, resultCard) => {
             handleSearch(result);
             handleResultCard(resultCard);
@@ -135,7 +140,7 @@ function MealsList() {
         </div>
 
         <div className="flex flex-col space-y-2 px-5 caret-transparent">
-          <h2 className="text-base font-semibold ">What's your mood?</h2>
+          <h2 className="text-base sm:text-2xl font-semibold ">What's your mood?</h2>
           <div className="flex flex-row w-full space-x-2 p-3 overflow-hidden">
               <MealCategory onCategorySelect={setSelectedCategory} resetPage={() => setPage(0)}/>
           </div>
@@ -143,7 +148,7 @@ function MealsList() {
 
         {searchResults && searchResults.length > 0 ? (
           <div className="flex flex-col space-y-1 px-5 py-2">
-            <h1 className='text-base font-semibold'>Featured</h1>
+            <h1 className='text-base sm:text-2xl font-semibold'>Featured</h1>
             <div id='container' className='mx-auto w-full grid grid-cols-2 gap-y-2 gap-x-2 sm:grid-cols-3 sm:gap-8 lg:gap-5'>
               {(searchResultCard === 'beverages') ? searchResults.map((item) => <BeverageCard key={item._id} beverage={item}/> ) :  searchResults.map((item) => <MealCard key={item._id} meal={item} />)}
             </div>
@@ -152,19 +157,19 @@ function MealsList() {
 
       {mealitem ? (
         <div className="flex flex-col space-y-1 w-full">
-          <h1 className='text-base font-semibold px-5'>Browse all</h1>
+          <h1 className='text-base sm:text-lg font-semibold px-5'>Browse all</h1>
           <div className="flex flex-col p-1 justify-end space-y-1.5">
             <div className="flex h-fit space-x-1 items-center justify-end mr-4 rounded-md">
               <button 
                 onClick={() => setIsFilterWidgetVisible(!isFilterWidgetVisible)}
-                className={`flex space-x-1 grow-0 border rounded p-1 h-8 w-fit items-center justify-center caret-transparent cursor-pointer ${(isFilterWidgetVisible || areFiltersActive()) ? 'bg-bg_variant1 text-pure_white/75' : ''} focus:text-pure_white/75 focus:bg-bg_variant1`}
+                className={`flex space-x-1 sm:space-x-2 grow-0 border rounded p-1 h-8 w-fit sm:h-12 items-center justify-center caret-transparent cursor-pointer ${(isFilterWidgetVisible || areFiltersActive()) ? 'bg-bg_variant1 text-pure_white/75' : ''} focus:text-pure_white/75 focus:bg-bg_variant1`}
               >
                 <span className="font-medium">Filter by</span>
                 <Filter fill={(isFilterWidgetVisible || areFiltersActive()) ? 'white' : 'black'} height="18" width="16" />
               </button>
               <button 
                 onClick={() => setIsSortWidgetVisible(!isSortWidgetVisible)}
-                className={`flex space-x-1 grow-0 border p-2 h-8 w-fit rounded items-center justify-center caret-transparent cursor-pointer ${(isSortWidgetVisible || isSortOptionActive()) ? 'bg-bg_variant1 text-pure_white/75' : ''} focus:text-pure_white/75 focus:bg-bg_variant1`}
+                className={`flex space-x-1 sm:space-x-2 grow-0 border p-2 h-8 sm:h-12 w-fit rounded items-center justify-center caret-transparent cursor-pointer ${(isSortWidgetVisible || isSortOptionActive()) ? 'bg-bg_variant1 text-pure_white/75' : ''} focus:text-pure_white/75 focus:bg-bg_variant1`}
               >
                 <span className="font-medium">Sort by</span>
                 <Sort fill={(isSortWidgetVisible || isSortOptionActive()) ? 'white' : 'black'} height="18" width="16"/>

@@ -14,9 +14,28 @@ router.get('/', (req, res) => {
     let meals = [];
     let query = category ? { category: category } : {};
 
+    // Filtering results
+    const cuisine = req.query.cuisine ? {cuisine: {$in: req.query.cuisine.split(',')}} : {};
+    const mealType = req.query.mealType ? {mealType: {$in: req.query.mealType.split(',')}} : {};
+    const course = req.query.course ? {course: {$in: req.query.course.split(',')}} : {};
+    
+    const filters = {...cuisine, ...mealType, ...course};
+
+    // Sorting
+    const sortParam = req.query.sort ? JSON.parse(req.query.sort) : null;
+    let sortObject = {};
+
+    if (sortParam && sortParam.text && typeof sortParam.text === 'string') {
+        if (sortParam.text.includes('Price')) {
+            sortObject = { price: parseInt(sortParam.value) };
+        } else {
+            sortObject = { name: parseInt(sortParam.value) };
+        }
+    }
+
     db.collection('meals')
         .find(query)
-        .sort({name: 1})
+        .sort(sortObject)
         .skip(page * mealsPerPage)
         .limit(mealsPerPage)
         .forEach(meal => meals.push(meal))

@@ -15,7 +15,7 @@ function RestaurantCarousel() {
         <Carousel 
             autoPlay
             interval={5000}
-            className="h-60 p-1 caret-transparent w-full overflow-hidden"
+            className="h-60 p-1 sm:h-fit caret-transparent w-full overflow-hidden"
             showThumbs={false}
             showStatus={false}
             showIndicators={false}
@@ -23,7 +23,7 @@ function RestaurantCarousel() {
         >
             {carouselItems ? (carouselItems.map((item, index) => {
                 return (
-                    <div key={index} onClick={handleClick} className={`h-56 w-full rounded-xl mx-auto overflow-hidden relative`}>
+                    <div key={index} onClick={handleClick} className={`h-56 sm:h-96 w-full rounded-xl mx-auto overflow-hidden relative`}>
                         <img src={`${item.imageSrc}`} className="h-full w-full object-cover" />
                         {displayCaption && (
                             <div className="absolute inset-0 outline flex flex-col space-y-1 items-center justify-center backdrop-blur-sm backdrop-opacity-90">

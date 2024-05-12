@@ -34,12 +34,12 @@ function Beverages() {
             </div>
             <div className="flex flex-col space-y-3 rounded-sm w-full p-2">
                 {beverages ? (
-                    <div className="bg-bg_variant2 grid grid-cols-2 gap-y-4 gap-x-2 px-2 mx-2 sm:grid-cols-3 sm:gap-8 lg:gap-5 overflow-hidden py-2 mx-auto w-full">
+                    <div className="bg-bg_variant2 grid grid-cols-2 gap-y-4 gap-x-2 px-2 sm:px-6 md:px-24 mx-2 sm:grid-cols-3 sm:gap-8 md:grid-cols-4 lg:gap-2 overflow-hidden py-2 mx-auto w-full">
                         {beverages.slice(0, 4).map((beverage, i) => <BeverageCard key={i} beverage={beverage}/>)}
                     </div>
                 ) : <p className="mx-auto font-bold text-sm text-default/55">Fetching data. Please wait...</p> }
-                <div className="flex ml-72 text-xs sm:text-sm mt-0.5 sm:w-11/12 sm:justify-end font-semibold text-default/80 hover:text-bg_variant1">
-                   <button className="underline underline-offset-2"  onClick={() => {
+                <div className="flex text-xs sm:text-sm mt-0.5 sm:justify-end font-semibold text-default/80 hover:text-bg_variant1">
+                   <button className="underline underline-offset-2" onClick={() => {
                        handleClick();
                        setSelected('drink');
                    }} >View More</button>

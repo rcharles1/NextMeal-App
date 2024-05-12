@@ -14,7 +14,7 @@ function Root() {
                 <div className="sticky top-0 z-10">
                     <Header />
                 </div>
-                <div className="h-screen bg-bg_variant1">
+                <div className="h-screen bg-bg_variant1 p-1 md:h-fit">
                     <HomePage />
                 </div>
                 <div className="flex flex-col mt-16 space-y-16 bg-bg_variant2 h-fit py-6 w-full">

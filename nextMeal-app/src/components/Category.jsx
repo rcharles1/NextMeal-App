@@ -11,7 +11,7 @@ function MealCategory({ onCategorySelect, resetPage }) {
   };
 
   return (
-    <div className="w-full flex flex-row h-fit space-x-2">
+    <div className="w-full sm:w-fit sm:px-2 sm:mx-auto flex flex-row h-fit space-x-2 sm:space-x-4">
       {moods.map((item, index) => (
         <div key={index} className="flex flex-col space-y-1">
           <div 
