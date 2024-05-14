@@ -98,3 +98,5 @@ export default App;
 <option value="nyama choma">Nyama Choma (Grills)</option>
 <option value="smooothie & juice bar">Smoothie & Juice Bar</option>
 <option value="visinia">Visinia</option>
+
+ {setVisibility === 'visible' && <div className={`${setVisibility}`}><MenuIcon /></div>}

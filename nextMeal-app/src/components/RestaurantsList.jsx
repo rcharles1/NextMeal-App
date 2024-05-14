@@ -112,8 +112,8 @@ function RestaurantsList() {
                 <Header/>
            </div>
            <div className='sticky w-full caret-transparent top-20 sm:top-28 md:top-16 z-30 px-1 flex flex-row space-x-14 items-center justify-start caret-pure_white overflow-visible py-2 border-b-2 border-bg_variant2 backdrop-blur bg-opacity-70'> 
-                <div className="ml-3 sticky"><MenuIcon /></div>
-                <div className="capitalize font-base h-6 w-fit"><Breadcrumbs/></div>
+                <div className="ml-3 sticky md:hidden"><MenuIcon /></div>
+                <div className="capitalize font-base h-6 w-64"><Breadcrumbs/></div>
             </div>
            <div id='container' className={`flex flex-col mt-1 mb-12 space-y-5 px-5 py-1 sm:px-8 h-fit transition-all duration-500}`}>
                 <div className="flex flex-col space-y-3">

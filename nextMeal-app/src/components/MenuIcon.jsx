@@ -30,29 +30,26 @@ const MenuIcon = () => {
         { to: "/restaurantslist", text: "Restaurants" },
         { to: "/mealslist", text: "Meals"},
         { to: "/mealslist", text: "Beverages" },
-        { to: "/services", text: "Services" },
+        { to: "/pageNotFound", text: "Services" },
         { to: "/pageNotFound", text: "Contacts" },
     ];
 
     return (
         <>
-           <div className="w-fit flex flex-col space-y-0 h-fit " onClick={handleMenuToggle}>
+           <div className="w-fit flex flex-col space-y-0 h-fit" onClick={handleMenuToggle}>
                 {isOpen ? (
                     <div className="fixed -mt-4 w-8 h-8 space-y-5">
                         <div><img src={imgSrc1} className="size-8 sm:size-10"/></div>
                         <div className={`${bg} ${marginLeft} relative w-64 h-96 rounded-md`} style={{ backdropFilter: 'blur(5px)' }}>
                             <div className="h-lvh w-80 items-center justify-center pt-3 px-4 space-y-2 font-semibold text-default/70 text-lg">
                                 {links.map((link, index) => (
-                                    <Link key={index} to={link.to} className={`block ${index === 0 ? 'border-l-4 border-gray/90' : ''} p-2`}>{link.text}</Link>
+                                    <Link key={index} to={link.to} className={`block ${index === 0 ? 'border-l-4 border-gray/90' : ''} p-2 hover:text-bg_variant1 hover:border-l-2 hover:border-bg_variant1 `}>{link.text}</Link>
                                 ))}
                             </div>
                         </div>
                     </div>
-
                 ) :  <img src={imgSrc2} className="size-8 sm:size-10"/>}
             </div>
-
-            
         </>
     );
 }
