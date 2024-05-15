@@ -44,8 +44,6 @@ function MealsList() {
 
   const handleFiltersChange = useCallback((newFilters) => {
     setFilters(newFilters);
-    console.log(newFilters);
-    
   }, []);
 
   const handleSortChange = useCallback((newSort) => {
@@ -74,7 +72,7 @@ function MealsList() {
       }
     };
     fetchMealsBeverages();
-  }, [page, entryPoint, selectedCategory]);
+  }, [page, entryPoint, selectedCategory, filters, sort ]);
 
   const handleSearch = (result) => {
     setSearchResults(result);

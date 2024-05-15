@@ -21,6 +21,8 @@ router.get('/', (req, res) => {
     
     const filters = {...cuisine, ...mealType, ...course};
 
+    query = {...query, ...filters}
+
     // Sorting
     const sortParam = req.query.sort ? JSON.parse(req.query.sort) : null;
     let sortObject = {};

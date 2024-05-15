@@ -1,7 +1,13 @@
-// Fetch All Meals to populate Meal Cards
-export const fetchAllMeals = async (page) => {
+// Fetch All Meals
+export const fetchAllMeals = async (page, filters, sort) => {
+    let url = `http://localhost:3000/meals/?`;
+    let params =  {p: page, sort:JSON.stringify(sort), ...filters};
+    let queryParams = Object.keys(params).map(key => `${key}=${params[key]}`).join('&');
+    url += queryParams;
+
     try {
-        const response = await fetch(`http://localhost:3000/meals/?p=${page}`);
+        const response = await fetch(url);
+        console.log(url);
        if (response.ok) {
             const data = await response.json();
            return data;
@@ -45,7 +51,7 @@ export const fetchAllBeverages = async (page) => {
 };
 
 // Fetch Meals or Beverages
-export const fetchMealsOrBeverages = async (page, entrypoint, category) => {
+export const fetchMealsOrBeverages = async (page, entrypoint, category,filters, sort) => {
     let url, item;
     if (entrypoint === 'meals'){
         url = `http://localhost:3000/meals/?p=${page}`;
@@ -64,8 +70,10 @@ export const fetchMealsOrBeverages = async (page, entrypoint, category) => {
             openCard = 'meals';
         }
     }
+
     try {
         const response = await fetch(url);
+        console.log(url)
         if (response.ok) {
             const data = await response.json();
             return { openCard, data };

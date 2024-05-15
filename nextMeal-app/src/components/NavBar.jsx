@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { navLinks } from '../utilities/links';
 
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function NavBar({ colorTheme }) {
     const [openNavWidget, setOpenNavWidget] = useState(false);
@@ -23,8 +23,16 @@ function NavBar({ colorTheme }) {
             </div>
             {openNavWidget ? (
                <div className="flex -ml-56 z-50 mt-2 bg-pure_white/85 rounded-md" style={{ backdropFilter: 'blur(5px)' }}>
-                    <div className="h-96 bg-blur text-headings/75 text-base font-semibold p-4">
-                        MEALS
+                    <div className="flex flex-col h-96 bg-blur text-headings/75 text-base font-semibold p-4">
+                        <h3 classNam="outline text-lg w-full">Tab Title</h3>
+                        <div className="mt-3">
+                            <ol className="text-xs">
+                                <li>Item Link 1</li>
+                                <li>Item Link 2</li>
+                                <li>Item Link 3</li>
+                            </ol>
+                        </div>
+
                     </div>
                </div>
             ) : ''}

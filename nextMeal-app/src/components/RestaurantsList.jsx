@@ -13,6 +13,7 @@ import { fetchAllRestaurants } from '../utilities/getData';
 import { restaurantFilterOptions } from '../utilities/prefences';
 import RestaurantCarousel from './Carousel';
 import Error from './Error';
+import Slideshow from './Slideshow';
 
 function RestaurantsList() {
     const [restaurants, setRestaurants] = useState([]);
@@ -57,7 +58,7 @@ function RestaurantsList() {
                     return uniqueRestaurants;
                 });
             } catch (error) {
-                setError('No restaurants found for the given filters. Try setting preferences again');
+                setError('Could not fetch data. Pleasee check your internet connection');
             }
         };
         if (page === 1) {
@@ -111,8 +112,8 @@ function RestaurantsList() {
            <div className="sticky top-0 z-50 w-full">
                 <Header/>
            </div>
-           <div className='sticky w-full caret-transparent top-20 sm:top-28 md:top-16 z-30 px-1 flex flex-row space-x-14 items-center justify-start caret-pure_white overflow-visible py-2 border-b-2 border-bg_variant2 backdrop-blur bg-opacity-70'> 
-                <div className="ml-3 sticky md:hidden"><MenuIcon /></div>
+           <div className='sticky w-full caret-transparent top-20  md:hidden sm:top-28 md:top-16 z-30 px-1 flex flex-row space-x-14 items-center justify-start caret-pure_white overflow-visible py-2 border-b-2 border-bg_variant2 backdrop-blur bg-opacity-70'> 
+                <div className="ml-3 sticky"><MenuIcon /></div>
                 <div className="capitalize font-base h-6 w-64"><Breadcrumbs/></div>
             </div>
            <div id='container' className={`flex flex-col mt-1 mb-12 space-y-5 px-5 py-1 sm:px-8 h-fit transition-all duration-500}`}>
@@ -122,8 +123,9 @@ function RestaurantsList() {
                         handleSearch(result);
                     }}/>
                 </div>
-                <div id="offers & events" className="flex flex-col sm:-mx-4 space-y-2">
-                    <RestaurantCarousel />
+                <div id="offers & events" className="flex flex-col sm:-mx-4 space-y-0.5">
+                    <Slideshow />
+                    <div className="flex w-fit mx-auto space-x-3"><span className="outline outline-bg_variant1/75 w-3"></span><span className="outline outline-bg_variant1/75 w-8 "></span><span className="outline outline-bg_variant1/75 w-1"></span></div>
                 </div>
                 {searchResults && searchResults.length > 0 ? (
                     <div className="flex flex-col space-y-1 py-2 ">

@@ -17,7 +17,7 @@ function SignIn() {
             <div className="h-1/2 bg-graphicRectangles bg-cover sm:h-1/3 md:w-2/3 md:h-screen md:bg-cover sm:bg-auto bg-center caret-transparent w-100 relative">
                <div className="w-56 absolute mt-1 top-36 left-28 sm:left-48 md:left-64 md:top-40"><img src='/assets/img/next-meal-white.png' /></div>
             </div>
-            <div className="w-full sm:w-2/3 mx-auto sm:p-6 sm:mt-4 md:h-screen md:justify-center md:w-1/3 rounded-md md:rounded-none bg-pure_white/75 h-1/2 px-7 flex flex-col space-y-2 md:space-y-1.5">
+            <div className="w-full sm:w-2/3 mx-auto sm:p-6 sm:mt-4 md:mt-0 md:h-screen md:justify-center md:w-1/3 rounded-md md:rounded-none bg-pure_white/75 h-1/2 px-7 flex flex-col space-y-2 md:space-y-1.5">
                 <h2 className="hidden md:block font-bold text-lg mb-1 caret-transparent">Provide your credentials</h2>
                 <form  onSubmit={handleSubmit}>
                     <label className="flex flex-col space-y-2 md:space-y-1 mx-auto md:w-10/12">

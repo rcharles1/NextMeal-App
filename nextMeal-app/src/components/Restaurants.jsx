@@ -32,7 +32,7 @@ function Restaurants() {
                     Uncover Dining Delights! 
                 </span>
                 <span className="font-semibold leading-5 block text-base sm:text-xl text-pretty text-default/65">
-                    Explore and enjoy a meal at the most exquisite eatery in the city. 
+                    Explore best eatery spots in the city. 
                 </span>
             </div>
             <div className="flex flex-col space-y-2 rounded-sm w-full p-2">

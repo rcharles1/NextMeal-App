@@ -57,12 +57,12 @@ function RestaurantProfile() {
                 <div className="capitalize h-6 items-center text-sm flex w-full"><Breadcrumbs restaurantDoc={restaurantDoc}/></div>
             </div>
             { restaurantDoc ? (
-                <div className="mt-3">
-                    <div className="p-1 h-1/3 rounded overflow-hidden">
-                        <img src={`/assets/img/gallery/restaurants/${restaurantDoc.gallery.img1}.webp`} alt="restaurant-photo" />
+                <div className="mt-3 sm:p-3">
+                    <div className="p-1 h-1/3 sm:rounded-md sm:h-96 rounded overflow-hidden">
+                        <img src={`/assets/img/gallery/restaurants/${restaurantDoc.gallery.img1}.webp`} alt="restaurant-photo" className="sm:object-cover sm:w-11/12 mx-auto" />
                     </div>
                     <div className="flex flex-col p-5 h-2/3">
-                        <div className='flex flex-row space-x-7 mt-3 items-center'>
+                        <div className='flex flex-row space-x-28 justify-around mt-3 items-center'>
                             <div className="space-y-1">
                                 <h2 className="text-2xl font-bold w-72 text-wrap">{restaurantDoc.name}</h2>
                                 <div className='flex flex-row text-default/60 w-fit space-x-2 text-sm font-normal items-center'>
@@ -74,7 +74,7 @@ function RestaurantProfile() {
                                 </div>
                             </div>
                             <a href=''> 
-                               <img src="/assets/icon/navigation.svg" alt="Navigation icon"/>
+                               <img src="/assets/icon/navigation.svg" alt="Navigation icon" className="sm:size-16"/>
                             </a>
                         </div>
 

@@ -1,23 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
-const slides = [
-    {
-        image: '/assets/img/data/drinks/mango.webp', text :'Mango Juice'
-    },
-    {
-        image: '/assets/img/data/drinks/avocado.webp', text :'Avocado Juice'
-    },
-    {
-        image: '/assets/img/data/seafood.jpeg', text :'Seafood'
-    },
-    {
-        image: '/assets/img/data/biryani.jpg', text :'Seafood'
-    },
-    {
-        image: '/assets/img/data/chicken-biryani.jpg', text :'Seafood'
-    },
-    
-];
+import { slides } from '../utilities/links';
 
 function Slideshow() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -32,19 +14,19 @@ function Slideshow() {
       if (!isHovered) {
         nextSlide();
       }
-    }, 3000); 
+    }, 5000); 
 
     return () => clearInterval(interval);
   }, [isHovered]);
 
   return (
-    <div className="flex space-x-4 overflow-hidden">
+    <div className="flex space-x-1 p-1 overflow-hidden">
       {slides.map((slide, index) => (
         <div
           key={index}
-          className={`transition-all duration-500 ease-in-out w-full transform ${index === activeIndex ? 'scale-100 ' : 'scale-75'}`}
+          className={`transition-all duration-500 ease-in-out transform ${index === activeIndex ? 'scale-100' : 'scale-75'}`}
         >
-          <img src={slide.image} alt="slide image" className="w-48 rounded-xl h-36 object-cover" />
+          <img src={`/assets/img/gallery/meals/covers/${slide.image}-cover.webp`} alt="slide-image" className={`w-64 rounded-xl h-28 object-cover ${index === activeIndex ? 'w-80' : ''}`} />
         </div>
       ))}
     </div>

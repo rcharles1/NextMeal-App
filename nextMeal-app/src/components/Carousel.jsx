@@ -15,7 +15,7 @@ function RestaurantCarousel() {
         <Carousel 
             autoPlay
             interval={5000}
-            className="h-60 p-1 sm:h-fit caret-transparent w-full overflow-hidden"
+            className="h-60 p-1 sm:h-fit md:h-80 md:w-8/12 mx-auto caret-transparent w-full overflow-hidden"
             showThumbs={false}
             showStatus={false}
             showIndicators={false}
