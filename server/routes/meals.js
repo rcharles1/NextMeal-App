@@ -8,20 +8,25 @@ let db = getDatabase();
 // Get all meals in pagination
 router.get('/', (req, res) => {
     const page = req.query.p || 0;
-    const category = req.query.category || null;
     const mealsPerPage = 6;
 
     let meals = [];
-    let query = category ? { category: category } : {};
 
-    // Filtering results
-    const cuisine = req.query.cuisine ? {cuisine: {$in: req.query.cuisine.split(',')}} : {};
-    const mealType = req.query.mealType ? {mealType: {$in: req.query.mealType.split(',')}} : {};
+    // Contains a simple filtering system depending on moods and an advanced filtering.
+    const mood = req.query.mood || null;
+    const cuisine = req.query.cuisine ? req.query.cuisine.split(',') : [];
+    let categoryValues = [...cuisine];
+    if (mood) {
+        categoryValues.push(mood);
+    }
+    let categoryFilter = categoryValues.length > 0 ? {category: {$in: categoryValues}} : {};
+
+    const type = req.query.mealType ? {mealType: {$in: req.query.mealType.split(',')}} : {};
     const course = req.query.course ? {course: {$in: req.query.course.split(',')}} : {};
-    
-    const filters = {...cuisine, ...mealType, ...course};
 
-    query = {...query, ...filters}
+    const filters = {...categoryFilter, ...type, ...course};
+
+    query = {...filters}
 
     // Sorting
     const sortParam = req.query.sort ? JSON.parse(req.query.sort) : null;

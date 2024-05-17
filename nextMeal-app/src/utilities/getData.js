@@ -1,13 +1,9 @@
 // Fetch All Meals
-export const fetchAllMeals = async (page, filters, sort) => {
-    let url = `http://localhost:3000/meals/?`;
-    let params =  {p: page, sort:JSON.stringify(sort), ...filters};
-    let queryParams = Object.keys(params).map(key => `${key}=${params[key]}`).join('&');
-    url += queryParams;
+export const fetchAllMeals = async (page) => {
+    let url = `http://localhost:3000/meals/?${page}`;
 
     try {
         const response = await fetch(url);
-        console.log(url);
        if (response.ok) {
             const data = await response.json();
            return data;
@@ -15,6 +11,22 @@ export const fetchAllMeals = async (page, filters, sort) => {
        throw new Error(`HTTP error! status: ${response.status}` )
     } catch (error) {
         console.error('Error fetching meals:', error);
+    }
+};
+
+// Sample restaurants
+export const fetchSampleRestaurants = async (page) => {
+    let url = `http://localhost:3000/restaurants/?${page}`;
+
+    try {
+        const response = await fetch(url);
+       if (response.ok) {
+            const data = await response.json();
+           return data;
+       }
+       throw new Error(`HTTP error! status: ${response.status}` )
+    } catch (error) {
+        console.error('Error fetching restaurants:', error);
     }
 };
 
@@ -51,29 +63,26 @@ export const fetchAllBeverages = async (page) => {
 };
 
 // Fetch Meals or Beverages
-export const fetchMealsOrBeverages = async (page, entrypoint, category,filters, sort) => {
-    let url, item;
-    if (entrypoint === 'meals'){
-        url = `http://localhost:3000/meals/?p=${page}`;
-        item = 'meals';
-    } else {
-        url = `http://localhost:3000/beverages/?p=${page}`;
-        item = 'beverages';
-    }
-    let openCard;
-    if (category) {
-        url += `&category=${category}`;
-        if ((entrypoint === 'meals') && (category === 'Drinks')) {
+export const fetchMealsOrBeverages = async (page, entrypoint, mood, filters, sort) => {
+    const item = entrypoint === 'meals' ? 'meals' : 'beverages';
+    let url = `http://localhost:3000/${item}/?`;
+
+    let openCard = item;
+    let params =  {p: page, sort: JSON.stringify(sort), ...filters};
+
+    if (mood) {
+        params = {...params, mood};
+        if (item === 'meals' && mood === 'Drinks') {
             openCard = 'beverages';
             url = `http://localhost:3000/beverages/?p=${page}`;
-        } else {
-            openCard = 'meals';
         }
     }
 
+    const queryParams = new URLSearchParams(params).toString();
+    url = `http://localhost:3000/${item}/?${queryParams}`;
+
     try {
         const response = await fetch(url);
-        console.log(url)
         if (response.ok) {
             const data = await response.json();
             return { openCard, data };

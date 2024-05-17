@@ -10,6 +10,7 @@ import FilterWidget from './FilterWidget';
 import SortWidget from './SortWidget';
 import { Filter, Sort } from '/src/components/svgs/InterfaceSvg';
 import Footer from './Footer';
+import Error from './Error';
 
 import { fetchMealsOrBeverages } from '../utilities/getData';
 import { beverageFilterOptions, mealFilterOptions } from '../utilities/prefences';
@@ -20,7 +21,7 @@ import { useLocation } from 'react-router-dom';
 function MealsList() {
   const [mealitem, setMealItem] = useState([]);
   const [page, setPage] = useState(0); 
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedMood, setSelectedMood] = useState(null);
   const [card, setCard] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
   const [searchResultCard, setSearchResultCard] = useState(null);
@@ -35,8 +36,9 @@ function MealsList() {
     mealType: [],
     course: [],
     beverageType: [],
-    category: []
-  });
+    drinkCategory: [],
+    mood: []
+  });  
 
   const location = useLocation();
   const entryPoint = location.state?.entryPoint || 'meals';
@@ -52,27 +54,37 @@ function MealsList() {
 
   useEffect(() => {
     const fetchMealsBeverages = async () => {
+      // Reset error state
       try {
-        const category = selectedCategory !== null ? moods[selectedCategory].text : null;
-        const { openCard, data} = await fetchMealsOrBeverages(page, entryPoint, category, filters, sort);
+        const mood = selectedMood !== null ? moods[selectedMood].text : null;
+        const response = await fetchMealsOrBeverages(page, entryPoint, mood, filters, sort);
+  
+        const { openCard, data } = response;
+  
+        // Check for data existence
+        if (!data || data.length === 0) {
+          setError('No restaurants found for the given filters');
+          return;
+        }
+  
         setCard(openCard);
         // Updates Mealitem state, it also prevents duplication of data items by creating a new array
         setMealItem(prevMealItems => {
-          const newMealItems = selectedCategory !== null || page === 0
+          const newMealItems = selectedMood !== null || page === 0
             ? [...data]
             : [...prevMealItems, ...data];
-          
+  
           const uniqueMealItems = Array.from(new Set(newMealItems.map(item => item._id)))
             .map(id => newMealItems.find(item => item._id === id));
-          
+  
           return uniqueMealItems;
         });
       } catch (error) {
-        console.error('Error fetching data:', error);
+        setError('Something went wrong. Check you network connection and try again');
       }
     };
     fetchMealsBeverages();
-  }, [page, entryPoint, selectedCategory, filters, sort ]);
+  }, [page, entryPoint, selectedMood, filters, sort]);  
 
   const handleSearch = (result) => {
     setSearchResults(result);
@@ -87,8 +99,8 @@ function MealsList() {
   };
 
   const areFiltersActive = () => {
-    return filters.cuisine.length > 0 || filters.mealType.length > 0 || filters.course.length > 0 || filters.beverageType.length > 0 || filters.category.length > 0;
-  }; 
+    return filters && (filters.cuisine.length > 0 || filters.mealType.length > 0 || filters.course.length > 0 || filters.beverageType.length > 0 || filters.mood.length > 0);
+  };   
 
   const isSortOptionActive = () => {
     return sort.text !== null || sort.value !== null || sort.icon !== null;
@@ -100,14 +112,14 @@ function MealsList() {
       mealType: [],
       course: [],
       beverageType: [],
-      category: []
+      mood: []
     });
     closeFilterWidget();
   };    
 
-  const restError = () => {
+  const resetError = () => {
     setError('');
-  };
+  }
 
   const closeFilterWidget = () => {
     setIsFilterWidgetVisible(false);
@@ -140,7 +152,7 @@ function MealsList() {
         <div className="flex flex-col space-y-2 px-5 caret-transparent">
           <h2 className="text-base sm:text-2xl md:text-base font-bold ">What's your mood?</h2>
           <div className="flex flex-row w-full space-x-2 p-3 overflow-hidden">
-              <MealCategory onCategorySelect={setSelectedCategory} resetPage={() => setPage(0)}/>
+              <MealCategory onCategorySelect={setSelectedMood} resetPage={() => setPage(0)}/>
           </div>
         </div>
 
@@ -185,9 +197,14 @@ function MealsList() {
             />}
           </div>
           <div id='container' className='mx-auto px-2.5 w-96 grid grid-cols-2 gap-y-2 gap-x-2 sm:grid-cols-3 sm:gap-8 lg:gap-5'>
-              {(entryPoint === 'beverages' || entryPoint === 'meals') && (card === 'beverages') ? mealitem.map((item) => <BeverageCard key={item._id} beverage={item}/> ) :  mealitem.map((item) => <MealCard key={item._id} meal={item} />)}
+          {error === '' && (
+            (entryPoint === 'beverages' && card === 'beverages') 
+              ? mealitem.map((item) => <BeverageCard key={item._id} beverage={item}/> )
+              : (entryPoint === 'meals') && mealitem.map((item) => <MealCard key={item._id} meal={item} />)
+          )}
           </div>
-          {mealitem.length > 0 && <button onClick={handleShowMore} className="ml-72 font-medium text-xs underline px-3 w-fit hover:text-bg_variant1">Show More</button>}
+          {(mealitem.length > 0) && (error === '') && <button onClick={handleShowMore} className="ml-72 font-medium text-xs underline px-3 w-fit hover:text-bg_variant1">Show More</button>}
+          {error !== '' ? <Error message={error} onReset={resetError} onClose={closeFilterWidget}/> : ''}
       </div>
       ) : <p className="mx-auto font-bold text-sm text-default/55"> Fetching data. Please wait...</p>}
     </div>

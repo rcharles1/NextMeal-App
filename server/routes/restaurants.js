@@ -20,7 +20,15 @@ router.get('/', (req, res) => {
     const filters = {...cuisine, ...openHours, ...services, ...amenities};
  
     // Sorting
-    const sortParam = req.query.sort ? JSON.parse(req.query.sort) : null;
+    let sortParam = null;
+    if (req.query.sort) {
+        try {
+            sortParam = JSON.parse(req.query.sort);
+        } catch (error) {
+            console.error('Error parsing sort parameter:', error);
+        }
+    }
+
     let sortObject = {};
 
     if (sortParam && sortParam.text && typeof sortParam.text === 'string') {

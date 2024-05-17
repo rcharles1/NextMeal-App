@@ -104,7 +104,7 @@ export const beverageFilterOptions = [
     },
     {
         title: 'Drink Category',
-        type: 'category',
+        type: 'drinkCategory',
         values: [
             {value: 'Ale', text: 'Ale'},
             {value: 'Beer', text: 'Beer'},
@@ -140,7 +140,6 @@ export const beverageFilterOptions = [
         ]
     }
 ] 
-
 
 export const sortOptions = [
     { text: 'Ascending', value: '1', icon: 'Ascending'},

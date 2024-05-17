@@ -58,7 +58,7 @@ function RestaurantsList() {
                     return uniqueRestaurants;
                 });
             } catch (error) {
-                setError('Could not fetch data. Pleasee check your internet connection');
+                setError('Could not fetch data. Please check your internet connection');
             }
         };
         if (page === 1) {
@@ -81,7 +81,7 @@ function RestaurantsList() {
     
     const isSortOptionActive = () => {
         return sort.text !== null || sort.value !== null || sort.icon !== null;
-    }
+    };
 
     const resetFilters = () => {
         setFilters({
@@ -95,7 +95,7 @@ function RestaurantsList() {
 
     const resetError = () => {
         setError('');
-    }
+    };
 
     const closeFilterWidget = () => {
         setIsFilterWidgetVisible(false);
@@ -123,7 +123,7 @@ function RestaurantsList() {
                         handleSearch(result);
                     }}/>
                 </div>
-                <div id="offers & events" className="flex flex-col sm:-mx-4 space-y-0.5">
+                <div id="offers & events" className="flex flex-col sm:-mx-4 space-y-2.5">
                     <Slideshow />
                     <div className="flex w-fit mx-auto space-x-3"><span className="outline outline-bg_variant1/75 w-3"></span><span className="outline outline-bg_variant1/75 w-8 "></span><span className="outline outline-bg_variant1/75 w-1"></span></div>
                 </div>

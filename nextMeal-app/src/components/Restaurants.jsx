@@ -1,7 +1,7 @@
 import { React, useEffect, useState } from 'react';
 import RestaurantCard from './RestaurantCard';
 
-import { fetchAllRestaurants } from '../utilities/getData';
+import { fetchSampleRestaurants } from '../utilities/getData';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -12,7 +12,7 @@ function Restaurants() {
     useEffect(() => {
         const fetchRestaurants = async () => {
             try {
-                const data = await fetchAllRestaurants();
+                const data = await fetchSampleRestaurants();
                 setRestaurants(data);
             } catch (error) {
                 console.error('Error fetching restaurants:', error);
