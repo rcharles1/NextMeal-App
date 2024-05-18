@@ -7,9 +7,12 @@ import CollapsibleList from './CollapsibleList';
 
 import { useParams } from 'react-router-dom';
 
+import { Favorite, Rating, Cart, Diamonds } from '/src/components/svgs/InterfaceSvg';
+
 function MealItem() {
     const { id } = useParams();
     const [mealDetails, setMealDetails] = useState(null);
+    const [showMore, setShowMore] = useState(false);
 
     useEffect(() => {
         const fetchMealDoc = async () => {
@@ -35,34 +38,55 @@ function MealItem() {
             </div>
            {mealDetails ? (
                 <div key={mealDetails._id} className="flex flex-col px-5 py-1 h-fit transition-all duration-500">
-                    <h1 className="font-bold text-center text-3xl sm:text-3xl">{mealDetails.name}</h1>
-                    <h3 className="font-bold text-center text-xl text-default/70 sm:text-2xl">{mealDetails.course}</h3>
-                    <div className="rounded-lg p-1 h-80 sm:h-96 w-92 mx-auto overflow-hidden">
+                    <div className="rounded-lg p-1 h-fit sm:h-96 w-92 mx-auto overflow-hidden">
                         <img src={`/assets/img/gallery/meals/food/${mealDetails.img}.webp`} alt="meal-img" />
                     </div>
-                    <div className="flex flex-col mt-8 h-32 w-92 mx-auto drop-shadow">
-                        <h2 className="font-bold text-xl text-default/75">Description</h2>
-                        <span className="flex space-x-3 mt-2 px-2 font-semibold text-bg_variant1/45 text-sm">
-                            <p>{mealDetails.rating}</p>
-                            <ol className="list-disc flex space-x-1.5">{mealDetails.category.map(item => {
-                                return <li>{item}</li>
-                            })}</ol>
+
+                    <div className="flex flex-col mt-6 h-fit w-92 mx-auto drop-shadow">
+                        <h1 className="font-bold text-start text-2xl sm:text-3xl">{mealDetails.name}</h1>
+                        <div className="flex justify-between p-1">
+                            <div className="flex items-center space-x-2">
+                                <h3 className="font-bold text-sm text-center text-default/55 sm:text-2xl">{mealDetails.rating}</h3>
+                                <div className="h-fit w-fit"><Rating fill="gray" height="20" width="20" /></div>
+                            </div>
+                            <div className="mt-1 mr-2 h-fit w-fit"><Favorite fill="gray" height="24" width="24" /></div>
+                        </div>
+                        <h2 className="font-bold text-lg mt-2 text-default/75">Description</h2>
+                        <span className="flex space-x-1 mt-2 px-2 font-semibold text-bg_variant1/45 text-sm">
+                            {mealDetails.category.flatMap((category, index, array) => {
+                                let elements = [<span key={index}>{category}</span>];
+                                if (index < array.length - 1) {
+                                    elements.push(<Diamonds key={`diamond-${index}`} fill="gray" height="10" width="10" />);
+                                }
+                                return (
+                                    <div key={index} className="flex space-x-1 text-start font-normal text-wrap items-center w-fit text-sm h-fit">
+                                        {elements}
+                                    </div>
+                                );
+                            })}
                         </span>
                         <span className="text-left p-2 leading-relaxed text-default/75 font-normal indent-4 antialiased">{mealDetails.description}</span>
                     </div>
-                    <button className="bg-bg_variant1 mt-24 -ml-1.5 p-3 w-full text-pure_white/80 font-bold rounded-lg shadow shadow-bg_variant1 active:bg-bg_variant1/80">
+
+                    <button className="bg-bg_variant1 mt-6 -ml-1.5 p-3 w-full text-pure_white/80 font-bold rounded-lg shadow shadow-bg_variant1 active:bg-bg_variant1/80">
                         ADD TO CART
                     </button>
                    <div className="flex flex-col mb-10 mt-8 space-y-4">
                         <h2 className="font-bold text-xl text-default/80">Common Pairings</h2>
-                        <div id='container' className="p-1 grid grid-cols-3 gap-y-3">
-                            {mealDetails.SpecialNotes.pairings.map(dish => {
+                        <div id='container' className="p-1 grid grid-cols-3 gap-y-2.5">
+                            {mealDetails.SpecialNotes.pairings.slice(0, showMore ? mealDetails.SpecialNotes.pairings.length : 3).map(dish => {
                                 return (
-                                    <div className="bg-pure_white h-40 w-28 drop-shadow-sm rounded-lg overflow-hidden caret-pure_white cursor-pointer">
+                                    <div className="h-40 w-28 drop-shadow-sm rounded-lg overflow-hidden caret-transparent cursor-pointer relative">
                                         <img src={`/assets/img/gallery/meals/covers/${dish.image}.webp`} className="object-cover h-full w-full" />
+                                        <div className="bg-default/55 h-12 p-1 text-wrap w-full absolute bottom-0 bg-blur"><p className="text-pure_white/85 font-medium text-sm">{dish.pairingDish}</p></div>
                                     </div>
                                 )
                             })}
+                            {mealDetails.SpecialNotes.pairings.length > 3 && (
+                                <button onClick={() => setShowMore(!showMore)} className="col-span-3 rounded-sm sm:rounded outline outline-2 outline-light_dark/35 active:text-bg_variant1">
+                                    {showMore ? 'Show Less' : 'Show More'}
+                                </button>
+                            )}
                         </div>
                         <CollapsibleList mealDetails={mealDetails} />
                    </div>

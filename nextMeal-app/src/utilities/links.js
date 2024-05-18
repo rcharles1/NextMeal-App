@@ -27,8 +27,8 @@ export const slides = [
 ];
 
 export const profileLinks = [
-    { to: "/pageNotFound", text: "Account Details", img:""},
-    { to: "/pageNotFound", text: "My Favorites", img:"" },
-    { to: "/pageNotFound", text: "Cart", img:"" },
-    { to: "/pageNotFound", text: "Sign Out", img:"" },
+    { to: "/pageNotFound", text: "Account Details", img:"Account"},
+    { to: "/myFavorites", text: "My Favorites", img:"Favorites" },
+    { to: "/pageNotFound", text: "Cart", img:"Cart" },
+    { to: "/pageNotFound", text: "Sign Out", img:"SignOut" },
 ];

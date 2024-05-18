@@ -41,8 +41,8 @@ function Restaurants() {
                         {restaurants.slice(0, 4).map((restaurant, i) => <RestaurantCard key={i} restaurant={restaurant} />)}
                     </div>
                ): <p className="mx-auto font-bold text-sm text-default/55">Fetching data. Please wait...</p>}
-                <div className="flex text-xs sm:text-sm mt-0.5 sm:justify-end font-semibold text-default/80 hover:text-bg_variant1">
-                   <button onClick={handleClick} className="underline underline-offset-2">View More</button>
+                <div className="flex justify-end mr-5 text-xs sm:text-sm mt-0.5 sm:justify-end font-semibold text-default/80 hover:text-bg_variant1">
+                   <button onClick={handleClick} className="underline underline-offset-2">Browse All</button>
                 </div>
             </div>
         </div>

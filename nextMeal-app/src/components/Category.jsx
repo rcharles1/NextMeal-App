@@ -1,7 +1,7 @@
 import { React, useState } from  'react';
-import { moods } from '../utilities/moods';
 
-function MealCategory({ onCategorySelect, resetPage }) {
+
+function MealCategory({ onCategorySelect, moodOption, resetPage }) {
   const [selected, setSelected] = useState(null);
 
   const handleClick = index => {
@@ -12,7 +12,7 @@ function MealCategory({ onCategorySelect, resetPage }) {
 
   return (
     <div className="w-full sm:w-fit sm:px-2 sm:mx-auto flex flex-row h-fit space-x-2 sm:space-x-4">
-      {moods.map((item, index) => (
+      {moodOption.map((item, index) => (
         <div key={index} className="flex flex-col space-y-1">
           <div 
               className={`flex flex-row justify-center items-center w-fit bg-pure_white rounded-full p-3 ${selected === index ? 'text-red-500' : 'text-black'} ${selected === index ? 'shadow-sm shadow-bg_variant1' : ''}`} 

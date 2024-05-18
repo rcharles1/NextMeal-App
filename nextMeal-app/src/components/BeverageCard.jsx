@@ -1,6 +1,7 @@
-import {React, useState, useEffect } from 'react';
+import React from 'react';
 
 import { NavLink } from 'react-router-dom';
+import { Favorite, Rating } from '/src/components/svgs/InterfaceSvg';
 
 function BeverageCard({ beverage }) {
     return (
@@ -12,7 +13,7 @@ function BeverageCard({ beverage }) {
                             <img src={`/assets/img/gallery/meals/beverages/${beverage.img}.webp`} alt='beverage-image' className="w-44 h-full object-scale-down" />
                         </div>
                         <div className="absolute top-2 right-1 sm:right-2 size-6 sm:size-7 md:size-6 md:right-0">
-                            <img src='/assets/icon/favorite.svg'/>
+                            <Favorite fill={'silver'} height="20" width="24" />
                         </div>
                     </div>
                     <div className="flex flex-col space-y-1 sm:h-18 w-full px-1 py-1 rounded-md sm:px-3 justify-center items-start font-medium" >
@@ -24,9 +25,9 @@ function BeverageCard({ beverage }) {
                             </div>
                         </div>
                     </div>
-                    <div className="w-fit h-fit ml-16 md:ml-24 border-b-2 flex flex-row space-x-1">
-                        <span><NavLink to={`/beverageitem/${beverage._id}`} className="font-semibold text-sm sm:text-base md:text-sm active:text-bg_variant1">Details</NavLink></span>
-                        <span className="size-5 sm:size-6 md:size-4 md:mt-0.5">
+                    <div className="w-fit h-fit ml-14 md:ml-20  border-b-2 flex flex-row space-x-1 md:space-x-0.5">
+                        <span><NavLink to={`/beverageitem/${beverage._id}`} className="font-semibold text-sm sm:text-base md:text-sm active:text-bg_variant1">Read More</NavLink></span>
+                        <span className="size-4 sm:size-4 md:size-3.5 md:mt-0 mt-0.5 pt-0.5">
                             <img src='assets/icon/arrow-right.svg' alt='arrow-right image'/>
                         </span>
                     </div>

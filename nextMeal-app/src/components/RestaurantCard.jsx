@@ -25,8 +25,8 @@ function RestaurantCard({ restaurant }) {
                         <span className="line-clamp-2 sm:line-clamp-3 md:line-clamp-2 text-sm md:text-xs w-36 h-fit font-medium">{restaurant.description}</span>
                     </div>
                     <div className="w-fit ml-12 md:ml-20 border-b-2 active:border-bg_variant1 justify-center flex flex-row space-x-1 md:space-x-0.5">
-                        <span><NavLink to={`/restaurantprofile/${restaurant._id}`} className="font-semibold text-sm sm:text-base md:text-xs active:text-bg_variant1">Learn More</NavLink></span>
-                        <span className="size-3.5 sm:size-4 md:size-3.5 md:mt-0 mt-0.5 pt-0.5"><img src='assets/icon/arrow-right.svg' alt='arrow-right image'/></span>
+                        <span><NavLink to={`/restaurantprofile/${restaurant._id}`} className="font-semibold text-sm sm:text-base md:text-xs active:text-bg_variant1">Read More</NavLink></span>
+                        <span className="size-4 sm:size-4 md:size-3.5 md:mt-0 mt-0.5 pt-0.5"><img src='assets/icon/arrow-right.svg' alt='arrow-right image'/></span>
                     </div>
                 </div>
             </div>) :<p className="mx-auto font-bold text-sm text-default/55">Fetching data. Please wait...</p>

@@ -38,11 +38,11 @@ function Beverages() {
                         {beverages.slice(0, 4).map((beverage, i) => <BeverageCard key={i} beverage={beverage}/>)}
                     </div>
                 ) : <p className="mx-auto font-bold text-sm text-default/55">Fetching data. Please wait...</p> }
-                <div className="flex text-xs sm:text-sm mt-0.5 sm:justify-end font-semibold text-default/80 hover:text-bg_variant1">
+                <div className="flex justify-end mr-5 text-xs sm:text-sm sm:justify-end font-semibold text-default/80 hover:text-bg_variant1">
                    <button className="underline underline-offset-2" onClick={() => {
                        handleClick();
                        setSelected('drink');
-                   }} >View More</button>
+                   }} >Browse All</button>
                 </div>
             </div>
         </div>

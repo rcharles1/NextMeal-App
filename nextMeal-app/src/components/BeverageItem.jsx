@@ -5,7 +5,7 @@ import MenuIcon from './MenuIcon';
 import Breadcrumbs from './BreadCrumbs';
 
 import { useParams } from 'react-router-dom';
-import { Favorite, Cart } from '/src/components/svgs/InterfaceSvg';
+import { Favorite, Cart, Diamonds } from '/src/components/svgs/InterfaceSvg';
 
 function BeverageItem() {
     const { id } = useParams();
@@ -34,24 +34,49 @@ function BeverageItem() {
                 <div className="capitalize font-base h-6 w-fit"><Breadcrumbs/></div>
             </div>
            {beverageDetails ? (
-                <div key={beverageDetails._id} className="flex mt-2 flex-col w-full mx-auto mb-12 p-3 space-y-0 h-fit transition-all duration-500">
-                    <div className="h-fit w-full bg-graphicDots bg-cover bg-opacity-10 mx-auto">
-                        <div className="flex flex-row space-x-2 p-3">
-                            <div className="h-72 w-44">
-                                <img src={`/assets/img/gallery/meals/beverages/${beverageDetails.img}.webp`} alt='beverage photo' className="w-full h-full object-cover" />
+                <div key={beverageDetails._id} className="flex mt-2 flex-col w-full bg-drink outline mx-auto mb-12 p-3 space-y-4 h-fit transition-all duration-500">
+                    <div className="h-fit w-full outline mx-auto">
+
+                        <div className="flex flex-row space-x-2.5 p-1">
+
+                            <div className="h-96 w-44">
+                                <img src={`/assets/img/gallery/meals/beverages/${beverageDetails.img}.webp`} alt='beverage photo' className="w-full h-full object-cover " />
                             </div>
-                            <div className="flex flex-col space-y-8 h-64 items-start w-48 pt-6 px-1 ">
+
+                            <div className="flex flex-col space-y-6 h-fit pb-3 mt-6 items-start justify-center w-48  px-1 ">
+
                               <div className="flex flex-col space-y-2">
+                                <span className="text-default/55 text-base font-medium text-wrap w-full">{beverageDetails.type}</span>
                                 <span className="font-bold text-2xl text-wrap w-full">{beverageDetails.name}</span>
-                                <div className=" p-1 h-6 w-20"><Favorite fill="gray"  height="20" width="20" /></div>
-                                <button className="w-fit h-fit border-2 border-default/55 text-default/55 sm:border-4 text-sm caret-transparent font-bold w-14 h-12 p-1.5 sm:h-11 sm:p-2.5 sm:text-base focus:bg-bg_variant1 active:bg-bg_variant1 focus:outline-none focus:text-pure_white/75  rounded-md">TZS {beverageDetails.price}</button>
+                                <span className="text-default/55 font-medium text-sm text-wrap w-full">{beverageDetails.brand}</span>
+                                <div className="flex flex-row items-start space-x-1 h-fit w-full">
+                                    {beverageDetails.category.flatMap((category, index, array) => {
+                                        let elements = [<span key={index}>{category}</span>];
+                                        if (index < array.length - 1) {
+                                            elements.push(<Diamonds key={`diamond-${index}`} fill="black" height="10" width="10" />);
+                                        }
+                                        return (
+                                            <div key={index} className="flex space-x-1 text-start font-normal text-wrap items-center w-fit text-sm h-fit">
+                                                {elements}
+                                            </div>
+                                        );
+                                    })}
+                               </div>
                               </div>
-                               <div className="flex flex-row space-x-3">
-                                    <button className="w-fit h-fit border-2 border-default/55 text-default/55 sm:outline-4 text-sm caret-transparent font-bold w-14 h-12 p-1.5 sm:h-11 sm:p-2.5 sm:text-base focus:bg-bg_variant1 focus:outline-none focus:text-pure_white/75 hover:bg- rounded-md">{beverageDetails.size}</button>
+
+                               <div className="flex flex-col w-full space-y-2">
+                                    <div className="flex justify-between space-x-12 items-center">
+                                        <span className="font-bold text-base text-wrap w-full">TZS {beverageDetails.price}</span>
+                                        <div className=" p-1 h-6 w-20"><Favorite fill="gray" height="20" width="20" /></div>
+                                    </div>
+                                    <span className="font-normal text-sm text-wrap w-full">{beverageDetails.volume}</span>
+                                    <div className="w-fit h-fit outline outline-2 outline-light_dark/75 text-default/55 sm:outline-4 text-sm caret-transparent font-bold w-14 p-1.5 sm:h-11 sm:p-2.5 sm:text-base hover:bg- rounded-md">{beverageDetails.size}</div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
+
                    <div className="flex flex-row space-x-2 px-3 caret-transparent" >
                        <button className="flex space-x-2 items-center justify-center bg-bg_variant1 p-3 w-96 h-12 mx-auto text-pure_white/80 font-bold rounded-md shadow shadow-bg_variant1 active:bg-bg_variant1/80">
                            <span> ADD TO CART</span>

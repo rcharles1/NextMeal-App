@@ -11,6 +11,7 @@ import BeverageItem from '../components/BeverageItem';
 import { useSelector } from 'react-redux';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PageError from '../components/PageError';
+import MyFavorites from '../components/FavoritesPage';
 
 function App() {
  const state = useSelector(state => state.state);
@@ -25,6 +26,7 @@ function App() {
         <Route path="mealslist" element={<MealsList />} />
         <Route path="mealitem/:id" element={<MealItem />} />
         <Route path="beverageitem/:id" element={<BeverageItem />} />
+        <Route path="/myFavorites" element={<MyFavorites />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>

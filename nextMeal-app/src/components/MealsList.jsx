@@ -14,7 +14,7 @@ import Error from './Error';
 
 import { fetchMealsOrBeverages } from '../utilities/getData';
 import { beverageFilterOptions, mealFilterOptions } from '../utilities/prefences';
-import { moods } from '../utilities/moods';
+import { mealMoods, beverageMoods } from '../utilities/moods';
 import { useLocation } from 'react-router-dom';
 
 
@@ -43,6 +43,7 @@ function MealsList() {
   const location = useLocation();
   const entryPoint = location.state?.entryPoint || 'meals';
   const filterOption = entryPoint === 'meals' ? mealFilterOptions :  beverageFilterOptions;
+  const moodOption = entryPoint === 'meals' ? mealMoods : beverageMoods;
 
   const handleFiltersChange = useCallback((newFilters) => {
     setFilters(newFilters);
@@ -56,14 +57,14 @@ function MealsList() {
     const fetchMealsBeverages = async () => {
       // Reset error state
       try {
-        const mood = selectedMood !== null ? moods[selectedMood].text : null;
+        const mood = selectedMood !== null ? moodOption[selectedMood].text : null;
         const response = await fetchMealsOrBeverages(page, entryPoint, mood, filters, sort);
   
         const { openCard, data } = response;
   
         // Check for data existence
         if (!data || data.length === 0) {
-          setError('No restaurants found for the given filters');
+          setError('No items found for the given filters');
           return;
         }
   
@@ -151,8 +152,8 @@ function MealsList() {
 
         <div className="flex flex-col space-y-2 px-5 caret-transparent">
           <h2 className="text-base sm:text-2xl md:text-base font-bold ">What's your mood?</h2>
-          <div className="flex flex-row w-full space-x-2 p-3 overflow-hidden">
-              <MealCategory onCategorySelect={setSelectedMood} resetPage={() => setPage(0)}/>
+          <div className="flex flex-row w-full container-snap overflow-x-auto space-x-2 p-3 overflow-hidden">
+              <MealCategory onCategorySelect={setSelectedMood} moodOption={moodOption} resetPage={() => setPage(0)}/>
           </div>
         </div>
 

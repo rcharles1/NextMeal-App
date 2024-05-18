@@ -11,7 +11,7 @@ function SortWidget({ onSortChange, sort, onClose}) {
         'Descending': Descending,
         'Rise': Rise,
         'Fall': Fall
-      };
+    };
 
     const handleClick = (sort) => {
         setSelectedSort(sort);

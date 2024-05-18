@@ -12,11 +12,37 @@ router.get('/', (req, res) => {
     const beveragesPerPage = 6;
 
     let beverages = [];
-    let query = category ? { category: category } : {};
+
+    // Contains a simple filtering system depending on moods and an advanced filtering.
+    const mood = req.query.mood || null;
+    const drinkCategory = req.query.drinkCategory ? req.query.drinkCategory.split(',') : [];
+    let categoryValues = [...drinkCategory];
+    if (mood) {
+        categoryValues.push(mood);
+    }
+    let categoryFilter = categoryValues.length > 0 ? {category: {$in: categoryValues}} : {};
+
+    const type = req.query.type ? {type: {$in: req.query.type.split(',')}} : {};
+
+    const filters = {...categoryFilter, ...type};
+
+    query = {...filters}
+
+    // Sorting
+    const sortParam = req.query.sort ? JSON.parse(req.query.sort) : null;
+    let sortObject = {};
+
+    if (sortParam && sortParam.text && typeof sortParam.text === 'string') {
+        if (sortParam.text.includes('Price')) {
+            sortObject = { price: parseInt(sortParam.value) };
+        } else {
+            sortObject = { name: parseInt(sortParam.value) };
+        }
+    }
 
     db.collection('beverages')
         .find(query)
-        .sort({name: 1})
+        .sort(sortObject)
         .skip(page * beveragesPerPage)
         .limit(beveragesPerPage)
         .forEach(beverage => beverages.push(beverage))
