@@ -4,9 +4,9 @@ export const navLinks = [
     { to: "/restaurantslist", text: "Restaurants" },
     { to: "/mealslist", text: "Meals"},
     { to: "/mealslist", text: "Beverages" },
-    { to: "/services", text: "Services" },
     { to: "/pageNotFound", text: "Contacts" },
 ];
+
 
 export const slides = [
     {

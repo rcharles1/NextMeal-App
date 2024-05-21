@@ -128,8 +128,19 @@ export const fetchRestaurantDoc = async () => {
     }
 };
 
-
-
+export const fetchUserData = async () => {
+    const response = await fetch('http://localhost:3000/api/current_user', { 
+      method: 'GET',
+      credentials: 'include'
+    });
+  
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+  
+    const data = await response.json();
+    return data;
+  };  
 
 
 

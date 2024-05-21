@@ -1,14 +1,13 @@
-const { MongoClient } = require('mongodb');
+const mongoose = require('mongoose');
 
 let dbConnection;
 let uri = "mongodb://robincharles940:H2SO4@ac-9y5lkev-shard-00-00.rhsiwft.mongodb.net:27017,ac-9y5lkev-shard-00-01.rhsiwft.mongodb.net:27017,ac-9y5lkev-shard-00-02.rhsiwft.mongodb.net:27017/nextMeal?ssl=true&replicaSet=atlas-13lkul-shard-0&authSource=admin&retryWrites=true&w=majority&appName=next-meal-db"
 module.exports = {
     connectToDb: (cb) => {
-        MongoClient.connect(uri)
+        mongoose.connect(uri)
             .then((client) => {
-                dbConnection = client.db()
+                dbConnection = client.connection;
                 return cb();
-                console.log("We are In!")
             })
             .catch(err => {
                 console.log(err);

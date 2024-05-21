@@ -5,6 +5,7 @@ import ProfileIcon from './ProfileIcon.jsx';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import NavBar from './NavBar.jsx';
+import { Search } from '/src/components/svgs/InterfaceSvg';
 
 
 function Header() {
@@ -30,8 +31,8 @@ function Header() {
             <div className="w-28 md:w-24 sm:mt-1.5">
                 <img src={imgSrc} />
             </div>
-            <div className="flex flex-row space-x-1 justify-even items-center py-1 w-26 sm:w-fit h-fit sm:w-fit md:w-fit md:flex-row-reverse md:mt-0 md:py-0">
-                {isAuthenticated === false ? <Link to='/signin' className= {`w-fit h-fit z-10 outline outline-1 sm:outline-2 text-sm text-${colorTheme} caret-transparent font-medium w-14 h-12 p-2 sm:h-11 sm:py-3 md:h-fit md:mb-2 md:mx-1 md:-mt-96 focus:bg-${secColorTheme} hover:bg-${secColorTheme} rounded-md`}>Sign in</Link> : <ProfileIcon colorTheme={colorTheme} bg={bgColor} /> }
+            <div className="flex flex-row space-x-1 justify-even items-center py-1 sm:w-fit h-fit sm:w-fit md:w-fit md:mt-0 md:py-0">
+                <Search fill={colorTheme === 'pure_white' ? 'white': 'black'} height="25" width="30" />
                 {setVisibility === 'visible' && (
                     <div className={`hidden lg:block text-${colorTheme}`}>
                         <NavBar colorTheme={colorTheme} />
@@ -42,6 +43,7 @@ function Header() {
                         <MenuIcon />
                     </div>
                 )}
+                {isAuthenticated === false ? '' : <ProfileIcon colorTheme={colorTheme} bgColor={bgColor} /> }
             </div>
         </div>
     );

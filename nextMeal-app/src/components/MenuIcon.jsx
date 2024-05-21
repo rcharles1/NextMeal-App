@@ -1,12 +1,15 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toggleMenu } from '../features/menu/menuSlice.js';
+
+import { navLinks } from '../utilities/links';
 
 const MenuIcon = () => {
     const dispatch = useDispatch();
     const isOpen = useSelector(state => state.menu.isOpen);
     const location = useLocation();
+    const navigate = useNavigate(); 
 
     const handleMenuToggle = () => {
         dispatch(toggleMenu());
@@ -19,20 +22,14 @@ const MenuIcon = () => {
         }
     };
 
+    const handleSignInSignOut = () => {
+        navigate('/signin')
+    }
+
     const imgSrc1 = location.pathname === '/' ? '/assets/icon/menu-to-close-light.svg' : '/assets/icon/menu-to-close.svg';
     const imgSrc2 = location.pathname === '/' ? '/assets/icon/close-to-menu-light.svg' : '/assets/icon/close-to-menu.svg';
     const bg = location.pathname === '/' ? 'bg-pure_white/80' : 'bg-pure_white';
     const marginLeft = location.pathname === '/' ? 'right-56': '';
-
-    const links = [
-        { to: "/", text: "Home" },
-        { to: "/pageNotFound", text: "About" },
-        { to: "/restaurantslist", text: "Restaurants" },
-        { to: "/mealslist", text: "Meals"},
-        { to: "/mealslist", text: "Beverages" },
-        { to: "/pageNotFound", text: "Services" },
-        { to: "/pageNotFound", text: "Contacts" },
-    ];
 
     return (
         <>
@@ -40,15 +37,18 @@ const MenuIcon = () => {
                 {isOpen ? (
                     <div className="fixed -mt-4 w-8 h-8 space-y-5">
                         <div><img src={imgSrc1} className="size-8 sm:size-10"/></div>
-                        <div className={`${bg} ${marginLeft} relative w-64 h-96 rounded-md`} style={{ backdropFilter: 'blur(5px)' }}>
-                            <div className="h-lvh w-80 items-center justify-center pt-3 px-4 space-y-2 font-semibold text-default/70 text-lg">
-                                {links.map((link, index) => (
+                        <div className={`${bg} ${marginLeft} relative space-y-2 t w-64 h-fit rounded-md`} style={{ backdropFilter: 'blur(10px)' }}>
+                            <div className="h-80 w-64 items-center justify-center pt-3 px-4 space-y-2 font-semibold text-default/70 text-lg">
+                                {navLinks.map((link, index) => (
                                     <Link key={index} to={link.to} className={`block ${index === 0 ? 'border-l-4 border-gray/90' : ''} p-2 hover:text-bg_variant1 hover:border-l-2 hover:border-bg_variant1 `}>{link.text}</Link>
                                 ))}
                             </div>
+                            <div className="h-16 items-center justify-center py-2 px-3 text-pure_white/85 text-lg font-semibold">
+                                <button onClick={handleSignInSignOut} className="w-full h-12 bg-bg_variant1 mx-auto rounded">Sign In </button>
+                            </div>
                         </div>
                     </div>
-                ) :  <img src={imgSrc2} className="size-8 sm:size-10"/>}
+                ) :  <img src={imgSrc2} className="size-7 sm:size-10"/>}
             </div>
         </>
     );

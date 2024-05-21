@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import { Link, useLocation } from 'react-router-dom';
-
 import { profileLinks } from '../utilities/links'
 import { Favorite, Account, Cart, SignOut } from '/src/components/svgs/InterfaceSvg';
+import useSyncedLocalStorage from '../hooks/useSyncedLocalStorage';
 
-function ProfileIcon() {
+function ProfileIcon({ colorTheme }) {
     const [openProfile, setOpenProfile] = useState(false);
     const location = useLocation();
+    const [userData, setUserData] = useSyncedLocalStorage('user', null); 
 
     const iconComponents = {
         'Account': Account,
@@ -24,8 +25,8 @@ function ProfileIcon() {
 
     return (
         <>
-            <div onClick={handleClick} className="size-10 -mt-1 bg-bg_variant1/40 px-3.5 py-2 font-bold text-base shadow outline outline-pure_white/35 bg-pure_white rounded-full">
-                R
+            <div onClick={handleClick} className={`size-9 -mt-1 ${colorTheme === 'pure_white bg-pure_white' ? 'bg-pure_white/85': 'shadow-md drop-shadow-sm' } px-3 py-1.5 font-bold text-base shadow outline outline-pure_white/35  rounded-full`}>
+                <span className="uppercase font-bold">{userData.email[0]}</span>
             </div>
             {openProfile ? (
                     <div onClick={handleClick} className="fixed mt-56 pt-16 w-8 h-fit space-y-5">
@@ -43,7 +44,7 @@ function ProfileIcon() {
                             </div>
                         </div>
                     </div>
-                ) : ''}
+            ) : ''}
         </>
     );
 }

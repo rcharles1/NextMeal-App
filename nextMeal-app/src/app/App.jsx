@@ -7,11 +7,12 @@ import RestaurantProfile from '../components/RestaurantProfile';
 import MealsList from '../components/MealsList';
 import MealItem from '../components/MealItem';
 import BeverageItem from '../components/BeverageItem';
+import PageError from '../components/PageError';
+import MyFavorites from '../components/FavoritesPage';
+import Authenticated from '../components/Authenticated';
 
 import { useSelector } from 'react-redux';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import PageError from '../components/PageError';
-import MyFavorites from '../components/FavoritesPage';
 
 function App() {
  const state = useSelector(state => state.state);
@@ -20,6 +21,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Root />}  />
+        <Route path="/authenticated" element={<Authenticated />} />
         <Route path="pageNotFound" element={<PageError />} />
         <Route path="restaurantslist" element={<RestaurantsList />} />
         <Route path="/restaurantprofile/:id" element={<RestaurantProfile />} />

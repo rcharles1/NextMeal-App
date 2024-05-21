@@ -34,8 +34,8 @@ function BeverageItem() {
                 <div className="capitalize font-base h-6 w-fit"><Breadcrumbs/></div>
             </div>
            {beverageDetails ? (
-                <div key={beverageDetails._id} className="flex mt-2 flex-col w-full bg-drink outline mx-auto mb-12 p-3 space-y-4 h-fit transition-all duration-500">
-                    <div className="h-fit w-full outline mx-auto">
+                <div key={beverageDetails._id} className="flex mt-2 flex-col w-full mx-auto mb-12 p-3 space-y-4 h-fit transition-all duration-500">
+                    <div className="h-fit w-full mx-auto">
 
                         <div className="flex flex-row space-x-2.5 p-1">
 

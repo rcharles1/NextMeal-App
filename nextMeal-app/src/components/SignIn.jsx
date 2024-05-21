@@ -1,16 +1,16 @@
 import { React } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { signIn } from '../features/auth/authSlice';
 
 function SignIn() {
-   const dispatch = useDispatch();
    const navigate = useNavigate();
 
-   const handleSubmit = event => {
-       dispatch(signIn());
-       navigate('/');
-   }
+   const handleSubmit = async event => {
+    navigate('/');
+   };
+
+   const handleGoogleSignIn = async () => {
+    window.location.href = 'http://localhost:3000/auth/google';
+   };
     
     return (
         <div className="h-screen w-full bg-bg_variant1/5 md:flex md:flex-row-reverse antialised caret-transparent text-default/75">
@@ -37,16 +37,13 @@ function SignIn() {
                         Sign In
                     </button>
                 </form>
-                <div className="mx-auto h-40 flex flex-col space-y-2 md:space-y-3">
+                <div className="mx-auto h-40">
                     <h3 className="mx-auto border w-48 border-light_dark/35 mt-5"></h3>
-                    <button className="flex flex-row space-x-6 justify-start items-center h-12 rounded-md w-80 md:w-64 md:mx-6 md:h-9 mt-4 p-5 text-lg md:text-xs border border-slate_white shadow-sm font-semibold caret-transparent active:border-2 active:border-bg_variant1">
-                        <span className='size-8'><img src='/assets/icon/icons_google.svg'/></span>
-                        <span className="mt-1">Continue with Google</span>
-                    </button>
-                    <button className="flex flex-row space-x-6 justify-start items-center h-12 rounded-md w-80 md:w-64 md:mx-6 md:h-9 mt-4 p-4 text-lg md:text-xs border border-slate_white shadow-sm font-semibold caret-transparent active:border-2 active:border-bg_variant1">
-                        <span className='size-8'><img src='/assets/icon/logos_facebook.svg'/></span>
-                        <span className="mt-1">Continue with Facebook</span>
-                    </button>
+                    
+                        <button onClick={handleGoogleSignIn} className="flex flex-row space-x-6 justify-start items-center h-12 rounded-md w-80 md:w-64 md:mx-6 md:h-9 mt-4 p-5 text-lg md:text-xs border border-slate_white shadow-sm font-semibold caret-transparent active:border-2 active:border-bg_variant1">
+                            <span className='size-8'><img src='/assets/icon/icons_google.svg'/></span>
+                            <span className="mt-1">Continue with Google</span>
+                        </button>
                 </div>
             </div>
         </div>
