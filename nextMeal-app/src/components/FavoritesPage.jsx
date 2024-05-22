@@ -1,14 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import MenuIcon from './MenuIcon';
 import Breadcrumbs from './BreadCrumbs';
+import { getMyFavorites } from '../utilities/getData';
 
 function MyFavorites() {
     const [active, setActive] = useState('Restaurants');
+    const [error, setError] = useState(null);
+    const [googleId, setGoogleId] = useState(null);
+
+    useEffect(() => {
+        const userData = JSON.parse(localStorage.getItem('user'));
+        setGoogleId(userData?.googleId);
+    }, []);
+
+    useEffect(() => {
+        setError(null);
+        const favoriteItems = async () => {
+            try {
+                const response = await getMyFavorites(googleId, active );
+                console.log(response);
+                
+            } catch(error) {
+                setError(error);
+            }
+        };
+        favoriteItems();
+    },[googleId, active])
+
     const data = {
-        'Restaurants': ['Restaurant 1', 'Restaurant 2', 'Restaurant 3'], // Add your restaurant list here
-        'Meals': ['Meal 1', 'Meal 2', 'Meal 3'], // Add your meals list here
-        'Beverages': ['Beverage 1', 'Beverage 2', 'Beverage 3'] // Add your beverages list here
+        'Restaurants': ['Restaurant 1', 'Restaurant 2', 'Restaurant 3'], 
+        'Meals': ['Meal 1', 'Meal 2', 'Meal 3'], 
+        'Beverages': ['Beverage 1', 'Beverage 2', 'Beverage 3'] 
     };
 
     return (
@@ -23,14 +46,12 @@ function MyFavorites() {
             <div id="container" className="flex flex-col sm:flex-row sm:items-top sm:space-y-0 space-y-6 justify-center px-10 sm:px-0 sm:flow-row sm:space-x-4 sm:items-top w-full text-start">
                 <h1 className="text-xl font-bold">My Favorites</h1>
                 <div className="rounded-xl w-full h-fit bg-bg_variant1/5 p-1 flex justify-center items-center space-x-5 font-semibold caret-transparent cursor-pointer">
-                    <a href='#' onClick={() => setActive('Restaurants')} className={`h-8 px-2 rounded-lg items-center pt-1 ${active === 'Restaurants' ? 'bg-bg_variant1 text-pure_white/75 ': ''}:bg-gray/5`}>Restaurants</a>
-                    <a href='#' onClick={() => setActive('Meals')} className={`h-8 p-2 rounded-md items-center pt-1  ${active === 'Meals' ? 'bg-bg_variant1/95 text-pure_white/75 ': ''}:bg-gray/5`}>Meals</a>
-                    <a href='#' onClick={() => setActive('Beverages')} className={`h-8 px-2 rounded-lg items-center pt-1  ${active === 'Beverages' ? 'bg-bg_variant1/85 text-pure_white/75': ''}:bg-gray/5`}>Beverages</a>
+                    <a href='#' onClick={() => setActive('restaurant')} className={`h-8 px-2 rounded-lg items-center pt-1 ${active === 'restaurant' ? 'bg-bg_variant1 text-pure_white/75 ': ''}:bg-gray/5`}>Restaurants</a>
+                    <a href='#' onClick={() => setActive('meal')} className={`h-8 p-2 rounded-md items-center pt-1  ${active === 'meal' ? 'bg-bg_variant1/95 text-pure_white/75 ': ''}:bg-gray/5`}>Meals</a>
+                    <a href='#' onClick={() => setActive('beverage')} className={`h-8 px-2 rounded-lg items-center pt-1  ${active === 'beverage' ? 'bg-bg_variant1/85 text-pure_white/75': ''}:bg-gray/5`}>Beverages</a>
                 </div>
                 <div>
-                    {data[active].map((item, index) => (
-                        <p key={index}>{item}</p>
-                    ))}
+                    
                 </div>
             </div>
         </div>

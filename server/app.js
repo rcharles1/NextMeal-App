@@ -113,6 +113,9 @@ connectToDb((err) => {
     const searchRouter = require('./routes/search');
     app.use('/search', searchRouter);
 
+    const favoriteRouter = require('./routes/favorites');
+    app.use('/favorites', favoriteRouter);
+
     app.listen(3000, () => {
       console.log('app listening on port 3000');
     });

@@ -1,9 +1,30 @@
-import React from 'react';
-
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import { updateFavorites } from '../utilities/getData';
 import { Favorite, Rating } from '/src/components/svgs/InterfaceSvg';
 
 function MealCard({ meal }) {
+    const [favorite, setFavorite] = useState(false);
+    const [googleId, setGoogleId] = useState(null);
+    const itemType = 'meal';
+
+    useEffect(() => {
+        const userData = JSON.parse(localStorage.getItem('user'));
+        setGoogleId(userData?.googleId);
+    }, []);
+
+
+    const handleFavoriteClick = async () => {
+        setFavorite(prevState => !prevState);
+        const itemId = meal._id;
+        try {
+            const response = await updateFavorites(googleId, itemId, itemType);
+            console.log(response);
+        } catch (error) {
+            console.error('Error updating favorites:', error);
+        }
+    };
+
     return (
         <>
             {meal ? (
@@ -12,9 +33,9 @@ function MealCard({ meal }) {
                         <div className="absolute inset-0 ">
                             <img src={`/assets/img/gallery/meals/food/${meal.img}.webp`} alt='meal-image' className="w-44 h-full object-scale-down"/>
                         </div>
-                        <div className="absolute w-fit top-2 right-0 sm:right-2 size-5 sm:size-7 md:right-0 md:size-5">
-                            <Favorite fill={'silver'} height="20" width="24" />
-                        </div>
+                        <button onClick={handleFavoriteClick} className="absolute w-fit top-2 right-0 sm:right-2 size-5 sm:size-7 md:right-0 md:size-5">
+                            <Favorite fill={favorite ? 'red' : 'silver'} height="20" width="24" />
+                        </button>
                     </div>
                     <div className="flex flex-col space-y-1 h-fit sm:h-18 w-full px-1 sm:px-3 justify-center items-start" >
                         <div className="sm:text-base md:text-sm text-start text-wrap font-bold">{meal.name}</div>

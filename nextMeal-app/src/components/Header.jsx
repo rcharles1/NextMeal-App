@@ -27,25 +27,28 @@ function Header() {
     }
 
     return (
-        <div className={`h-20 sm:p-4 md:h-fit md:py-4 px-3 bg-blur sm:px-8 py-5 flex flex-row justify-between ${bgColor} caret-transparent cursor-pointer`}>
+        <div className={`h-20 sm:p-4 md:h-auto md:py-4 px-3 bg-blur sm:px-8 py-5 flex justify-between ${bgColor} caret-transparent cursor-pointer`}>
             <div className="w-28 md:w-24 sm:mt-1.5">
-                <img src={imgSrc} />
+                <img src={imgSrc} alt="Description" />
             </div>
-            <div className="flex flex-row space-x-1 justify-even items-center py-1 sm:w-fit h-fit sm:w-fit md:w-fit md:mt-0 md:py-0">
-                <Search fill={colorTheme === 'pure_white' ? 'white': 'black'} height="25" width="30" />
-                {setVisibility === 'visible' && (
-                    <div className={`hidden lg:block text-${colorTheme}`}>
-                        <NavBar colorTheme={colorTheme} />
-                    </div>
-                )}
-                {setVisibility === 'visible' && (
-                    <div className={`inline-block lg:hidden text-${colorTheme}`}>
-                        <MenuIcon />
-                    </div>
-                )}
-                {isAuthenticated === false ? '' : <ProfileIcon colorTheme={colorTheme} bgColor={bgColor} /> }
+            <div className="flex justify-end items-center space-x-1 sm:w-auto md:mt-0 md:py-0">
+                <div className={`${setVisibility}`}><Search fill={colorTheme === 'pure_white' ? 'white' : 'black'} height="25" width="30" /></div>
+                <div className="w-8 mt-1">
+                    {setVisibility === 'visible' && (
+                        <div className={`lg:block : hidden text-${colorTheme}`}>
+                            <NavBar colorTheme={colorTheme} />
+                        </div>
+                    )}
+                    {setVisibility === 'visible' && (
+                        <div className={`lg:hidden text-${colorTheme}`}>
+                            <MenuIcon />
+                        </div>
+                    )}
+                </div>
+                {isAuthenticated && <ProfileIcon colorTheme={colorTheme} />}
             </div>
         </div>
+
     );
 }
 

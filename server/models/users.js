@@ -14,6 +14,10 @@ const UserSchema = new Schema({
     picture: {
       type: String,
     },
+    favorites: [{
+      id: String,
+      itemType: String,
+    }],
 });
 
 UserSchema.statics.findOrCreate = function findOrCreate(profile, cb) {
@@ -24,6 +28,7 @@ UserSchema.statics.findOrCreate = function findOrCreate(profile, cb) {
         userObj.email = profile.emails[0].value;
         userObj.given_name = profile.name.givenName;
         userObj.picture = profile.photos[0].value;
+        userObj.favorites = [];
         userObj.save(cb);
       }else{
         cb(err,result);

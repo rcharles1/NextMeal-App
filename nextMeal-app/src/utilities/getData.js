@@ -140,9 +140,44 @@ export const fetchUserData = async () => {
   
     const data = await response.json();
     return data;
-  };  
+};  
 
+export const updateFavorites = async (googleId, itemId, itemType) => {
+    const response = await fetch('http://localhost:3000/favorites', { 
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            googleId,
+            itemId,
+            itemType
+        }),
+        credentials: 'include'
+    });
 
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}. Network response was not ok`);
+    }
+
+    const data = await response.json();
+    return data;
+};
+
+export const getMyFavorites = async (googleId, active) => {
+    const response = await fetch(`http://localhost:3000/favorites//favoritesItems/?googleId=${googleId}&itemType=${active}`, { 
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include'
+    });
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}. Network response was not ok`);
+    }
+    const data = await response.json();
+    return data[0].favorites;
+};
 
 // To be implemented at later days
 export const fetchMealsAndBeverages = async () => {
