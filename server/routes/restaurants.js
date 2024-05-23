@@ -58,8 +58,6 @@ router.get('/', (req, res) => {
         });
 });
 
-
-
 // Get one restaurant
 router.get('/:id', (req, res) => {
     if (ObjectId.isValid(req.params.id)) {

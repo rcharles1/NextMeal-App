@@ -30,7 +30,7 @@ function ProfileIcon({ colorTheme }) {
             </div>
             {openProfile ? (
                     <div onClick={handleClick} className="fixed mt-56 pt-16 w-8 h-fit space-y-5">
-                        <div className={`${bg} ${marginLeft} relative w-64 h-56 rounded-md`} style={{ backdropFilter: 'blur(5px)' }}>
+                        <div className={`${bg} ${marginLeft} relative w-64 h-56 rounded-md`} style={{ backdropFilter: 'blur(10px)' }}>
                             <div className="h-56 w-64 rounded divide divide-y divide-default/15 items-center justify-center pt-3 px-1 space-y-2 font-semibold text-default/70 text-lg">
                                 {profileLinks.map((link, index) => {
                                     const IconComponent = iconComponents[link.img];

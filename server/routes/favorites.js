@@ -33,6 +33,7 @@ router.post('/', async (req, res) => {
     }
 });
 
+// All favorite items in an array
 router.get('/favoritesItems', (req, res) => {
     const page = req.query.p || 0;
     const itemsPerPage = 12;

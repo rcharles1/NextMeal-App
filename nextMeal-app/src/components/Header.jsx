@@ -1,4 +1,4 @@
-import { React } from 'react';
+import { React, useEffect } from 'react';
 import MenuIcon from './MenuIcon.jsx';
 import ProfileIcon from './ProfileIcon.jsx';
 
@@ -6,11 +6,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import NavBar from './NavBar.jsx';
 import { Search } from '/src/components/svgs/InterfaceSvg';
+import { signIn } from '../features/auth/authSlice.js';
 
 
 function Header() {
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
     const location = useLocation();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const userData = JSON.parse(localStorage.getItem('user'));
+        if (userData) {
+            dispatch(signIn(userData));
+        }
+    }, [dispatch])
 
     let bgColor, imgSrc, colorTheme,secColorTheme, setVisibility;
     if (location.pathname === '/') {

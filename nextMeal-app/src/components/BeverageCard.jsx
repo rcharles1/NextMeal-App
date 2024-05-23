@@ -1,9 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect }  from 'react';
+import { updateFavoritesList } from '../utilities/getData';
 
 import { NavLink } from 'react-router-dom';
-import { Favorite, Rating } from '/src/components/svgs/InterfaceSvg';
+import { Favorite, Bookmark } from '/src/components/svgs/InterfaceSvg';
 
 function BeverageCard({ beverage }) {
+    const [favorite, setFavorite] = useState(false);
+    const [googleId, setGoogleId] = useState(null);
+    const itemType = 'beverage';
+
+    useEffect(() => {
+        const userData = JSON.parse(localStorage.getItem('user'));
+        setGoogleId(userData?.googleId);
+    }, []);
+
+    const handleFavoriteClick = async () => {
+        setFavorite(prevState => !prevState);
+        const itemId = beverage._id;
+        try {
+            const response = await updateFavoritesList(googleId, itemId, itemType);
+            console.log(response);
+        } catch (error) {
+            console.error('Error updating favorites:', error);
+        }
+    };
+
     return (
         <>
             { beverage ? (<div className="grid grid-cols-2 gap-x-0 gap-y-2.5 mx-1.5 sm:grid-cols-3 sm:gap-8 lg:gap-5">
@@ -12,21 +33,23 @@ function BeverageCard({ beverage }) {
                         <div className="absolute p-1 inset-0">
                             <img src={`/assets/img/gallery/meals/beverages/${beverage.img}.webp`} alt='beverage-image' className="w-44 h-full object-scale-down" />
                         </div>
-                        <div className="absolute top-2 right-1 sm:right-2 size-6 sm:size-7 md:size-6 md:right-0">
-                            <Favorite fill={'silver'} height="20" width="24" />
-                        </div>
                     </div>
                     <div className="flex flex-col space-y-1 sm:h-18 w-full px-1 py-1 rounded-md sm:px-3 justify-center items-start font-medium" >
-                        <div className="text-start w-full font-bold">{beverage.name}</div>
+                        <div className="flex justify-between w-full items-center">
+                            <div className="sm:text-base text-start md:text-xs font-bold ">{beverage.name}</div>
+                            <button onClick={handleFavoriteClick} className="flex h-fit w-fit sm:size-6" >
+                                <Favorite fill={favorite ? 'red' : 'silver'} height="20" width="20" />
+                            </button>
+                        </div>
                         <div className="flex flex-col space-y-0.5 w-full px-2 h-fit text-start">
-                            <div className="flex flex-row justify-between text-sm">
+                            <div className="flex flex-row justify-between text-xs">
                                 <span className="font-semibold">TZS {beverage.price}</span>
                                 <span className="md:text-xs md:mt-0.5">{beverage.size}</span>
                             </div>
                         </div>
                     </div>
-                    <div className="w-fit h-fit ml-14 md:ml-20  border-b-2 flex flex-row space-x-1 md:space-x-0.5">
-                        <span><NavLink to={`/beverageitem/${beverage._id}`} className="font-semibold text-sm sm:text-base md:text-sm active:text-bg_variant1">Read More</NavLink></span>
+                    <div className="w-fit h-fit ml-16 md:ml-24  border-b-2 border-b-default/75 flex flex-row space-x-1 md:space-x-0.5">
+                        <span><NavLink to={`/beverageitem/${beverage._id}`} className="font-semibold text-xs sm:text-base md:text-sm active:text-bg_variant1">Read More</NavLink></span>
                         <span className="size-4 sm:size-4 md:size-3.5 md:mt-0 mt-0.5 pt-0.5">
                             <img src='assets/icon/arrow-right.svg' alt='arrow-right image'/>
                         </span>

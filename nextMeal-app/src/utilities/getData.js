@@ -1,3 +1,4 @@
+/* -----------  Fetch requests for all items: meals, beverages or resturants  -----------  */
 // Fetch All Meals
 export const fetchAllMeals = async (page) => {
     let url = `http://localhost:3000/meals/?${page}`;
@@ -49,7 +50,7 @@ export const fetchAllRestaurants = async (page, filters, sort) => {
     }
 };
 
-// Fetch All Beverages to populate Beverage Cards
+// Fetch All Beverages 
 export const fetchAllBeverages = async (page) => {
     try {
         const response = await fetch(`http://localhost:3000/beverages/?p=${page}`);
@@ -96,30 +97,9 @@ export const fetchMealsOrBeverages = async (page, entrypoint, mood, filters, sor
     }
 };
 
-// Fetch One Meal for MealItem
-export const fetchMealDoc = async () => {
-    try {
-        const response = await fetch(`http://localhost:3000/meals//${id}`);
-        const data = await response.json();
-        setMealDetails(data);
-    } catch (error) {
-        console.error('Error fetching meal document:', error);
-    }
-};
-
-// Fetch One Beverage for BeverageItem
-export const fetchBeverageDoc = async () => {
-    try {
-        const response = await fetch(`http://localhost:3000/beverages//${id}`);
-        const data = await response.json();
-        setBeverageDetails(data);
-    } catch (error) {
-        console.error('Error fetching Brverage document:', error);
-    }
-};
-
+/* -----------  Fetch requests for single items: a single meal, beverage or resturant  -----------  */
 // Fetch one Restaurant
-export const fetchRestaurantDoc = async () => {
+export const fetchRestaurantDoc = async (id) => {
     try {
         const response = await fetch(`http://localhost:3000/restaurants//${id}`);
         const data = await response.json();
@@ -128,6 +108,8 @@ export const fetchRestaurantDoc = async () => {
     }
 };
 
+/* -----------  Autheentication requests  -----------  */
+// Get User's data signined in via Google  
 export const fetchUserData = async () => {
     const response = await fetch('http://localhost:3000/api/current_user', { 
       method: 'GET',
@@ -142,7 +124,8 @@ export const fetchUserData = async () => {
     return data;
 };  
 
-export const updateFavorites = async (googleId, itemId, itemType) => {
+// Adds, or removes items from the favorites list
+export const updateFavoritesList = async (googleId, itemId, itemType) => {
     const response = await fetch('http://localhost:3000/favorites', { 
         method: 'POST',
         headers: {
@@ -164,6 +147,8 @@ export const updateFavorites = async (googleId, itemId, itemType) => {
     return data;
 };
 
+/* -----------  Fetch requests for favorite items  ------------  */
+// Fetch all favorite items
 export const getMyFavorites = async (googleId, active) => {
     const response = await fetch(`http://localhost:3000/favorites//favoritesItems/?googleId=${googleId}&itemType=${active}`, { 
         method: 'GET',
@@ -176,27 +161,26 @@ export const getMyFavorites = async (googleId, active) => {
         throw new Error(`HTTP error! status: ${response.status}. Network response was not ok`);
     }
     const data = await response.json();
+    
     return data[0].favorites;
 };
 
-// To be implemented at later days
-export const fetchMealsAndBeverages = async () => {
+// Fetch a single favorite item
+export const fetchFavoriteItemDoc = async (id, cardType) => {
+    let url;
+    if (cardType === 'restaurant') {
+        url = `http://localhost:3000/restaurants/${id}`
+    } else if (cardType === 'meal') {
+        url = `http://localhost:3000/meals/${id}`;
+    } else {
+        url = `http://localhost:3000/beverages/${id}`;
+    }
+
     try {
-        const mealsResponse = fetch('http://localhost:3000/meals/');
-        const beveragesResponse = fetch('http://localhost:3000/beverages/');
-        
-        const responses = await Promise.all([mealsResponse, beveragesResponse]);
-        
-        const mealsData = await responses[0].json();
-        const beveragesData = await responses[1].json();
-        
-        const combinedData = {
-            meals: mealsData,
-            beverages: beveragesData
-        };
-        
-        return combinedData;
+        const response = await fetch(url);
+        const data = await response.json();
+        return data;
     } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching restaurant document:', error);
     }
 };
