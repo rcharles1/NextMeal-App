@@ -44,12 +44,12 @@ function Header() {
                 <div className={`${setVisibility}`}><Search fill={colorTheme === 'pure_white' ? 'white' : 'black'} height="25" width="30" /></div>
                 <div className="w-8 mt-1">
                     {setVisibility === 'visible' && (
-                        <div className={`lg:block : hidden text-${colorTheme}`}>
+                        <div className={`md:block : hidden text-${colorTheme}`}>
                             <NavBar colorTheme={colorTheme} />
                         </div>
                     )}
                     {setVisibility === 'visible' && (
-                        <div className={`lg:hidden text-${colorTheme}`}>
+                        <div className={`md:hidden text-${colorTheme}`}>
                             <MenuIcon />
                         </div>
                     )}

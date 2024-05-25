@@ -1,29 +1,70 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from 'react';
 import { updateFavoritesList } from '../utilities/getData';
 
-import { Favorite, Rating, Bookmark } from '/src/components/svgs/InterfaceSvg';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { Rating, Bookmark } from '/src/components/svgs/InterfaceSvg';
+import { getMyFavorites } from '../features/wishlist/wishlistSlice';
 
 function MealCard({ meal }) {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const wishlist = useSelector(state => state.wishlist);
     const [favorite, setFavorite] = useState(false);
     const [googleId, setGoogleId] = useState(null);
     const itemType = 'meal';
 
     useEffect(() => {
+        dispatch(getMyFavorites());
+    }, [dispatch]);
+
+    useEffect(() => {
         const userData = JSON.parse(localStorage.getItem('user'));
         setGoogleId(userData?.googleId);
-    }, []);
 
-    const handleFavoriteClick = async () => {
-        setFavorite(prevState => !prevState);
-        const itemId = meal._id;
-        try {
-            const response = await updateFavoritesList(googleId, itemId, itemType);
-            console.log(response);
-        } catch (error) {
-            console.error('Error updating favorites:', error);
-        }
-    };
+        const targetMealId = meal._id;
+        
+        const isFavorite = wishlist.some(item => item.id === targetMealId);
+        setFavorite(isFavorite);
+    }, [meal._id]);
+
+    const handleFavoriteClick = useCallback(
+        async () => {
+            const userData = JSON.parse(localStorage.getItem('user'));
+            if (!userData) {
+                // Redirect to sign-in page if user is not logged in
+                navigate('/signin');
+                return;
+            }
+        
+            // Toggle the favorite status
+            setFavorite(prevState => !prevState);
+        
+            // Update database with latest changes
+            const itemId = meal._id;
+        
+            try {
+                const response = await updateFavoritesList(googleId, itemId, itemType);
+                console.log('Favorites updated successfully:', response);
+        
+                // Update local storage
+                const updatedWishlist = JSON.parse(localStorage.getItem('wishlist')) || {};
+        
+                if (favorite) {
+                    //Remove from favorites
+                    delete updatedWishlist[itemId];
+                } else {
+                    // Add to favorites
+                    updatedWishlist[itemId] = true;
+                }
+        
+                localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
+            } catch (error) {
+                console.error('Error updating wishlist:', error);
+            }
+        },[favorite]
+    ); 
 
     return (
         <>
@@ -42,7 +83,7 @@ function MealCard({ meal }) {
                                 <span className="font-base">{meal.rating}</span>
                             </div>
                             <button onClick={handleFavoriteClick} className="flex h-fit w-fit sm:size-6" >
-                                <Favorite fill={favorite ? 'red' : 'silver'} height="18" width="20" />
+                            <Bookmark fill={favorite ? 'red' : 'none'}  fillStroke={favorite ? 'red' : 'gray'} height="20" width="20" />
                             </button>
                         </div>
                         <span className="w-36 h-fit text-xs md:text-xs md:w-40 font-medium line-clamp-2">{meal.description}</span>

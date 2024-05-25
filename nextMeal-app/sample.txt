@@ -100,3 +100,25 @@ export default App;
 <option value="visinia">Visinia</option>
 
  {setVisibility === 'visible' && <div className={`${setVisibility}`}><MenuIcon /></div>}
+
+
+   const favoritesData = JSON.parse(localStorage.getItem('favorites')) || {};
+        setFavorite(favoritesData[restaurant._id] || false);
+    }, [restaurant._id]);
+
+        useEffect(() => {
+        // Check if the restaurant ID exists in the favoriteItems array
+        console.log('restaurantID:',restaurant._id)
+        console.log('favoriteItems:', favoriteItems)
+
+        const response = await getMyFavorites(googleId, active );
+                setFavoriteItems(response);
+                localStorage.setItem('favorites', JSON.stringify(response));
+                
+        const isFavorite = favoriteItems.includes(restaurant._id);
+        setFavorite(isFavorite);
+    }, [favoriteItems, restaurant._id]); 
+
+              
+        // Retrieve favorites or bookmarked restaurants data from local storage
+        const wishlist = JSON.parse(localStorage.getItem('wishlist')) || {};

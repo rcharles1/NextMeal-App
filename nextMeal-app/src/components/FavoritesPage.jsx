@@ -25,7 +25,8 @@ function MyFavorites() {
         setItemData([]);
         const favoriteItems = async () => {
             try {
-                const response = await getMyFavorites(googleId, active );
+                const response = await getMyFavorites(googleId, active);
+                localStorage.setItem('wishlist', JSON.stringify(response));
                 setFavoriteItems(response);
             } catch(error) {
                 setError(error);
@@ -80,7 +81,7 @@ function MyFavorites() {
                                 return null;
                             }
                             const CardComponent = CardComponents[favoriteItem.itemType];
-                            return <CardComponent key={item._id} {...{ [favoriteItem.itemType]: item }} />;
+                            return <CardComponent key={item._id} {...{ [favoriteItem.itemType]: item }}  favoriteItems={favoriteItems} />;
                         })
                     ) : (
                         <p>No favorites yet.</p>

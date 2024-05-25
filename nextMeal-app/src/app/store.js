@@ -1,12 +1,33 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'; 
+
 import authReducer from '../features/auth/authSlice';
 import menuSlice from '../features/menu/menuSlice';
+import wishlistReducer from '../features/wishlist/wishlistSlice';
 
-const store = configureStore({
-    reducer: {
-        auth: authReducer,
-        menu: menuSlice,
-    },
+const persistConfig = {
+    key: 'root',
+    storage,
+};
+
+const rootReducer = combineReducers({
+    auth: authReducer,
+    menu: menuSlice,
+    wishlist: wishlistReducer,
 });
 
-export default store;
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const store = configureStore({
+    reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+        serializableCheck: {
+            ignoredActions: ['persist/PERSIST'],
+        },
+    }),
+});
+
+let persistor = persistStore(store);
+
+export { store, persistor };

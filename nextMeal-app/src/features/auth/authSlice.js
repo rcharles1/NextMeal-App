@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { clearWishlist } from '../wishlist/wishlistSlice'; 
 
 export const authSlice = createSlice({
     name: 'auth',
@@ -19,7 +20,9 @@ export const authSlice = createSlice({
             state.user = null;
             state.authToken = null;
             localStorage.removeItem('user');
+            dispatch(clearWishlist());
         }
+
     }
 });
 

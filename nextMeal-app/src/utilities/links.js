@@ -30,5 +30,5 @@ export const profileLinks = [
     { to: "/pageNotFound", text: "Account Details", img:"Account"},
     { to: "/myFavorites", text: "My Favorites", img:"Favorites" },
     { to: "/pageNotFound", text: "Cart", img:"Cart" },
-    { to: "/pageNotFound", text: "Sign Out", img:"SignOut" },
+    { to: "/signout", text: "Sign Out", img:"SignOut" },
 ];

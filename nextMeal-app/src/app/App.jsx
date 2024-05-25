@@ -1,7 +1,7 @@
 import React from 'react';
 import Root from '../components/Root';
 import SignIn from '../components/SignIn';
-import SignUp from '../components/SignUp';
+import SignOut from '../components/SignOut';
 import RestaurantsList from '../components/RestaurantsList';
 import RestaurantProfile from '../components/RestaurantProfile';
 import MealsList from '../components/MealsList';
@@ -15,7 +15,7 @@ import { useSelector } from 'react-redux';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
- const state = useSelector(state => state.state);
+  const state = useSelector(state => state.state);
 
   return (
     <Router>
@@ -30,7 +30,7 @@ function App() {
         <Route path="beverageitem/:id" element={<BeverageItem />} />
         <Route path="/myFavorites" element={<MyFavorites />} />
         <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signout" element={<SignOut />} />
       </Routes>
     </Router>
   );

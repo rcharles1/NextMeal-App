@@ -1,10 +1,16 @@
-import React, { useState, useEffect }  from 'react';
+import React, { useState, useEffect, useCallback }  from 'react';
 import { updateFavoritesList } from '../utilities/getData';
 
-import { NavLink } from 'react-router-dom';
-import { Favorite, Bookmark } from '/src/components/svgs/InterfaceSvg';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Bookmark } from '/src/components/svgs/InterfaceSvg';
+
+import { getMyFavorites } from '../features/wishlist/wishlistSlice';
 
 function BeverageCard({ beverage }) {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const wishlist = useSelector(state => state.wishlist);
     const [favorite, setFavorite] = useState(false);
     const [googleId, setGoogleId] = useState(null);
     const itemType = 'beverage';
@@ -12,18 +18,49 @@ function BeverageCard({ beverage }) {
     useEffect(() => {
         const userData = JSON.parse(localStorage.getItem('user'));
         setGoogleId(userData?.googleId);
-    }, []);
 
-    const handleFavoriteClick = async () => {
-        setFavorite(prevState => !prevState);
-        const itemId = beverage._id;
-        try {
-            const response = await updateFavoritesList(googleId, itemId, itemType);
-            console.log(response);
-        } catch (error) {
-            console.error('Error updating favorites:', error);
-        }
-    };
+        const targetBeverageId = beverage._id;
+        
+        const isFavorite = wishlist.some(item => item.id === targetBeverageId);
+        setFavorite(isFavorite);
+    }, [beverage._id]);
+
+    const handleFavoriteClick = useCallback(
+        async () => {
+            const userData = JSON.parse(localStorage.getItem('user'));
+            if (!userData) {
+                // Redirect to sign-in page if user is not logged in
+                navigate('/signin');
+                return;
+            }
+        
+            // Toggle the favorite status
+            setFavorite(prevState => !prevState);
+        
+            // Update database with latest changes
+            const itemId = beverage._id;
+        
+            try {
+                const response = await updateFavoritesList(googleId, itemId, itemType);
+                console.log('Favorites updated successfully:', response);
+        
+                // Update local storage
+                const updatedWishlist = JSON.parse(localStorage.getItem('wishlist')) || {};
+        
+                if (favorite) {
+                    //Remove from favorites
+                    delete updatedWishlist[itemId];
+                } else {
+                    // Add to favorites
+                    updatedWishlist[itemId] = true;
+                }
+        
+                localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
+            } catch (error) {
+                console.error('Error updating wishlist:', error);
+            }
+        },[favorite]
+    );    
 
     return (
         <>
@@ -38,7 +75,7 @@ function BeverageCard({ beverage }) {
                         <div className="flex justify-between w-full items-center">
                             <div className="sm:text-base text-start md:text-xs font-bold ">{beverage.name}</div>
                             <button onClick={handleFavoriteClick} className="flex h-fit w-fit sm:size-6" >
-                                <Favorite fill={favorite ? 'red' : 'silver'} height="20" width="20" />
+                            <Bookmark fill={favorite ? 'red' : 'none'}  fillStroke={favorite ? 'red' : 'gray'} height="24" width="20" />
                             </button>
                         </div>
                         <div className="flex flex-col space-y-0.5 w-full px-2 h-fit text-start">

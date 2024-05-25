@@ -22,7 +22,8 @@ function Authenticated() {
       }
     };
     getCurrentUserData();
-  }, [dispatch]) 
+  }, [dispatch]);
+
 
   useEffect(() => {
     const storedUserData = localStorage.getItem('user');

@@ -124,6 +124,8 @@ export const fetchUserData = async () => {
     return data;
 };  
 
+
+/* -----------  Fetch requests for favorite items  ------------  */
 // Adds, or removes items from the favorites list
 export const updateFavoritesList = async (googleId, itemId, itemType) => {
     const response = await fetch('http://localhost:3000/favorites', { 
@@ -147,7 +149,6 @@ export const updateFavoritesList = async (googleId, itemId, itemType) => {
     return data;
 };
 
-/* -----------  Fetch requests for favorite items  ------------  */
 // Fetch all favorite items
 export const getMyFavorites = async (googleId, active) => {
     const response = await fetch(`http://localhost:3000/favorites//favoritesItems/?googleId=${googleId}&itemType=${active}`, { 

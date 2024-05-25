@@ -1,37 +1,70 @@
-import React, { useState, useEffect }  from 'react';
+import React, { useState, useEffect, useCallback }  from 'react';
 import { updateFavoritesList } from '../utilities/getData';
 
-import { NavLink, useHistory } from 'react-router-dom';
-import { Favorite, Rating, Bookmark } from '/src/components/svgs/InterfaceSvg';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { Rating, Bookmark } from '/src/components/svgs/InterfaceSvg';
+import { getMyFavorites } from '../features/wishlist/wishlistSlice';
 
 function RestaurantCard({ restaurant }) {
-    const history = useHistory();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const wishlist = useSelector(state => state.wishlist);
     const [favorite, setFavorite] = useState(false);
     const [googleId, setGoogleId] = useState(null);
     const itemType = 'restaurant';
+    
+    useEffect(() => {
+        dispatch(getMyFavorites());
+    }, [dispatch]);
 
     useEffect(() => {
         const userData = JSON.parse(localStorage.getItem('user'));
         setGoogleId(userData?.googleId);
-    }, []);
 
-    const handleFavoriteClick = async () => {
-        const userData = JSON.parse(localStorage.getItem('user'));
-        if (!userData) {
-            // User is not authenticated, redirect to login page
-            history.push('/login');
-            return;
-        }
-        setFavorite(prevState => !prevState);
-        const itemId = restaurant._id;
-        try {
-            const response = await updateFavoritesList(googleId, itemId, itemType);
-            console.log(response);
-        } catch (error) {
-            console.error('Error updating favorites:', error);
-        }
-    };
-    
+        const targetRestaurantId = restaurant._id;
+        
+        const isFavorite = wishlist.some(item => item.id === targetRestaurantId);
+        setFavorite(isFavorite);
+    }, [restaurant._id]);
+
+    const handleWishlistClick = useCallback(
+        async () => {
+            const userData = JSON.parse(localStorage.getItem('user'));
+            if (!userData) {
+                // Redirect to sign-in page if user is not logged in
+                navigate('/signin');
+                return;
+            }
+        
+            // Toggle the favorite status
+            setFavorite(prevState => !prevState);
+        
+            // Update database with latest changes
+            const itemId = restaurant._id;
+        
+            try {
+                const response = await updateFavoritesList(googleId, itemId, itemType);
+                console.log('Favorites updated successfully:', response);
+        
+                // Update local storage
+                const updatedWishlist = JSON.parse(localStorage.getItem('wishlist')) || {};
+        
+                if (favorite) {
+                    //Remove from favorites
+                    delete updatedWishlist[itemId];
+                } else {
+                    // Add to favorites
+                    updatedWishlist[itemId] = true;
+                }
+        
+                localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
+            } catch (error) {
+                console.error('Error updating wishlist:', error);
+            }
+        },[favorite]
+    );    
     
     return (
         <>
@@ -43,8 +76,8 @@ function RestaurantCard({ restaurant }) {
                     <div className="flex flex-col space-y-1.5 h-18 w-full md:mt-.5 md:h-fit px-1 sm:px-3 text-start" >
                         <div className="flex jusitfy-between items-center">
                             <div className="sm:text-base md:text-xs font-bold ">{restaurant.name}</div>
-                            <button onClick={handleFavoriteClick} className=" h-fit w-fit sm:size-6" >
-                                <Favorite fill={favorite ? 'red' : 'silver'} height="20" width="20" />
+                            <button onClick={handleWishlistClick} className=" h-fit w-fit sm:size-6" >
+                                <Bookmark fill={favorite ? 'red' : 'none'}  fillStroke={favorite ? 'red' : 'gray'} height="24" width="20" />
                             </button>
                         </div>
                         <div className="flex flex-row space-x-0.5">
