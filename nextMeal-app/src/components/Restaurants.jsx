@@ -4,6 +4,7 @@ import RestaurantCard from './RestaurantCard';
 import { fetchSampleRestaurants } from '../utilities/getData';
 
 import { useNavigate } from 'react-router-dom';
+import Loading from './Loading';
 
 function Restaurants() {
     const navigate = useNavigate();
@@ -40,7 +41,7 @@ function Restaurants() {
                     <div className="bg-bg_variant2 grid grid-cols-2 gap-y-4 gap-x-2 px-2 mx-2 sm:grid-cols-3 sm:px-6 md:px-24 sm:gap-4 md:grid-cols-4 md:gap-0 overflow-hidden py-2 mx-auto w-full">
                         {restaurants.slice(0, 4).map((restaurant, i) => <RestaurantCard key={i} restaurant={restaurant} />)}
                     </div>
-               ): <p className="mx-auto font-bold text-sm text-default/55">Fetching data. Please wait...</p>}
+               ): <Loading/> }
                 <div className="flex justify-end mr-5 text-xs sm:text-sm mt-0.5 sm:justify-end font-semibold text-default/80 hover:text-bg_variant1">
                    <button onClick={handleClick} className="underline underline-offset-2">Browse All</button>
                 </div>

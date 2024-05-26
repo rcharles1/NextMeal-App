@@ -1,5 +1,6 @@
 import { React, useEffect, useState } from 'react';
 import BeverageCard from './BeverageCard';
+import Loading from './Loading';
 
 import { fetchAllBeverages } from '../utilities/getData';
 
@@ -37,7 +38,7 @@ function Beverages() {
                     <div className="bg-bg_variant2 grid grid-cols-2 gap-y-4 gap-x-2 px-2 sm:px-6 md:px-24 mx-2 sm:grid-cols-3 sm:gap-8 md:grid-cols-4 lg:gap-2 overflow-hidden py-2 mx-auto w-full">
                         {beverages.slice(0, 4).map((beverage, i) => <BeverageCard key={i} beverage={beverage}/>)}
                     </div>
-                ) : <p className="mx-auto font-bold text-sm text-default/55">Fetching data. Please wait...</p> }
+                ) : <Loading/> }
                 <div className="flex justify-end mr-5 text-xs sm:text-sm sm:justify-end font-semibold text-default/80 hover:text-bg_variant1">
                    <button className="underline underline-offset-2" onClick={() => {
                        handleClick();

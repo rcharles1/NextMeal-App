@@ -36,25 +36,27 @@ function Header() {
     }
 
     return (
-        <div className={`h-20 sm:p-4 md:h-auto md:py-4 px-3 bg-blur sm:px-8 py-5 flex justify-between ${bgColor} caret-transparent cursor-pointer`}>
-            <div className="w-28 md:w-24 sm:mt-1.5">
-                <img src={imgSrc} alt="Description" />
+        <div className={`h-20 sm:p-4 md:h-auto px-3 bg-blur sm:px-4 py-5 md:py-2.5 flex justify-between ${bgColor} caret-transparent cursor-pointer`}>
+            <div className="w-28 md:w-20 sm:mt-1.5">
+                <img src={imgSrc} alt="NextMealApp-Logo" />
             </div>
-            <div className="flex justify-end items-center space-x-1 sm:w-auto md:mt-0 md:py-0">
-                <div className={`${setVisibility}`}><Search fill={colorTheme === 'pure_white' ? 'white' : 'black'} height="25" width="30" /></div>
-                <div className="w-8 mt-1">
+            <div className="flex justify-end items-center space-x-1.5 sm:w-fit md:py-0">
+                <div>
                     {setVisibility === 'visible' && (
                         <div className={`md:block : hidden text-${colorTheme}`}>
                             <NavBar colorTheme={colorTheme} />
                         </div>
                     )}
+                </div>
+                <div className={`${setVisibility}`}><Search fill={colorTheme === 'pure_white' ? 'white' : 'black'} height="25" width="30" /></div>
+                <div>
                     {setVisibility === 'visible' && (
                         <div className={`md:hidden text-${colorTheme}`}>
                             <MenuIcon />
                         </div>
                     )}
                 </div>
-                {isAuthenticated && <ProfileIcon colorTheme={colorTheme} />}
+                <div>{isAuthenticated && <ProfileIcon colorTheme={colorTheme} />}</div>
             </div>
         </div>
 

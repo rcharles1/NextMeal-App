@@ -22,7 +22,6 @@ export const authSlice = createSlice({
             localStorage.removeItem('user');
             dispatch(clearWishlist());
         }
-
     }
 });
 

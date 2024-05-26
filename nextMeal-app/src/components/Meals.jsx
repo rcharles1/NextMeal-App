@@ -4,6 +4,7 @@ import MealCard from './MealCard';
 import { fetchAllMeals } from '../utilities/getData';
 
 import { useNavigate } from 'react-router-dom';
+import Loading from './Loading';
 
 function Meal() {
     const navigate = useNavigate();
@@ -38,7 +39,7 @@ function Meal() {
                 <div className="bg-bg_variant2 grid grid-cols-2 gap-y-4 gap-x-2 px-3 sm:px-6 md:px-12 sm:grid-cols-3 sm:gap-8 md:grid-cols-4 lg:gap-2 mx-1 overflow-hidden py-2 w-full">
                     {meals.slice(0, 4).map((meal, i) => <MealCard key={i} meal={meal} />)}
                 </div>
-                ) : <p className="mx-auto font-bold text-sm text-default/55">Fetching data. Please wait...</p>}
+                ) : <Loading/>}
 
                 <div className="flex justify-end mr-5 text-xs sm:text-sm mt-0.5 sm:justify-end font-semibold text-default/80 hover:text-bg_variant1">
                    <button onClick={handleClick} className="underline underline-offset-2">Browse All</button>
