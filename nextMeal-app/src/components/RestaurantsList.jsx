@@ -118,7 +118,7 @@ function RestaurantsList() {
             </div>
            <div id='container' className={`flex flex-col mt-1 mb-12 space-y-5 px-5 py-1 sm:px-8 h-fit transition-all duration-500}`}>
                 <div className="flex flex-col space-y-3">
-                    <h1 className="w-fit text-2xl sm:text-3xl font-bold">Restaurants</h1>
+                    <h1 className="w-fit text-2xl sm:text-2xl font-bold">Restaurants</h1>
                     <SearchItem onSearch={(result) => {
                         handleSearch(result);
                     }}/>
@@ -137,19 +137,19 @@ function RestaurantsList() {
                 ) : ''}
                 {restaurants ? (
                     <div className="flex flex-col w-full space-y-2">
-                        <h1 className='text-base sm:text-lg font-semibold '>Browse all</h1>
+                        <h1 className='text-base sm:text-lg md:text-base font-semibold'>Browse all</h1>
                         <div className="flex flex-col p-1 justify-end space-y-1.5">
                             <div className="flex h-fit space-x-1 items-center justify-end rounded-md">
                                 <button 
                                     onClick={() => setIsFilterWidgetVisible(!isFilterWidgetVisible)}
-                                    className={`flex space-x-1 grow-0 border rounded p-1 h-8 w-fit sm:space-x-2 sm:h-12 items-center justify-center caret-transparent cursor-pointer ${(isFilterWidgetVisible || areFiltersActive()) ? 'bg-bg_variant1 text-pure_white/75' : ''} focus:text-pure_white/75 focus:bg-bg_variant1`}
+                                    className={`flex space-x-1 grow-0 border border-light_dark/55 rounded p-1 h-8 w-fit sm:space-x-0 sm:h-6 sm:text-xs items-center justify-center caret-transparent cursor-pointer ${(isFilterWidgetVisible || areFiltersActive()) ? 'bg-bg_variant1 text-pure_white/75' : ''} focus:text-pure_white/75 focus:bg-bg_variant1`}
                                 >
                                     <span className="font-medium">Filter by</span>
                                     <Filter fill={(isFilterWidgetVisible || areFiltersActive()) ? 'white' : 'black'} height="18" width="16" />
                                 </button>
                                 <button 
                                     onClick={() => setIsSortWidgetVisible(!isSortWidgetVisible)}
-                                    className={`flex space-x-1 grow-0 border p-2 h-8 w-fit sm:space-x-2 sm:h-12 rounded items-center justify-center caret-transparent cursor-pointer ${(isSortWidgetVisible || isSortOptionActive()) ? 'bg-bg_variant1 text-pure_white/75' : ''} focus:text-pure_white/75 focus:bg-bg_variant1`}
+                                    className={`flex space-x-1 grow-0 border-2 border-light_dark/55  p-2 h-8 w-fit sm:space-x-0 sm:h-6 sm:text-xs rounded items-center justify-center caret-transparent cursor-pointer ${(isSortWidgetVisible || isSortOptionActive()) ? 'bg-bg_variant1 text-pure_white/75' : ''} focus:text-pure_white/75 focus:bg-bg_variant1`}
                                 >
                                     <span className="font-medium">Sort by</span>
                                     <Sort fill={(isSortWidgetVisible || isSortOptionActive()) ? 'white' : 'black'} height="18" width="16"/>
@@ -166,7 +166,7 @@ function RestaurantsList() {
                                 sort={sort}
                             />}
                         </div>
-                        <div id='container' className='mx-auto w-full grid grid-cols-2 gap-y-2 gap-x-2 sm:grid-cols-3 sm:gap-6 md:grid-cols-4 lg:gap-5 md:px-16'>
+                        <div id='container' className='mx-auto w-full grid grid-cols-2 gap-y-2 gap-x-2 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4 lg:gap-5 md:px-16'>
                             {restaurants && (error === '') ? (
                                 restaurants.map((restaurant, i) => <RestaurantCard key={i} restaurant={restaurant} />)
                             ) : '' }

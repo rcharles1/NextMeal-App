@@ -65,7 +65,7 @@ function BeverageCard({ beverage }) {
     return (
         <>
             { beverage ? (<div className="grid grid-cols-2 gap-x-0 gap-y-2.5 mx-1.5 sm:grid-cols-3 sm:gap-8 lg:gap-5">
-                <div className="flex flex-col space-y-4 h-64 w-[11rem] rounded-xl sm:rounded-2xl px-2.5 pb-3.5 pt-3 text-base sm:text-sm bg-pure_white drop-shadow-sm text-default/75 caret-transparent text-center sm:h-72 sm:w-56 md:w-48 md:h-64">
+                <div className="flex flex-col space-y-4 h-64 w-[11rem] rounded-xl sm:rounded-2xl px-2.5 pb-3.5 pt-3 text-base sm:text-sm bg-pure_white drop-shadow-sm text-default/75 caret-transparent text-center sm:h-64 sm:w-48 md:h-72 md:w-56">
                     <div className="relative h-2/3 sm:h-36 w-full mx-auto rounded-md sm:rounded-xl overflow-hidden">
                         <div className="absolute p-1 inset-0">
                             <img src={`/assets/img/gallery/meals/beverages/${beverage.img}.webp`} alt='beverage-image' className="w-44 h-full object-scale-down" />
@@ -85,8 +85,8 @@ function BeverageCard({ beverage }) {
                             </div>
                         </div>
                     </div>
-                    <div className="w-fit h-fit ml-16 md:ml-24  border-b-2 border-b-default/75 flex flex-row space-x-1 md:space-x-0.5">
-                        <span><NavLink to={`/beverageitem/${beverage._id}`} className="font-semibold text-xs sm:text-base md:text-sm active:text-bg_variant1">Read More</NavLink></span>
+                    <div className="w-fit h-fit ml-16 sm:ml-14 md:ml-28 border-b-2 border-b-default/75 flex flex-row space-x-1 md:space-x-0.5">
+                        <span><NavLink to={`/beverageitem/${beverage._id}`} className="font-semibold md:font-bold text-xs sm:text-base md:text-xs active:text-bg_variant1">Read More</NavLink></span>
                         <span className="size-4 sm:size-4 md:size-3.5 md:mt-0 mt-0.5 pt-0.5">
                             <img src='assets/icon/arrow-right.svg' alt='arrow-right image'/>
                         </span>

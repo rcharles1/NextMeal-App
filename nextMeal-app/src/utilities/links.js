@@ -7,7 +7,6 @@ export const navLinks = [
     { to: "/pageNotFound", text: "Contacts" },
 ];
 
-
 export const slides = [
     {
         image: 'burger', text :'Burgers'

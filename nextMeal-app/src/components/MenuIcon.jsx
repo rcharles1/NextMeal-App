@@ -38,7 +38,7 @@ const MenuIcon = () => {
                     <div className="fixed -mt-2 top-9 w-8 h-8 space-y-6">
                         <div><img src={imgSrc1} className="size-6 sm:size-10"/></div>
                         <div className={`${bg} ${marginLeft} relative divide divide-y divide-light_dark/65 space-y-2 t w-64 h-fit rounded-md`} style={{ backdropFilter: 'blur(10px)' }}>
-                            <div className="h-80 w-64 items-center justify-center pt-3 px-4 space-y-2 font-semibold text-default/70 text-lg">
+                            <div className="h-80 w-64 items-center justify-center pt-3 px-4 space-y-2 font-medium text-default text-lg">
                                 {navLinks.map((link, index) => (
                                     <Link key={index} to={link.to} className={`block ${index === 0 ? 'border-l-4 border-gray/90' : ''} p-2 hover:text-bg_variant1 hover:border-l-2 hover:border-bg_variant1 `}>{link.text}</Link>
                                 ))}

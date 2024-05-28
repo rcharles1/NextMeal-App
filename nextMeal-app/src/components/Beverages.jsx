@@ -25,21 +25,21 @@ function Beverages() {
 
     const handleClick = event => {
         navigate('/mealslist',  { state: { entryPoint: 'beverages' } });
-    }
+    };
 
     return (
         <div className="flex flex-col caret-transparent w-100 h-2/3 space-y-8">
             <div className="font-semibold text-3xl sm:text-5xl flex flex-col space-y-3 text-center "> 
-                <span>Top Drinks in the Neighbourhood</span>
-                <span className="font-semibold px-3 leading-5 block text-base sm:text-xl text-pretty text-default/65">The Popular Choice of the Streets </span>
+                <span className="w-10/12 mx-auto">Quench your thirst with the local's favorites! </span>
+                <span className="font-semibold px-3 w-11/12 mx-auto leading-5 block text-base sm:text-xl text-pretty text-default/65">The Street's Choice</span>
             </div>
             <div className="flex flex-col space-y-3 rounded-sm w-full p-2">
                 {beverages ? (
-                    <div className="bg-bg_variant2 grid grid-cols-2 gap-y-4 gap-x-2 px-2 sm:px-6 md:px-24 mx-2 sm:grid-cols-3 sm:gap-8 md:grid-cols-4 lg:gap-2 overflow-hidden py-2 mx-auto w-full">
+                    <div className="bg-bg_variant2 grid grid-cols-2 gap-4 px-4 sm:grid-cols-3 sm:gap-2 sm:px-4 md:px-6 lg:grid-cols-4 lg:gap-2 mx-auto overflow-hidden py-2 w-full">
                         {beverages.slice(0, 4).map((beverage, i) => <BeverageCard key={i} beverage={beverage}/>)}
                     </div>
                 ) : <Loading/> }
-                <div className="flex justify-end mr-5 text-xs sm:text-sm sm:justify-end font-semibold text-default/80 hover:text-bg_variant1">
+                <div className="flex justify-end mr-5 md:mr-20 md:text-xs text-xs sm:text-sm sm:justify-end font-semibold text-default/80 hover:text-bg_variant1">
                    <button className="underline underline-offset-2" onClick={() => {
                        handleClick();
                        setSelected('drink');

@@ -38,11 +38,11 @@ function Restaurants() {
             </div>
             <div className="flex flex-col space-y-2 rounded-sm w-full p-2">
                {restaurants ? (
-                    <div className="bg-bg_variant2 grid grid-cols-2 gap-y-4 gap-x-2 px-2 mx-2 sm:grid-cols-3 sm:px-6 md:px-24 sm:gap-4 md:grid-cols-4 md:gap-0 overflow-hidden py-2 mx-auto w-full">
+                    <div className="bg-bg_variant2 grid grid-cols-2 gap-4 px-4 sm:grid-cols-3 sm:gap-8 sm:px-6 md:grid-cols-3 md:px-4 lg:gap-2 mx-auto overflow-hidden py-2 w-full">
                         {restaurants.slice(0, 4).map((restaurant, i) => <RestaurantCard key={i} restaurant={restaurant} />)}
                     </div>
                ): <Loading/> }
-                <div className="flex justify-end mr-5 text-xs sm:text-sm mt-0.5 sm:justify-end font-semibold text-default/80 hover:text-bg_variant1">
+                <div className="flex justify-end mr-5 md:mr-20 md:text-xs text-xs sm:text-sm mt-0.5 sm:justify-end font-semibold text-default/80 hover:text-bg_variant1">
                    <button onClick={handleClick} className="underline underline-offset-2">Browse All</button>
                 </div>
             </div>
