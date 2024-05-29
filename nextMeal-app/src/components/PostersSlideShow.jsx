@@ -13,7 +13,7 @@ function PosterCarousel() {
         setActiveIndex(index);
     };
 
-    // Function to render the indicator dots
+    // Function to render the indicator bars
     const renderIndicatorDots = () => {
         return (
             <div className="absolute bottom-0 left-0 right-0 flex justify-center p-1">

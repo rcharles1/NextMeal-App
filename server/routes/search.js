@@ -31,7 +31,7 @@ router.get('/:key', async (req, res) => {
     }
 });
 
-// Performs search request for meals and beverages
+// Performs search request for a meal or beverage
 router.get('/mealsorbeverages/:key', async (req, res) => {
     let db = getDatabase();
     let results = [];

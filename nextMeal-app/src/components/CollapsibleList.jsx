@@ -3,7 +3,7 @@ import Section from './Section';
 
 const CollapsibleList= ({ mealDetails }) => {
     return (
-      <div className="w-full max-w-md mx-auto">
+      <div className="w-full max-w-md md:mx-0 md:text-xs mx-auto">
         <Section title="Nutritional Information" content={
           <ul className="mb-3 list-disc list-outside px-7 ">
             {Object.entries(mealDetails.nutritionalInfo).map(([key, value], index) => (

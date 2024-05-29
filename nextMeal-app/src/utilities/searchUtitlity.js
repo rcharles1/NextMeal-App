@@ -1,4 +1,4 @@
-// Search Meals or Beverages
+// Search Meals or Beverages by name
 export const searchForMealOrBeverage = async (searchTerm) => {
     try {
         const response = await fetch(`http://localhost:3000/search/mealsorbeverages/${searchTerm}`);
@@ -14,6 +14,7 @@ export const searchForMealOrBeverage = async (searchTerm) => {
     }
 };
 
+// Search for a single restaurant by name
 export const searchRestaurant = async (searchTerm) => {
     try {
         const response = await fetch(`http://localhost:3000/search/restaurants/${searchTerm}`);
@@ -27,6 +28,7 @@ export const searchRestaurant = async (searchTerm) => {
     }
 };
 
+// Search Entire database for items by name
 export const search = async (searchTerm) => {
     try {
         const response = await fetch(`http://localhost:3000/search//${searchTerm}`);

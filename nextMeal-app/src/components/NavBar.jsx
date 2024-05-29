@@ -17,25 +17,10 @@ function NavBar({ colorTheme }) {
             <div className="w-fit">
                 <div className="flex flex-row space-x-0 text-sm font-medium">
                     {navLinks.map((link, index) => (
-                        <Link key={index} to={link.to} onMouseEnter={handleHover} className={`block ${index === 0 ? 'text' : ''} p-2 text-${colorTheme}`}>{link.text}</Link>
+                        <Link key={index} to={link.to} onMouseEnter={handleHover} className={`block ${index === 0 ? 'text' : ''} p-1.5 text-${colorTheme}`}>{link.text}</Link>
                     ))}
                 </div>
             </div>
-            {openNavWidget ? (
-               <div className="flex -ml-56 z-50 mt-2 bg-pure_white/85 rounded-md" style={{ backdropFilter: 'blur(5px)' }}>
-                    <div className="flex flex-col h-96 bg-blur text-headings/75 text-base font-semibold p-4">
-                        <h3 classNam="outline text-lg w-full">Tab Title</h3>
-                        <div className="mt-3">
-                            <ol className="text-xs">
-                                <li>Item Link 1</li>
-                                <li>Item Link 2</li>
-                                <li>Item Link 3</li>
-                            </ol>
-                        </div>
-
-                    </div>
-               </div>
-            ) : ''}
         </>
     )
 }
