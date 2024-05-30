@@ -36,7 +36,7 @@ function Meal() {
             </div>
             <div className="flex flex-col space-y-3 rounded-sm w-full p-2">
             {meals ? (
-                <div className="bg-bg_variant2 grid grid-cols-2 gap-4 px-4 sm:grid-cols-3 sm:gap-8 sm:px-6 md:px-6 lg:gap-2 mx-auto overflow-hidden py-2 w-full">
+                <div className="bg-bg_variant2 grid grid-cols-2 gap-4 px-4 sm:grid-cols-3 sm:gap-4 sm:px-6 md:grid-cols-4 md:px-16 lg:gap-2 mx-auto overflow-hidden py-2 w-full">
                     {meals.slice(0, 4).map((meal, i) => <MealCard key={i} meal={meal} />)}
                 </div>
                 ) : <Loading/>}

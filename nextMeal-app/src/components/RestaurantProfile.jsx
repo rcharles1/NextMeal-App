@@ -9,6 +9,7 @@ import MenuIcon from './MenuIcon';
 import Breadcrumbs from './BreadCrumbs';
 
 import { useParams } from 'react-router-dom';
+import Loading from './Loading';
 
 function RestaurantProfile() {
     const [activeTab, setActiveTab ] = useState(null);
@@ -48,20 +49,20 @@ function RestaurantProfile() {
     }
 
     return (
-        <div className="mx-auto text-base font-normal h-screen w-100 antialiased "> 
-            <div className="sticky top-0 z-10  w-full">
+        <div className="mx-auto text-base font-normal h-screen w-100 text-sm antialiased "> 
+            <div className="sticky top-0 z-10 w-full">
                 <Header/>
            </div>
-            <div className='sticky top-20 sm:top28 z-10 px-4 flex flex-row space-x-3 items-center justify-start caret-bg_variant2 py-2 border-b-2 border-gray backdrop-blur bg-opacity-70'> 
+            <div className='sticky top-20 sm:top28 md:top-14 z-10 px-4 flex flex-row space-x-3 items-center justify-start caret-bg_variant2 py-2 border-b-2 border-gray backdrop-blur bg-opacity-70'> 
                 <div className="z-0"><MenuIcon /></div>
                 <div className="capitalize h-6 items-center text-sm flex w-full"><Breadcrumbs restaurantDoc={restaurantDoc}/></div>
             </div>
             { restaurantDoc ? (
-                <div className="mt-3 sm:p-3">
-                    <div className="p-1 h-1/3 sm:rounded-md sm:h-96 rounded overflow-hidden">
-                        <img src={`/assets/img/gallery/restaurants/${restaurantDoc.gallery.img1}.webp`} alt="restaurant-photo" className="sm:object-cover sm:w-11/12 mx-auto" />
+                <div className="">
+                    <div className="p-1 h-1/3 sm:rounded-none sm:h-72  md:p-0 md:-mt-.5 rounded overflow-hidden">
+                        <img src={`/assets/img/gallery/restaurants/${restaurantDoc.gallery.img1}.webp`} alt="restaurant-photo" className="sm:object-cover h-full w-full mx-auto" />
                     </div>
-                    <div className="flex flex-col p-5 h-2/3">
+                    <div className="flex flex-col p-5 h-2/3 sm:p-3 md:mt-1 md:px-24">
                         <div className='flex flex-row space-x-28 justify-around mt-3 items-center'>
                             <div className="space-y-1">
                                 <h2 className="text-2xl font-bold w-72 text-wrap">{restaurantDoc.name}</h2>
@@ -82,14 +83,14 @@ function RestaurantProfile() {
                             {restaurantDoc.description}
                         </p>
 
-                        <div className="flex flex-col mt-8 space-y-1 z-0 ">
-                            <div className="flex justify-start space-x-8 w-100 items-center border-b-2 border-faint_default/15 h-8 text-headings/70 font-semibold caret-transparent">
+                        <div className="flex flex-col mt-8 space-y-1 z-0">
+                            <div className="flex justify-start space-x-8 w-100 items-center sm:w-7/12 mx-auto sm:justify-center sm:items-center border-b-2 border-faint_default/15 h-8 text-headings/70 font-semibold caret-transparent">
                                 <div>
                                     <button onClick={() => {
                                             let id = 'detailsTab';
                                             setActiveTab(id);
                                             handleClick(id);
-                                        }} className="p-1 h-9 cursor-pointer transition duration-300 ease-in-out focus:text-bg_variant1 focus:text-headings/100 focus:font-bold focus:border-b-2 focus:border-bg_variant1"
+                                        }} className="p-1 h-9 md:w-16 cursor-pointer transition duration-300 ease-in-out focus:text-bg_variant1 focus:text-headings/100 focus:font-bold focus:border-b-2 focus:border-bg_variant1"
                                         >
                                             DETAILS
                                     </button>
@@ -100,7 +101,7 @@ function RestaurantProfile() {
                                         setActiveTab(id);
                                         handleClick(id);
                                         }} 
-                                        className="p-1 h-9 cursor-pointer transition duration-300 ease-in-out focus:text-bg_variant1 focus:text-headings/100 focus:font-bold focus:border-b-2 focus:border-bg_variant1"
+                                        className="p-1 h-9 md:w-16 cursor-pointer transition duration-300 ease-in-out focus:text-bg_variant1 focus:text-headings/100 focus:font-bold focus:border-b-2 focus:border-bg_variant1"
                                         >
                                             MENU
                                     </button>
@@ -112,13 +113,13 @@ function RestaurantProfile() {
                                             setActiveTab(id);
                                             handleClick(id);
                                         }} 
-                                        className="p-1 h-9 cursor-pointer transition duration-300 ease-in-out focus:text-bg_variant1 focus:text-headings/100 focus:font-bold focus:border-b-2 focus:border-bg_variant1"
+                                        className="p-1 h-9 md:w-16 cursor-pointer transition duration-300 ease-in-out focus:text-bg_variant1 focus:text-headings/100 focus:font-bold focus:border-b-2 focus:border-bg_variant1"
                                         >
                                             SERVICES
                                     </button>
                                 </div>
                             </div>
-                            <div className="h-fit rounded-md px-3 pb-3 shadow-sm ">
+                            <div className="h-fit rounded-md px-3 pb-3 shadow-sm sm:px-10 sm:w-8/12 mx-auto">
                                 { activeTab === 'detailsTab' ? <Details  restaurantDoc={restaurantDoc}/> : activeTab === 'menusTab' ? <Menu restaurantDoc={restaurantDoc} /> : <RestaurantServices restaurantDoc={restaurantDoc}/>}
                             </div>
                         </div>
@@ -127,7 +128,7 @@ function RestaurantProfile() {
                         <h1 className="font-semibold text-lg ">Reviews</h1>
                     </div>
                 </div>
-            ) : <p>Loading..</p>}
+            ) : <Loading />}
             <Footer />
         </div>
     );

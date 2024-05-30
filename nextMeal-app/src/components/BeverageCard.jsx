@@ -64,35 +64,33 @@ function BeverageCard({ beverage }) {
 
     return (
         <>
-            { beverage ? (<div className="grid grid-cols-2 gap-x-0 gap-y-2.5 mx-1.5 sm:grid-cols-3 sm:gap-8 lg:gap-5">
-                <div className="flex flex-col space-y-4 h-64 w-[11rem] rounded-xl sm:rounded-2xl px-2.5 pb-3.5 pt-3 text-base sm:text-sm bg-pure_white drop-shadow-sm text-default/75 caret-transparent text-center sm:h-64 sm:w-48 md:h-72 md:w-56">
-                    <div className="relative h-2/3 sm:h-36 w-full mx-auto rounded-md sm:rounded-xl overflow-hidden">
+            { beverage ? (<>
+                <div className="flex flex-col h-64 w-[11rem] rounded-xl sm:rounded-2xl px-1.5 py-1.5 md:px-2 md:py-2 text-sm bg-pure_white drop-shadow-sm text-default/75 caret-transparent text-center sm:h-64 sm:w-48 md:h-64">
+                    <div className="relative h-36 md:h-44 w-full mx-auto bg-gray/35 rounded-lg sm:rounded-xl md:rounded-lg overflow-hidden">
                         <div className="absolute p-1 inset-0">
                             <img src={`/assets/img/gallery/meals/beverages/${beverage.img}.webp`} alt='beverage-image' className="w-44 h-full object-scale-down" />
                         </div>
                     </div>
                     <div className="flex flex-col space-y-1 sm:h-18 w-full px-1 py-1 rounded-md sm:px-3 justify-center items-start font-medium" >
                         <div className="flex justify-between w-full items-center">
-                            <div className="sm:text-base text-start md:text-xs font-bold ">{beverage.name}</div>
+                            <div className="">
+                                <NavLink to={`/beverageitem/${beverage._id}`} className="hover:text-bg_variant1/55 text-sm text-wrap sm:text-base font-bold w-fit" >{beverage.name}</NavLink>
+                            </div>
                             <button onClick={handleFavoriteClick} className="flex h-fit w-fit sm:size-6" >
                             <Bookmark fill={favorite ? 'red' : 'none'}  fillStroke={favorite ? 'red' : 'gray'} height="24" width="20" />
                             </button>
                         </div>
-                        <div className="flex flex-col space-y-0.5 w-full px-2 h-fit text-start">
-                            <div className="flex flex-row justify-between text-xs">
-                                <span className="font-semibold">TZS {beverage.price}</span>
-                                <span className="md:text-xs md:mt-0.5">{beverage.size}</span>
+                        <div className="flex flex-col space-y-1 w-full px-2 h-fit text-start">
+                            <div className="flex justify-between items-center">
+                                <span className="text-xs">{beverage.size}</span>
+                                <span className="font-semibold text-xs flex justify-end">TZS {beverage.price}</span>
                             </div>
+                            <span className="font-semibold">{beverage.brand}</span>
+                            
                         </div>
                     </div>
-                    <div className="w-fit h-fit ml-16 sm:ml-14 md:ml-28 border-b-2 border-b-default/75 flex flex-row space-x-1 md:space-x-0.5">
-                        <span><NavLink to={`/beverageitem/${beverage._id}`} className="font-semibold md:font-bold text-xs sm:text-base md:text-xs active:text-bg_variant1">Read More</NavLink></span>
-                        <span className="size-4 sm:size-4 md:size-3.5 md:mt-0 mt-0.5 pt-0.5">
-                            <img src='assets/icon/arrow-right.svg' alt='arrow-right image'/>
-                        </span>
-                    </div>
                 </div>
-            </div>) : <p>Fetching data. Please wait..</p>
+            </>) : <p>Fetching data. Please wait..</p>
             }
         </>
     );

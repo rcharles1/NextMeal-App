@@ -39,6 +39,16 @@ export default {
       fontFamily: {
         'montserrat': ['Montserrat', 'sans-serif'],
       },
+      fontSize: {
+        xs: '0.5rem',
+        sm: '0.65rem',
+        base: '0.85rem',
+        xl: '1rem',
+        '2xl': '1.563rem',
+        '3xl': '1.953rem',
+        '4xl': '2.441rem',
+        '5xl': '3.052rem',
+      },
       backgroundImage: {
         'graphicDots': "url('assets/img/bg/graphic_dots.svg')",
         'graphicRectangles': "url('/assets/img/bg/graphic-rectangles.webp')",

@@ -69,32 +69,26 @@ function MealCard({ meal }) {
     return (
         <>
             {meal ? (
-                <div className="flex flex-col space-y-2 h-64 w-[11rem] rounded-xl sm:rounded-2xl caret-transparent px-2.5 pb-3.5 pt-3 text-base md:text-sm bg-pure_white drop-shadow-sm text-start text-default/75 sm:h-64 sm:w-48 md:h-72 md:w-56">
-                    <div className="relative h-32 sm:h-36 w-full mx-auto rounded-md sm:rounded-xl overflow-hidden">
-                        <div className="absolute inset-0 ">
-                            <img src={`/assets/img/gallery/meals/food/${meal.img}.webp`} alt='meal-image' className="w-44 h-full object-scale-down"/>
-                        </div>
+                <div className="flex flex-col h-64 w-[11rem] rounded-xl sm:rounded-2xl caret-transparent px-1.5 pb-1.5 md:px-2 md:py-2 pt-3 text-sm bg-pure_white drop-shadow-sm text-start text-default/75 sm:h-64 sm:w-48 md:h-64">
+                    <div className="relative h-36 sm:h-36 md:h-44 w-full bg-gray/35 mx-auto rounded-lg sm:rounded-xl md:rounded-lg overflow-hidden">
+                        <img src={`/assets/img/gallery/meals/food/${meal.img}.webp`} alt='meal-image' className="w-full h-full object-contain object-center"/>
                     </div>
-                    <div className="flex flex-col space-y-1 h-fit sm:h-18 w-full px-1 sm:px-3 justify-center items-start" >
-                        <div className="sm:text-base md:text-sm text-start text-wrap font-bold">{meal.name}</div>
-                        <div className="flex flex-row justify-between w-full text-xs items-start">
-                            <div className="flex items-center space-x-1.5">
-                                <Rating height="18" width="18" />    
+                    <div className="flex flex-col h-fit sm:h-18 w-full px-1 sm:px-2 justify-center items-start" >
+                        <div className="">
+                            <NavLink to={`/mealitem/${meal._id}`} className="hover:text-bg_variant1/55 text-sm text-wrap sm:text-base font-bold w-fit">{meal.name}</NavLink>
+                        </div>
+                        <div className="flex flex-row justify-between w-full text-xs  items-center">
+                            <div className="flex items-center space-x-1">
+                                <Rating height="10" width="10" />    
                                 <span className="font-base">{meal.rating}</span>
                             </div>
                             <div className="flex">
-                                <button onClick={handleFavoriteClick} className="flex h-fit w-fit sm:size-6" >
-                                    <Bookmark fill={favorite ? 'red' : 'none'}  fillStroke={favorite ? 'red' : 'gray'} height="20" width="20" />
+                                <button onClick={handleFavoriteClick} className="flex h-fit w-fit" >
+                                    <Bookmark fill={favorite ? 'red' : 'none'}  fillStroke={favorite ? 'red' : 'gray'} height="15" width="18" />
                                 </button>
                             </div>
                         </div>
-                        <span className="w-36 sm:w-fit h-fit text-xs md:text-xs md:w-40 font-medium line-clamp-2">{meal.description}</span>
-                    </div>
-                    <div className="w-fit h-fit ml-16 sm:ml-20 md:ml-28 border-b-2 border-b-default/75 justify-center flex flex-row space-x-1 md:space-x-0.5">
-                        <span><NavLink to={`/mealitem/${meal._id}`} className="font-semibold md:font-bold text-xs active:text-bg_variant1">Read More</NavLink></span>
-                        <span className="size-4 sm:size-4 md:size-4 mt-0.5 pt-0.5">
-                            <img src='assets/icon/arrow-right.svg' alt='arrow-right image'/>
-                        </span>
+                        <span className="mt-1 sm:mt-2 line-clamp-1 sm:line-clamp-2 md:line-clamp-2 text-sm sm:text-sm w-36 px-1 sm:w-full h-fit sm:mb-1 font-medium">{meal.description}</span>
                     </div>
                 </div>
             ) : <p>Cooking...</p>
