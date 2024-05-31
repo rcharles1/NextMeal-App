@@ -39,7 +39,7 @@ function Beverages() {
                         {beverages.slice(0, 4).map((beverage, i) => <BeverageCard key={i} beverage={beverage}/>)}
                     </div>
                 ) : <Loading/> }
-                <div className="flex justify-end mr-5 md:mr-20 md:text-xs text-xs sm:text-sm sm:justify-end font-semibold text-default/80 hover:text-bg_variant1">
+                <div className="flex justify-end mr-5 md:mr-20 outline w-fit text-xs sm:text-sm font-semibold text-default/80 hover:text-bg_variant1">
                    <button className="underline underline-offset-2" onClick={() => {
                        handleClick();
                        setSelected('drink');

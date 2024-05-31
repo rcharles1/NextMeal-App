@@ -35,10 +35,10 @@ function Details({ restaurantDoc }) {
                         <span>
                             Platforms 
                         </span>
-                        <span className="font-medium w-48">
+                        <span className="font-medium w-max-48">
                             <a href={`${restaurantDoc.details.platforms.website}`} target="_blank" rel="noopener noreferrer" className="flex text-blue">
                                 {`${restaurantDoc.name}'s Website`}
-                                <span className="size-8">
+                                <span className="size-3">
                                     <img src='/assets/icon/link-out.svg'/>
                                 </span>
                             </a>

@@ -1,15 +1,14 @@
 import React from 'react';
 
 const servicesList = [
-  { key: 'foodandBeverages', label: 'Food & Beverages' },
-  { key: 'takeaway', label: 'Takeaway' },
-  { key: 'delivery', label: 'Delivery' },
-  { key: 'reservation', label: 'Table Reservations' },
-  { key: 'onlineOrders', label: 'Online Orders' },
-  { key: 'catering', label: 'Catering' },
+  { key: 'comfortableSeats', label: 'Comfortable Seats' },
+  { key: 'cleanRestroom', label: 'Wash Room' },
+  { key: 'wifi', label: 'Wi-Fi Access' },
+  { key: 'parking', label: 'Vehicle Parking' },
+  { key: 'childrenGrounds', label: 'Kids Playground' },
 ];
 
-function RestaurantServices({ restaurantDoc }) {
+function RestaurantAmenities({ restaurantDoc }) {
   if (!restaurantDoc) {
     return <p>...</p>;
   }
@@ -20,7 +19,7 @@ function RestaurantServices({ restaurantDoc }) {
           {servicesList.map(({ key, label }) => (
             <li key={key} className="flex space-x-2 py-0.5  items-center">
               <img
-                src={`/assets/icon/${restaurantDoc.services[key] ? 'check' : 'close'}.svg`}
+                src={`/assets/icon/${restaurantDoc.amenities[key] ? 'check' : 'close'}.svg`}
                 alt={`${label} icon`}
                 className="size-5"
               />
@@ -32,4 +31,4 @@ function RestaurantServices({ restaurantDoc }) {
   );
 }
 
-export default RestaurantServices;
+export default RestaurantAmenities;

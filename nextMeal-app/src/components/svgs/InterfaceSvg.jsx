@@ -36,8 +36,8 @@ export function Favorite({fill, height, width}) {
 	return (<svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 13 24" ><path fill={fill} d="M0 2.089v21.912l6.546-6.26l6.545 6.26V2.089A2.11 2.11 0 0 0 10.982 0l-.077.001h.004h-8.726L2.11 0A2.109 2.109 0 0 0 .001 2.088z"></path></svg>);
 }
 
-export function Bookmark({fill, fillStroke, height, width}) {
-	return (<svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 24 24"><path fill={fill} stroke={fillStroke} strokeLinejoin="round" strokeWidth={2} d="M6 20V5a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v15l-6-3z"></path></svg>);
+export function Bookmark({fill, stroke, height, width}) {
+	return (<svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 24 24"><path fill={fill} stroke={stroke} strokeLinejoin="round" strokeWidth={1.5} d="M6 20V5a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v15l-6-3z"></path></svg>);
 }
 
 export function Cart({fill, height, width}) {
@@ -78,4 +78,24 @@ export function EmailIcon({fill, height, width}) {
 
 export function OpenIcon({fill, height, width}) {
 	return (<svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 20 20" ><path fill={fill} d="M6 4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-2.5a.5.5 0 0 1 1 0V14a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h2.5a.5.5 0 0 1 0 1zm5-.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V4.707l-4.146 4.147a.5.5 0 0 1-.708-.708L15.293 4H11.5a.5.5 0 0 1-.5-.5"></path></svg>);
+}
+
+export function Check({fill, height, width}) {
+	return (<svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 48 48" ><g fill="none" stroke={fill} strokeLinecap="round" strokeLinejoin="round" strokeWidth={4}><path d="M42 20v19a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3h21"></path><path d="m16 20l10 8L41 7"></path></g></svg>);
+}
+
+export function CloseRectangle({fill, height, width}) {
+	return (<svg xmlns="http://www.w3.org/2000/svg"  width={width} height={height} viewBox="-2 -2 24 24" ><path fill={fill} d="M4 0h12a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4m0 2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm7.414 8l2.829 2.828a1 1 0 0 1-1.415 1.415L10 11.414l-2.828 2.829a1 1 0 1 1-1.415-1.415L8.586 10L5.757 7.172a1 1 0 0 1 1.415-1.415L10 8.586l2.828-2.829a1 1 0 0 1 1.415 1.415z"></path></svg>);
+}
+
+export function Circle({fill, stroke, height, width}) {
+	return (<svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 24 24"><circle cx={12} cy={12} r={9} fill={fill} stroke={stroke} strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}></circle></svg>);
+}
+
+export function CircleHalfFull({fill, height, width}) {
+	return (<svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 24 24"><path fill={fill} d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 2a8 8 0 0 1 8 8a8 8 0 0 1-8 8z"></path></svg>);
+}
+
+export function Share({fill, height, width}) {
+	return (<svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 20 20" ><path fill={fill} d="m13.33 12.838l4.497-4.423l.057-.065a.59.59 0 0 0-.057-.767L13.33 3.162l-.062-.053c-.36-.27-.89-.01-.89.469v2.13l-.225.015c-3.563.282-5.65 2.537-6.148 6.627c-.064.525.538.854.928.506c1.431-1.278 2.91-2.072 4.445-2.39q.369-.077.742-.117l.258-.023v2.096l.005.082c.06.453.609.666.947.334M12.226 6.72l1.152-.077V4.61l3.446 3.388l-3.446 3.39V9.231l-1.356.122h-.008c-1.703.183-3.31.865-4.827 2.002c.298-1.339.807-2.346 1.476-3.067c.83-.895 1.99-1.443 3.563-1.569M5.5 4A2.5 2.5 0 0 0 3 6.5v8A2.5 2.5 0 0 0 5.5 17h8a2.5 2.5 0 0 0 2.5-2.5v-1a.5.5 0 0 0-1 0v1a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 4 14.5v-8A1.5 1.5 0 0 1 5.5 5h3a.5.5 0 0 0 0-1z"></path></svg>);
 }

@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState, useEffect, useCallback } from 'react';
 import Details from './Details';
 import Header from './Header';
 import Footer from './Footer';
@@ -7,14 +7,25 @@ import RestaurantServices from './RestaurantServices';
 import Reviews from './Reviews';
 import MenuIcon from './MenuIcon';
 import Breadcrumbs from './BreadCrumbs';
-
-import { useParams } from 'react-router-dom';
 import Loading from './Loading';
 
+import { getMyFavorites } from '../features/wishlist/wishlistSlice';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams, useNavigate } from 'react-router-dom';
+import { Bookmark, Circle, CircleHalfFull, Share } from './svgs/InterfaceSvg';
+import RestaurantAmenities from './RestaurantAmenities';
+
 function RestaurantProfile() {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [activeTab, setActiveTab ] = useState(null);
     const { id } = useParams();
     const [restaurantDoc, setRestaurantDoc] = useState(null);
+    const wishlist = useSelector(state => state.wishlist);
+    const [favorite, setFavorite] = useState(false);
+    const [googleId, setGoogleId] = useState(null);
+    const itemType = 'restaurant';
 
     useEffect(() => {
         const fetchRestaurantDoc = async () => {
@@ -46,7 +57,65 @@ function RestaurantProfile() {
                 displayTab = 'details';
                 break;
         }
-    }
+    };
+    
+    useEffect(() => {
+        dispatch(getMyFavorites());
+    }, [dispatch]);
+
+    useEffect(() => {
+        const userData = JSON.parse(localStorage.getItem('user'));
+        setGoogleId(userData?.googleId);
+
+        const targetRestaurantId = id;
+        
+        const isFavorite = wishlist.some(item => item.id === targetRestaurantId);
+        setFavorite(isFavorite);
+    }, [id]);
+
+    const handleWishlistClick = useCallback(
+        async () => {
+            const userData = JSON.parse(localStorage.getItem('user'));
+            if (!userData) {
+                // Redirect to sign-in page if user is not logged in
+                navigate('/signin');
+                return;
+            }
+        
+            // Toggle the favorite status
+            setFavorite(prevState => !prevState);
+        
+            // Update database with latest changes
+            const itemId = id;
+        
+            try {
+                const response = await updateFavoritesList(googleId, itemId, itemType);
+                console.log('Favorites updated successfully:', response);
+        
+                // Update local storage
+                const updatedWishlist = JSON.parse(localStorage.getItem('wishlist')) || {};
+        
+                if (favorite) {
+                    //Remove from favorites
+                    delete updatedWishlist[itemId];
+                } else {
+                    // Add to favorites
+                    updatedWishlist[itemId] = true;
+                }
+        
+                localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
+            } catch (error) {
+                console.error('Error updating wishlist:', error);
+            }
+        },[favorite]
+    );    
+
+    const totalBubbles = 5;
+
+    let rating = restaurantDoc ? restaurantDoc.rating : 0;
+    let filledBubbles = Math.floor(rating);
+    let halfFilled = rating % 1 !== 0;
+
 
     return (
         <div className="mx-auto text-base font-normal h-screen w-100 text-sm antialiased "> 
@@ -58,74 +127,97 @@ function RestaurantProfile() {
                 <div className="capitalize h-6 items-center text-sm flex w-full"><Breadcrumbs restaurantDoc={restaurantDoc}/></div>
             </div>
             { restaurantDoc ? (
-                <div className="">
-                    <div className="p-1 h-1/3 sm:rounded-none sm:h-72  md:p-0 md:-mt-.5 rounded overflow-hidden">
-                        <img src={`/assets/img/gallery/restaurants/${restaurantDoc.gallery.img1}.webp`} alt="restaurant-photo" className="sm:object-cover h-full w-full mx-auto" />
-                    </div>
-                    <div className="flex flex-col p-5 h-2/3 sm:p-3 md:mt-1 md:px-24">
-                        <div className='flex flex-row space-x-28 justify-around mt-3 items-center'>
-                            <div className="space-y-1">
-                                <h2 className="text-2xl font-bold w-72 text-wrap">{restaurantDoc.name}</h2>
-                                <div className='flex flex-row text-default/60 w-fit space-x-2 text-sm font-normal items-center'>
-                                    <span>{restaurantDoc.rating}</span>
-                                    <div className="flex flex-row space-x-0">
-                                        <span className="size-5 object-scale-down"><img src='/assets/icon/star-6.svg' /></span>
-                                    </div>
-                                    <span className="text-default/30">{`(${restaurantDoc.reviews.length}) Reviews`}</span>
-                                </div>
-                            </div>
-                            <a href=''> 
-                               <img src="/assets/icon/navigation.svg" alt="Navigation icon" className="sm:size-16"/>
-                            </a>
-                        </div>
-
-                        <p className='leading-relaxed font-medium text-base mt-5 text-default/65'>
-                            {restaurantDoc.description}
-                        </p>
-
-                        <div className="flex flex-col mt-8 space-y-1 z-0">
-                            <div className="flex justify-start space-x-8 w-100 items-center sm:w-7/12 mx-auto sm:justify-center sm:items-center border-b-2 border-faint_default/15 h-8 text-headings/70 font-semibold caret-transparent">
-                                <div>
-                                    <button onClick={() => {
-                                            let id = 'detailsTab';
-                                            setActiveTab(id);
-                                            handleClick(id);
-                                        }} className="p-1 h-9 md:w-16 cursor-pointer transition duration-300 ease-in-out focus:text-bg_variant1 focus:text-headings/100 focus:font-bold focus:border-b-2 focus:border-bg_variant1"
-                                        >
-                                            DETAILS
-                                    </button>
-                                </div>
-                                <div>
-                                    <button onClick={() => {
-                                        let id = 'menusTab';
-                                        setActiveTab(id);
-                                        handleClick(id);
-                                        }} 
-                                        className="p-1 h-9 md:w-16 cursor-pointer transition duration-300 ease-in-out focus:text-bg_variant1 focus:text-headings/100 focus:font-bold focus:border-b-2 focus:border-bg_variant1"
-                                        >
-                                            MENU
-                                    </button>
-                                </div>
-                                <div>
-                                    <button 
-                                        onClick={() => {
-                                            let id = 'reviewsTab';
-                                            setActiveTab(id);
-                                            handleClick(id);
-                                        }} 
-                                        className="p-1 h-9 md:w-16 cursor-pointer transition duration-300 ease-in-out focus:text-bg_variant1 focus:text-headings/100 focus:font-bold focus:border-b-2 focus:border-bg_variant1"
-                                        >
-                                            SERVICES
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="h-fit rounded-md px-3 pb-3 shadow-sm sm:px-10 sm:w-8/12 mx-auto">
-                                { activeTab === 'detailsTab' ? <Details  restaurantDoc={restaurantDoc}/> : activeTab === 'menusTab' ? <Menu restaurantDoc={restaurantDoc} /> : <RestaurantServices restaurantDoc={restaurantDoc}/>}
+                <div className="sm:py-2 sm:px-4 flex flex-col ng-gray/35 caret-transparent">
+                    <div className="p-1 px-4 sm:px-1 space-y-1">
+                        <div className="flex justify-between items-center">
+                            <h2 className="font-bold w-full text-xl text-wrap">{restaurantDoc.name}</h2>
+                            <div className="flex space-x-1.5 mt-0.5">
+                                <Bookmark fill={favorite ? 'red' : 'none'}  stroke={favorite ? 'red' : 'gray'} height="25" width="25" />
+                                <Share fill={'gray'} height={25} width={25} />
                             </div>
                         </div>
+                        <div className='flex flex-row text-default/75 font-semibold w-fit space-x-1 text-base font-normal items-center'>
+                            {[...new Array(totalBubbles)].map((_, index) => {
+                                if (index < filledBubbles) {
+                                    // Full circle for filled ratings
+                                    return <Circle key={index} fill={'red'} stroke={'red'} height={15} width={15} />;
+                                } else if (index === filledBubbles && halfFilled) {
+                                    // Half circle for decimal ratings
+                                    return <CircleHalfFull  key={index} fill={'red'} height={15} width={15} />;
+                                } else {
+                                    // Empty circle for remaining ratings
+                                    return <Circle  key={index} fill={'none'} stroke={'silver'} height={15} width={15} />;
+                                }
+                            })}
+                            <div className="flex items-center space-x-0.5">
+                                <span className="">{`${restaurantDoc.reviews.length} reviews`}</span>
+                            </div>
+                        </div>
+                        <div className="flex space-x-1">
+                            {restaurantDoc.cuisine.map((item, index, array) => {
+                                return (
+                                <p key={index}>
+                                    {item}
+                                    {index !== array.length - 1 ? ',' : ''}
+                                </p>
+                                );
+                            })}
+                        </div>
+                        <p>{restaurantDoc.details.hours.openhours}</p>
                     </div>
-                    <div className="p-5 mb-8 h-64 -z-10">
-                        <h1 className="font-semibold text-lg ">Reviews</h1>
+                    
+                    <div className="h-64 sm:h-96 sm:mt-2 sm:rounded-none rounded">
+                        <img src={`/assets/img/gallery/restaurants/${restaurantDoc.gallery.img1}.webp`} alt="restaurant-photo" className="object-cover h-full w-full mx-auto" />
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row sm:mt-4 sm:p-2 space-x-4">
+                        <div className="h-fit pb-6 sm:pb-0 p-5 bg-pure_white sm:h-80 sm:w-6/12 flex flex-col sm:justify-top">
+                            <h4 className="font-semibold text-lg">Ratings and reviews</h4>
+                            <p className="text-base mt-2 sm:mt-4">There are no reviews for {`${restaurantDoc.name}`}. Be the first to write one!</p>
+                            <button className="bg-bg_variant1 w-11/12 mx-auto h-10 mt-2 sm:mt-32 text-base text-pure_white font-bold rounded-lg shadow shadow-bg_variant1 active:bg-bg_variant1/80">Write a Review</button>
+                        </div>
+                        <div className="sm:hidden h-fit pb-6 p-5 bg-gray/35 sm:h-80 sm:w-6/12 flex flex-col space-y-2">
+                            <h4 className="font-semibold text-center text-base">Ad Here</h4>
+                        </div>
+                        <div className="h-fit pb-6 p-5 bg-pure_white sm:h-80 sm:w-6/12 flex flex-col space-y-2 sm:space-y-4 sm:justify-top">
+                            <h4 className="font-semibold text-lg">Details</h4>
+                            <Details restaurantDoc={restaurantDoc}/>
+                            <a href='#allDetails'className="underline" >View all details</a>
+                        </div>
+                        <div className="sm:hidden h-fit pb-6 p-5 bg-gray/35 sm:h-80 sm:w-6/12 flex flex-col space-y-2">
+                            <h4 className="font-semibold text-center text-base">Ad Here</h4>
+                        </div>
+                        <div className="h-fit pb-6 p-5 bg-pure_white sm:h-80 sm:w-6/12 flex flex-col space-y-2 sm:space-y-4 sm:justify-top">
+                            <h4 className="font-semibold text-lg">Services and features</h4>
+                            <RestaurantServices restaurantDoc={restaurantDoc}/>
+                        </div>
+                    </div>
+
+                    <div className="h-2 pb-6 p-5 bg-gray/35 sm:rounded sm:h-1 sm:pb-0 flex flex-col space-y-2"></div>
+
+                    <div className="h-fit pb-6 p-5 bg-pure_white sm:rounded sm:h-80 flex flex-col space-y-2">
+                        <h4 className="font-semibold text-lg">See all restaurants in {`${restaurantDoc.locationData.district}`}</h4>
+                    </div>
+
+                    <div id="allDetails" className="h-fit pb-6 p-5 bg-pure_white mt-2 sm:mt-6 sm:rounded sm:h-80 flex flex-col space-y-3 sm:space-y-4">
+                        <h4 className="font-semibold text-lg">Details and amenities</h4>
+                        <hr className="text-light_dark/35"></hr>
+                        <div className="w-full h-fit sm:w-fit sm:flex">
+                            <div className="sm:w-5/12 p-1">
+                                <h5 className="font-semibold">ABOUT</h5>
+                                <p className="px-1 text-justify sm:text-start mt-0.5">{restaurantDoc.description}</p>
+                            </div>
+                            <div className="p-2">
+                                <h5 className="font-semibold">AMENITIES</h5>
+                                <RestaurantAmenities restaurantDoc={restaurantDoc} />
+                            </div>
+                            <div className="sm:w-5/12 px-4 p-1">
+                                <h5 className="font-semibold">LOCATION</h5>
+                                <div className="h-20 rounded-lg bg-gray"></div>
+                                <p className="px-1 mt-1 text-start">{restaurantDoc.locationData.district}</p>
+                                <p className="px-1 mt-1 text-start">{restaurantDoc.locationData.region}, {restaurantDoc.locationData.country}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             ) : <Loading />}
