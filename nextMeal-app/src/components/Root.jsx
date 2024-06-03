@@ -48,7 +48,7 @@ function Root() {
                 <div className="p-0 mt-16">
                     <Footer />
                 </div>
-                <button className={`fixed bottom-5 right-5 rounded-full bg-pure_white/85 animate-bounce ${showScroll ? 'visible' : 'invisible'}`} onClick={scrollTop}><ArrowUp fill="red" height="25" width="25" /></button>
+                <button className={`fixed bottom-10 right-7 rounded-full bg-pure_white h-fit w-fit animate-bounc ${showScroll ? 'visible' : 'invisible'}`} onClick={scrollTop}><ArrowUp fill="red" height="30" width="30" /></button>
             </main>
         </div>
     );

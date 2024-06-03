@@ -18,7 +18,7 @@ function Services() {
                     <div className="flex flex-row space-x-2 h-56 w-80 px-8 justify-start items-center rounded-lg bg-pure_white drop-shadow-sm sm:w-96 sm:h-48 sm:space-x-4">
                         <div className="flex flex-col space-y-1.5 justify-center items-start">
                             <span className="font-bold text-lg sm:text-xl">Online Ordering</span>
-                            <span className="font-normal text-left text-sm">Order your meal and enjoy service as if you were present at your pristine location</span>
+                            <span className="font-normal text-left text-sm md:text-md">Order your meal and enjoy service as if you were present at your pristine location</span>
                         </div>
                         <div className="flex mx-1">
                             <Lottie animationData={orderAnimation} loop={true}/>
@@ -28,7 +28,7 @@ function Services() {
                         <div className="w-full"><Lottie animationData={tableAnimation} loop={true}/></div>
                         <div className="flex flex-col space-y-1.5 justify-center items-center">
                             <span className="font-bold text-lg sm:text-xl">Table Reservations</span>
-                            <span className="font-normal text-left text-sm">Secure your dining experience by booking a table in advance.</span>
+                            <span className="font-normal text-left text-sm md:text-md">Secure your dining experience by booking a table in advance.</span>
                         </div>
                     </div>
                 </div>
@@ -36,7 +36,7 @@ function Services() {
                     <div className="size-64 sm:size-72"><Lottie animationData={deliveryAnimation} loop={true}/></div>
                     <div className="flex flex-col space-y-1.5 justify-center items-center">
                         <span className="font-bold text-lg sm:text-xl">Door-to-Door Delivery</span>
-                        <span className="font-normal text-center text-sm sm:p-2">Take pleasure in the finest dishes from your favorite place, even from afar. </span>
+                        <span className="font-normal text-center text-sm md:text-md sm:p-2">Take pleasure in the finest dishes from your favorite place, even from afar. </span>
                     </div>
                 </div>
             </div>

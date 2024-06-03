@@ -40,8 +40,8 @@ function Meal() {
                     {meals.slice(0, 4).map((meal, i) => <MealCard key={i} meal={meal} />)}
                 </div>
                 ) : <Loading/>}
-                <div className="flex justify-end mr-5 md:mr-20 text-xs sm:text-sm mt-0.5 sm:justify-end font-semibold text-default/80 hover:text-bg_variant1">
-                   <button onClick={handleClick} className="underline underline-offset-2">Browse All</button>
+                <div className="flex justify-end mr-5 md:mr-20 text-xs sm:text-sm mt-0.5 sm:justify-end font-semibold text-default/80">
+                   <button onClick={handleClick} className="underline underline-offset-2 hover:text-bg_variant1">Browse All</button>
                 </div>
             </div>
         </div>

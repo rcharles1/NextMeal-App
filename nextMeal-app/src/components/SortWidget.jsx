@@ -20,17 +20,17 @@ function SortWidget({ onSortChange, sort, onClose}) {
     };
     
     return (
-        <div className="flex justify-end mr-4 sm:ml-2">
-            <div className="w-48 p-1 pb-1 text-sm bg-pure_white rounded-md drop-shadow-sm caret-transparent">
+        <div className="flex justify-end mr-4 sm:ml-2 md:w-36 md:p-2">
+            <div className="w-48 p-1 pb-1 text-sm md:text-ssm bg-pure_white rounded-md drop-shadow-sm caret-transparent">
                 <div className="grid grid-cols-1 divide-y-2 gap-1 divide-light_dark/5 antialiased">
                     {sortOptions.map((option, index) => {
                         const IconComponent = iconComponents[option.icon];
                         return (
                             <div 
                                 key={index}
-                                className={`flex flex-col space-y-2 items-top p-1 `}
+                                className={`flex flex-col space-y-2 items-top p-1`}
                                 >
-                                <div onClick={() => handleClick(option)} className={`flex flex-row space-x-2 items-center font-medium`}>
+                                <div onClick={() => handleClick(option)} className={`flex flex-row space-x-2 items-center pointer-cursor font-medium`}>
                                     <IconComponent fill={selectedSort === option ? 'red' : 'gray'} height="18" width="18"/>
                                     <span className={`w-full ${selectedSort === option ? 'text-bg_variant1/75' : ''}`}>{option.text}</span>
                                 </div>

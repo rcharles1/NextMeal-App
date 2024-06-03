@@ -3,7 +3,7 @@ import MenuIcon from './MenuIcon.jsx';
 import ProfileIcon from './ProfileIcon.jsx';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import NavBar from './NavBar.jsx';
 import { Search } from '/src/components/svgs/InterfaceSvg';
 import { signIn } from '../features/auth/authSlice.js';
@@ -30,7 +30,7 @@ function Header() {
     } else {
         bgColor = 'bg-pure_white';
         imgSrc = '/assets/img/next-meal-red.png';
-        colorTheme = 'default/80';
+        colorTheme = 'default/75';
         secColorTheme = 'bg-bg_variant2/80';
         setVisibility = 'invisible';
     }
@@ -41,12 +41,8 @@ function Header() {
                 <img src={imgSrc} alt="NextMealApp-Logo" />
             </div>
             <div className="flex justify-end items-start space-x-1.5 sm:w-fit md:py-0 md:space-x-1">
-                <div className="">
-                    {setVisibility === 'visible' && (
-                        <div className={`md:block : hidden text-${colorTheme}`}>
-                            <NavBar colorTheme={colorTheme} />
-                        </div>
-                    )}
+                <div className={`md:block hidden text-${colorTheme}`}>
+                    <NavBar colorTheme={colorTheme} />
                 </div>
                 <div className={`${setVisibility} md:mt-0.5`}><Search fill={colorTheme === 'pure_white' ? 'white' : 'black'} height="25" width="30" /></div>
                 <div>

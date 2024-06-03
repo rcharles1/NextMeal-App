@@ -5,7 +5,7 @@ const router = express.Router();
 let { getDatabase } = require('../app');
 let db = getDatabase();
  
-// Get all restaurants
+// Get all restaurants 
 router.get('/', (req, res) => {
     // Pagination of results
     const page = req.query.p || 0;
@@ -17,7 +17,15 @@ router.get('/', (req, res) => {
     const services = req.query.services ? {['services.' + req.query.services]: 1} : {};
     const amenities = req.query.amenities ? {['amenities.' + req.query.amenities]: 1} : {};
 
-    const filters = {...cuisine, ...openHours, ...services, ...amenities};
+    // Filter for nearby restaurants
+    let targetLocation = {};
+    if (req.query.district) {
+        targetLocation = {'locationData.district': {$in: req.query.district.split(',')}};
+    } else if (req.query.region) {
+        targetLocation = {'locationData.region': {$in: req.query.region.split(',')}};
+    }
+
+    const filters = {...cuisine, ...openHours, ...services, ...amenities, ...targetLocation};
  
     // Sorting
     let sortParam = null;

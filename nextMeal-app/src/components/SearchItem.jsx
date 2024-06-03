@@ -46,7 +46,7 @@ function SearchItem({ item, onSearch }) {
                 value={searchTerm}
                 onChange={handleInputChange}
                 placeholder={`Search a ${item === 'Meals & Beverages' ? 'Meal or Beverage': 'Restaurant'} `}
-                className="capitalize w-10/12 h-full p-3 px-5 md:text-xs font-medium rounded-l-md focus:outline-none caret-default cursor-pointer"
+                className="capitalize w-10/12 h-full p-3 px-5 sm:text-sm md:px-3 font-medium rounded-l-md focus:outline-none caret-default cursor-pointer"
             />
             <button className="rounded-r-md h-full w-2/12 bg-pure_white caret-transparent cursor-pointer">
                <div className="size-7 mx-auto md:size-6 flex">

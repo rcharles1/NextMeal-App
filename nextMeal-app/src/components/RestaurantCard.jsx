@@ -82,7 +82,7 @@ function RestaurantCard({ restaurant }) {
                         </div>
                         <div className="flex flex-row space-x-0.5">
                             <span className="size-3 sm:size-3.5 md:size-2.5 mt-.5 md:mt-0"><img src='/assets/icon/location-fill.svg' alt='Location icon'/></span>
-                            <span className="text-xs truncate font-light">{restaurant.details.address[0]}</span>
+                            <span className="text-xs truncate font-normal">{restaurant.details.address[0]}</span>
                         </div>
                         <div className="flex h-4 justify-between items-center mt-0.5">
                             <div className="flex flex-row space-x-0.5">
@@ -94,7 +94,7 @@ function RestaurantCard({ restaurant }) {
                             </div>
                             <div>
                                 <button onClick={handleWishlistClick} className="h-fit w-fit" >
-                                    <Bookmark fill={favorite ? 'red' : 'none'}  fillStroke={favorite ? 'red' : 'gray'} height="15" width="18" />
+                                    <Bookmark fill={favorite ? 'red' : 'none'}  stroke={favorite ? 'red' : 'gray'} height="15" width="18" />
                                 </button>
                             </div>
                         </div>

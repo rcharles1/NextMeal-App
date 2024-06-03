@@ -23,7 +23,7 @@ function MealCategory({ onCategorySelect, moodOption, resetPage }) {
             >
               <item.svg fill={selected === index ? 'red' : 'black'} height="35" width="35"/>
           </div>
-          <p className={`text-xs font-medium text-center ${selected === index ? 'text-bg_variant1' : 'text-default/65'}`}>{item.text}</p>
+          <p className={`text-xs md:text-ssm font-medium text-center ${selected === index ? 'text-bg_variant1' : 'text-default/65'}`}>{item.text}</p>
         </div>
       ))}
     </div>

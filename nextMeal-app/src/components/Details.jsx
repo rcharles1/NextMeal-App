@@ -5,12 +5,12 @@ function Details({ restaurantDoc }) {
     return (
         <>
             {restaurantDoc ? (
-                <div className="grid grid-cols-1 divide-y-2 gap-3 divide-light_dark/5 antialiased">
+                <div className="grid grid-cols-1 divide-y-2 gap-2 divide-light_dark/5 antialiased md:text-sm">
                     <div className="flex flex-row justify-between items-top p-1">
                         <span>
                             Address
                         </span>
-                        <span className="font-medium w-58 text-wrap">
+                        <span className="font-semibold text-ssm w-58 text-wrap">
                             {restaurantDoc.details.address}
                         </span>
                     </div>
@@ -18,7 +18,7 @@ function Details({ restaurantDoc }) {
                         <span>
                             Hours
                         </span>
-                        <span className="font-medium">
+                        <span className="font-semibold text-ssm">
                             <p>{restaurantDoc.details.hours.openhours}</p>
                             <p>{restaurantDoc.details.hours.opendays}</p>
                         </span>
@@ -27,7 +27,7 @@ function Details({ restaurantDoc }) {
                         <span>
                             Phone
                         </span>
-                        <span className="font-medium space-x-1"> 
+                        <span className="font-semibold text-ssm space-x-1"> 
                             {restaurantDoc.details.phone[0]}
                         </span>
                     </div>
@@ -35,8 +35,8 @@ function Details({ restaurantDoc }) {
                         <span>
                             Platforms 
                         </span>
-                        <span className="font-medium w-max-48">
-                            <a href={`${restaurantDoc.details.platforms.website}`} target="_blank" rel="noopener noreferrer" className="flex text-blue">
+                        <span className="font-semibold text-ssm w-max-48 md:w-32 text-right">
+                            <a href={`${restaurantDoc.details.platforms.website}`} target="_blank" rel="noopener noreferrer" className="flex w-full text-wrap text-blue/90">
                                 {`${restaurantDoc.name}'s Website`}
                                 <span className="size-3">
                                     <img src='/assets/icon/link-out.svg'/>

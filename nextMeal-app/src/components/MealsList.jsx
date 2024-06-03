@@ -143,7 +143,7 @@ function MealsList() {
       </div>
       <div id='container' className="flex flex-col w-full mb-12 space-y-5 py-1 sm:py-2 md:py-4 md:px-2 h-fit transition-all duration-500">
         <div className="flex flex-col px-5 space-y-2">
-          <h1 className="w-fit text-2xl sm:text-3xl md:text-xl font-bold">Meals & Beverages</h1>
+          <h1 className="w-fit text-2xl sm:text-3xl md:text-lg font-semibold">Meals & Beverages</h1>
           <SearchItem item={'Meals & Beverages'} onSearch={(result, resultCard) => {
             handleSearch(result);
             handleResultCard(resultCard);
@@ -151,7 +151,7 @@ function MealsList() {
         </div>
 
         <div className="flex flex-col space-y-2 px-5 caret-transparent">
-          <h2 className="text-base sm:text-2xl md:text-base font-bold ">What's your mood?</h2>
+          <h2 className="text-base sm:text-2xl md:text-base font-semibold ">What's your mood?</h2>
           <div className="flex flex-row w-full container-snap overflow-x-auto space-x-2 p-3 overflow-hidden">
               <MealCategory onCategorySelect={setSelectedMood} moodOption={moodOption} resetPage={() => setPage(0)}/>
           </div>
@@ -167,46 +167,65 @@ function MealsList() {
         ) : ''}
 
       {mealitem ? (
-        <div className="flex flex-col space-y-1 w-full">
-          <h1 className='text-base sm:text-lg md:text-base font-semibold px-5'>Browse all</h1>
-          <div className="flex flex-col p-1 justify-end space-y-1.5">
-            <div className="flex h-fit space-x-1 items-center justify-end mr-4 md:mr-32 rounded-md">
-              <button 
-                onClick={() => setIsFilterWidgetVisible(!isFilterWidgetVisible)}
-                className={`flex space-x-1 sm:space-x-0 grow-0 border border-light_dark/55 rounded p-1 h-8 w-fit sm:h-6 sm:text-xs items-center justify-center caret-transparent cursor-pointer ${(isFilterWidgetVisible || areFiltersActive()) ? 'bg-bg_variant1 text-pure_white/75' : ''} focus:text-pure_white/75 focus:bg-bg_variant1`}
-              >
-                <span className="font-medium">Filter by</span>
-                <Filter fill={(isFilterWidgetVisible || areFiltersActive()) ? 'white' : 'black'} height="18" width="16" />
-              </button>
-              <button 
-                onClick={() => setIsSortWidgetVisible(!isSortWidgetVisible)}
-                className={`flex space-x-1 sm:space-x-0 grow-0 border border-light_dark/55  p-2 h-8 sm:h-12 w-fit sm:h-6 sm:text-xs rounded items-center justify-center caret-transparent cursor-pointer ${(isSortWidgetVisible || isSortOptionActive()) ? 'bg-bg_variant1 text-pure_white/75' : ''} focus:text-pure_white/75 focus:bg-bg_variant1`}
-              >
-                <span className="font-medium">Sort by</span>
-                <Sort fill={(isSortWidgetVisible || isSortOptionActive()) ? 'white' : 'black'} height="18" width="16"/>
-              </button>
-            </div>
-            {(isFilterWidgetVisible || isFilterActive) && <FilterWidget onFiltersChange={handleFiltersChange} 
+        <div className="flex flex-col md:flex-row  md:space-x-6 md:px-5 caret-transparent space-y-1 w-full">
+          <div className="hidden md:block h-fit w-2/12 bg-pure_white rounded-lg px-0.5 py-2">
+            { <FilterWidget onFiltersChange={handleFiltersChange} 
               onClose={closeFilterWidget}
               filters={filters}
               onReset={resetFilters}
               filterOptions={filterOption}
             />} 
-            {(isSortWidgetVisible || isSortActive) && <SortWidget onSortChange={handleSortChange} 
-              onClose={closeSortWidget}
-              sort={sort}
-            />}
           </div>
-          <div id='container' className='mx-auto px-8 w-full grid grid-cols-2 gap-y-2 gap-x-2 sm:grid-cols-3 sm:gap-6 md:grid-cols-3 md:gap-2 md:px-28'>
-          {error === '' && (
-            (entryPoint === 'beverages' && card === 'beverages') 
-              ? mealitem.map((item) => <BeverageCard key={item._id} beverage={item}/> )
-              : (entryPoint === 'meals') && mealitem.map((item) => <MealCard key={item._id} meal={item} />)
-          )}
+
+          <div className="flex flex-col w-full space-y-2 md:w-10/12">
+            <h1 className='text-base sm:text-lg md:text-base font-semibold px-5'>Browse all</h1>
+            <div className="flex flex-col p-1 justify-end space-y-1.5">
+              <div className="flex h-fit space-x-1 items-center justify-end mr-4 md:mr-20 rounded-md">
+                <button 
+                  onClick={() => setIsFilterWidgetVisible(!isFilterWidgetVisible)}
+                  className={`md:hidden flex space-x-1 sm:space-x-0 grow-0 border border-light_dark/55 rounded p-1 h-8 w-fit sm:h-6 sm:text-xs items-center justify-center caret-transparent cursor-pointer ${(isFilterWidgetVisible || areFiltersActive()) ? 'bg-bg_variant1 text-pure_white/75' : ''} focus:text-pure_white/75 focus:bg-bg_variant1`}
+                >
+                  <span className="font-medium">Filter by</span>
+                  <Filter fill={(isFilterWidgetVisible || areFiltersActive()) ? 'white' : 'black'} height="14" width="16" />
+                </button>
+                <button 
+                  onClick={() => setIsSortWidgetVisible(!isSortWidgetVisible)}
+                  className={`flex space-x-1 sm:space-x-0 grow-0 border border-light_dark/55 p-2 h-8 sm:h-12 w-fit sm:h-6 sm:text-xs md:text-ssm rounded items-center justify-center caret-transparent cursor-pointer ${(isSortWidgetVisible || isSortOptionActive()) ? 'bg-bg_variant1 text-pure_white border-bg_variant1 font-semibold' : ''} focus:text-pure_white/75 focus:bg-bg_variant1 relative`}
+                >
+                  <span className="font-medium">Sort by</span>
+                  <Sort fill={(isSortWidgetVisible || isSortOptionActive()) ? 'white' : 'black'} height="14" width="16"/>
+                </button>
+              </div>
+              {(isFilterWidgetVisible || isFilterActive) && <FilterWidget onFiltersChange={handleFiltersChange} 
+                onClose={closeFilterWidget}
+                filters={filters}
+                onReset={resetFilters}
+                filterOptions={filterOption}
+              />} 
+              <div className="absolute inset-y-0 right-20 top-3/4 z-30">
+                {(isSortWidgetVisible || isSortActive) && <SortWidget onSortChange={handleSortChange} 
+                  onClose={closeSortWidget}
+                  sort={sort}
+                />}
+              </div>
+            </div>
+            <div id='container' className='mx-auto px-5 w-full grid grid-cols-2 gap-y-3 gap-x-2 sm:grid-cols-3 sm:gap-6 md:gap-x-0 md:gap-y-3 md:px-16'>
+            {error === '' && (
+              (entryPoint === 'beverages' && card === 'beverages') 
+                ? mealitem.map((item) => <BeverageCard key={item._id} beverage={item}/> )
+                : (entryPoint === 'meals') && mealitem.map((item) => <MealCard key={item._id} meal={item} />)
+            )}
+            </div>
+            <div className="flex justify-end">
+              {(mealitem.length > 0) && (error === '') && 
+                <button onClick={handleShowMore} className="md:mr-4 font-medium text-xs md:text-ssm underline w-fit hover:text-bg_variant1">
+                  Show More
+                </button>
+              }
+            </div>
+            {error !== '' ? <Error message={error} onReset={resetError} onClose={closeFilterWidget}/> : ''}
           </div>
-          {(mealitem.length > 0) && (error === '') && <button onClick={handleShowMore} className="ml-72 font-medium text-xs underline px-3 w-fit hover:text-bg_variant1">Show More</button>}
-          {error !== '' ? <Error message={error} onReset={resetError} onClose={closeFilterWidget}/> : ''}
-      </div>
+        </div>
       ) : <p className="mx-auto font-bold text-sm text-default/55"> Fetching data. Please wait...</p>}
     </div>
       <Footer />

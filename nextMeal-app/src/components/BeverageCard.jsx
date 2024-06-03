@@ -77,7 +77,7 @@ function BeverageCard({ beverage }) {
                                 <NavLink to={`/beverageitem/${beverage._id}`} className="hover:text-bg_variant1/55 text-sm text-wrap sm:text-base font-bold w-fit" >{beverage.name}</NavLink>
                             </div>
                             <button onClick={handleFavoriteClick} className="flex h-fit w-fit sm:size-6" >
-                            <Bookmark fill={favorite ? 'red' : 'none'}  fillStroke={favorite ? 'red' : 'gray'} height="24" width="20" />
+                            <Bookmark fill={favorite ? 'red' : 'none'}  stroke={favorite ? 'red' : 'gray'} height="24" width="20" />
                             </button>
                         </div>
                         <div className="flex flex-col space-y-1 w-full px-2 h-fit text-start">

@@ -50,6 +50,25 @@ export const fetchAllRestaurants = async (page, filters, sort) => {
     }
 };
 
+// Fetch All Nearby Restaurants
+export const fetchAllNearbyRestaurants = async (page, district, region ) => {
+    let url = `http://localhost:3000/restaurants/?`;
+    let params =  {p: page, district, region};
+    let queryParams = Object.keys(params).map(key => `${key}=${params[key]}`).join('&');
+    url += queryParams;
+
+    try {
+        const response = await fetch(url);
+       if (response.ok) {
+        const data = await response.json();
+        return data;
+       }
+       throw new Error(`HTTP error! status: ${response.status}` )
+    } catch (error) {
+        console.error('Error fetching restaurants:', error);
+    }
+};
+
 // Fetch All Beverages 
 export const fetchAllBeverages = async (page) => {
     try {
@@ -103,6 +122,7 @@ export const fetchRestaurantDoc = async (id) => {
     try {
         const response = await fetch(`http://localhost:3000/restaurants//${id}`);
         const data = await response.json();
+        return data;
     } catch (error) {
         console.error('Error fetching restaurant document:', error);
     }
