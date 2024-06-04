@@ -72,7 +72,7 @@ function RestaurantCard({ restaurant }) {
             { restaurant ? (<div>
                 <div key={restaurant._id} className="flex flex-col h-60 w-44 space-y-3 rounded-xl sm:rounded-2xl px-1.5 py-1.5 md:px-2 md:py-2 md:rounded-2xl cursor-pointer bg-pure_white drop-shadow-sm text-sm text-start text-default/75 sm:w-48 md:h-72 md:w-56">
                     <div className="relative h-36 sm:h-36 md:h-44 w-full mx-auto rounded-lg sm:rounded-xl md:rounded-lg overflow-hidden">
-                        <div className="absolute inset-0"><img src={`/assets/img/gallery/restaurants/${restaurant.gallery.img1}.webp`} alt="restaurant-photo" className="w-full h-full object-cover" /></div>
+                        <div className="absolute inset-0"><img src={`/assets/img/gallery/restaurants/${restaurant.gallery.img1}.webp`} alt="restaurant-photo" className="w-full h-full object-cover hover:scale-110 transition-transform duration-200 ease-in-out" /></div>
                     </div>
                     <div className="flex flex-col h-18 w-full md:h-fit px-1.5 text-start" >
                         <div className="flex justify-between w-full h-fit items-center">

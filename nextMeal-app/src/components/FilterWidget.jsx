@@ -59,7 +59,7 @@ function FilterWidget({ onFiltersChange, filters, onReset, onClose, filterOption
                                                     type="checkbox"
                                                     checked={isSelected}
                                                     onChange={() => handleFilterClick(filterOption.type, value.value)}
-                                                    className="form-checkbox "
+                                                    className="form-checkbox accent-bg_variant1"
                                                 />
                                             </div>
                                             <div className="ml-1 pb- w-fit h-fit -mt-3.5">{value.text}</div>

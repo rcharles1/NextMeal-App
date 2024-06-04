@@ -218,7 +218,7 @@ function MealsList() {
             </div>
             <div className="flex justify-end">
               {(mealitem.length > 0) && (error === '') && 
-                <button onClick={handleShowMore} className="md:mr-4 font-medium text-xs md:text-ssm underline w-fit hover:text-bg_variant1">
+                <button onClick={handleShowMore} className="mr-6 md:mr-20 font-medium text-xs md:text-ssm underline w-fit hover:text-bg_variant1">
                   Show More
                 </button>
               }

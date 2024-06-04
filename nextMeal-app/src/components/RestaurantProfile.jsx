@@ -14,7 +14,7 @@ import { fetchRestaurantDoc, fetchAllNearbyRestaurants } from '../utilities/getD
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Bookmark, Circle, CircleHalfFull, Share, LocationIcon } from './svgs/InterfaceSvg';
+import { Bookmark, Circle, CircleHalfFull, Share } from './svgs/InterfaceSvg';
 import RestaurantAmenities from './RestaurantAmenities';
 import NearbyRestaurantCard from './NearbyRestaurantCard';
 
@@ -148,7 +148,6 @@ function RestaurantProfile() {
     let rating = restaurantDoc ? restaurantDoc.rating : 0;
     let filledBubbles = Math.floor(rating);
     let halfFilled = rating % 1 !== 0;
-
 
     return (
         <div className="mx-auto text-base font-normal h-screen w-100 text-sm antialiased "> 

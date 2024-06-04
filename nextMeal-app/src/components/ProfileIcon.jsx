@@ -25,7 +25,7 @@ function ProfileIcon({ colorTheme }) {
 
     return (
         <>
-            <div onClick={handleClick} className={`size-8 md:size-5 ${colorTheme === 'pure_white' ? 'bg-pure_white outline outline-pure_white/35': 'shadow-md drop-shadow-sm' } bg-${bg} px-2.5 py-1 md:px-1 md:pt-0.5 text-center justify-center items-center outline font-bold text-base md:text-sm shadow rounded-full`}>
+            <div onClick={handleClick} className={`size-8 md:size-5 ${colorTheme === 'pure_white' ? 'bg-pure_white outline outline-pure_white/35': 'shadow-md drop-shadow-sm' } bg-${bg} px-2.5 py-1.5 md:px-1 md:pt-0.5 text-center justify-center items-center font-bold text-base md:text-sm shadow rounded-full`}>
                 <span className="uppercase font-bold">{userData.email[0]}</span>
             </div>
             {openProfile ? (

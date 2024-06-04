@@ -40,14 +40,14 @@ function Header() {
             <div className="w-28 md:w-20 sm:mt-1.5">
                 <img src={imgSrc} alt="NextMealApp-Logo" />
             </div>
-            <div className="flex justify-end items-start space-x-1.5 sm:w-fit md:py-0 md:space-x-1">
+            <div className="flex justify-end items-center space-x-1.5 sm:w-fit md:py-0 md:space-x-1">
                 <div className={`md:block hidden text-${colorTheme}`}>
                     <NavBar colorTheme={colorTheme} />
                 </div>
                 <div className={`${setVisibility} md:mt-0.5`}><Search fill={colorTheme === 'pure_white' ? 'white' : 'black'} height="25" width="30" /></div>
                 <div>
                     {setVisibility === 'visible' && (
-                        <div className={`md:hidden text-${colorTheme}`}>
+                        <div className={`md:hidden w-6 text-${colorTheme}`}>
                             <MenuIcon />
                         </div>
                     )}

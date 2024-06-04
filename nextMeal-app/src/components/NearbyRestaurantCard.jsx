@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback }   from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Bookmark, LocationIcon, Circle, CircleHalfFull } from '/src/components/svgs/InterfaceSvg';
+import { Bookmark, Circle, CircleHalfFull } from '/src/components/svgs/InterfaceSvg';
 import { getMyFavorites } from '../features/wishlist/wishlistSlice';
 
 function NearbyRestaurantCard({ nearbyRestaurant }) {
