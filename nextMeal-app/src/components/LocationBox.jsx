@@ -34,7 +34,7 @@ function LocationAddress() {
     const apiKey = import.meta.env.VITE_MAPTILER_API_KEY;
 
     const getLocationByCoordinates = async () => {
-      const response = await fetch(`https://api.maptiler.com/geocoding/39.102,-5.072861.json?key=${apiKey}`);
+      const response = await fetch(`https://api.maptiler.com/geocoding/${query}.json?key=${apiKey}`);
       
       if (response.ok) {
         const data = await response.json();
