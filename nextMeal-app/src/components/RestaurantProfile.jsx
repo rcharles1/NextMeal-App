@@ -17,6 +17,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Bookmark, Circle, CircleHalfFull, Share } from './svgs/InterfaceSvg';
 import RestaurantAmenities from './RestaurantAmenities';
 import NearbyRestaurantCard from './NearbyRestaurantCard';
+import MapComponent from './MapComponent';
 
 function RestaurantProfile() {
     const navigate = useNavigate();
@@ -46,32 +47,34 @@ function RestaurantProfile() {
 
     useEffect(() => {
         const fetchNearbyRestaurants = async () => {
-            const district = restaurantDoc.locationData.district;
-            const region = restaurantDoc.locationData.region;
-            try {
-                const data = await fetchAllNearbyRestaurants(page, district, region);
-                if (!Array.isArray(data)) {
-                    throw new Error('Unexpected data');
+            if (restaurantDoc && restaurantDoc.locationData) {
+                const district = restaurantDoc.locationData.district;
+                const region = restaurantDoc.locationData.region;
+                try {
+                    const data = await fetchAllNearbyRestaurants(page, district, region);
+                    if (!Array.isArray(data)) {
+                        throw new Error('Unexpected data');
+                    }
+                    if (data.length === 0) {
+                        setError('No nearby restaurants found');
+                        return;
+                    }
+                    setNearbyRestaurants(prevRestaurants => {
+                        const combinedRestaurants = page > 1 ? [...prevRestaurants, ...data] : [...data];
+                        const uniqueRestaurants = Array.from(new Set(combinedRestaurants.map(item => item._id)))
+                            .map(id => combinedRestaurants.find(item => item._id === id));
+                        return uniqueRestaurants;
+                    });
+                } catch (error) {
+                    setError('Could not fetch data. Check your connection and try again');
                 }
-                if (data.length === 0) {
-                    setError('No nearby restaurants found');
-                    return;
-                }
-                setNearbyRestaurants(prevRestaurants => {
-                    const combinedRestaurants = page > 1 ? [...prevRestaurants, ...data] : [...data];
-                    const uniqueRestaurants = Array.from(new Set(combinedRestaurants.map(item => item._id)))
-                        .map(id => combinedRestaurants.find(item => item._id === id));
-                    return uniqueRestaurants;
-                });
-            } catch (error) {
-                setError('Could not fetch data. Check your connection and try again');
             }
         };
         if (page === 1) {
             setNearbyRestaurants([]);
         }
         fetchNearbyRestaurants();
-    }, [page, restaurantDoc]);  
+    }, [page, restaurantDoc]);    
 
     const handleClick = (id) => {
         let displayTab;
@@ -175,21 +178,21 @@ function RestaurantProfile() {
                                         if (index < filledBubbles) {
                                             // Full circle for filled ratings
                                             return (
-                                                <div className="flex ">
+                                                <div key={index} className="flex ">
                                                     <Circle key={index} fill={'red'} stroke={'red'} height={15} width={15} />
                                                 </div>
                                             );
                                         } else if (index === filledBubbles && halfFilled) {
                                             // Half circle for decimal ratings
                                             return (
-                                                <div className="flex ">
+                                                <div key={index} className="flex ">
                                                     <CircleHalfFull  key={index} fill={'red'} height={15} width={15}/>
                                                 </div>
                                             );
                                         } else {
                                             // Empty circle for remaining ratings
                                             return (
-                                                <div className="flex " >
+                                                <div key={index} className="flex " >
                                                     <Circle  key={index} fill={'none'} stroke={'red'} height={15} width={15}/>
                                                 </div>
                                             );
@@ -269,9 +272,9 @@ function RestaurantProfile() {
                             </div>
                             <div className="sm:w-5/12 px-4 p-1">
                                 <h5 className="font-semibold">LOCATION</h5>
-                                <div className="h-20 rounded-lg bg-gray"></div>
-                                <p className="px-1 mt-1 text-start">{restaurantDoc.locationData.district}</p>
-                                <p className="px-1 mt-1 text-start">{restaurantDoc.locationData.region}, {restaurantDoc.locationData.country}</p>
+                                <div className="h-24 sm:32 rounded-2xl">
+                                    <MapComponent restaurantDoc={restaurantDoc}/>
+                                </div>
                             </div>
                         </div>
                     </div>

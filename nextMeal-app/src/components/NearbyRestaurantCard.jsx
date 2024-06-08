@@ -92,7 +92,7 @@ function NearbyRestaurantCard({ nearbyRestaurant }) {
                                         if (index < filledBubbles) {
                                             // Full circle for filled ratings
                                             return (
-                                                <div className="flex ">
+                                                <div key={index} className="flex ">
                                                     <Circle key={index} fill={'red'} stroke={'red'} height={15} width={15} />
                                                 </div>
                                             );

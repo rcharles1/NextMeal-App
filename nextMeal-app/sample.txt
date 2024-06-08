@@ -143,3 +143,7 @@ export default App;
         <div className="p-5 mb-8 h-64 -z-10">
                         <h1 className="font-semibold text-lg ">Reviews</h1>
                     </div>
+
+    <Marker latitude={markerLatitude} longitude={markerLongitude}>
+        <div style={{color: 'red'}}>📍</div>
+      </Marker>
