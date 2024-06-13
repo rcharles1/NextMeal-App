@@ -25,7 +25,7 @@ function SignIn() {
             </div>
             <div className="hidden md:block bg-pure_white/85 pl-12 p-8 pt-10 bg-cover md:w-6/12 md:h-screen bg-center caret-transparent">
                <div className="h-fit rounded-md overflow-hidden">
-                   <PosterCarousel />
+                   <PosterCarousel size="large" />
                </div>
             </div>
             <div className="w-full md:bg-pure_white mx-auto sm:p-6 md:mt-0 md:h-screen md:justify-center md:w-6/12 h-1/2 px-7 flex flex-col space-y-2">

@@ -171,7 +171,7 @@ function RestaurantProfile() {
                                 <Share fill={'gray'} height={25} width={25} />
                             </div>
                         </div>
-                        <div className="flex flex-col md:flex-row space-x-1.5 items-center md:font-medium">
+                        <div className="flex flex-col md:flex-row space-x-1.5 items-left md:font-medium">
                             <div className='flex flex-row text-default/75 font-bold w-fit space-x-1 text-base md:text-ssm items-center'>
                                 <div className="flex -space-x-0.5">
                                     {[...new Array(totalBubbles)].map((_, index) => {
@@ -226,7 +226,7 @@ function RestaurantProfile() {
                         <div className="h-fit pb-6 sm:pb-0 p-5 bg-pure_white sm:rounded-lg md:rounded-xl sm:h-80 sm:w-6/12 flex flex-col sm:justify-top">
                             <h4 className="font-semibold text-lg md:text-base">Ratings and reviews</h4>
                             <p className="text-base md:text-sm mt-2 sm:mt-4">There are no reviews for {`${restaurantDoc.name}`}. Be the first to write one!</p>
-                            <button className="bg-bg_variant1 w-11/12 mx-auto h-10 mt-2 sm:mt-32 md:mt-40 text-base md:text-sm text-pure_white font-bold rounded-lg shadow shadow-sm active:bg-bg_variant1/80">Write a Review</button>
+                            <button to='/review' className="bg-bg_variant1 w-11/12 mx-auto h-10 mt-2 sm:mt-32 md:mt-40 text-base md:text-sm text-pure_white font-bold rounded-lg shadow shadow-sm active:bg-bg_variant1/80">Write a Review</button>
                         </div>
                         <div className="sm:hidden h-fit pb-6 p-5 bg-gray/35 sm:h-80 sm:w-6/12 flex flex-col space-y-2">
                             <h4 className="font-semibold text-center text-base">Ad Here</h4>

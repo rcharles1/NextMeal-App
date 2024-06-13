@@ -9,7 +9,7 @@ let db = getDatabase();
 router.get('/', (req, res) => {
     const page = req.query.p || 0;
     const category = req.query.category || null;
-    const beveragesPerPage = 6;
+    const beveragesPerPage = 18;
 
     let beverages = [];
 

@@ -14,7 +14,6 @@ function Error({ message, onReset, onClose }) {
             <div className="size-56 sm:size-72 justify-center mx-auto">
                 <Lottie animationData={errorAnimation} loop={true} speed={0.5}/>
             </div>
-            <h1 className="text-bg_variant1 font-bold text-lg sm:text-3xl">ERROR:</h1>
             {message}
             <div className="flex space-x-1.5 mt-2 mx-auto w-fit items-center ">
                 <p onClick={handleClick} className="text-bg_variant1 cursor-pointer font-semibold">Try again</p>

@@ -40,18 +40,16 @@ function SearchItem({ item, onSearch }) {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-row -space-x-0.5 rounded-lg w-11/12 sm:w-6/12 md:w-4/12 mx-auto flex-row drop-shadow bg-pure_white backdrop-filter backdrop-blur-lg md:drop-shadow-none md:shadow-lg">
+        <form onSubmit={handleSubmit} className="flex flex-row -space-x-0.5 md:space-x-0 md:items-center rounded-lg w-80 sm:w-6/12 md:w-fit mx-auto flex-row drop-shadow bg-pure_white backdrop-filter backdrop-blur-lg md:drop-shadow-none md:shadow-sm">
             <input
                 required
                 value={searchTerm}
                 onChange={handleInputChange}
-                placeholder={`Search a ${item === 'Meals & Beverages' ? 'Meal or Beverage': 'Restaurant'} `}
-                className="capitalize w-10/12 h-full p-3 px-5 sm:text-sm md:px-3 font-medium rounded-l-md focus:outline-none caret-default cursor-pointer"
+                placeholder={`Search ${item === 'Meals & Beverages' ? 'Meal or Beverage': 'Restaurant'} `}
+                className="capitalize w-10/12 md:w-full h-full p-3 px-5 text-base sm:text-sm md:px-2 md:p-2 md:text-ssm font-medium rounded-l-md focus:outline-none caret-default cursor-pointer"
             />
-            <button className="rounded-r-md h-full w-2/12 bg-pure_white caret-transparent cursor-pointer">
-               <div className="size-7 mx-auto md:size-6 flex">
-                   <img src='/assets/icon/search-outline.svg' alt='search-icon'/>
-               </div>
+            <button className="rounded-r-md h-full w-2/12 md:w-2/12 md:p-1.5 bg-pure_white caret-transparent cursor-pointer">
+              <img src='/assets/icon/search-outline.svg' alt='search-icon' className="size-6 mx-auto mt-1.5 md:size-4 md:-mt-0. flex"/>
            </button>
         </form>
     );

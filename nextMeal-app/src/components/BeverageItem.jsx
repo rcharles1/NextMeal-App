@@ -48,7 +48,7 @@ function BeverageItem() {
             <div className="sticky top-0 z-50 w-full">
                 <Header />
             </div>
-            <div className='sticky w-full caret-transparent top-20 sm:top-28 z-50 px-1 flex flex-row space-x-14 items-center justify-start caret-pure_white overflow-visible py-2 border-b-2 border-bg_variant2 backdrop-blur bg-opacity-70'> 
+            <div className='sticky w-full md:hidden caret-transparent top-20 sm:top-28 z-50 px-1 flex flex-row space-x-14 items-center justify-start caret-pure_white overflow-visible py-2 border-b-2 border-bg_variant2 backdrop-blur bg-opacity-70'> 
                 <div className="ml-3 sticky"><MenuIcon /></div>
                 <div className="capitalize font-base h-6 w-fit"><Breadcrumbs/></div>
             </div>
@@ -59,8 +59,8 @@ function BeverageItem() {
                             <div className="flex flex-col space-y-6 h-fit pb-3 items-start justify-center w-full px-1 ">
 
                                 <div className="flex flex-col text-center mx-auto">
-                                    <span className="font-bold text-xl md:text-base text-wrap w-fit">{beverageDetails.name}</span>
-                                    <span className="text-default/55 text-lg font-semibold text-wrap w-full">{beverageDetails.type}</span>
+                                    <span className="font-bold text-xl md:text-base text-wrap mx-auto w-fit">{beverageDetails.name}</span>
+                                    <span className="text-default/55 text-lg md:text-sm font-semibold text-wrap w-full">{beverageDetails.type}</span>
                                     <div className="flex flex-row items-start mx-auto space-x-1 h-fit w-fit">
                                         {beverageDetails.category.flatMap((category, index, array) => {
                                             let elements = [<span key={index}>{category}</span>];
@@ -68,7 +68,7 @@ function BeverageItem() {
                                                 elements.push(<Diamonds key={`diamond-${index}`} fill="black" height="10" width="10" />);
                                             }
                                             return (
-                                                <div key={index} className="flex space-x-1 text-start font-medium text-wrap items-center w-fit text-base h-fit">
+                                                <div key={index} className="flex space-x-1 text-start font-medium text-wrap items-center w-fit text-base md:text-sm h-fit">
                                                     {elements}
                                                 </div>
                                             );

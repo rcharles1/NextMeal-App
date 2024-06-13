@@ -17,7 +17,7 @@ function NavBar({ colorTheme }) {
             <div className="w-fit">
                 <div className="flex flex-row space-x-0 text-sm font-medium">
                     {navLinks.map((link, index) => (
-                        <Link key={index} to={link.to} onMouseEnter={handleHover} className={`block ${index === 0 ? 'text' : ''} p-1.5 text-${colorTheme}`}>{link.text}</Link>
+                        <Link key={index} to={link.to} onMouseEnter={handleHover} className={`block ${index === 0 ? 'text' : ''} p-1.5 text-${colorTheme} hover:border-b-2 border-${colorTheme}`}>{link.text}</Link>
                     ))}
                 </div>
             </div>

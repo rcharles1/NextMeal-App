@@ -43,13 +43,13 @@ function HomePage() {
                             isOpen={modalIsOpen}
                             onRequestClose={closeModal}
                             contentLabel="Location Modal"
-                            className="h-96 bg-blur w-11/12 p-8 bg-pure_white text-center rounded-xl mx-auto text-default text-lg justify-center mt-56"
+                            className="h-96 md:h-56 bg-blur w-11/12 md:w-4/12 p-8 md:p-3 bg-pure_white text-center rounded-xl mx-auto text-default text-lg justify-center mt-56 md:mt-32"
                         >
-                            <h2 className="text-2xl font-medium text-default/90">Save Your Location</h2>
-                            <div className="mx-auto w-24">
+                            <h2 className="text-2xl font-medium md:text-base md:font-semibold text-default/90">Save Your Location</h2>
+                            <div className="mx-auto w-24 md:w-10">
                              <Lottie animationData={locationAnimation} loop={true} speed={1}/>
                             </div>
-                            <p className="mt-2">We need to know your location to suggest nearby spots</p>
+                            <p className="mt-2 md:mt-1 md:text-sm">We need to know your location to suggest nearby spots</p>
                             <form  onSubmit={handleSubmit} className="flex flex-col mt-2">
                                 <input 
                                   value={locationAddress}
@@ -58,21 +58,21 @@ function HomePage() {
                                   required
                                   name="location"
                                   placeholder="Enter region" 
-                                  className="bg-gray/40 capitalize rounded-md p-2 text-base px-3 w-8/12 mx-auto focus:bg-gray/20 focus:outline-bg_variant1"
+                                  className="bg-gray/40 capitalize rounded-md p-2 text-base px-3 md:p-1 md:px-2 md:text-sm w-8/12 mx-auto focus:bg-gray/20  focus:outline-bg_variant1"
                                 />
-                                <button type="submit"className="bg-bg_variant1 p-2 w-8/12 mt-6 mx-auto rounded-md text-pure_white font-medium">Save</button>
+                                <button type="submit"className="bg-bg_variant1 p-2 md:p-1 w-8/12 mt-6 md:mt-4 mx-auto rounded-md md:text-sm text-pure_white font-medium">Save</button>
                             </form>
                             <div>
-                                <button onClick={closeModal} className="focus:bg-bg_variant1 p-2 w-8/12 mx-auto rounded-md text-bg_variant1/90 focus:text-pure_white font-medium">Use Default</button>
+                                <button onClick={closeModal} className="focus:bg-bg_variant1 p-2 md:p-1 w-8/12 mx-auto rounded-md md:text-sm text-bg_variant1/90 focus:text-pure_white font-medium">Use Default</button>
                             </div>
                         </Modal>
                     </div>
                     {locationAddress ? (
-                        <div className="flex flex-row justify-center items-center space-x-3 md:space-x-2 md:px-4 h-12 w-fit bg-blur sm:h-16 sm:w-48 p-3  border border-slate_white/30 rounded-md drop-shadow">
-                        <div className="size-8 sm:size-10 md:size-8 justify-center items center flex">
-                          <img src='/assets/icon/location-light.svg' alt='Location Icon'/>
-                        </div>
-                        <p className="capitalize">{locationAddress}</p>
+                        <div className="flex flex-row justify-center items-center space-x-3 md:space-x-2 md:px-4 h-12 w-fit bg-blur sm:h-16 sm:w-48 p-3 md:p-1 border border-slate_white/30 rounded-md drop-shadow">
+                            <div className="size-8 sm:size-10 md:size-8 justify-center items center flex">
+                            <img src='/assets/icon/location-light.svg' alt='Location Icon'/>
+                            </div>
+                            <p className="capitalize">{locationAddress}</p>
                       </div>
                     ): <div onClick={openModal} ><Location /></div>}
                 </div>

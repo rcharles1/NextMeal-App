@@ -8,7 +8,7 @@ let db = getDatabase();
 // Get all meals in pagination
 router.get('/', (req, res) => {
     const page = req.query.p || 0;
-    const mealsPerPage = 6;
+    const mealsPerPage = 18;
 
     let meals = [];
 

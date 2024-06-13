@@ -4,7 +4,7 @@ import { updateFavoritesList } from '../utilities/getData';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Bookmark, Rating } from '/src/components/svgs/InterfaceSvg';
+import { Bookmark, Circle, CircleHalfFull } from '/src/components/svgs/InterfaceSvg';
 import { getMyFavorites } from '../features/wishlist/wishlistSlice';
 import Loading from './Loading';
 
@@ -66,6 +66,13 @@ function RestaurantCard({ restaurant }) {
             }
         },[favorite]
     );    
+
+    // Rating implementation
+    const totalBubbles = 5;
+
+    let rating = restaurant ? restaurant.rating : 0;
+    let filledBubbles = Math.floor(rating);
+    let halfFilled = rating % 1 !== 0;
     
     return (
         <>
@@ -86,10 +93,38 @@ function RestaurantCard({ restaurant }) {
                         </div>
                         <div className="flex h-4 justify-between items-center mt-0.5">
                             <div className="flex flex-row space-x-0.5">
-                                <Rating height="10" width="10" />
                                 <div className="flex">
-                                    <span className="text-xs font-semibold">{restaurant.rating}</span>
-                                    <span className="text-xs font-medium text-default/65">({restaurant.reviews.length} Reviews)</span>
+                                    <div className='flex flex-row text-default/75 font-bold w-fit space-x-1 text-ssm md:text-ssm items-center'>
+                                        <div className="flex space-x-0">
+                                            {[...new Array(totalBubbles)].map((_, index) => {
+                                                if (index < filledBubbles) {
+                                                    // Full circle for filled ratings
+                                                    return (
+                                                        <div key={index} className="flex ">
+                                                            <Circle key={index} fill={'red'} stroke={'red'} height={10} width={10} />
+                                                        </div>
+                                                    );
+                                                } else if (index === filledBubbles && halfFilled) {
+                                                    // Half circle for decimal ratings
+                                                    return (
+                                                        <div key={index} className="flex ">
+                                                            <CircleHalfFull  key={index} fill={'red'} height={10} width={10}/>
+                                                        </div>
+                                                    );
+                                                } else {
+                                                    // Empty circle for remaining ratings
+                                                    return (
+                                                        <div key={index} className="flex " >
+                                                            <Circle  key={index} fill={'none'} stroke={'red'} height={10} width={10}/>
+                                                        </div>
+                                                    );
+                                                }
+                                            })}
+                                        </div>
+                                        <div className="flex items-center space-x-0.5">
+                                            <span className="">{`${restaurant.reviews.length} reviews`}</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div>

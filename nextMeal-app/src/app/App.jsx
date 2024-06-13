@@ -10,6 +10,7 @@ import BeverageItem from '../components/BeverageItem';
 import PageError from '../components/PageError';
 import MyFavorites from '../components/FavoritesPage';
 import Authenticated from '../components/Authenticated';
+import ReviewForm from '../components/ReviewComponents/ReviewForm';
 
 import { useSelector } from 'react-redux';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -25,6 +26,7 @@ function App() {
         <Route path="pageNotFound" element={<PageError />} />
         <Route path="restaurantslist" element={<RestaurantsList />} />
         <Route path="/restaurantprofile/:id" element={<RestaurantProfile />} />
+        <Route path="/review" element={<ReviewForm />} />
         <Route path="mealslist" element={<MealsList />} />
         <Route path="mealitem/:id" element={<MealItem />} />
         <Route path="beverageitem/:id" element={<BeverageItem />} />

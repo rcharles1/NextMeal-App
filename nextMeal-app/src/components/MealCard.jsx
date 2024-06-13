@@ -4,7 +4,7 @@ import { updateFavoritesList } from '../utilities/getData';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Rating, Bookmark } from '/src/components/svgs/InterfaceSvg';
+import { Circle, CircleHalfFull, Bookmark } from '/src/components/svgs/InterfaceSvg';
 import { getMyFavorites } from '../features/wishlist/wishlistSlice';
 
 function MealCard({ meal }) {
@@ -66,6 +66,13 @@ function MealCard({ meal }) {
         },[favorite]
     ); 
 
+    // Rating implementation
+    const totalBubbles = 5;
+
+    let rating = meal ? meal.rating : 0;
+    let filledBubbles = Math.floor(rating);
+    let halfFilled = rating % 1 !== 0;
+    
     return (
         <>
             {meal ? (
@@ -73,14 +80,41 @@ function MealCard({ meal }) {
                     <div className="relative h-36 sm:h-36 md:h-44 w-full bg-gray/35 mx-auto rounded-lg sm:rounded-xl md:rounded-lg overflow-hidden">
                         <img src={`/assets/img/gallery/meals/food/${meal.img}.webp`} alt='meal-image' className="w-full h-full object-contain object-center hover:scale-110 transition-transform duration-200 ease-in-out"/>
                     </div>
-                    <div className="flex flex-col h-fit sm:h-18 w-full px-1 sm:px-2 justify-center items-start" >
+                    <div className="flex flex-col h-fit sm:h-18 w-full px-1 sm:px-2 mt-4  justify-center items-start" >
                         <div className="">
                             <NavLink to={`/mealitem/${meal._id}`} className="hover:text-bg_variant1/55 text-sm text-wrap sm:text-base font-bold w-fit">{meal.name}</NavLink>
                         </div>
-                        <div className="flex flex-row justify-between w-full text-xs  items-center">
+                        <div className="flex flex-row justify-between w-full text-xs items-center">
                             <div className="flex items-center space-x-1">
-                                <Rating height="10" width="10" />    
-                                <span className="font-base">{meal.rating}</span>
+                                <div className='flex flex-row text-default/75 font-bold w-fit space-x-1 text-ssm md:text-ssm items-center'>
+                                    <div className="flex space-x-0">
+                                        {[...new Array(totalBubbles)].map((_, index) => {
+                                            if (index < filledBubbles) {
+                                                // Full circle for filled ratings
+                                                return (
+                                                    <div key={index} className="flex ">
+                                                        <Circle key={index} fill={'red'} stroke={'red'} height={10} width={10} />
+                                                    </div>
+                                                );
+                                            } else if (index === filledBubbles && halfFilled) {
+                                                // Half circle for decimal ratings
+                                                return (
+                                                    <div key={index} className="flex ">
+                                                        <CircleHalfFull  key={index} fill={'red'} height={10} width={10}/>
+                                                    </div>
+                                                );
+                                            } else {
+                                                // Empty circle for remaining ratings
+                                                return (
+                                                    <div key={index} className="flex " >
+                                                        <Circle  key={index} fill={'none'} stroke={'red'} height={10} width={10}/>
+                                                    </div>
+                                                );
+                                            }
+                                        })}
+                                    </div>
+                                    
+                                </div>
                             </div>
                             <div className="flex">
                                 <button onClick={handleFavoriteClick} className="flex h-fit w-fit" >
@@ -88,7 +122,7 @@ function MealCard({ meal }) {
                                 </button>
                             </div>
                         </div>
-                        <span className="mt-1 sm:mt-2 line-clamp-3 sm:line-clamp-2 md:line-clamp-2 text-sm sm:text-sm w-fit px-1 sm:w-full h-fit sm:mb-1 font-medium">{meal.description}</span>
+                        <span className="mt-1.5 sm:mt-2 line-clamp-2 sm:line-clamp-2 md:line-clamp-2 text-sm sm:text-sm w-fit px-1 sm:w-full h-fit sm:mb-1 font-medium">{meal.description}</span>
                     </div>
                 </div>
             ) : <p>Cooking...</p>

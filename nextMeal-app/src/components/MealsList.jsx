@@ -16,6 +16,7 @@ import { fetchMealsOrBeverages } from '../utilities/getData';
 import { beverageFilterOptions, mealFilterOptions } from '../utilities/prefences';
 import { mealMoods, beverageMoods } from '../utilities/moods';
 import { useLocation } from 'react-router-dom';
+import PosterCarousel from './PostersSlideShow';
 
 
 function MealsList() {
@@ -142,19 +143,26 @@ function MealsList() {
         <div className="capitalize font-base h-6 w-fit"><Breadcrumbs/></div>
       </div>
       <div id='container' className="flex flex-col w-full mb-12 space-y-5 py-1 sm:py-2 md:py-4 md:px-2 h-fit transition-all duration-500">
-        <div className="flex flex-col px-5 space-y-2">
-          <h1 className="w-fit text-2xl sm:text-3xl md:text-lg font-semibold">Meals & Beverages</h1>
-          <SearchItem item={'Meals & Beverages'} onSearch={(result, resultCard) => {
-            handleSearch(result);
-            handleResultCard(resultCard);
-          }}/>
+        <div className="flex flex-col md:flex-row md:space-y-0 md:justify-between md:p-1 md:w-11/12 md:mx-auto items-center px-5 space-y-2">
+          <h1 className="w-fit text-2xl w-full sm:text-3xl md:text-lg font-semibold">Meals & Beverages</h1>
+          <div>
+            <SearchItem item={'Meals & Beverages'} onSearch={(result, resultCard) => {
+              handleSearch(result);
+              handleResultCard(resultCard);
+            }}/>
+          </div>
         </div>
 
-        <div className="flex flex-col space-y-2 px-5 caret-transparent">
-          <h2 className="text-base sm:text-2xl md:text-base font-semibold ">What's your mood?</h2>
-          <div className="flex flex-row w-full container-snap overflow-x-auto space-x-2 p-3 overflow-hidden">
-              <MealCategory onCategorySelect={setSelectedMood} moodOption={moodOption} resetPage={() => setPage(0)}/>
+        <div className="flex flex-col space-y-2 px-5 md:flex-row md:space-y-0 md:space-x-12 caret-transparent">
+          <div className="hidden md:block h-40 flex w-2/12">
+            <PosterCarousel size="small"/>
           </div>
+         <div>
+          <h2 className="text-base sm:text-2xl md:text-base md:w-fit font-semibold">What's your mood?</h2>
+            <div className="flex flex-row w-full container-snap overflow-x-auto space-x-2 md:w-fit md:mt-2 p-3 overflow-hidden">
+                <MealCategory onCategorySelect={setSelectedMood} moodOption={moodOption} resetPage={() => setPage(0)}/>
+            </div>
+         </div>
         </div>
 
         {searchResults && searchResults.length > 0 ? (
@@ -167,7 +175,7 @@ function MealsList() {
         ) : ''}
 
       {mealitem ? (
-        <div className="flex flex-col md:flex-row  md:space-x-6 md:px-5 caret-transparent space-y-1 w-full">
+        <div className="flex flex-col md:flex-row md:space-x-6 md:px-5 caret-transparent space-y-1 w-full">
           <div className="hidden md:block h-fit w-2/12 bg-pure_white rounded-lg px-0.5 py-2">
             { <FilterWidget onFiltersChange={handleFiltersChange} 
               onClose={closeFilterWidget}
@@ -179,18 +187,18 @@ function MealsList() {
 
           <div className="flex flex-col w-full space-y-2 md:w-10/12">
             <h1 className='text-base sm:text-lg md:text-base font-semibold px-5'>Browse all</h1>
-            <div className="flex flex-col p-1 justify-end space-y-1.5">
-              <div className="flex h-fit space-x-1 items-center justify-end mr-4 md:mr-20 rounded-md">
+            <div className="flex flex-col md:p-0 justify-center md:justify-end space-y-1.5">
+              <div className="flex h-fit space-x-1 items-center justify-center mx-4 md:mr-20 rounded-md">
                 <button 
                   onClick={() => setIsFilterWidgetVisible(!isFilterWidgetVisible)}
-                  className={`md:hidden flex space-x-1 sm:space-x-0 grow-0 border border-light_dark/55 rounded p-1 h-8 w-fit sm:h-6 sm:text-xs items-center justify-center caret-transparent cursor-pointer ${(isFilterWidgetVisible || areFiltersActive()) ? 'bg-bg_variant1 text-pure_white/75' : ''} focus:text-pure_white/75 focus:bg-bg_variant1`}
+                  className={`md:hidden flex space-x-1 sm:space-x-0 grow-0 border border-light_dark/55 rounded p-1 h-8 w-full sm:h-6 sm:text-xs items-center justify-center caret-transparent cursor-pointer ${(isFilterWidgetVisible || areFiltersActive()) ? 'bg-bg_variant1 text-pure_white/75' : ''} focus:text-pure_white/75 focus:bg-bg_variant1`}
                 >
                   <span className="font-medium">Filter by</span>
                   <Filter fill={(isFilterWidgetVisible || areFiltersActive()) ? 'white' : 'black'} height="14" width="16" />
                 </button>
                 <button 
                   onClick={() => setIsSortWidgetVisible(!isSortWidgetVisible)}
-                  className={`flex space-x-1 sm:space-x-0 grow-0 border border-light_dark/55 p-2 h-8 sm:h-12 w-fit sm:h-6 sm:text-xs md:text-ssm rounded items-center justify-center caret-transparent cursor-pointer ${(isSortWidgetVisible || isSortOptionActive()) ? 'bg-bg_variant1 text-pure_white border-bg_variant1 font-semibold' : ''} focus:text-pure_white/75 focus:bg-bg_variant1 relative`}
+                  className={`flex space-x-1 sm:space-x-0 grow-0 border border-light_dark/55 p-2 h-8 sm:h-12 w-full sm:h-6 sm:text-xs md:text-ssm rounded items-center justify-center caret-transparent cursor-pointer ${(isSortWidgetVisible || isSortOptionActive()) ? 'bg-bg_variant1 text-pure_white border-bg_variant1 font-semibold' : ''} focus:text-pure_white/75 focus:bg-bg_variant1 relative`}
                 >
                   <span className="font-medium">Sort by</span>
                   <Sort fill={(isSortWidgetVisible || isSortOptionActive()) ? 'white' : 'black'} height="14" width="16"/>
@@ -209,7 +217,7 @@ function MealsList() {
                 />}
               </div>
             </div>
-            <div id='container' className='mx-auto px-5 w-full grid grid-cols-2 gap-y-3 gap-x-2 sm:grid-cols-3 sm:gap-6 md:gap-x-0 md:gap-y-3 md:px-16'>
+            <div id='container' className='mx-auto px-5 w-full grid grid-cols-2 gap-y-3 gap-x-2 sm:grid-cols-3 sm:gap-6 md:gap-x-0 md:gap-y-3 md:px-16 lg:grid-cols-4 lg:gap-5'>
             {error === '' && (
               (entryPoint === 'beverages' && card === 'beverages') 
                 ? mealitem.map((item) => <BeverageCard key={item._id} beverage={item}/> )

@@ -9,7 +9,7 @@ let db = getDatabase();
 router.get('/', (req, res) => {
     // Pagination of results
     const page = req.query.p || 0;
-    const restaurantsPerPage = 6;
+    const restaurantsPerPage = 18;
 
     // Filtering results
     const cuisine = req.query.cuisine ? {cuisine: {$in: req.query.cuisine.split(',')}} : {};
