@@ -1,4 +1,5 @@
 import { React } from 'react';
+import { OpenIcon } from './svgs/InterfaceSvg';
 
 function Details({ restaurantDoc }) {
 
@@ -36,11 +37,9 @@ function Details({ restaurantDoc }) {
                             Platforms 
                         </span>
                         <span className="font-semibold text-ssm w-max-48 md:w-32 text-right">
-                            <a href={`${restaurantDoc.details.platforms.website}`} target="_blank" rel="noopener noreferrer" className="flex w-full text-wrap text-blue/90">
-                                {`${restaurantDoc.name}'s Website`}
-                                <span className="size-3">
-                                    <img src='/assets/icon/link-out.svg'/>
-                                </span>
+                            <a href={`${restaurantDoc.details.platforms.website}`} target="_blank" rel="noopener noreferrer" className="flex w-full text-wrap text-blue/90 truncate underline">
+                                {`${restaurantDoc.name}`}
+                                <OpenIcon fill='blue' height='10' width='10' />
                             </a>
                         </span>
                     </div>

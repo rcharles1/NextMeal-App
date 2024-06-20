@@ -220,16 +220,16 @@ function RestaurantProfile() {
                         <img src={`/assets/img/gallery/restaurants/${restaurantDoc.gallery.img1}.webp`} alt="restaurant-photo" className="object-cover object-fill h-full w-full mx-auto" />
                     </div>
 
-                    <div className="flex flex-col w-full sm:flex-row sm:mt-4 sm:p-2 sm:space-x-4 md:p-0 md:w-10/12 mx-auto">
-                        <div className="h-fit pb-6 sm:pb-0 p-5 bg-pure_white sm:rounded-lg md:rounded-xl sm:h-80 sm:w-6/12 flex flex-col sm:justify-top">
+                    <div className="flex flex-col w-full sm:flex-row sm:mt-4 md:mt-6 sm:p-2 sm:space-x-4 md:p-0 md:w-10/12 mx-auto">
+                        <div className="h-fit pb-6 sm:pb-0 p-5 bg-pure_white sm:rounded-lg md:rounded-xl sm:h-80 md:h-64 sm:w-6/12 flex flex-col sm:justify-top">
                             <h4 className="font-semibold text-lg md:text-base">Ratings and reviews</h4>
                             <p className="text-base md:text-sm mt-2 sm:mt-4">There are no reviews for {`${restaurantDoc.name}`}. Be the first to write one!</p>
-                            <NavLink to='/review' className="bg-bg_variant1 outline p-2 w-11/12 mx-auto h-10 mt-2 sm:mt-32 md:mt-40 text-base text-center md:text-sm text-pure_white font-bold rounded-lg shadow shadow-sm active:bg-bg_variant1/80">Write a Review</NavLink>
+                            <NavLink to='/review' className="bg-bg_variant1 p-2 w-11/12 mx-auto mt-2 sm:mt-32 md:mt-24 text-base text-center md:text-sm text-pure_white font-bold rounded-lg shadow shadow-sm active:bg-bg_variant1/80">Write a Review</NavLink>
                         </div>
                         <div className="sm:hidden h-fit pb-6 p-5 bg-gray/35 sm:h-80 sm:w-6/12 flex flex-col space-y-2">
                             <h4 className="font-semibold text-center text-base">Ad Here</h4>
                         </div>
-                        <div className="h-fit pb-6 p-5 w-full mx-auto bg-pure_white sm:h-80 sm:w-6/12 sm:rounded-lg md:rounded-xl flex flex-col space-y-2 sm:space-y-4 sm:justify-top">
+                        <div className="h-fit pb-6 p-5 w-full mx-auto bg-pure_white sm:h-80 md:h-64 sm:w-6/12 sm:rounded-lg md:rounded-xl flex flex-col space-y-2 sm:space-y-4 sm:justify-top">
                             <h4 className="font-semibold text-lg md:text-base">Details</h4>
                             <Details restaurantDoc={restaurantDoc}/>
                             <a href='#allDetails'className="underline font-semibold" >View all details</a>
@@ -237,7 +237,7 @@ function RestaurantProfile() {
                         <div className="sm:hidden h-fit pb-6 p-5 bg-gray/35 sm:h-80 sm:w-6/12 flex flex-col space-y-2">
                             <h4 className="font-semibold text-center text-base">Ad Here</h4>
                         </div>
-                        <div className="h-fit pb-6 p-5 bg-pure_white sm:h-80 sm:w-6/12 sm:rounded-lg md:rounded-xl flex flex-col space-y-2 sm:space-y-4 sm:justify-top">
+                        <div className="h-fit pb-6 p-5 bg-pure_white sm:h-80 md:h-64 sm:w-6/12 sm:rounded-lg md:rounded-xl flex flex-col space-y-2 sm:space-y-4 sm:justify-top">
                             <h4 className="font-semibold text-lg md:text-base">Services and features</h4>
                             <RestaurantServices restaurantDoc={restaurantDoc}/>
                         </div>
@@ -245,7 +245,7 @@ function RestaurantProfile() {
 
                     <div className="h-2 pb-6 p-5 bg-gray/35 sm:bg-pure sm:h-1 sm:pb-0 flex flex-col space-y-2"></div>
 
-                    <div className="h-fit w-full pb-6 bg-pure_white sm:rounded-lg md:rounded-xl md:w-10/12 mx-auto flex flex-col space-y-2">
+                    <div className="h-fit w-full pb-6 bg-pure_white sm:rounded-lg md:rounded-xl md:mt-2 md:w-10/12 mx-auto flex flex-col space-y-2">
                         <h4 className="font-semibold p-5 text-lg" >Best nearby restaurants in {`${restaurantDoc.locationData.district}`}</h4>
                         <div className="bg-gray sm:bg-pure_white px-3 pb-3 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6 p-1 sm:px-2">
                             {nearbyRestaurants ? nearbyRestaurants.map(nearbyRestaurant => {
@@ -258,7 +258,7 @@ function RestaurantProfile() {
 
                     <div id="allDetails" className="h-fit pb-6 p-5 bg-pure_white mt-2 sm:mt-6 sm:rounded-lg md:rounded-xl sm:h-80 md:h-fit mb-8 md:w-10/12 mx-auto flex flex-col space-y-3 sm:space-y-4">
                         <h4 className="font-semibold text-lg">Details and amenities</h4>
-                        <hr className="text-light_dark/35"></hr>
+                        <hr className="text-silver/30"></hr>
                         <div className="w-full h-fit sm:w-fit sm:flex">
                             <div className="sm:w-5/12 p-1">
                                 <h5 className="font-semibold">ABOUT</h5>

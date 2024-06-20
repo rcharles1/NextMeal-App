@@ -19,14 +19,14 @@ const RatingInput = ({ initialRating, onRate }) => {
             // Full circle for filled ratings
             return (
               <div key={index} className="flex ">
-                <Circle fill={'red'} stroke={'red'} height={35} width={35} onClick={() => handleRate(ratingValue)} />
+                <Circle fill={'red'} stroke={'red'} height={39} width={30} onClick={() => handleRate(ratingValue)} />
               </div>
             );
           } else {
             // Empty circle for remaining ratings
             return (
               <div key={index} className="flex " >
-                <Circle fill={'none'} stroke={'red'} height={35} width={35} onClick={() => handleRate(ratingValue)} />
+                <Circle fill={'none'} stroke={'red'} height={30} width={30} onClick={() => handleRate(ratingValue)} />
               </div>
             );
           }
