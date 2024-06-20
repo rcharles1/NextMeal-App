@@ -2,9 +2,7 @@ import { React, useState, useEffect, useCallback } from 'react';
 import Details from './Details';
 import Header from './Header';
 import Footer from './Footer';
-import Menu from './Menus';
 import RestaurantServices from './RestaurantServices';
-import Reviews from './Reviews';
 import MenuIcon from './MenuIcon';
 import Breadcrumbs from './BreadCrumbs';
 import Loading from './Loading';
@@ -13,7 +11,7 @@ import { getMyFavorites } from '../features/wishlist/wishlistSlice';
 import { fetchRestaurantDoc, fetchAllNearbyRestaurants } from '../utilities/getData';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, NavLink } from 'react-router-dom';
 import { Bookmark, Circle, CircleHalfFull, Share } from './svgs/InterfaceSvg';
 import RestaurantAmenities from './RestaurantAmenities';
 import NearbyRestaurantCard from './NearbyRestaurantCard';
@@ -226,7 +224,7 @@ function RestaurantProfile() {
                         <div className="h-fit pb-6 sm:pb-0 p-5 bg-pure_white sm:rounded-lg md:rounded-xl sm:h-80 sm:w-6/12 flex flex-col sm:justify-top">
                             <h4 className="font-semibold text-lg md:text-base">Ratings and reviews</h4>
                             <p className="text-base md:text-sm mt-2 sm:mt-4">There are no reviews for {`${restaurantDoc.name}`}. Be the first to write one!</p>
-                            <button to='/review' className="bg-bg_variant1 w-11/12 mx-auto h-10 mt-2 sm:mt-32 md:mt-40 text-base md:text-sm text-pure_white font-bold rounded-lg shadow shadow-sm active:bg-bg_variant1/80">Write a Review</button>
+                            <NavLink to='/review' className="bg-bg_variant1 outline p-2 w-11/12 mx-auto h-10 mt-2 sm:mt-32 md:mt-40 text-base text-center md:text-sm text-pure_white font-bold rounded-lg shadow shadow-sm active:bg-bg_variant1/80">Write a Review</NavLink>
                         </div>
                         <div className="sm:hidden h-fit pb-6 p-5 bg-gray/35 sm:h-80 sm:w-6/12 flex flex-col space-y-2">
                             <h4 className="font-semibold text-center text-base">Ad Here</h4>

@@ -142,7 +142,7 @@ export const beverageFilterOptions = [
 ] 
 
 export const sortOptions = [
-    { text: 'Ascending', value: '1', icon: 'Ascending'},
+    {  text: 'Ascending', value: '1', icon: 'Ascending'},
     {  text: 'Descending', value: '-1', icon: 'Descending'},
     {  text: 'Price: Low to High', value: '1', icon: 'Rise'},
     {  text: 'Price: High to Low', value: '-1', icon: 'Fall'},

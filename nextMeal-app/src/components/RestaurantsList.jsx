@@ -10,7 +10,7 @@ import SortWidget from './SortWidget';
 import { Filter, Sort } from '/src/components/svgs/InterfaceSvg';
 
 import { fetchAllRestaurants } from '../utilities/getData';
-import { restaurantFilterOptions } from '../utilities/prefences';
+import { restaurantFilterOptions } from '../utilities/preferences';
 import Error from './Error';
 import Slideshow from './Slideshow';
 

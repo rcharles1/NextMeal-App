@@ -1,5 +1,5 @@
 import React from 'react';
-import { Circle, CircleHalfFull } from './YourIconComponents'; // Import your Icon components
+import { Circle, CircleHalfFull } from '../svgs/InterfaceSvg'; 
 
 const RatingDisplay = ({ rating }) => {
   const totalBubbles = 5;

@@ -19,7 +19,8 @@ export default {
       blue: '#0000ff',
       gray: '#e5e7eb',
       graphic_dark: '#ffffff',
-      light_dark: '#B3ADA7'
+      light_dark: '#B3ADA7',
+      silver: '#C0C0C0'
     },
     extend: {
       caretColor: {

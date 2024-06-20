@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { profileLinks } from '../utilities/links'
-import { Favorite, Account, Cart, SignOut } from '/src/components/svgs/InterfaceSvg';
+import { Favorite, Account, CartIcon, SignOut } from '/src/components/svgs/InterfaceSvg';
 import useSyncedLocalStorage from '../hooks/useSyncedLocalStorage';
 
 function ProfileIcon({ colorTheme }) {
@@ -12,7 +12,7 @@ function ProfileIcon({ colorTheme }) {
     const iconComponents = {
         'Account': Account,
         'Favorites': Favorite,
-        'Cart': Cart,
+        'Cart': CartIcon,
         'SignOut': SignOut
     };
 

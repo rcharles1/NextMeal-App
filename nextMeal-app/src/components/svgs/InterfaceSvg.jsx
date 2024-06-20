@@ -40,10 +40,6 @@ export function Bookmark({fill, stroke, height, width}) {
 	return (<svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 24 24"><path fill={fill} stroke={stroke} strokeLinejoin="round" strokeWidth={1.5} d="M6 20V5a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v15l-6-3z"></path></svg>);
 }
 
-export function Cart({fill, height, width}) {
-	return (<svg xmlns="http://www.w3.org/2000/svg"  width={width} height={height} viewBox="0 0 24 24" ><path fill={fill} d="M8.75 13a.75.75 0 0 0-1.5 0v4a.75.75 0 0 0 1.5 0zm7.25-.75a.75.75 0 0 1 .75.75v4a.75.75 0 0 1-1.5 0v-4a.75.75 0 0 1 .75-.75m-3.25.75a.75.75 0 0 0-1.5 0v4a.75.75 0 0 0 1.5 0z"></path><path fill={fill} fillRule="evenodd" d="M17.274 3.473c-.476-.186-1.009-.217-1.692-.222A1.75 1.75 0 0 0 14 2.25h-4a1.75 1.75 0 0 0-1.582 1c-.684.006-1.216.037-1.692.223A3.25 3.25 0 0 0 5.3 4.563c-.367.493-.54 1.127-.776 1.998l-.628 2.303a2.979 2.979 0 0 0-1.01.828c-.622.797-.732 1.746-.621 2.834c.107 1.056.44 2.386.856 4.05l.026.107c.264 1.052.477 1.907.731 2.574c.265.696.602 1.266 1.156 1.699c.555.433 1.19.62 1.929.71c.708.084 1.59.084 2.675.084h4.724c1.085 0 1.966 0 2.675-.085c.74-.088 1.374-.276 1.928-.71c.555-.432.891-1.002 1.156-1.698c.255-.667.468-1.522.731-2.575l.027-.105c.416-1.665.748-2.995.856-4.05c.11-1.09 0-2.038-.622-2.835a2.979 2.979 0 0 0-1.009-.828l-.628-2.303c-.237-.871-.41-1.505-.776-1.999a3.25 3.25 0 0 0-1.426-1.089M7.272 4.87c.22-.086.486-.111 1.147-.118c.282.59.884.998 1.58.998h4c.698 0 1.3-.408 1.582-.998c.661.007.927.032 1.147.118c.306.12.572.323.768.587c.176.237.279.568.57 1.635l.354 1.297c-1.038-.139-2.378-.139-4.043-.139H9.622c-1.664 0-3.004 0-4.042.139l.354-1.297c.29-1.067.394-1.398.57-1.635a1.75 1.75 0 0 1 .768-.587M10 3.75a.25.25 0 0 0 0 .5h4a.25.25 0 1 0 0-.5zm-5.931 6.865c.279-.357.72-.597 1.63-.729c.931-.134 2.193-.136 3.986-.136h4.63c1.793 0 3.054.002 3.985.136c.911.132 1.352.372 1.631.73c.279.357.405.842.311 1.758c-.095.936-.399 2.16-.834 3.9c-.277 1.108-.47 1.876-.688 2.45c-.212.554-.419.847-.678 1.05c-.259.202-.594.331-1.183.402c-.61.073-1.4.074-2.544.074h-4.63c-1.144 0-1.935-.001-2.544-.074c-.59-.07-.924-.2-1.183-.402c-.26-.203-.467-.496-.678-1.05c-.218-.574-.411-1.342-.689-2.45c-.434-1.74-.739-2.964-.834-3.9c-.093-.916.033-1.402.312-1.759" clipRule="evenodd"></path></svg>);
-}
-
 export function SignOut({fill, height, width}) {
 	return (<svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 24 24" ><path fill={fill} d="M9 20.75H6a2.64 2.64 0 0 1-2.75-2.53V5.78A2.64 2.64 0 0 1 6 3.25h3a.75.75 0 0 1 0 1.5H6a1.16 1.16 0 0 0-1.25 1v12.47a1.16 1.16 0 0 0 1.25 1h3a.75.75 0 0 1 0 1.5Zm7-4a.74.74 0 0 1-.53-.22a.75.75 0 0 1 0-1.06L18.94 12l-3.47-3.47a.75.75 0 1 1 1.06-1.06l4 4a.75.75 0 0 1 0 1.06l-4 4a.74.74 0 0 1-.53.22"></path><path fill="#fafafa" d="M20 12.75H9a.75.75 0 0 1 0-1.5h11a.75.75 0 0 1 0 1.5"></path></svg>);
 }
@@ -126,4 +122,24 @@ export function VolumeIcon({fill, height, width}) {
 
 export function MapPinIcon({fill, height, width}) {
 	return (<svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 320 512" ><path fill={fill} d="M16 144a144 144 0 1 1 288 0a144 144 0 1 1-288 0m144-64c8.8 0 16-7.2 16-16s-7.2-16-16-16c-53 0-96 43-96 96c0 8.8 7.2 16 16 16s16-7.2 16-16c0-35.3 28.7-64 64-64m-32 400V317.1a177.984 177.984 0 0 0 64 0V480c0 17.7-14.3 32-32 32s-32-14.3-32-32"></path></svg>);
+}
+
+export function CartRemoveIcon({fill, height, width}) {
+	return (<svg xmlns="http://www.w3.org/2000/svg"  width={width} height={height} viewBox="0 0 24 24" ><g fill="none" stroke={fill} strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} color={fill}><path d="m8 16l8.72-.727c2.729-.227 3.341-.823 3.643-3.544L21 6M6 6h2m14 0h-3.5m-8-3l3 3m0 0l3 3m-3-3l-3 3m3-3l3-3"></path><circle cx={6} cy={20} r={2}></circle><circle cx={17} cy={20} r={2}></circle><path d="M8 20h7M2 2h.966c.945 0 1.768.625 1.997 1.515L7.94 15.076a1.96 1.96 0 0 1-.35 1.686L6.631 18"></path></g></svg>);
+}
+
+export function CartAddIcon({fill, height, width}) {
+	return (<svg xmlns="http://www.w3.org/2000/svg"  width={width} height={height} viewBox="0 0 24 24"><g fill="none" stroke={fill} strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} color={fill}><path d="m8 16l8.72-.727c2.729-.227 3.341-.823 3.643-3.544L21 6M6 6h.5M22 6h-2.5m-10 0h7M13 9.5v-7"></path><circle cx={6} cy={20} r={2}></circle><circle cx={17} cy={20} r={2}></circle><path d="M8 20h7M2 2h.966c.945 0 1.768.625 1.997 1.515L7.94 15.076a1.96 1.96 0 0 1-.35 1.686L6.631 18"></path></g></svg>);
+}
+
+export function CartIcon({fill, height, width}) {
+	return (<svg xmlns="http://www.w3.org/2000/svg"  width={width} height={height} viewBox="0 0 24 24" ><g fill="none" stroke={fill} strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} color={fill}><path d="m8 16l8.72-.727c2.729-.227 3.341-.823 3.643-3.544L21 6M6 6h16"></path><circle cx={6} cy={20} r={2}></circle><circle cx={17} cy={20} r={2}></circle><path d="M8 20h7M2 2h.966c.945 0 1.768.625 1.997 1.515L7.94 15.076a1.96 1.96 0 0 1-.35 1.686L6.631 18"></path></g></svg>);
+}
+
+export function ArrowDownIcon({fill, height, width}) {
+	return (<svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 1024 1024"><path fill={fill} d="M831.872 340.864L512 652.672L192.128 340.864a30.59 30.59 0 0 0-42.752 0a29.12 29.12 0 0 0 0 41.6L489.664 714.24a32 32 0 0 0 44.672 0l340.288-331.712a29.12 29.12 0 0 0 0-41.728a30.59 30.59 0 0 0-42.752 0z"></path></svg>);
+}
+
+export function ArrowUpIcon({fill, height, width}) {
+	return (<svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 1024 1024"><path fill={fill} d="m488.832 344.32l-339.84 356.672a32 32 0 0 0 0 44.16l.384.384a29.44 29.44 0 0 0 42.688 0l320-335.872l319.872 335.872a29.44 29.44 0 0 0 42.688 0l.384-.384a32 32 0 0 0 0-44.16L535.168 344.32a32 32 0 0 0-46.336 0"></path></svg>);
 }

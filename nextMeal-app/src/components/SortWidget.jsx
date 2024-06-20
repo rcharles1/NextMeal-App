@@ -1,5 +1,5 @@
 import  React,{ useState } from 'react';
-import { sortOptions } from '../utilities/prefences'
+import { sortOptions } from '../utilities/preferences'
 
 import { Ascending, Descending, Rise, Fall } from './svgs/InterfaceSvg';
 

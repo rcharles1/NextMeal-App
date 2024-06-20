@@ -35,9 +35,9 @@ function HomePage() {
         <div className="flex bg-graphicDots caret-transparent h-full bg-no-repeat bg-right-top">
             <div className="flex flex-col justify-center items-center rounded-md md:mt-0 w-100 text-slate_white h-full px-4 ">
                 <div className="w-100 h-fit -mt-20 md:mt-10 md:justify-center p-1">
-                   <h1 className="text-5xl sm:text-7xl md:text-6xl md:px-6 mt-36 md:mt-0  font-bold text-center">Discover Restaurants & Delicious Food</h1>
+                   <h1 className="text-5xl sm:text-7xl md:text-6xl md:px-6 mt-36 md:mt-0 font-bold text-center">Discover Restaurants & Delicious Food</h1>
                 </div>
-                <div className="cursor-pointer mt-12 ring-1 rounded-xl ring-offset-1 p-1 w-fit">
+                <div className="cursor-pointer mt-12 rounded-xl md:rounded-md ring-1 ring-pure_white ring-offset-1 p-1 md:p- md:h-fit w-fit">
                     <div>
                         <Modal
                             isOpen={modalIsOpen}
@@ -58,7 +58,7 @@ function HomePage() {
                                   required
                                   name="location"
                                   placeholder="Enter region" 
-                                  className="bg-gray/40 capitalize rounded-md p-2 text-base px-3 md:p-1 md:px-2 md:text-sm w-8/12 mx-auto focus:bg-gray/20  focus:outline-bg_variant1"
+                                  className="bg-gray/40 capitalize rounded-md p-2 text-base px-3 md:p-1 md:px-2 md:text-sm w-8/12 mx-auto focus:bg-gray/20 focus:outline-bg_variant1"
                                 />
                                 <button type="submit"className="bg-bg_variant1 p-2 md:p-1 w-8/12 mt-6 md:mt-4 mx-auto rounded-md md:text-sm text-pure_white font-medium">Save</button>
                             </form>
@@ -68,11 +68,11 @@ function HomePage() {
                         </Modal>
                     </div>
                     {locationAddress ? (
-                        <div className="flex flex-row justify-center items-center space-x-3 md:space-x-2 md:px-4 h-12 w-fit bg-blur sm:h-16 sm:w-48 p-3 md:p-1 border border-slate_white/30 rounded-md drop-shadow">
-                            <div className="size-8 sm:size-10 md:size-8 justify-center items center flex">
+                        <div className="flex flex-row items-center space-x-3 md:space-x-2 md:px-3 h-12 w-fit bg-blur sm:h-16 md:h-8 sm:w-fit p-3 md:p-1 border border-slate_white/30 rounded-md drop-shadow">
+                            <div className="size-8 sm:size-10 md:size-4 justify-center items center flex">
                             <img src='/assets/icon/location-light.svg' alt='Location Icon'/>
                             </div>
-                            <p className="capitalize">{locationAddress}</p>
+                            <p className="capitalize text-base font-bold">{locationAddress}</p>
                       </div>
                     ): <div onClick={openModal} ><Location /></div>}
                 </div>

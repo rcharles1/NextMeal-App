@@ -13,7 +13,7 @@ import Footer from './Footer';
 import Error from './Error';
 
 import { fetchMealsOrBeverages } from '../utilities/getData';
-import { beverageFilterOptions, mealFilterOptions } from '../utilities/prefences';
+import { beverageFilterOptions, mealFilterOptions } from '../utilities/preferences';
 import { mealMoods, beverageMoods } from '../utilities/moods';
 import { useLocation } from 'react-router-dom';
 import PosterCarousel from './PostersSlideShow';

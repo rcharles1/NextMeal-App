@@ -9,7 +9,7 @@ import { addToCart, removeFromCart } from '../features/cart/cartSlice';
 
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { Bookmark, Cart, Diamonds, CompanyIcon, PricetagIcon, VolumeIcon } from '/src/components/svgs/InterfaceSvg';
+import { CartAddIcon, CartRemoveIcon, Diamonds, CompanyIcon, PricetagIcon, VolumeIcon } from '/src/components/svgs/InterfaceSvg';
 
 function BeverageItem() {
     const dispatch = useDispatch();
@@ -98,21 +98,21 @@ function BeverageItem() {
                         </div>
                     </div>
                     <div className="flex flex-col space-y-4 px-3 py-2 caret-transparent" >
-                        <div className="flex justify-left px-4 space-x-4 items-center">
-                            <p className="font-medium">Select quantity:</p>
+                        <div className="flex justify-left md:w-fit md:mx-auto px-4 space-x-4 items-center">
+                            <p className="font-medium md:text-sm">Select quantity:</p>
                             <div className="flex flex-row mx-auto items-center bg-light_dark/5 shadow-sm focus:bg-pure_white rounded">
                                 <button onClick={decrementQuantity} className="p-2 w-8 text-base">-</button>
-                                <input type="number" min="1" max="10" value={quantity} onChange={e => setQuantity(e.target.value)} className="text-center" />
+                                <input type="number" min="1" max="10" value={quantity} onChange={e => setQuantity(e.target.value)} className="text-center w-fit text-center pl-3" />
                                 <button onClick={incrementQuantity} className="p-2 w-8 text-base">+</button>
                             </div>
                         </div>
-                        <button onClick={handleAddToCart} className="flex space-x-2 items-center justify-center bg-bg_variant1/75 p-3 w-80 h-10 mx-auto text-pure_white/80 font-bold rounded-md focus:bg-bg_variant1">
+                        <button onClick={handleAddToCart} className="flex space-x-2 md:text-ssm items-center justify-center bg-bg_variant1/75 p-3 w-80 h-10 md:w-40 md:h-8 mx-auto text-pure_white font-bold rounded-md focus:bg-bg_variant1">
+                            <CartAddIcon fill="white" height="22" width="30" />
                             <span> Add to cart</span>
-                            <Cart fill="white" height="30" width="30" />
                         </button>
-                        <button onClick={handleRemoveFromCart} className="flex space-x-2 items-center text-default/75 justify-center outline outline-2 outline-light_dark/35 bg-pure_white p-3 w-80 h-10 mx-auto font-semibold rounded-md">
+                        <button onClick={handleRemoveFromCart} className="flex space-x-2  md:text-ssm items-center text-default/75 justify-center outline outline-2 outline-light_dark/15 bg-pure_white p-3 w-80 h-10 md:w-40 md:h-8 mx-auto font-semibold rounded-md">
+                            <CartRemoveIcon fill="gray" height="22" width="30" />
                             <span> Remove from cart</span>
-                            <Cart fill="white" height="30" width="30" />
                         </button>
                     </div>
                 </div>
