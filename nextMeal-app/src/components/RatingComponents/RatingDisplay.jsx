@@ -1,5 +1,5 @@
 import React from 'react';
-import { Circle, CircleHalfFull } from '../svgs/InterfaceSvg'; 
+import { RatingBubble, CircleHalfFull } from '../svgs/InterfaceSvg'; 
 
 const RatingDisplay = ({ rating }) => {
   const totalBubbles = 5;
@@ -14,7 +14,7 @@ const RatingDisplay = ({ rating }) => {
             // Full circle for filled ratings
             return (
               <div key={index} className="flex ">
-                <Circle fill={'red'} stroke={'red'} height={10} width={10} />
+                <RatingBubble fill={'red'} stroke={'red'} height={10} width={10} />
               </div>
             );
           } else if (index === filledBubbles && halfFilled) {
@@ -28,7 +28,7 @@ const RatingDisplay = ({ rating }) => {
             // Empty circle for remaining ratings
             return (
               <div key={index} className="flex " >
-                <Circle fill={'none'} stroke={'red'} height={10} width={10}/>
+                <RatingBubble fill={'none'} stroke={'red'} height={10} width={10}/>
               </div>
             );
           }

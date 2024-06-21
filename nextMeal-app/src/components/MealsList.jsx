@@ -40,6 +40,7 @@ function MealsList() {
     drinkCategory: [],
     mood: []
   });  
+  const size = 'sm';
 
   const location = useLocation();
   const entryPoint = location.state?.entryPoint || 'meals';
@@ -194,14 +195,14 @@ function MealsList() {
                   className={`md:hidden flex space-x-1 sm:space-x-0 grow-0 border border-light_dark/55 rounded p-1 h-8 w-full sm:h-6 sm:text-xs items-center justify-center caret-transparent cursor-pointer ${(isFilterWidgetVisible || areFiltersActive()) ? 'bg-bg_variant1 text-pure_white/75' : ''} focus:text-pure_white/75 focus:bg-bg_variant1`}
                 >
                   <span className="font-medium">Filter by</span>
-                  <Filter fill={(isFilterWidgetVisible || areFiltersActive()) ? 'white' : 'black'} height="14" width="16" />
+                  <Filter fill={(isFilterWidgetVisible || areFiltersActive()) ? 'white' : 'black'}  height={`${size === 'sm' ? '10' : '20'}`} width={`${size === 'sm' ? '10' : '20'}`}/>
                 </button>
                 <button 
                   onClick={() => setIsSortWidgetVisible(!isSortWidgetVisible)}
                   className={`flex space-x-1 sm:space-x-0 grow-0 border border-light_dark/55 p-2 h-8 sm:h-12 w-full sm:h-6 sm:text-xs md:text-ssm rounded items-center justify-center caret-transparent cursor-pointer ${(isSortWidgetVisible || isSortOptionActive()) ? 'bg-bg_variant1 text-pure_white border-bg_variant1 font-semibold' : ''} focus:text-pure_white/75 focus:bg-bg_variant1 relative`}
                 >
                   <span className="font-medium">Sort by</span>
-                  <Sort fill={(isSortWidgetVisible || isSortOptionActive()) ? 'white' : 'black'} height="14" width="16"/>
+                  <Sort fill={(isSortWidgetVisible || isSortOptionActive()) ? 'white' : 'black'}  height={`${size === 'sm' ? '10' : '20'}`} width={`${size === 'sm' ? '10' : '20'}`}/>
                 </button>
               </div>
               {(isFilterWidgetVisible || isFilterActive) && <FilterWidget onFiltersChange={handleFiltersChange} 

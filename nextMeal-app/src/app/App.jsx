@@ -26,7 +26,7 @@ function App() {
         <Route path="pageNotFound" element={<PageError />} />
         <Route path="restaurantslist" element={<RestaurantsList />} />
         <Route path="/restaurantprofile/:id" element={<RestaurantProfile />} />
-        <Route path="/review" element={<ReviewForm />} />
+        <Route path="/review/:id" element={<ReviewForm />} />
         <Route path="mealslist" element={<MealsList />} />
         <Route path="mealitem/:id" element={<MealItem />} />
         <Route path="beverageitem/:id" element={<BeverageItem />} />

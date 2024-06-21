@@ -146,4 +146,25 @@ export const sortOptions = [
     {  text: 'Descending', value: '-1', icon: 'Descending'},
     {  text: 'Price: Low to High', value: '1', icon: 'Rise'},
     {  text: 'Price: High to Low', value: '-1', icon: 'Fall'},
-]
+];
+
+export const reviewOptions = [
+    { text: 'Business' },
+    { text: 'Couples' },
+    { text: 'Family' },
+    { text: 'Friends' },
+    { text: 'Solo' },
+];
+  
+export const cuisineOptions = [
+    { text: 'Select one' },
+    { text: 'Breakfast' },
+    { text: 'Beer' },
+    { text: 'Lunch' },
+    { text: 'Dinner' },
+    { text: 'Dessert' },
+    { text: 'Coffee or tea' },
+    { text: 'Wine' },
+    { text: 'Spirits' },
+    { text: 'Other' },
+];

@@ -12,7 +12,7 @@ import { fetchRestaurantDoc, fetchAllNearbyRestaurants } from '../utilities/getD
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate, NavLink } from 'react-router-dom';
-import { Bookmark, Circle, CircleHalfFull, Share } from './svgs/InterfaceSvg';
+import { Bookmark, RatingBubble, CircleHalfFull, Share } from './svgs/InterfaceSvg';
 import RestaurantAmenities from './RestaurantAmenities';
 import NearbyRestaurantCard from './NearbyRestaurantCard';
 import MapComponent from './MapComponent';
@@ -39,7 +39,6 @@ function RestaurantProfile() {
                 console.error('Error fetching restaurant document:', error);
             }
         };
-
         fetchRestaurantDetails();
     }, [ id ]);
 
@@ -72,25 +71,7 @@ function RestaurantProfile() {
             setNearbyRestaurants([]);
         }
         fetchNearbyRestaurants();
-    }, [page, restaurantDoc]);    
-
-    const handleClick = (id) => {
-        let displayTab;
-        switch (id) {
-            case 'detailsTab':
-                displayTab = 'details';
-                break;
-            case 'menusTab':
-                displayTab = 'menus';
-                break;
-            case 'reviewsTab':
-                displayTab = 'reviews';
-                break;
-            default:
-                displayTab = 'details';
-                break;
-        }
-    };
+    }, [page, restaurantDoc]);
     
     useEffect(() => {
         dispatch(getMyFavorites());
@@ -177,7 +158,7 @@ function RestaurantProfile() {
                                             // Full circle for filled ratings
                                             return (
                                                 <div key={index} className="flex ">
-                                                    <Circle key={index} fill={'red'} stroke={'red'} height={15} width={15} />
+                                                    <RatingBubble key={index} fill={'red'} stroke={'red'} height={15} width={15} />
                                                 </div>
                                             );
                                         } else if (index === filledBubbles && halfFilled) {
@@ -191,7 +172,7 @@ function RestaurantProfile() {
                                             // Empty circle for remaining ratings
                                             return (
                                                 <div key={index} className="flex " >
-                                                    <Circle  key={index} fill={'none'} stroke={'red'} height={15} width={15}/>
+                                                    <RatingBubble  key={index} fill={'none'} stroke={'red'} height={15} width={15}/>
                                                 </div>
                                             );
                                         }
@@ -224,7 +205,7 @@ function RestaurantProfile() {
                         <div className="h-fit pb-6 sm:pb-0 p-5 bg-pure_white sm:rounded-lg md:rounded-xl sm:h-80 md:h-64 sm:w-6/12 flex flex-col sm:justify-top">
                             <h4 className="font-semibold text-lg md:text-base">Ratings and reviews</h4>
                             <p className="text-base md:text-sm mt-2 sm:mt-4">There are no reviews for {`${restaurantDoc.name}`}. Be the first to write one!</p>
-                            <NavLink to='/review' className="bg-bg_variant1 p-2 w-11/12 mx-auto mt-2 sm:mt-32 md:mt-24 text-base text-center md:text-sm text-pure_white font-bold rounded-lg shadow shadow-sm active:bg-bg_variant1/80">Write a Review</NavLink>
+                            <NavLink to={`/review/${restaurantDoc._id}`} className="bg-bg_variant1 p-2 w-11/12 mx-auto mt-2 sm:mt-32 md:mt-24 text-base text-center md:text-sm text-pure_white font-bold rounded-lg shadow shadow-sm active:bg-bg_variant1/80">Write a Review</NavLink>
                         </div>
                         <div className="sm:hidden h-fit pb-6 p-5 bg-gray/35 sm:h-80 sm:w-6/12 flex flex-col space-y-2">
                             <h4 className="font-semibold text-center text-base">Ad Here</h4>

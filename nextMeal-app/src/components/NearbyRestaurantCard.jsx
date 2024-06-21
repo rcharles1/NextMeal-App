@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback }   from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Bookmark, Circle, CircleHalfFull } from '/src/components/svgs/InterfaceSvg';
+import { Bookmark, RatingBubble, CircleHalfFull } from '/src/components/svgs/InterfaceSvg';
 import { getMyFavorites } from '../features/wishlist/wishlistSlice';
 
 function NearbyRestaurantCard({ nearbyRestaurant }) {
@@ -93,7 +93,7 @@ function NearbyRestaurantCard({ nearbyRestaurant }) {
                                             // Full circle for filled ratings
                                             return (
                                                 <div key={index} className="flex ">
-                                                    <Circle key={index} fill={'red'} stroke={'red'} height={15} width={15} />
+                                                    <RatingBubble key={index} fill={'red'} stroke={'red'} height={15} width={15} />
                                                 </div>
                                             );
                                         } else if (index === filledBubbles && halfFilled) {
@@ -107,7 +107,7 @@ function NearbyRestaurantCard({ nearbyRestaurant }) {
                                             // Empty circle for remaining ratings
                                             return (
                                                 <div className="flex " >
-                                                    <Circle  key={index} fill={'none'} stroke={'red'} height={15} width={15}/>
+                                                    <RatingBubble  key={index} fill={'none'} stroke={'red'} height={15} width={15}/>
                                                 </div>
                                             );
                                         }

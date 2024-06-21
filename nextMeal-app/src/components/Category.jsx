@@ -3,6 +3,7 @@ import { React, useState } from  'react';
 
 function MealCategory({ onCategorySelect, moodOption, resetPage }) {
   const [selected, setSelected] = useState(null);
+  const size = 'sm'; // control icon size
 
   const handleClick = index => {
     setSelected(index);
@@ -21,7 +22,7 @@ function MealCategory({ onCategorySelect, moodOption, resetPage }) {
                 boxShadow: selected === index ? '10px 10px 20px #d9d9d9, -10px -10px 20px #ffffff' : '5px 5px 15px #aeaec0, -5px -5px 15px #ffffff'
               }}
             >
-              <item.svg fill={selected === index ? 'red' : 'black'} height="35" width="35"/>
+              <item.svg fill={selected === index ? 'red' : 'black'}  height={`${size === 'sm' ? '65' : '35'}`} width={`${size === 'sm' ? '65' : '35'}`}/>
           </div>
           <p className={`text-xs md:text-ssm font-medium text-center ${selected === index ? 'text-bg_variant1' : 'text-default/65'}`}>{item.text}</p>
         </div>

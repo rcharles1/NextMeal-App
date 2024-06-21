@@ -4,7 +4,7 @@ import { updateFavoritesList } from '../utilities/getData';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Bookmark, Circle, CircleHalfFull } from '/src/components/svgs/InterfaceSvg';
+import { Bookmark, RatingBubble, CircleHalfFull } from '/src/components/svgs/InterfaceSvg';
 import { getMyFavorites } from '../features/wishlist/wishlistSlice';
 import Loading from './Loading';
 
@@ -101,7 +101,7 @@ function RestaurantCard({ restaurant }) {
                                                     // Full circle for filled ratings
                                                     return (
                                                         <div key={index} className="flex ">
-                                                            <Circle key={index} fill={'red'} stroke={'red'} height={10} width={10} />
+                                                            <RatingBubble key={index} fill={'red'} stroke={'red'} height={10} width={10} />
                                                         </div>
                                                     );
                                                 } else if (index === filledBubbles && halfFilled) {
@@ -115,7 +115,7 @@ function RestaurantCard({ restaurant }) {
                                                     // Empty circle for remaining ratings
                                                     return (
                                                         <div key={index} className="flex " >
-                                                            <Circle  key={index} fill={'none'} stroke={'red'} height={10} width={10}/>
+                                                            <RatingBubble  key={index} fill={'none'} stroke={'red'} height={10} width={10}/>
                                                         </div>
                                                     );
                                                 }
