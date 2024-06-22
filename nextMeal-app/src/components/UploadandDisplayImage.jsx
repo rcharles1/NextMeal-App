@@ -24,30 +24,25 @@ const UploadAndDisplayImage = () => {
       <div
         onDragOver={handleDragOver}
         onDrop={handleDrop}
-        className="border-dashed border-2 border-gray-300 rounded-md bg-gray/35 p-10 text-center cursor-pointer"
+        className="border-dashed border-2 border-gray-300 rounded-md bg-gray/35 p-1  text-center cursor-pointer"
       >
         {selectedImage ? (
           <img
             alt="Selected"
             width="250px"
             src={URL.createObjectURL(selectedImage)}
+            className="object-fill w-full"
           />
         ) : (
-          <p>Drag and drop your image here, or click to select files</p>
+          <p>Drag and drop your image here, or <span 
+          onClick={() => fileInputRef.current.click()} className="underline font-medium">click</span> to select files</p>
         )}
-        {/* Display the "Choose File" button */}
         <input
           type="file"
           onChange={handleImageChange}
           ref={fileInputRef}
           style={{ display: 'none' }}
         />
-        <button
-          onClick={() => fileInputRef.current.click()}
-          className="mt-2 p-2 bg-bg_variant1/75 font-semibold rounded-lg text-pure_white"
-        >
-          Choose File
-        </button>
       </div>
     </div>
   );

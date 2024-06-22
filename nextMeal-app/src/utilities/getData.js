@@ -205,3 +205,47 @@ export const fetchFavoriteItemDoc = async (id, cardType) => {
         console.error('Error fetching restaurant document:', error);
     }
 };
+
+// ------------------------REVIEWS-------------------------------------
+// Add Review
+export const addReview = async (createdAt, userId, listingId, content) => {
+    
+    const response = await fetch('http://localhost:3000/reviews/', { 
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            createdAt,
+            userId,
+            listingId,
+            content
+        }),
+        credentials: 'include'
+    });
+    
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}. Network response was not ok`);
+    }
+
+    const data = await response.json();
+    return data;
+};
+
+export const getListingReviews = async (listingId) => {
+    let url = `http://localhost:3000/reviews/?`;
+    let params =  { listingId };
+    let queryParams = Object.keys(params).map(key => `${key}=${params[key]}`).join('&');
+    url += queryParams;
+
+    try {
+        const response = await fetch(url);
+       if (response.ok) {
+        const data = await response.json();
+        return data;
+       }
+       throw new Error(`HTTP error! status: ${response.status}` )
+    } catch (error) {
+        console.error('Error fetching reviews:', error);
+    }
+};

@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'; // Import PropTypes for type checking
 
 import { RatingBubble } from '../svgs/InterfaceSvg'; 
 
-const RatingInput = ({ initialRating, onRate }) => {
+const RatingInput = ({ onRate }) => {
   const totalBubbles = 5; // Total number of rating bubbles
-  const [rating, setRating] = useState(initialRating || 0);
+  const [rating, setRating] = useState(0);
   const size = 'sm'; // Controls icon size
 
   const handleRate = (newRating) => {

@@ -150,7 +150,7 @@ export const sortOptions = [
 
 export const reviewOptions = [
     { text: 'Business' },
-    { text: 'Couples' },
+    { text: 'Couple' },
     { text: 'Family' },
     { text: 'Friends' },
     { text: 'Solo' },

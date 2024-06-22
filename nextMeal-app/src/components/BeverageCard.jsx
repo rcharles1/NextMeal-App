@@ -5,11 +5,8 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Bookmark } from '/src/components/svgs/InterfaceSvg';
 
-import { getMyFavorites } from '../features/wishlist/wishlistSlice';
-
 function BeverageCard({ beverage }) {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
     const wishlist = useSelector(state => state.wishlist);
     const [favorite, setFavorite] = useState(false);
     const [googleId, setGoogleId] = useState(null);

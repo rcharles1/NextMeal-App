@@ -116,6 +116,9 @@ connectToDb((err) => {
     const favoriteRouter = require('./routes/favorites');
     app.use('/favorites', favoriteRouter);
 
+    const reviewsRouter = require('./routes/reviews');
+    app.use('/reviews', reviewsRouter);
+
     app.listen(3000, () => {
       console.log('app listening on port 3000');
     });
