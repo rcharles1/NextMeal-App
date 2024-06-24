@@ -6,16 +6,17 @@ import RestaurantServices from './RestaurantServices';
 import MenuIcon from './MenuIcon';
 import Breadcrumbs from './BreadCrumbs';
 import Loading from './Loading';
+import RestaurantAmenities from './RestaurantAmenities';
+import NearbyRestaurantCard from './NearbyRestaurantCard';
+import MapComponent from './MapComponent';
+import ReviewList from './ReviewComponents/ReviewList';
 
 import { getMyFavorites } from '../features/wishlist/wishlistSlice';
-import { fetchRestaurantDoc, fetchAllNearbyRestaurants } from '../utilities/getData';
+import { fetchRestaurantDoc, fetchAllNearbyRestaurants, getListingReviews } from '../utilities/getData';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate, NavLink } from 'react-router-dom';
 import { Bookmark, RatingBubble, CircleHalfFull, Share } from './svgs/InterfaceSvg';
-import RestaurantAmenities from './RestaurantAmenities';
-import NearbyRestaurantCard from './NearbyRestaurantCard';
-import MapComponent from './MapComponent';
 
 function RestaurantProfile() {
     const navigate = useNavigate();
@@ -28,7 +29,10 @@ function RestaurantProfile() {
     const [favorite, setFavorite] = useState(false);
     const [googleId, setGoogleId] = useState(null);
     const [error, setError] = useState('');
+    const [postedReviews, setPostedReviews] = useState([]);
+    const [reviewsCount, setReviewsCount] = useState(0);
     const itemType = 'restaurant';
+    const listingId = id;
 
     useEffect(() => {
         const fetchRestaurantDetails = async () => {
@@ -123,7 +127,25 @@ function RestaurantProfile() {
             }
         },[favorite]
     );    
+
+    // Fetch reviews by listing id
+    useEffect(() => {
+        const postedListingReviews = async () => {
+            try {
+                const listingId = id;
+
+                const data = await getListingReviews(listingId);
+                setPostedReviews(data);
+            } catch (error) {
+                console.error('Error getting reviews for this listing:', error);
+            }
+        };
+        postedListingReviews();
+    }, [listingId]);
     
+    const handleReviewsCount = useCallback((count) => {
+        setReviewsCount(count);
+    }, []);
     // Rating implementation
     const totalBubbles = 5;
 
@@ -179,7 +201,7 @@ function RestaurantProfile() {
                                     })}
                                 </div>
                                 <div className="flex items-center space-x-0.5">
-                                    <span className="">{`${restaurantDoc.reviews.length} reviews`}</span>
+                                    <span className="">{`${reviewsCount} reviews`}</span>
                                 </div>
                             </div>
                             <div className="hidden md:block border-r border-light_dark h-3"></div>
@@ -204,11 +226,11 @@ function RestaurantProfile() {
                     <div className="flex flex-col w-full sm:flex-row sm:mt-4 md:mt-6 sm:p-2 sm:space-x-4 md:p-0 md:w-10/12 mx-auto">
                         <div className="h-fit pb-6 sm:pb-0 p-5 bg-pure_white sm:rounded-lg md:rounded-xl sm:h-80 md:h-64 sm:w-6/12 flex flex-col sm:justify-top">
                             <h4 className="font-semibold text-lg md:text-base">Ratings and reviews</h4>
-                            <div className="outline h-64 p-2"> 
-                             gh
+                            <div className="max-h-56 md:max-h-32 p-1"> 
+                                {postedReviews.length === 0 ? <p className="text-base md:text-sm sm:mt-4">There are no reviews for {`${restaurantDoc.name}`}. Be the first to write one!</p> : <ReviewList reviews={postedReviews}  onReviewCount={handleReviewsCount} />  }
                             </div>
-                            <p className="text-base md:text-sm mt-2 sm:mt-4">There are no reviews for {`${restaurantDoc.name}`}. Be the first to write one!</p>
-                            <NavLink to={`/review/${restaurantDoc._id}`} className="bg-bg_variant1 p-2 w-11/12 mx-auto mt-2 sm:mt-32 md:mt-24 text-base text-center md:text-sm text-pure_white font-bold rounded-lg shadow shadow-sm active:bg-bg_variant1/80">Write a Review</NavLink>
+                            <a href='#allReviews'className="md:mt-6 underline font-semibold" >Read all reviews</a>
+                            <NavLink to={`/review/${restaurantDoc._id}`} className="bg-bg_variant1 p-2 w-11/12 md:w-full mx-auto mt-2 sm:mt-32 md:my-auto text-base text-center md:text-sm text-pure_white font-bold rounded-lg shadow shadow-sm active:bg-bg_variant1/80">Write a Review</NavLink>
                         </div>
                         <div className="sm:hidden h-fit pb-6 p-5 bg-gray/35 sm:h-80 sm:w-6/12 flex flex-col space-y-2">
                             <h4 className="font-semibold text-center text-base">Ad Here</h4>
@@ -216,7 +238,7 @@ function RestaurantProfile() {
                         <div className="h-fit pb-6 p-5 w-full mx-auto bg-pure_white sm:h-80 md:h-64 sm:w-6/12 sm:rounded-lg md:rounded-xl flex flex-col space-y-2 sm:space-y-4 sm:justify-top">
                             <h4 className="font-semibold text-lg md:text-base">Details</h4>
                             <Details restaurantDoc={restaurantDoc}/>
-                            <a href='#allDetails'className="underline font-semibold" >View all details</a>
+                            <a href='#allDetails'className="underline font-semibold" >See all details</a>
                         </div>
                         <div className="sm:hidden h-fit pb-6 p-5 bg-gray/35 sm:h-80 sm:w-6/12 flex flex-col space-y-2">
                             <h4 className="font-semibold text-center text-base">Ad Here</h4>
@@ -240,24 +262,32 @@ function RestaurantProfile() {
                         </div>
                     </div>
 
-                    <div id="allDetails" className="h-fit pb-6 p-5 bg-pure_white mt-2 sm:mt-6 sm:rounded-lg md:rounded-xl sm:h-80 md:h-fit mb-8 md:w-10/12 mx-auto flex flex-col space-y-3 sm:space-y-4">
+                    <div id="allDetails" className="h-fit pb-6 p-5 mb-4 md:mb-0 bg-pure_white mt-2 sm:mt-6 sm:rounded-lg md:rounded-xl sm:h-80 md:h-fit  md:w-10/12 mx-auto flex flex-col space-y-3 sm:space-y-4">
                         <h4 className="font-semibold text-lg">Details and amenities</h4>
                         <hr className="text-silver/30"></hr>
-                        <div className="w-full h-fit sm:w-fit sm:flex">
-                            <div className="sm:w-5/12 p-1">
-                                <h5 className="font-semibold">ABOUT</h5>
-                                <p className="px-1 text-justify sm:text-start mt-0.5">{restaurantDoc.description}</p>
+                        <div className="w-full h-fit sm:w-fit sm:flex md:space-x-2">
+                            <div className="sm:w-5/12 p-1 md:space-y-1.5">
+                                <h5 className="font-semibold md:text-sm">ABOUT</h5>
+                                <p className="px-1 text-justify sm:text-start md:text-ssm mt-0.5">{restaurantDoc.description}</p>
                             </div>
-                            <div className="p-2">
-                                <h5 className="font-semibold">AMENITIES</h5>
+                            <div className="p-2 md:space-y-1.5">
+                                <h5 className="font-semibold md:text-sm">AMENITIES</h5>
                                 <RestaurantAmenities restaurantDoc={restaurantDoc} />
                             </div>
-                            <div className="sm:w-5/12 px-4 p-1">
-                                <h5 className="font-semibold">LOCATION</h5>
-                                <div className="h-24 sm:32 rounded-2xl">
+                            <div className="sm:w-5/12 px-4 p-1 md:space-y-1.5">
+                                <h5 className="font-semibold md:text-sm">LOCATION</h5>
+                                <div className="h-24 overflow-hidden sm:32 rounded-2xl md:rounded-lg">
                                     <MapComponent restaurantDoc={restaurantDoc}/>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <div id="allReviews" className="h-fit pb-6 p-5 bg-pure_white mt-2 sm:mt-6 sm:rounded-lg md:rounded-xl sm:h-80 md:h-fit mb-8 md:w-10/12 mx-auto flex flex-col space-y-3 sm:space-y-4">
+                        <h4 className="font-semibold text-lg">Reviews</h4>
+                        <hr className="text-silver/30"></hr>
+                        <div className="max-h-56 md:max-h-32 p-1"> 
+                            {postedReviews.length === 0 ? <p className="text-base md:text-sm sm:mt-4">There are no reviews for {`${restaurantDoc.name}`}. Be the first to <NavLink to={`/review/${restaurantDoc._id}`} className="underline font-semibold cursor-pointer">write one!</NavLink></p> : <ReviewList reviews={postedReviews}  onReviewCount={handleReviewsCount}/>  }
                         </div>
                     </div>
                 </div>

@@ -6,7 +6,7 @@ const ReviewSchema = new Schema({
         type: Date,
         required: true,
     },
-    userId: {
+    googleId: {
         type: String,
         required: true,
     },

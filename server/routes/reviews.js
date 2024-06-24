@@ -1,8 +1,7 @@
 const express = require('express');
 const { ObjectId } = require('mongodb');
 const router = express.Router();
-const Review = require('../models/reviews');
-const User = require('../models/users'); 
+const Review = require('../models/reviews'); 
 
 let { getDatabase } = require('../app');
 let db = getDatabase();
@@ -23,18 +22,18 @@ router.get('/', async (req, res) => {
 
 // Create review
 router.post('/', async (req, res) => {
-    const { createdAt, userId, listingId, content } = req.body;
+    const { createdAt, googleId, listingId, content } = req.body;
 
     try {
         // Validate input data
-        if (!createdAt || !userId || !listingId || !content) {
+        if (!createdAt || !googleId || !listingId || !content) {
             return res.status(400).json({ message: 'Invalid input data' });
         }
 
         // Create a new review
         const newReview = new Review({
             createdAt,
-            userId,
+            googleId,
             listingId,
             content,
         });

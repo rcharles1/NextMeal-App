@@ -41,30 +41,31 @@ function FilterWidget({ onFiltersChange, filters, onReset, onClose, filterOption
                 {filterOptions && filterOptions.map((filterOption, index) => (
                     <div key={index} className="flex flex-row justify-between sm:px-5 items-start items-top p-1 md:px-0 md:flex-col">
                         <span className="mt-2 font-semibold md:mt-0 md:font-bold md:text-sm text-start">{filterOption.title}:</span>
-                        <div className="flex flex-wrap w-52 sm:w-10/12 h-20 md:h-fit px-0.5 pb-0.5 md:px-1 oveflow-hidden overflow-y-auto ">
+                        <div className="flex flex-wrap w-52 sm:w-10/12 h-20 md:h-fit px-0.5 pb-0.5 md:px-1 overflow-hidden overflow-y-auto">
                             {filterOption.values.map((value, valueIndex) => {
-                               const isSelected = selectedFilters[filterOption.type] && selectedFilters[filterOption.type].includes(value.value);
+                                const isSelected = selectedFilters[filterOption.type] && selectedFilters[filterOption.type].includes(value.value);
                                 return (
-                                    <>
-                                        <div 
-                                            key={`${index}-${valueIndex}-div`} 
-                                            onClick={() => handleFilterClick(filterOption.type, value.value)} 
-                                            className={`md:hidden outline outline-1 outline-light_dark/35 md:outline-2 justify-center mr-2 mt-2 cursor-pointer rounded sm:h-8 sm:p-1 sm:px-1.5 md:p-2 h-fit w-fit p-0.5 px-1 ${isSelected ? 'bg-bg_variant1 text-pure_white' : 'bg-none text-default/75'}`}
-                                        >
-                                            {value.text}
-                                        </div>
-                                        <label key={`${index}-${valueIndex}-label`} className="hidden md:block flex flex-row mb-0.5 space-x-5 mt-1 justify-center items-center font-normal w-full text-ssm">
-                                            <div className="flex w-fit">
-                                                <input 
-                                                    type="checkbox"
-                                                    checked={isSelected}
-                                                    onChange={() => handleFilterClick(filterOption.type, value.value)}
-                                                    className="form-checkbox accent-bg_variant1"
-                                                />
-                                            </div>
-                                            <div className="ml-1 pb- w-fit h-fit -mt-3.5">{value.text}</div>
-                                        </label>
-                                    </>
+                                <React.Fragment key={`${index}-${valueIndex}`}>
+                                    <div
+                                    onClick={() => handleFilterClick(filterOption.type, value.value)}
+                                    className={`md:hidden outline outline-1 outline-light_dark/35 md:outline-2 justify-center mr-2 mt-2 cursor-pointer rounded sm:h-8 sm:p-1 sm:px-1.5 md:p-2 h-fit w-fit p-0.5 px-1 ${
+                                        isSelected ? 'bg-bg_variant1 text-pure_white' : 'bg-none text-default/75'
+                                    }`}
+                                    >
+                                    {value.text}
+                                    </div>
+                                    <label className="hidden md:block flex flex-row mb-0.5 space-x-5 mt-1 justify-center items-center font-normal w-full text-ssm">
+                                    <div className="flex w-fit">
+                                        <input
+                                        type="checkbox"
+                                        checked={isSelected}
+                                        onChange={() => handleFilterClick(filterOption.type, value.value)}
+                                        className="form-checkbox accent-bg_variant1"
+                                        />
+                                    </div>
+                                    <div className="ml-1 pb- w-fit h-fit -mt-3.5">{value.text}</div>
+                                    </label>
+                                </React.Fragment>
                                 );
                             })}
                         </div>

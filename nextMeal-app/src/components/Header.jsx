@@ -5,8 +5,8 @@ import ProfileIcon from './ProfileIcon.jsx';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import NavBar from './NavBar.jsx';
-import { Search } from '/src/components/svgs/InterfaceSvg';
 import { signIn } from '../features/auth/authSlice.js';
+import SearchComponent from './Search.jsx';
 
 
 function Header() {
@@ -44,7 +44,9 @@ function Header() {
                 <div className={`md:block hidden text-${colorTheme}`}>
                     <NavBar colorTheme={colorTheme} />
                 </div>
-                <div className={`${setVisibility} md:mt-0.5`}><Search fill={colorTheme === 'pure_white' ? 'white' : 'black'} height="25" width="30" /></div>
+                <div className={`${setVisibility} md:mt-0.5 size-6`}>
+                    <SearchComponent colorTheme={colorTheme} />
+                </div>
                 <div>
                     {setVisibility === 'visible' && (
                         <div className={`md:hidden w-6 text-${colorTheme}`}>

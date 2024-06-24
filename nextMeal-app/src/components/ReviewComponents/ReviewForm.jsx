@@ -48,11 +48,11 @@ const ReviewForm = () => {
     const postReview = async () => {
       try {
         const userData = JSON.parse(localStorage.getItem('user'));
-        const userId = userData?._id;
+        const googleId = userData?.googleId;
         const listingId = id;
         const createdAt = new Date();
 
-        await addReview(createdAt, userId, listingId, content);
+        await addReview(createdAt, googleId, listingId, content);
         console.log('Posted successfully');
       } catch (error) {
         console.error('Error posting review:', error);

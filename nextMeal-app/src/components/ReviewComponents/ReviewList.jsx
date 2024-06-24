@@ -1,12 +1,18 @@
 import React, {useState, useEffect} from 'react';
 import Review from './Review';
 
-import { addReview } from '../../utilities/getData';
+ function ReviewList({ reviews, onReviewCount }) {
+   const count = reviews.length;
+   
+   useEffect(() => {
+      onReviewCount(count);
+   }, [count]);
 
- function ReviewList({ comments: reviews }) {
-    return reviews.map((review, index) => (
-      <Review key={index} author={review.author} content={review.content} />
-    ));
+   return reviews.map((review, index) => (
+      <div>
+         <Review key={index} author={review.googleId} content={review.content} />
+      </div>
+   ));
   }
 
 export default ReviewList;

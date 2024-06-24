@@ -197,7 +197,7 @@ function RestaurantsList() {
                     </div>
                 ) : <p className="mx-auto font-bold text-sm text-default/55">Loading...</p> }
            </div>
-                <Footer />
+            <Footer />
         </div>
     );
 }

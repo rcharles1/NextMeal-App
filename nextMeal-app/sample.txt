@@ -147,3 +147,6 @@ export default App;
     <Marker latitude={markerLatitude} longitude={markerLongitude}>
         <div style={{color: 'red'}}>📍</div>
       </Marker>
+
+      
+    <Search fill={colorTheme === 'pure_white' ? 'white' : 'black'} height="25" width="30" />

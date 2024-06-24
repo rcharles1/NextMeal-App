@@ -1,51 +1,44 @@
-import React, { useState } from 'react'
-import { search } from '../utilities/searchUtitlity';
+import React, { useState } from 'react';
+import { Search, PreviousIcon } from '/src/components/svgs/InterfaceSvg';
 
-function Search() {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [searchResults, setSearchResults] = useState([]);
+function SearchComponent({ colorTheme }) {
+  const [isDialogOpen, setDialogOpen] = useState(false);
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+  const handleSearch = () => {
+    console.log("Searched!!");
+  };
 
-        const searchAll = async () => {
-            try {
-                const data = await search(searchTerm);
-                const result = data.data;
-                setSearchResults(result);
-            } catch (error) {
-                console.log('Error fetching data:', error)
-            }
-        };
-        searchAll();
-    };
+  const handleOpenDialog = () => {
+    setDialogOpen(true);
+  };
 
-    const handleInputChange = (event) => {
-        const inputValue = event.target.value;
-    
-        if (typeof inputValue === 'string') {
-           setSearchTerm(inputValue);
-        } else {
-          alert('Invalid search term');
-        }
-    };
+  const handleCloseDialog = () => {
+    setDialogOpen(false);
+  };
 
-    return (
-        <form onSubmit={handleSubmit} className="flex flex-row -space-x-0.5 w-full sm:w-8/12 md:w-96 mx-auto drop-shadow backdrop-filter backdrop-blur-lg">
-            <input
-                required
-                value={searchTerm}
-                onChange={handleInputChange}
-                placeholder={`Search Meal, beverage, restaurant`}
-                className="capitalize w-full h-10 sm:w-10/12 sm:h-14  md:h-10 md:px-3 md:p-2 p-3 px-3 sm:px-5 text-sm sm:text-base md:text-sm text-default/80 font-medium rounded-l-md focus:outline-none caret-default cursor-pointer"
-            />
-            <button className="rounded-r-md h-10 sm:h-14 md:h-10 md:px-4 md:p-2 md:w-2/12 w-3/12 bg-pure_white caret-transparent cursor-pointer">
-               <div className="size-7 sm:size-9 md:size-7 md:pb-0.5 mx-auto flex">
-                   <img src='/assets/icon/search-outline.svg' alt='search-icon'/>
-               </div>
-           </button>
-        </form>
-    );
+  return (
+    <div>
+      {/* Your other components */}
+      <button onClick={handleOpenDialog}>
+        <Search fill={colorTheme === 'pure_white' ? 'white' : 'black'} height="25" width="30" />
+      </button>
+
+      {isDialogOpen && (
+        <div className="dialog fixed top-0 left-0 h-screen bg-pure_white w-full p-3">
+          {/* Dialog content */}
+          <div className="flex space-x-4 border-b-2 p-3 caret-transparent">
+            <button onClick={handleCloseDialog} className="">
+                <PreviousIcon stroke={'gray'} height="25" width="30" />
+            </button>
+            <input type="text" placeholder="Search..." className="p-0.5 w-72 caret-default focus:outline-none"/>
+            <button onClick={handleSearch} className="">
+                <Search fill={'gray'} height="25" width="30" />
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
 
-export default Search;
+export default SearchComponent;

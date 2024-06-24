@@ -204,11 +204,11 @@ export const fetchFavoriteItemDoc = async (id, cardType) => {
     } catch (error) {
         console.error('Error fetching restaurant document:', error);
     }
-};
+}; 
 
 // ------------------------REVIEWS-------------------------------------
 // Add Review
-export const addReview = async (createdAt, userId, listingId, content) => {
+export const addReview = async (createdAt, googleId, listingId, content) => {
     
     const response = await fetch('http://localhost:3000/reviews/', { 
         method: 'POST',
@@ -217,7 +217,7 @@ export const addReview = async (createdAt, userId, listingId, content) => {
         },
         body: JSON.stringify({
             createdAt,
-            userId,
+            googleId,
             listingId,
             content
         }),
@@ -232,6 +232,7 @@ export const addReview = async (createdAt, userId, listingId, content) => {
     return data;
 };
 
+// Get all reviews on a particular listing
 export const getListingReviews = async (listingId) => {
     let url = `http://localhost:3000/reviews/?`;
     let params =  { listingId };

@@ -8,7 +8,7 @@ const UserSchema = new Schema({
     email: {
       type: String,
     },
-    given_name: {
+    name: {
       type: String,
     },
     picture: {
@@ -26,7 +26,7 @@ UserSchema.statics.findOrCreate = function findOrCreate(profile, cb) {
       if(!result){
         userObj.googleId = profile.id;
         userObj.email = profile.emails[0].value;
-        userObj.given_name = profile.name.givenName;
+        userObj.name = profile.displayName;
         userObj.picture = profile.photos[0].value;
         userObj.favorites = [];
         userObj.save(cb);
