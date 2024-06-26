@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { search } from '../utilities/searchUtitlity';
 
@@ -8,24 +8,26 @@ function SearchComponent() {
   const location = useLocation();
   const [isDialogOpen, setDialogOpen] = useState(false);
   const [term, setTerm] = useState('');
-  const [validTerm, setValidTerm] = useState('')
+  const [validTerm, setValidTerm] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [resultCard, setResultCard] = useState(null);
 
   useEffect(() => {
     const handleSearch = async () => {
       try {
-        const data  = await search(validTerm);
-        console.log(data);
+        const { data, resultCategory }  = await search(validTerm);
+        setSearchResults(data.results[0].data);
+        setResultCard(resultCategory);
         } catch (error) {
           console.error('Error fetching data:', error);
       }
     };
     handleSearch();
-  }, [validTerm])
+  }, [validTerm]);
 
   const handleClickSubmit = () => {
     setValidTerm(term);
   };
-
   
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
@@ -58,7 +60,7 @@ function SearchComponent() {
         />
       </button>
       {isDialogOpen ? (
-        <div class="fixed inset-0 z-30 bg-default opacity-50" style={{ backdropFilter: 'blur(5px)' }}></div>                
+        <div className="fixed inset-0 z-30 bg-default opacity-50" style={{ backdropFilter: 'blur(5px)' }}></div>                
       ) : ''}
       {isDialogOpen && (
         <div className="dialog fixed z-30 h-screen w-full bg-pure_white sm:rounded-lg sm:max-absolute sm:max-top-0 sm:max-left-0 p-3 sm:h-80 mx-auto sm:w-96 sm:my-5 sm:-ml-96 sm:mx-auto -mt-16 -ml-36">
@@ -86,11 +88,11 @@ function SearchComponent() {
           </div>
 
           <div className="h-fit p-2 px-6 mt-3">
-              <div className="flex items-center space-x-4 text-sm font-medium">
-              <div className="bg-silver/15 size-12 rounded-lg p-1 px-2.5 py-3 items-center">
-                <DirectionIcon stroke={'black'} width="25" height="25" />
-              </div>
-              <p>Nearby</p>
+              <div className={`${searchResults ? '' : ''} flex items-center space-x-4 text-sm font-medium`}>
+                <div className="bg-silver/15 size-12 rounded-lg p-1 px-2.5 py-3 items-center">
+                  <DirectionIcon stroke={'black'} width="25" height="25" />
+                </div>
+                <p>Nearby</p>
               </div>
 
               <div className="mt-4">
@@ -99,6 +101,23 @@ function SearchComponent() {
 
                 </div>
               </div>
+
+              <div id="searchResultDisplay"  className="mt-5">
+                {searchResults ? searchResults.map((searchItem, index) => {
+                  return (
+                    <div key={index} className="flex items-center space-x-4 text-sm font-semibold">
+                      <div className="bg-silver/15 size-12 rounded-lg p-1 px-2.5 py-3 items-center">
+                        <DirectionIcon stroke={'black'} width="25" height="25" />
+                      </div>
+                      <div className="flex flex-col">
+                        <p>{searchItem.name}</p>
+                        <p className="text-xs">{searchItem.locationData.district}, {searchItem.locationData.region}, {searchItem.locationData.country}</p>
+                      </div>
+                    </div>
+                  );
+                }) : '' }
+              </div>
+
           </div>
         </div>
       )}

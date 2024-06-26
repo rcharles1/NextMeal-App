@@ -28,16 +28,18 @@ export const searchRestaurant = async (searchTerm) => {
     }
 };
 
-// Search Entire database for items by name
+// Search entire database for items by name, type, cuisine, region, and district from 3 collections(restaurants, meals, and beverages)
 export const search = async (validTerm) => {
     try {
         const response = await fetch(`http://localhost:3000/search//${validTerm}`);
        if (response.ok) {
         const data = await response.json();
-        return data;
+        let resultCategory = data.results[0].collection;
+        return { data, resultCategory };
        }
        throw new Error(`HTTP error! status: ${response.status}` )
     } catch (error) {
         console.error('Error:', error);
+        throw error;
     }
 };

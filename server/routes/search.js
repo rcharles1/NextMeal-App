@@ -16,6 +16,7 @@ router.get('/:key', async (req, res) => {
             const data = await db.collection(collection).find({
                 $or: [
                     { name: { $regex: new RegExp(keyTerm, 'i') } },
+                    { type: { $regex: new RegExp(keyTerm, 'i') } },
                     { cuisine: { $regex: new RegExp(keyTerm, 'i') } },
                     { 'locationData.region': { $regex: new RegExp(keyTerm, 'i') } },
                     { 'locationData.district': { $regex: new RegExp(keyTerm, 'i') } },
