@@ -3,21 +3,28 @@ const router = express.Router();
 
 let { getDatabase } = require('../app');
 
-// Performs search query across the entire db. Works by iterating across all collections and returning a single response as the results arrray.
+// Performs search query across 3 collections, restaurants, beverages, and meals
 router.get('/:key', async (req, res) => {
-    let db = getDatabase();
-    let results = [];
-    
-    try {
-        const collections = await db.listCollections().toArray();
+    const db = getDatabase();
+    const keyTerm = req.params.key;
 
-        for (let collection of collections) {
-            let data = await db.collection(collection.name).find({ 
-                "$or": [
-                    {name: {$regex: new RegExp(req.params.key, 'i')}}
-                ]}).toArray();
+    try {
+        const collections = ['restaurants', 'beverages', 'meals'];
+        const results = [];
+
+        for (const collection of collections) {
+            const data = await db.collection(collection).find({
+                $or: [
+                    { name: { $regex: new RegExp(keyTerm, 'i') } },
+                    { cuisine: { $regex: new RegExp(keyTerm, 'i') } },
+                    { 'locationData.region': { $regex: new RegExp(keyTerm, 'i') } },
+                    { 'locationData.district': { $regex: new RegExp(keyTerm, 'i') } },
+                    { category: { $regex: new RegExp(keyTerm, 'i') } }
+                ]
+            }).project({ _id: 0, name: 1, cuisine: 1, locationData: 1, category: 1 }).limit(10).toArray();
+
             if (data.length !== 0) {
-                results.push({ collection: collection.name, data });
+                results.push({ collection, data });
             }
         }
 

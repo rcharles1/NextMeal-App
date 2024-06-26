@@ -36,10 +36,10 @@ function Root() {
                 <div className="sticky top-0 z-10">
                     <Header />
                 </div>
-                <div className="h-screen bg-bg_variant1 p-1 md:h-fit">
+                <div className="h-screen bg-pure_white p-1 md:h-fit">
                     <HomePage />
                 </div>
-                <div className="flex flex-col mt-16 space-y-16 bg-bg_variant2 h-fit py-6 w-full">
+                <div className="flex flex-col mt-16 space-y-16 h-fit py-6 w-full">
                     <Restaurants />
                     <Meals />
                     <Beverages />
@@ -48,7 +48,7 @@ function Root() {
                 <div className="p-0 mt-16">
                     <Footer />
                 </div>
-                <button className={`fixed bottom-10 right-7 rounded-full bg-pure_white h-fit w-fit animate-bounc ${showScroll ? 'visible' : 'invisible'}`} onClick={scrollTop}><ArrowUp fill="red" height="30" width="30" /></button>
+                <button className={`fixed bottom-10 right-7 rounded-full bg-pure_white h-fit w-fit ${showScroll ? 'visible' : 'invisible'}`} onClick={scrollTop}><ArrowUp fill="red" height="30" width="30" /></button>
             </main>
         </div>
     );

@@ -29,16 +29,15 @@ export const searchRestaurant = async (searchTerm) => {
 };
 
 // Search Entire database for items by name
-export const search = async (searchTerm) => {
+export const search = async (validTerm) => {
     try {
-        const response = await fetch(`http://localhost:3000/search//${searchTerm}`);
+        const response = await fetch(`http://localhost:3000/search//${validTerm}`);
        if (response.ok) {
-            const data = await response.json();
-            return data;
+        const data = await response.json();
+        return data;
        }
        throw new Error(`HTTP error! status: ${response.status}` )
     } catch (error) {
         console.error('Error:', error);
     }
 };
-

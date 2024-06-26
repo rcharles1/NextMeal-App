@@ -61,6 +61,9 @@ export default {
         'juiceArt': "url('assets/img/bg/juice-art.webp')",
       }
     },
+    screens: {
+      'tablet': '820px', 
+    },
   },
   plugins: [
     plugin(function({ addUtilities }) {
@@ -78,4 +81,3 @@ export default {
     })
   ],
 }
-

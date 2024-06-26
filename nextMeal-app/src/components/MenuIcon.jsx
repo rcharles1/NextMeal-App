@@ -37,7 +37,7 @@ const MenuIcon = () => {
            <div className="w-fit flex flex-col space-y-0 h-fit" onClick={handleMenuToggle}>
                 {isOpen ? (
                     <div className={`fixed ${marginTop} top-9 w-8 h-8 space-y-6`}>
-                        <div><img src={imgSrc1} className="size-6 sm:size-10"/></div>
+                        <div><img src={`/assets/icon/menu-to-close.svg`} className="size-6 sm:size-10"/></div>
                         <div className={`${bg} ${marginLeft} relative divide divide-y divide-light_dark/65 space-y-2 w-64 h-fit rounded-md`} style={{ backdropFilter: 'blur(10px)' }}>
                             <div className="h-72 w-64 items-center justify-center pt-3 px-4 space-y-2 font-medium text-default text-base">
                                 {navLinks.map((link, index) => (
@@ -49,7 +49,7 @@ const MenuIcon = () => {
                             </div>
                         </div>
                     </div>
-                ) :  <img src={imgSrc2} className="size-7 sm:size-10"/>}
+                ) :  <img src={`/assets/icon/close-to-menu.svg`} className="size-7 sm:size-10"/>}
             </div>
         </>
     );

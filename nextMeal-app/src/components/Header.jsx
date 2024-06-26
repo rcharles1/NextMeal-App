@@ -36,15 +36,15 @@ function Header() {
     }
 
     return (
-        <div className={`h-20 sm:p-4 md:h-auto px-3 bg-blur border-b-2 border-bg_variant1/10 sm:px-4 py-5 md:py-3.5 md:px-14 flex justify-between ${bgColor} caret-transparent cursor-pointer`}>
-            <div className="w-28 md:w-14 sm:mt-1.5">
-                <img src={imgSrc} alt="NextMealApp-Logo" />
+        <div className={`h-20 sm:p-4 md:h-auto px-3 bg-blur border-b-2 border-bg_variant1/10 sm:px-4 py-5 md:py-3.5 md:px-14 flex justify-between bg-pure_white caret-transparent cursor-pointer`}>
+            <div className="w-24 md:w-16 sm:mt-1.5">
+                <img src={`/assets/img/next-meal-red.png`} alt="NextMealApp-Logo" />
             </div>
             <div className="flex justify-end items-center space-x-1.5 sm:w-fit md:py-0 md:space-x-1">
                 <div className={`md:block hidden text-${colorTheme}`}>
                     <NavBar colorTheme={colorTheme} />
                 </div>
-                <div className={`${setVisibility} md:mt-0.5 size-6`}>
+                <div className={`${setVisibility} md:hidden md:mt-0.5 `}>
                     <SearchComponent colorTheme={colorTheme} />
                 </div>
                 <div>
