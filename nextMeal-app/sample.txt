@@ -152,3 +152,12 @@ export default App;
     <Search fill={colorTheme === 'pure_white' ? 'white' : 'black'} height="25" width="30" />
 
     className="dialog bg-blur-lg z-30 fixed md:p-0 md:py-0.5 md:px-3 sm:rounded-lg sm:max-absolute sm:max-top-0 sm:max-left-0 mx-auto sm:w-96 sm:mt-10 sm:-mx-96 md:mx-auto h-screen sm:h-80 bg-pure_white w-full p-3"
+
+    <div className="mt-4 md:mt-3">
+                <h3 className="text-sm font-semibold">Previously looked listings</h3>
+                <div className="bg-silver/25 h-fit rounded mt-3 md:mt-2 px-6 p-2">
+                  {searchHistory ? searchHistory.map((search, index) => {
+                    return <p key={index} className="capitalize font-medium text-sm md:text-ssm leading-5">{search}</p>
+                  }) : ''}
+                </div>
+              </div>

@@ -22,7 +22,7 @@ router.get('/:key', async (req, res) => {
                     { 'locationData.district': { $regex: new RegExp(keyTerm, 'i') } },
                     { category: { $regex: new RegExp(keyTerm, 'i') } }
                 ]
-            }).project({ _id: 0, name: 1, cuisine: 1, locationData: 1, category: 1 }).limit(10).toArray();
+            }).project({ _id: 1, name: 1, cuisine: 1, locationData: 1, category: 1, gallery: 1, img: 1, course: 1, type: 1  }).limit(10).toArray();
 
             if (data.length !== 0) {
                 results.push({ collection, data });

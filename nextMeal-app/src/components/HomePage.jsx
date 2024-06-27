@@ -32,14 +32,18 @@ function HomePage() {
         closeModal()
     };
 
+    const scrollTop = () =>{
+        window.scrollTo({top: 72, behavior: 'smooth'});
+    };
+
     return (
         <div className="flex flex-col bg-graphicDots caret-transparent h-full bg-no-repeat bg-right-top">
             <div className="flex flex-col justify-center items-center rounded-md md:mt-0 w-100 text-headings/95 h-full px-4 ">
                 <div className="w-100 h-fit -mt-20 sm:-mt-10 md:mt-10 md:justify-center p-1">
                    <h1 className="text-5xl sm:text-7xl md:text-6xl md:px-6 mt-36 md:mt-0 font-black sm:font-bold text-center">Discover Restaurants & Delicious Food</h1>
                 </div>
-                <div className="hidden md:block p-2 h-fit w-fit mx-auto">
-                    <SearchComponent />
+                <div  className="hidden md:block p-2 h-fit w-fit mx-auto">
+                    <SearchComponent  onClick={scrollTop}/>
                 </div>
                 <div className="cursor-pointer mt-12 rounded-xl md:rounded-md ring-1 ring-pure_white ring-offset-1 p-1 md:h-fit w-fit">
                     <div>

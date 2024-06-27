@@ -144,8 +144,8 @@ export function ArrowUpIcon({fill, height, width}) {
 	return (<svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 1024 1024"><path fill={fill} d="m488.832 344.32l-339.84 356.672a32 32 0 0 0 0 44.16l.384.384a29.44 29.44 0 0 0 42.688 0l320-335.872l319.872 335.872a29.44 29.44 0 0 0 42.688 0l.384-.384a32 32 0 0 0 0-44.16L535.168 344.32a32 32 0 0 0-46.336 0"></path></svg>);
 }
 
-export function PreviousIcon({stroke, height, width}) {
-	return (<svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 512 512" ><path fill="none" stroke={stroke} strokeLinecap="round" strokeLinejoin="round" strokeWidth={48} d="M244 400L100 256l144-144M120 256h292"></path></svg>);
+export function PreviousIcon({fill, height, width}) {
+	return (<svg xmlns="http://www.w3.org/2000/svg"width={width} height={height} viewBox="0 0 24 24" ><path fill={fill} d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42a.996.996 0 0 0-1.41 0l-6.59 6.59a.996.996 0 0 0 0 1.41l6.59 6.59a.996.996 0 1 0 1.41-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1"></path></svg>);
 }
 
 export function DirectionIcon({stroke, height, width}) {

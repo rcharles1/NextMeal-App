@@ -219,11 +219,11 @@ function MealsList() {
               </div>
             </div>
             <div id='container' className='mx-auto px-5 w-full grid grid-cols-2 gap-y-3 gap-x-2 sm:grid-cols-3 sm:gap-6 md:gap-x-0 md:gap-y-3 md:px-16 lg:grid-cols-4 lg:gap-5'>
-            {error === '' && (
-              (entryPoint === 'beverages' && card === 'beverages') 
-                ? mealitem.map((item) => <BeverageCard key={item._id} beverage={item}/> )
-                : (entryPoint === 'meals') && mealitem.map((item) => <MealCard key={item._id} meal={item} />)
-            )}
+              {error === '' && (
+                (entryPoint === 'beverages' && card === 'beverages') 
+                  ? mealitem.map((item) => <BeverageCard key={item._id} beverage={item}/> )
+                  : (entryPoint === 'meals') && mealitem.map((item) => <MealCard key={item._id} meal={item} />)
+              )}
             </div>
             <div className="flex justify-end">
               {(mealitem.length > 0) && (error === '') && 
