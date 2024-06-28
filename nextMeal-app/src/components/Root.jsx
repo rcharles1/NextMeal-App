@@ -40,10 +40,10 @@ function Root() {
                     <HomePage />
                 </div>
                 <div className="flex flex-col mt-16 space-y-16 h-fit py-6 w-full">
+                    <Services />
                     <Restaurants />
                     <Meals />
                     <Beverages />
-                    <Services />
                 </div>
                 <div className="p-0 mt-16">
                     <Footer />

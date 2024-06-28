@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import { LocationIcon } from './svgs/InterfaceSvg';
 
 function LocationAddress() {
   const [locationCoordinates, setLocationCoordinates] = useState('');
@@ -48,10 +49,8 @@ function LocationAddress() {
   }, []);
 
   return (
-    <div className="flex flex-row justify-center items-center space-x-3 md:space-x-2 md:px-4 h-12 w-fit bg-blur sm:h-16 sm:w-48 md:h-10 md:w-fit p-3 border border-silver/35 rounded-md drop-shadow">
-      <div className="size-8 sm:size-10 md:size-8 justify-center items center flex">
-        <img src='/assets/icon/location-light.svg' alt='Location Icon'/>
-      </div>
+    <div className="flex flex-row justify-center items-center space-x-3 md:space-x-1 text-base md:text-sm md:px-2 w-fit sm:w-48 md:w-fit p-3 md:p-2 outline outline-1 outline-silver/35 rounded-2xl drop-shadow">
+      <LocationIcon stroke="silver" fill="none"/>
       {address[0] ? <p>{address[0].place_name}</p> : ''}
     </div>
   );
