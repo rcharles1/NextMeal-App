@@ -38,12 +38,12 @@ function HomePage() {
     };
 
     return (
-        <div className="flex flex-col bg-graphicDots caret-transparent h-full bg-no-repeat bg-right-top">
+        <div className="flex flex-col bg-graphicDots caret-transparent h-full md:pb-12 bg-no-repeat bg-right-top">
             <div className="flex flex-col md:flex-row md:justify-left items-center rounded-md md:mt-0 w-full text-headings/95 h-full px-4 md:px-1">
                 <div className="md:w-7/12 h-fit p-1">
                     <div className="w-full h-fit md:mt-10 md:justify-center p-1">
                         <h1 className="text-6xl sm:text-7xl md:text-6xl md:px-6 mt-16 md:mt-0 font-black sm:font-bold text-center md:text-start">Discover Restaurants & Delicious Food</h1>
-                        <h1 className="text-xl sm:text-4xl md:text-lg md:px-6 mt-4 md:mt-0 font-black sm:font-bold text-center md:text-start">Explore what could be your next meal with us </h1>
+                        <h1 className="text-xl sm:text-4xl md:text-lg md:px-6 mt-4 md:mt-0 font-black sm:font-bold text-center md:text-start">Unveil your next delicious adventure!</h1>
                     </div>
                     <div className="hidden md:block p-2 h-fit w-fit mx-auto md:mt-2 md:ml-6">
                         <SearchComponent  onClick={scrollTop}/>

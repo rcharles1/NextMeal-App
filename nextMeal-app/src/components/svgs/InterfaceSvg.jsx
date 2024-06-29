@@ -1,14 +1,14 @@
 import React from 'react';
 
-export function Filter({ fill, height, width }) {
-	return (<svg xmlns="http://www.w3.org/2000/svg" class="h-5 md:h-4 lg:h-8" viewBox="0 0 24 24"><path fill='none' stroke={fill} strokeLinecap="round" strokeMiterlimit={10} strokeWidth={1.5} d="m19.795 4.413l-5.074 7.852a1.79 1.79 0 0 0-.287.987v4.788a1.229 1.229 0 0 1-.678 1.09l-3.662 1.826a.356.356 0 0 1-.528-.322v-7.382a1.803 1.803 0 0 0-.287-.987L4.205 4.413A.976.976 0 0 1 5.112 3h13.776a.975.975 0 0 1 .907 1.412Z"></path></svg>);
+export function Filter({ fill}) {
+	return (<svg xmlns="http://www.w3.org/2000/svg" class="h-5 md:h-3 lg:h-8" viewBox="0 0 24 24"><path fill='none' stroke={fill} strokeLinecap="round" strokeMiterlimit={10} strokeWidth={1.5} d="m19.795 4.413l-5.074 7.852a1.79 1.79 0 0 0-.287.987v4.788a1.229 1.229 0 0 1-.678 1.09l-3.662 1.826a.356.356 0 0 1-.528-.322v-7.382a1.803 1.803 0 0 0-.287-.987L4.205 4.413A.976.976 0 0 1 5.112 3h13.776a.975.975 0 0 1 .907 1.412Z"></path></svg>);
 }
 
-export function Sort({ fill, height, width}) {
-	return (<svg xmlns="http://www.w3.org/2000/svg" class="h-5 md:h-4 lg:h-8" viewBox="0 0 48 48" ><path fill='none' stroke={fill} strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M19 6v36M7 17.9l12-12m10 36.2v-36m0 36l12-12"></path></svg>);
+export function Sort({ fill}) {
+	return (<svg xmlns="http://www.w3.org/2000/svg" class="h-5 md:h-3 lg:h-8" viewBox="0 0 48 48" ><path fill='none' stroke={fill} strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M19 6v36M7 17.9l12-12m10 36.2v-36m0 36l12-12"></path></svg>);
 }
 
-export function Ascending({ fill, height, width}) {
+export function Ascending({ fill}) {
 	return (<svg xmlns="http://www.w3.org/2000/svg" class="h-5 md:h-4 lg:h-8" viewBox="0 0 2048 2048" ><path fill={fill} d="M1216 1024h512l-320 640h320v128h-512l320-640h-320zm-704 614l163-163l90 90l-317 318l-317-318l90-90l163 163V128h128zm811-870l-43 128h-128l256-768h128l256 768h-128l-43-128zm149-448l-107 320h214z"></path></svg>);
 }
 
@@ -49,7 +49,7 @@ export function Diamonds({fill}) {
 }
 
 export function ArrowUp({fill}) {
-	return (<svg xmlns="http://www.w3.org/2000/svg" class="h-5 md:h-4 lg:h-8" viewBox="0 0 24 24" ><path fill={fill} fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12s4.477 10 10 10s10-4.477 10-10m-13.53-.47a.75.75 0 0 1 0-1.06l3-3a.75.75 0 0 1 1.06 0l3 3a.75.75 0 1 1-1.06 1.06l-1.72-1.72V16a.75.75 0 0 1-1.5 0V9.81l-1.72 1.72a.75.75 0 0 1-1.06 0" clipRule="evenodd"></path></svg>);
+	return (<svg xmlns="http://www.w3.org/2000/svg" class="h-5 md:h-8 lg:h-10" viewBox="0 0 24 24" ><path fill={fill} fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12s4.477 10 10 10s10-4.477 10-10m-13.53-.47a.75.75 0 0 1 0-1.06l3-3a.75.75 0 0 1 1.06 0l3 3a.75.75 0 1 1-1.06 1.06l-1.72-1.72V16a.75.75 0 0 1-1.5 0V9.81l-1.72 1.72a.75.75 0 0 1-1.06 0" clipRule="evenodd"></path></svg>);
 }
 
 export function Search({fill}) {
@@ -150,4 +150,12 @@ export function PreviousIcon({fill}) {
 
 export function DirectionIcon({stroke}) {
 	return (<svg xmlns="http://www.w3.org/2000/svg" class="h-5 md:h-4 lg:h-8" viewBox="0 0 24 24" ><path fill="none" stroke={stroke} strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="m9.706 12.781l-5.316-.953a2.085 2.085 0 0 1-.167-3.96l14.11-4.992a2.084 2.084 0 0 1 2.673 2.673l-4.992 14.386a2.084 2.084 0 0 1-3.91-.098l-.914-5.572a2.015 2.015 0 0 0-1.484-1.484m5.571-3.979l-4.579 4.579"></path></svg>);
+}
+
+export function CarbonDelivery(props) {
+	return (<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32" {...props}><path fill="#fafafa" d="M4 16h12v2H4zm-2-5h10v2H2z"></path><path fill="#fafafa" d="m29.919 16.606l-3-7A1 1 0 0 0 26 9h-3V7a1 1 0 0 0-1-1H6v2h15v12.556A4 4 0 0 0 19.142 23h-6.284a4 4 0 1 0 0 2h6.284a3.98 3.98 0 0 0 7.716 0H29a1 1 0 0 0 1-1v-7a1 1 0 0 0-.081-.394M9 26a2 2 0 1 1 2-2a2 2 0 0 1-2 2m14-15h2.34l2.144 5H23Zm0 15a2 2 0 1 1 2-2a2 2 0 0 1-2 2m5-3h-1.142A3.995 3.995 0 0 0 23 20v-2h5Z"></path></svg>);
+}
+
+export function TablerReservedLine(props) {
+	return (<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}><path fill="none" stroke="#fafafa" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20h6m-3-6v6M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm5 3h6"></path></svg>);
 }

@@ -30,8 +30,8 @@ function Meal() {
         <div className="flex flex-col w-100 h-2/3 space-y-6 caret-transparent">
             <div className="font-semibold text-3xl sm:text-5xl sm:px-3.5 px-8 flex flex-col space-y-3 text-center "> 
                 <span>Explore the Local's Favorite </span>
-                <span className="font-semibold leading-5 block text-base sm:text-xl text-pretty text-default/65">
-                    These are some of the Popular Local's Favorite Dishes & Cuisines 
+                <span className="font-semibold leading-5 block text-base sm:text-lg text-pretty text-default/65">
+                    Nourishing Hope, One Bite at a Time.
                 </span>
             </div>
             <div className="flex flex-col space-y-3 rounded-sm w-full p-2">

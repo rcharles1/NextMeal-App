@@ -8,6 +8,7 @@ import Beverages from './Beverages';
 import HomePage from './HomePage';
 
 import { ArrowUp } from '/src/components/svgs/InterfaceSvg';
+import QuickLinksComponent from './QuickLinks';
 
 function Root() {
     const [showScroll, setShowScroll] = useState(false)
@@ -36,8 +37,9 @@ function Root() {
                 <div className="sticky top-0 z-10">
                     <Header />
                 </div>
-                <div className="h-screen bg-pure_white p-1 md:h-fit">
-                    <HomePage />
+                <div className="h-screen p-1 md:h-fit relative">
+                    <div className="bg-pure_white"><HomePage /></div>
+                    <div className="md:-mt-6 bg-pure_white shadow-2xl shadow-silver rounded-lg w-9/12 mx-auto"><QuickLinksComponent /></div>
                 </div>
                 <div className="flex flex-col mt-16 space-y-16 h-fit py-6 w-full">
                     <Services />

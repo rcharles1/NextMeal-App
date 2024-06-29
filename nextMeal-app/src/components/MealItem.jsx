@@ -9,7 +9,7 @@ import NearbyRestaurantCard from './NearbyRestaurantCard';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Share, Bookmark, Diamonds,  RatingBubble, CircleHalfFull } from '/src/components/svgs/InterfaceSvg';
+import { Share, Bookmark,  RatingBubble, CircleHalfFull } from '/src/components/svgs/InterfaceSvg';
 import { getMyFavorites } from '../features/wishlist/wishlistSlice';
 
 function MealItem() {
@@ -194,7 +194,7 @@ function MealItem() {
                         </div>
                         <div className="h-fit pb-6 p-5 bg-pure_white sm:h-80 sm:w-6/12 sm:rounded-lg md:rounded-xl md:w-6/12 flex flex-col space-y-2 sm:space-y-4 sm:justify-top">
                             <h4 className="font-semibold text-lg md:text-base">Common Pairings</h4>
-                            <div id='container' className="p-1 grid grid-cols-2  md:grid-cols-1 gap-y-2.5 gap-x-0 sm:mx-auto sm:px-12 md:px-4">
+                            <div id='container' className="p-1 grid grid-cols-2 md:grid-cols-1 gap-y-2.5 gap-x-0 sm:mx-auto sm:px-12 md:px-4 overflow-hidden">
                                 {mealDetails.SpecialNotes.pairings.slice(0, showMore ? mealDetails.SpecialNotes.pairings.length : 2).map(dish => {
                                     return (
                                         <div className="h-40 w-36 sm:h-44 sm:w-32 md:h-24 md:w-32 drop-shadow-sm rounded-lg overflow-hidden caret-transparent cursor-pointer relative">
@@ -202,8 +202,8 @@ function MealItem() {
                                                 src={`/assets/img/gallery/meals/covers/${dish.image}.webp`} 
                                                 className="object-cover h-full w-full hover:scale-110 transition-transform duration-200 ease-in-out" 
                                             />
-                                            <div className="bg-default/55 h-7 sm:h-10 md:h-6 p-1 text-wrap text-center w-full absolute bottom-0 bg-blur">
-                                                <p className="text-pure_white/90 font-medium text-sm">{dish.pairingDish}</p>
+                                            <div className="bg-gradient-to-t from-default to-default/5 h-7 sm:h-10 md:h-6 p-1 text-wrap text-center w-full absolute bottom-0 bg-blur">
+                                                <p className="text-slate_white font-medium text-sm">{dish.pairingDish}</p>
                                             </div>
                                         </div>
                                     )
@@ -216,7 +216,7 @@ function MealItem() {
                                     </button>
                                 )}
                             </div>
-                            <a href='#common-pairings'className="hidden md:block underline text-ssm ml-28 font-semibold" >View all</a>
+                            <a href='#common-pairings'className="hidden md:block underline text-ssm ml-28 font-semibold md:font-bold" >View all</a>
                         </div>
                     </div>
 
@@ -249,8 +249,8 @@ function MealItem() {
                                                 src={`/assets/img/gallery/meals/covers/${dish.image}.webp`} 
                                                 className="object-cover h-full w-full hover:scale-110 transition-transform duration-200 ease-in-out" 
                                             />
-                                            <div className="bg-default/55 h-7 sm:h-10 md:h-6 p-1 text-wrap text-center w-full absolute bottom-0 bg-blur">
-                                                <p className="text-pure_white/90 font-medium text-sm">{dish.pairingDish}</p>
+                                            <div className="bg-gradient-to-t from-default to-default/5 h-7 sm:h-10 md:h-6 p-1 text-wrap text-center w-full absolute bottom-0 bg-blur">
+                                                <p className="text-slate_white font-medium text-sm">{dish.pairingDish}</p>
                                             </div>
                                         </div>
                                     )
