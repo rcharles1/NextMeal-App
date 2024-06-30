@@ -12,39 +12,39 @@ function SearchComponent() {
   const [isDialogOpen, setDialogOpen] = useState(false);
   const [term, setTerm] = useState('');
   const [validTerm, setValidTerm] = useState('');
-  const [recentSearch, setRecentSearch] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [resultCard, setResultCard] = useState(null);
-  const [searchHistory, setSearchHistory] = useState(null);
+  const [noRecordMessage, setnoRecordMessage] = useState('');
 
   const handleSearch = async () => {
     try {
-        if (validTerm.trim()) {
-            const { data, resultCategory } = await search(validTerm);
-            setSearchResults(data.results[0].data);
-            setResultCard(resultCategory);
+      setnoRecordMessage('')
+      if (validTerm.trim()) {
+        const { data, resultCategory } = await search(validTerm);
+        if (data.success === false ) {
+          setnoRecordMessage(data.message)
+        } else {
+          setSearchResults(data.results[0].data);
+          setResultCard(resultCategory);
         }
+      }
     } catch (error) {
+      if (error === 404) {
+        setNoRecord();
+        console.error('No matching data:', error);
+      } else {
         console.error('Error fetching data:', error);
+      }
     }
   };
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
-      console.log('Enter key pressed ✅');
       handleSearch();
     }
   };
 
   useEffect(() => {
-    try {
-      const history = JSON.parse(localStorage.getItem('Recent Search'));
-      const uniqueHistory = [...new Set(history)];
-      setSearchHistory(uniqueHistory);
-    } catch (error) {
-      console.error('Error parsing JSON:', error);
-    }
-
     handleSearch();
   }, [validTerm]);
 
@@ -55,10 +55,8 @@ function SearchComponent() {
     // Check if inputValue is a non-empty string (after trimming whitespace)
     if (typeof inputValue === 'string' && inputValue.trim()) {
         setValidTerm(inputValue);
-    } else {
-        alert('Invalid input');
     }
-};
+  };
 
   const handleClickSubmit = () => {
     setValidTerm(term);
@@ -92,8 +90,8 @@ function SearchComponent() {
       {isDialogOpen && (
         <div className="dialog fixed z-30 h-screen w-full bg-pure_white sm:rounded-lg absolute sm:max-top-0 left-0 p-3 sm:h-96 mx-auto sm:w-96 sm:my-5 sm:-ml-96 md:-mt-56 md:fixed md:top-72 md:left-2/3 sm:mx-auto -mt-16">
           {/* Dialog content */}
-          <div className="flex w-fit space-x-4 border-b border-offset-4 items-center md:pb-1.5 md:space-x-0.5 md:p-0 border-silver/75 p-3">
-            <button onClick={handleCloseDialog} className="">
+          <div className="flex w-full space-x-4 border-b border-offset-4 items-center md:pb-1.5 md:space-x-0.5 md:p-0 border-silver/75 p-3">
+            <button onClick={handleCloseDialog} >
               <PreviousIcon fill={'silver'} height="25" width="20" />
             </button>
             <div className="flex space-x-1 mt-0.5">
@@ -106,7 +104,7 @@ function SearchComponent() {
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
                 placeholder="Places to dine, meals to taste, drinks to have..."
-                className="capitalize p-0.5 w-72 text-sm md:text-ssm font-medium caret-bg_variant1 focus:outline-none"
+                className="capitalize p-1 min-w-72 text-sm md:text-ssm font-medium caret-bg_variant1 focus:outline-none"
               />
             )}
             </div>
@@ -121,25 +119,29 @@ function SearchComponent() {
           <div className="h-fit p-2 px-6">
             <div>
               <div className={`flex mt-3 md:mt-1 items-center space-x-4 text-sm md:text-ssm font-medium`}>
-                <div className="bg-silver/15 size-12 rounded-lg p-1 px-2.5 py-3 items-center">
-                  <DirectionIcon stroke={'black'} width="25" height="25" />
+                <div className="bg-silver/15 size-12 rounded-lg p-1 px-2.5 py-3 md:px-4 md:py-4 items-center">
+                  <DirectionIcon stroke={'gray'} width="25" height="25" />
                 </div>
                 <p>Nearby</p>
               </div>
             </div>
             <div id="searchResultDisplay" className="mt-5 h-fit">
-              <h3 className="text-sm font-semibold">What you are looking for</h3>
-              <div className="h-2/4 p-2 md:max-h-56 mt-1.5 overflow-hidden overflow-y-auto scroll-smooth">
-                {searchResults ? ( 
-                  searchResults.map((result, index) => {
-                    return (
-                      <div key={index}>
-                        {resultCard === 'restaurants' ?  <SearchResultCardForRestaurant restaurant={result} /> : resultCard === 'meals' ? <SearchResultCardForMeal meal={result} /> : <SearchResultCardForBeverage  beverage={result} /> }
-                      </div>
-                    );
-                  })
-                ) : '' }
-              </div>
+              {noRecordMessage ? <p className="p-2 w-fit mx-auto text-base font-medium">{noRecordMessage}</p> : (
+                <div>
+                  <h3 className="text-sm font-semibold">What you are looking for</h3>
+                  <div className="h-2/4 p-2 md:max-h-56 mt-1.5 overflow-hidden overflow-y-auto scroll-smooth">
+                    {searchResults ? ( 
+                      searchResults.map((result, index) => {
+                        return (
+                          <div key={index}>
+                            {resultCard === 'restaurants' ?  <SearchResultCardForRestaurant restaurant={result} /> : resultCard === 'meals' ? <SearchResultCardForMeal meal={result} /> : <SearchResultCardForBeverage  beverage={result} /> }
+                          </div>
+                        );
+                      })
+                    ) : '' }
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

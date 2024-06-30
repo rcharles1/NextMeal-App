@@ -41,7 +41,7 @@ function SearchItem({ item, onSearch }) {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-row space-x-0.5 md:p-0 md:px-2 items-center px-3 md:items-center rounded-xl w-80 sm:w-6/12 md:w-56 mx-auto flex-row bg-pure_white border-2 border-silver caret-transparent">
+        <form onSubmit={handleSubmit} className="flex flex-row space-x-0.5 md:p-0 md:px-2 items-center px-3 md:items-center rounded-xl w-80 sm:w-6/12 md:w-56 md:p-1 mx-auto flex-row bg-pure_white outline outline-silver/25 caret-transparent">
             <Search fill={'silver'} height="25" width="25" />
             <input
                 required

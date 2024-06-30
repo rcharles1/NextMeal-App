@@ -55,10 +55,7 @@ export default {
       backgroundImage: {
         'graphicDots': "url('assets/img/bg/graphic_dots.svg')",
         'graphicRectangles': "url('/assets/img/bg/graphic-rectangles.webp')",
-        'soda': "url('assets/img/bg/soda.webp')",
-        'sodaArt': "url('assets/img/bg/soda-art.webp')",
-        'drink': "url('assets/img/bg/drink.webp')",
-        'juiceArt': "url('assets/img/bg/juice-art.webp')",
+        'restaurant': "url('assets/vectors/restaurant-wallpaper.webp')",
       }
     },
   },

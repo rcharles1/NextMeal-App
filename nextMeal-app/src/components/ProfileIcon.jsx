@@ -51,12 +51,12 @@ function ProfileIcon({ colorTheme }) {
         {openProfile ? (
           <div onClick={handleClick} className="fixed mt-2 ml-16 w-fit h-fit md:mt-4 space-y-5 ">
             <div className={`${bg} ${marginLeft} relative w-48 sm:w-64 h-fit md:w-40 md:h-fit rounded-md`} style={{ backdropFilter: 'blur(15px)' }}>
-              <div className="h-full w-full rounded-lg divide divide-y divide-silver/35 items-center justify-center md:h-fit py-1 md:pt-1 px-1 space-y-0.5 md:space-y-0 text-base md:text-ssm outline font-semibold text-default/75">
+              <div className="h-full w-full rounded-lg divide divide-y divide-silver/35 items-center justify-center md:h-fit py-1 md:pt-1 px-1 space-y-0.5 md:space-y-0 text-base md:text-ssm font-semibold text-default/75">
                   {profileLinks.map((link, index) => {
                     const IconComponent = iconComponents[link.img];
                     return (
-                      <Link key={index} to={link.to} className={`block ${index === 0 ? '' : ''} p-2 px-1 hover:text-bg_variant1 hover:border-l-2 hover:border-bg_variant1 md:p-1 md:px-3 flex items-center justify-left outline space-x-2 md:space-x-1.5`}>
-                        <IconComponent fill={'black'} height="12" width="12" />
+                      <Link key={index} to={link.to} className={`block ${index === 0 ? '' : ''} p-2 px-1 hover:text-bg_variant1 hover:border-l-2 hover:border-bg_variant1 md:p-1 md:px-3 flex items-center justify-left space-x-2 md:space-x-1.5`}>
+                        <IconComponent fill={'black'}  />
                         <span>{link.text}</span>
                       </Link>
                     );

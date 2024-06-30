@@ -34,8 +34,12 @@ export const search = async (validTerm) => {
         const response = await fetch(`http://localhost:3000/search//${validTerm}`);
        if (response.ok) {
         const data = await response.json();
-        let resultCategory = data.results[0].collection;
-        return { data, resultCategory };
+        if (data.success === false) {
+            return { data };
+        } else { 
+            let resultCategory = data?.results[0].collection;
+            return { data, resultCategory };
+        }
        }
        throw new Error(`HTTP error! status: ${response.status}` )
     } catch (error) {

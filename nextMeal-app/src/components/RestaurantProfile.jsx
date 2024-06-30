@@ -219,7 +219,7 @@ function RestaurantProfile() {
                         <p className="md:font-medium">{restaurantDoc.details.hours.opendays} from {restaurantDoc.details.hours.openhours}</p>
                     </div>
                     
-                    <div className="h-64 sm:h-96 sm:mt-2 sm:rounded-none md: md:w-10/12 mx-auto rounded">
+                    <div className="h-64 sm:h-96 sm:mt-2 sm:rounded-none md:w-10/12 mx-auto rounded">
                         <img src={`/assets/img/gallery/restaurants/${restaurantDoc.gallery.img1}.webp`} alt="restaurant-photo" className="object-cover object-fill h-full w-full mx-auto" />
                     </div>
 

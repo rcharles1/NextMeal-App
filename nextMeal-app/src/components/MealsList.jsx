@@ -144,13 +144,15 @@ function MealsList() {
         <div className="capitalize font-base h-6 w-fit"><Breadcrumbs/></div>
       </div>
       <div id='container' className="flex flex-col w-full mb-12 space-y-5 py-1 sm:py-2 md:py-4 md:px-2 h-fit transition-all duration-500">
-        <div className="flex flex-col md:flex-row md:space-y-0 md:justify-between md:p-1 md:w-11/12 md:mx-auto items-center px-5 space-y-2">
-          <h1 className="w-fit text-2xl w-full sm:text-3xl md:text-lg font-semibold">Meals & Beverages</h1>
-          <div>
-            <SearchItem item={'Meals & Beverages'} onSearch={(result, resultCard) => {
-              handleSearch(result);
-              handleResultCard(resultCard);
-            }}/>
+        <div className="w-full p-4 bg- bg-cover caret-transparent">
+          <div className="flex flex-col md:flex-row md:space-y-0 md:justify-between md:p-1 md:w-11/12 md:mx-auto items-center px-5 space-y-2">
+            <h1 className="w-fit text-2xl w-full sm:text-3xl md:text-xl font-semibold">Meals & Beverages</h1>
+            <div>
+              <SearchItem item={'Meals & Beverages'} onSearch={(result, resultCard) => {
+                handleSearch(result);
+                handleResultCard(resultCard);
+              }}/>
+            </div>
           </div>
         </div>
 
@@ -189,20 +191,20 @@ function MealsList() {
           <div className="flex flex-col w-full space-y-2 md:w-10/12">
             <h1 className='text-base sm:text-lg md:text-base font-semibold px-5'>Browse all</h1>
             <div className="flex flex-col md:p-0 justify-center md:justify-end space-y-1.5">
-              <div className="flex h-fit space-x-1 items-center justify-center mx-4 md:mr-20 rounded-md">
+              <div className="flex h-fit space-x-1 items-center justify-center mx-4 md:justify-end rounded-md">
                 <button 
                   onClick={() => setIsFilterWidgetVisible(!isFilterWidgetVisible)}
-                  className={`md:hidden flex space-x-1 sm:space-x-0 grow-0 border border-light_dark/55 rounded p-1 h-8 w-full sm:h-6 sm:text-xs items-center justify-center caret-transparent cursor-pointer ${(isFilterWidgetVisible || areFiltersActive()) ? 'bg-bg_variant1 text-pure_white/75' : ''} focus:text-pure_white/75 focus:bg-bg_variant1`}
+                  className={`md:hidden flex space-x-1 sm:space-x-0 grow-0 border border-silver/35 rounded p-1 h-8 w-full sm:h-6 sm:text-xs items-center justify-center caret-transparent cursor-pointer ${(isFilterWidgetVisible || areFiltersActive()) ? 'bg-bg_variant1 text-slate_white' : ''} focus:text-slate_white focus:bg-bg_variant1`}
                 >
                   <span className="font-medium">Filter by</span>
                   <Filter fill={(isFilterWidgetVisible || areFiltersActive()) ? 'white' : 'black'}  height={`${size === 'sm' ? '10' : '20'}`} width={`${size === 'sm' ? '10' : '20'}`}/>
                 </button>
                 <button 
                   onClick={() => setIsSortWidgetVisible(!isSortWidgetVisible)}
-                  className={`flex space-x-1 sm:space-x-0 grow-0 border border-light_dark/55 p-2 h-8 sm:h-12 w-full sm:h-6 sm:text-xs md:text-ssm rounded items-center justify-center caret-transparent cursor-pointer ${(isSortWidgetVisible || isSortOptionActive()) ? 'bg-bg_variant1 text-pure_white border-bg_variant1 font-semibold' : ''} focus:text-pure_white/75 focus:bg-bg_variant1 relative`}
+                  className={`flex space-x-1 grow-0 border-2 border-silver/35 p-2 h-8 w-6/12 sm:space-x-0 md:space-x-1 sm:h-6 sm:text-xs md:w-20 sm:font-bold md:text-sm rounded items-center justify-center caret-transparent cursor-pointer ${(isSortWidgetVisible || isSortOptionActive()) ? 'bg-bg_variant1 text-slate_white border-none' : ''} focus:text-slate_white focus:bg-none relative`}
                 >
-                  <span className="font-medium">Sort by</span>
                   <Sort fill={(isSortWidgetVisible || isSortOptionActive()) ? 'white' : 'black'}  height={`${size === 'sm' ? '10' : '20'}`} width={`${size === 'sm' ? '10' : '20'}`}/>
+                  <span className="font-medium">Sort by</span>
                 </button>
               </div>
               {(isFilterWidgetVisible || isFilterActive) && <FilterWidget onFiltersChange={handleFiltersChange} 

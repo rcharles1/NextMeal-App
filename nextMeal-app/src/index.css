@@ -19,3 +19,8 @@
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1000; 
 }
+
+.active-link {
+  color: #f8382f ;
+  border-bottom: 2px solid #f8382f;
+}

@@ -37,9 +37,9 @@ function Root() {
                 <div className="sticky top-0 z-10">
                     <Header />
                 </div>
-                <div className="h-screen p-1 md:h-fit relative">
-                    <div className="bg-pure_white"><HomePage /></div>
-                    <div className="md:-mt-6 bg-pure_white shadow-2xl shadow-silver rounded-lg w-9/12 mx-auto"><QuickLinksComponent /></div>
+                <div className="h-fit p-1 md:h-fit">
+                    <div className="bg-pure_white pb-6 sm:pb-0"><HomePage /></div>
+                    <div className="mt-16 md:-mt-6 bg-pure_white shadow-2xl shadow-silver rounded-lg w-9/12 mx-auto"><QuickLinksComponent /></div>
                 </div>
                 <div className="flex flex-col mt-16 space-y-16 h-fit py-6 w-full">
                     <Services />

@@ -117,12 +117,14 @@ function RestaurantsList() {
                 <div className="capitalize font-base h-6 w-64"><Breadcrumbs/></div>
             </div>
            <div id='container' className={`flex flex-col mt-1 mb-12 space-y-5 px-5 py-1 sm:px-8 h-fit transition-all duration-500}`}>          
-                <div className="flex flex-col py-1.5 md:flex-row md:space-y-0 md:justify-between md:p-1 md:w-11/12 md:mx-auto items-center md:px-5 space-y-2">
-                    <h1 className="w-full md:w-fit text-2xl sm:text-3xl md:text-lg font-semibold">Restaurants</h1>
-                    <div>
-                        <SearchItem onSearch={(result) => {
-                            handleSearch(result);
-                        }}/>
+                <div className="w-full p-4 bg-restaurant bg-cover">
+                    <div className="flex flex-col py-1.5 md:flex-row md:space-y-0 md:justify-between md:p-1 md:w-11/12 md:mx-auto items-center md:px-5 space-y-2">
+                        <h1 className="w-full md:w-fit text-slate_white text-2xl sm:text-3xl md:text-xl font-semibold">Restaurants</h1>
+                        <div>
+                            <SearchItem onSearch={(result) => {
+                                handleSearch(result);
+                            }}/>
+                        </div>
                     </div>
                 </div>
                 <div id="offers & events" className="flex flex-col sm:-mx-4 space-y-2.5 md:px-8">
@@ -151,21 +153,27 @@ function RestaurantsList() {
                         <div className="flex flex-col w-full space-y-2 md:w-10/12">
                             <h1 className='text-base sm:text-lg md:text-base font-semibold'>Browse all</h1>
                             <div className="flex flex-col p-1 justify-center md:justify-end space-y-1.5">
-                                <div className="flex h-fit space-x-1 items-center justify-center rounded-md">
+                                <div className="flex h-fit space-x-1 items-center justify-center md:justify-end rounded-md">
                                     <button 
                                         onClick={() => setIsFilterWidgetVisible(!isFilterWidgetVisible)}
-                                        className={`md:hidden flex space-x-1 grow-0 border border-light_dark/55 rounded p-1 h-8 w-6/12 sm:space-x-0 sm:h-6 sm:text-xs items-center justify-center caret-transparent cursor-pointer ${(isFilterWidgetVisible || areFiltersActive()) ? 'bg-bg_variant1 text-pure_white/75 border border-bg_variant1' : ''} focus:text-pure_white/75 focus:bg-bg_variant1`}
+                                        className={`md:hidden flex space-x-1 grow-0 border border-silver/35 rounded p-1 h-8 w-6/12 sm:space-x-0 sm:h-6 sm:text-xs items-center justify-center caret-transparent cursor-pointer ${(isFilterWidgetVisible || areFiltersActive()) ? 'bg-bg_variant1 text-text-slate_white border border-none' : ''} focus:text-text-slate_white focus:bg-none`}
                                     >
                                         <span className="font-medium">Filter by</span>
                                         <Filter fill={(isFilterWidgetVisible || areFiltersActive()) ? 'white' : 'black'}  height={`${size === 'sm' ? '10' : '20'}`} width={`${size === 'sm' ? '10' : '20'}`} />
                                     </button>
                                     <button 
                                         onClick={() => setIsSortWidgetVisible(!isSortWidgetVisible)}
-                                        className={`flex space-x-1 grow-0 border-2 border-light_dark/55 p-2 h-8 w-6/12 sm:space-x-0 sm:h-6 sm:text-xs md:text-sm rounded items-center justify-center caret-transparent cursor-pointer ${(isSortWidgetVisible || isSortOptionActive()) ? 'bg-bg_variant1 text-pure_white border-bg_variant1' : ''} focus:text-pure_white/75 focus:bg-bg_variant1 relative`}
+                                        className={`flex space-x-1 grow-0 border-2 border-silver/35 p-2 h-8 w-6/12 sm:space-x-0 md:space-x-1 sm:h-6 sm:text-xs md:w-20 sm:font-bold md:text-sm rounded items-center justify-center caret-transparent cursor-pointer ${(isSortWidgetVisible || isSortOptionActive()) ? 'bg-bg_variant1 text-slate_white border-none' : ''} focus:text-slate_white focus:bg-none relative`}
                                     >
+                                        <Sort fill={(isSortWidgetVisible || isSortOptionActive()) ? 'white' : 'black'} />
                                         <span className="font-medium">Sort by</span>
-                                        <Sort fill={(isSortWidgetVisible || isSortOptionActive()) ? 'white' : 'black'}  height={`${size === 'sm' ? '10' : '20'}`} width={`${size === 'sm' ? '10' : '20'}`}/>
                                     </button>
+                                    <div className="absolute inset-y-0 right-7 top-3/4 pt-6 md:pt-0 md:-mt-10 h-fit w-fit z-30">
+                                        {(isSortWidgetVisible || isSortActive) && <SortWidget onSortChange={handleSortChange} 
+                                            onClose={closeSortWidget}
+                                            sort={sort}
+                                        />}
+                                    </div>
                                 </div>
                                 {(isFilterWidgetVisible || isFilterActive) && <FilterWidget onFiltersChange={handleFiltersChange} 
                                     onClose={closeFilterWidget}
@@ -173,12 +181,6 @@ function RestaurantsList() {
                                     onReset={resetFilters}
                                     filterOptions={restaurantFilterOptions}
                                 />} 
-                                <div className="absolute inset-y-0 right-7 top-3/4 pt-6 z-30">
-                                    {(isSortWidgetVisible || isSortActive) && <SortWidget onSortChange={handleSortChange} 
-                                        onClose={closeSortWidget}
-                                        sort={sort}
-                                    />}
-                                </div>
                             </div>
                             <div id='container' className='mx-auto w-full grid grid-cols-2 gap-y-2 gap-x-2 sm:grid-cols-3 sm:gap-6 md:gap-x-0 md:gap-y-3 lg:grid-cols-4 lg:gap-5'>
                                 {restaurants && (error === '') ? (

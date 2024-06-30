@@ -1,11 +1,11 @@
 import React from 'react';
 
 export function Filter({ fill}) {
-	return (<svg xmlns="http://www.w3.org/2000/svg" class="h-5 md:h-3 lg:h-8" viewBox="0 0 24 24"><path fill='none' stroke={fill} strokeLinecap="round" strokeMiterlimit={10} strokeWidth={1.5} d="m19.795 4.413l-5.074 7.852a1.79 1.79 0 0 0-.287.987v4.788a1.229 1.229 0 0 1-.678 1.09l-3.662 1.826a.356.356 0 0 1-.528-.322v-7.382a1.803 1.803 0 0 0-.287-.987L4.205 4.413A.976.976 0 0 1 5.112 3h13.776a.975.975 0 0 1 .907 1.412Z"></path></svg>);
+	return (<svg xmlns="http://www.w3.org/2000/svg" class="h-5 md:h-2.5 lg:h-8" viewBox="0 0 24 24"><path fill='none' stroke={fill} strokeLinecap="round" strokeMiterlimit={10} strokeWidth={1.5} d="m19.795 4.413l-5.074 7.852a1.79 1.79 0 0 0-.287.987v4.788a1.229 1.229 0 0 1-.678 1.09l-3.662 1.826a.356.356 0 0 1-.528-.322v-7.382a1.803 1.803 0 0 0-.287-.987L4.205 4.413A.976.976 0 0 1 5.112 3h13.776a.975.975 0 0 1 .907 1.412Z"></path></svg>);
 }
 
 export function Sort({ fill}) {
-	return (<svg xmlns="http://www.w3.org/2000/svg" class="h-5 md:h-3 lg:h-8" viewBox="0 0 48 48" ><path fill='none' stroke={fill} strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M19 6v36M7 17.9l12-12m10 36.2v-36m0 36l12-12"></path></svg>);
+	return (<svg xmlns="http://www.w3.org/2000/svg" class="h-5 md:h-2.5 lg:h-8" viewBox="0 0 48 48" ><path fill='none' stroke={fill} strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M19 6v36M7 17.9l12-12m10 36.2v-36m0 36l12-12"></path></svg>);
 }
 
 export function Ascending({ fill}) {
@@ -53,7 +53,7 @@ export function ArrowUp({fill}) {
 }
 
 export function Search({fill}) {
-	return (<svg xmlns="http://www.w3.org/2000/svg" class="h-5 md:h-4 lg:h-8" viewBox="0 0 24 24" ><g fill="none" stroke={fill} strokeWidth={2}><circle cx={11} cy={11} r={7}></circle><path strokeLinecap="round" d="m20 20l-3-3"></path></g></svg>);
+	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-5 md:h-4 lg:h-8" viewBox="0 0 24 24" ><g fill="none" stroke={fill} strokeWidth={2}><circle cx={11} cy={11} r={7}></circle><path strokeLinecap="round" d="m20 20l-3-3"></path></g></svg>);
 }
 
 export function Spinner1({fill}) {
@@ -85,7 +85,7 @@ export function UnCheckIcon({fill}) {
 }
 
 export function RatingBubble({fill, stroke}) {
-	return (<svg xmlns="http://www.w3.org/2000/svg" class="h-5 md:h-4 lg:h-8" viewBox="0 0 24 24"><circle cx={12} cy={12} r={9} fill={fill} stroke={stroke} strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}></circle></svg>);
+	return (<svg xmlns="http://www.w3.org/2000/svg" class="h-3 md:h-3 lg:h-4" viewBox="0 0 24 24"><circle cx={12} cy={12} r={9} fill={fill} stroke={stroke} strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}></circle></svg>);
 }
 
 export function CircleHalfFull({fill}) {
