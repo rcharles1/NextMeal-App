@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Bookmark, RatingBubble, CircleHalfFull } from '/src/components/svgs/InterfaceSvg';
 import { getMyFavorites } from '../features/wishlist/wishlistSlice';
 import Loading from './Loading';
+import { LocationIcon } from './svgs/InterfaceSvg';
 
 function RestaurantCard({ restaurant }) {
     const navigate = useNavigate();
@@ -87,8 +88,8 @@ function RestaurantCard({ restaurant }) {
                                 <NavLink to={`/restaurantprofile/${restaurant._id}`} className="hover:text-bg_variant1/55 text-sm text-wrap sm:text-base font-bold w-fit" >{restaurant.name}</NavLink>
                             </div>
                         </div>
-                        <div className="flex flex-row space-x-0.5">
-                            <span className="size-3 sm:size-3.5 md:size-2.5 mt-.5 md:mt-0"><img src='/assets/icon/location-fill.svg' alt='Location icon'/></span>
+                        <div className="flex flex-row space-x-0.5 md:space-x-1b">
+                            <span className="size-3 sm:size-3.5 md:size-2.5 mt-.5 md:-mt-0"><LocationIcon stroke="silver" fill="none"/></span>
                             <span className="text-xs truncate font-normal">{restaurant.details.address[0]}</span>
                         </div>
                         <div className="flex h-4 justify-between items-center mt-0.5">

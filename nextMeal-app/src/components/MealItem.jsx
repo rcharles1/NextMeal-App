@@ -5,6 +5,7 @@ import MenuIcon from './MenuIcon';
 import Breadcrumbs from './BreadCrumbs';
 import CollapsibleList from './CollapsibleList';
 import ReviewList from './ReviewComponents/ReviewList';
+import Cart from './CartComponents/Cart';
 
 import { useParams, useNavigate, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -128,6 +129,7 @@ function MealItem() {
             <div className='sticky w-full md:hidden caret-transparent top-20 sm:top-28 z-50 px-1 flex flex-row space-x-14 items-center justify-start caret-pure_white overflow-visible py-2 border-b-2 border-bg_variant2 backdrop-blur bg-opacity-70'> 
                 <div className="ml-3 sticky"><MenuIcon /></div>
                 <div className="capitalize font-base h-6 w-fit"><Breadcrumbs/></div>
+                <div><Cart /></div>
             </div>
            {mealDetails ? (
                 <div key={mealDetails._id} className="flex flex-col px-5 py-1 h-fit transition-all sm:px-16 md:px-20 duration-500">

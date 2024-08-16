@@ -9,7 +9,7 @@ import { addToCart, removeFromCart } from '../features/cart/cartSlice';
 
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { CartAddIcon, CartRemoveIcon, Diamonds, CompanyIcon, PricetagIcon, VolumeIcon } from '/src/components/svgs/InterfaceSvg';
+import { CartAddIcon, CartRemoveIcon, Diamonds, CompanyIcon, PricetagIcon, VolumeIcon, PlusIcon, MinusIcon  } from '/src/components/svgs/InterfaceSvg';
 
 function BeverageItem() {
     const dispatch = useDispatch();
@@ -34,6 +34,7 @@ function BeverageItem() {
         for (let i = 0; i < quantity; i++) {
           dispatch(addToCart(beverageDetails));
         }
+        console.log('Added', beverageDetails?.name)
     };
 
     const handleRemoveFromCart = () => {
@@ -43,14 +44,15 @@ function BeverageItem() {
     const incrementQuantity = () => setQuantity(quantity + 1);
     const decrementQuantity = () => setQuantity(quantity > 1 ? quantity - 1 : 1);
 
+
     return (
         <div className="flex flex-col antialiased text-default/75 bg-bg_variant2 mx-auto text-base font-normal h-screen w-100 ">
             <div className="sticky top-0 z-50 w-full">
                 <Header />
             </div>
-            <div className='sticky w-full md:hidden caret-transparent top-20 sm:top-28 z-50 px-1 flex flex-row space-x-14 items-center justify-start caret-pure_white overflow-visible py-2 border-b-2 border-bg_variant2 backdrop-blur bg-opacity-70'> 
+            <div className='sticky w-full md:hidden caret-transparent top-20 sm:top-28 z-50 px-1 flex flex-row space-x-3 items-center justify-start caret-pure_white overflow-visible py-2 border-b-2 border-bg_variant2 backdrop-blur bg-opacity-70'> 
                 <div className="ml-3 sticky"><MenuIcon /></div>
-                <div className="capitalize font-base h-6 w-fit"><Breadcrumbs/></div>
+                <div className="capitalize outline font-base h-6 min-w-72"><Breadcrumbs itemDoc={beverageDetails}/></div>
             </div>
            {beverageDetails ? (
                 <div key={beverageDetails._id} className="flex mt-2 flex-col w-full mx-auto mb-12 p-3 space-y-4 h-fit transition-all duration-500">
@@ -85,25 +87,38 @@ function BeverageItem() {
                     <div className="flex flex-row justify-around bg-pure_white p-1 py-2 w-full items-center text-default/75 underline underline-offset-2 font-semibold text-sm">
                         
                         <div className="flex flex-col items-center w-max-4/12">
-                            <PricetagIcon fill="gray" stroke="gray" height="24" width="24" />
+                            <PricetagIcon fill="black" stroke="black" />
                             <p className="text-wrap w-full">TZS {beverageDetails.price}</p>
                         </div>
                        <div className="flex flex-col items-center w-max-4/12">
-                            <VolumeIcon fill="gray" height="24" width="24" />
+                            <VolumeIcon fill="black" />
                             <p className="w-fit">{beverageDetails.size}</p>
                         </div>
                         <div className="flex flex-col items-center w-max-4/12">
-                            <CompanyIcon fill="gray" height="24" width="24"/>
+                            <CompanyIcon fill="black"/>
                             <p className="text-wrap w-full">{beverageDetails.brand}</p>
                         </div>
                     </div>
-                    <div className="flex flex-col space-y-4 px-3 py-2 caret-transparent" >
-                        <div className="flex justify-left md:w-fit md:mx-auto px-4 space-x-4 items-center">
-                            <p className="font-medium md:text-sm">Select quantity:</p>
-                            <div className="flex flex-row mx-auto items-center bg-light_dark/5 shadow-sm focus:bg-pure_white rounded">
-                                <button onClick={decrementQuantity} className="p-2 w-8 text-base">-</button>
-                                <input type="number" min="1" max="10" value={quantity} onChange={e => setQuantity(e.target.value)} className="text-center w-fit text-center pl-3" />
-                                <button onClick={incrementQuantity} className="p-2 w-8 text-base">+</button>
+
+                    <div className="flex flex-col hidden space-y-4 px-3 py-2 caret-transparent" >
+                        <div className="flex flex-row space-x-1 justify-around p-2">
+                            <div id="quantity">
+                                <p className="font-bold md:text-sm w-fit mx-auto">QUANTITY</p>
+                                <div className="flex mt-3 flex-row space-x-0.5 items-center bg-light_dark/5 shadow-sm focus:bg-pure_white rounded">
+                                    <button onClick={decrementQuantity} className="p-1"><MinusIcon stroke="black" /></button>
+                                    <input type="number" min="1" max="99" value={quantity} onChange={e => setQuantity(e.target.value)} className="text-center font-medium outline outline-silver/25 rounded-md w-7 text-center p-1" />
+                                    <button onClick={incrementQuantity} className="p-1"><PlusIcon stroke="black"/></button>
+                                </div>
+                            </div>
+
+                            <div id="price">
+                                <p className="font-semibold md:text-sm w-fit mx-auto">PRICE</p>
+                                <p className="mt-3 p-2 font-medium">Tzs{beverageDetails.price}</p>
+                            </div>
+
+                            <div id="Total">
+                                <p className="font-semibold md:text-sm w-fit mx-auto">TOTAL</p>
+                                <p className="mt-3 p-2 font-bold">Tzs {`${quantity*beverageDetails.price}`}</p>
                             </div>
                         </div>
                         <button onClick={handleAddToCart} className="flex space-x-2 md:text-ssm items-center justify-center bg-bg_variant1/75 p-3 w-80 h-10 md:w-40 md:h-8 mx-auto text-pure_white font-bold rounded-md focus:bg-bg_variant1">

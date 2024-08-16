@@ -17,6 +17,7 @@ import { fetchRestaurantDoc, fetchAllNearbyRestaurants, getListingReviews } from
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate, NavLink } from 'react-router-dom';
 import { Bookmark, RatingBubble, CircleHalfFull, Share } from './svgs/InterfaceSvg';
+import Cart from './CartComponents/Cart';
 
 function RestaurantProfile() {
     const navigate = useNavigate();
@@ -154,13 +155,13 @@ function RestaurantProfile() {
     let halfFilled = rating % 1 !== 0;
 
     return (
-        <div className="mx-auto text-base font-normal h-screen w-100 text-sm antialiased "> 
+        <div className="mx-auto text-base font-normal h-screen w-100  antialiased "> 
             <div className="sticky top-0 z-10 w-full">
                 <Header/>
            </div>
             <div className='sticky top-20 sm:top28 md:hidden md:top-14 z-10 px-4 flex flex-row space-x-3 items-center justify-start caret-bg_variant2 py-2 border-b-2 border-gray backdrop-blur bg-opacity-70'> 
                 <div className="z-0"><MenuIcon /></div>
-                <div className="capitalize h-6 items-center text-sm flex w-full"><Breadcrumbs restaurantDoc={restaurantDoc}/></div>
+                <div className="capitalize h-6 items-center text-sm flex w-full"><Breadcrumbs itemDoc={restaurantDoc}/></div>
             </div>
             { restaurantDoc ? (
                 <div className="sm:py-2 sm:px-4 flex flex-col bg-gray/35 caret-transparent">
@@ -220,7 +221,7 @@ function RestaurantProfile() {
                     </div>
                     
                     <div className="h-64 sm:h-96 sm:mt-2 sm:rounded-none md:w-10/12 mx-auto rounded">
-                        <img src={`/assets/img/gallery/restaurants/${restaurantDoc.gallery.img1}.webp`} alt="restaurant-photo" className="object-cover object-fill h-full w-full mx-auto" />
+                        <img src={`/assets/img/gallery/restaurants/${restaurantDoc.gallery.img1}.webp`} alt="restaurant-photo" className="object-cover l h-full w-full mx-auto" />
                     </div>
 
                     <div className="flex flex-col w-full sm:flex-row sm:mt-4 md:mt-6 sm:p-2 sm:space-x-4 md:p-0 md:w-10/12 mx-auto">

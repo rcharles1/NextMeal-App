@@ -3,7 +3,7 @@ import MenuIcon from './MenuIcon.jsx';
 import ProfileIcon from './ProfileIcon.jsx';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import NavBar from './NavBar.jsx';
 import { signIn } from '../features/auth/authSlice.js';
 import SearchComponent from './Search.jsx';
@@ -13,13 +13,18 @@ function Header() {
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
     const location = useLocation();
     const dispatch = useDispatch();
+    const navigate =useNavigate();
 
     useEffect(() => {
         const userData = JSON.parse(localStorage.getItem('user'));
         if (userData) {
             dispatch(signIn(userData));
         }
-    }, [dispatch])
+    }, [dispatch]);
+
+    const handleSignInSignOut = () => {
+        navigate('/signin')
+    }
 
     let bgColor, imgSrc, colorTheme,secColorTheme, setVisibility;
     if (location.pathname === '/') {
@@ -54,7 +59,9 @@ function Header() {
                         </div>
                     )}
                 </div>
-                <div className="md:mt-0.5">{isAuthenticated && <ProfileIcon colorTheme={colorTheme} />}</div>
+                <div className="md:mt-0.5">{isAuthenticated ? <ProfileIcon colorTheme={colorTheme} /> : (
+                        <button onClick={handleSignInSignOut} className="w-fit p-2 mt-0 text-sm text-slate_white font-medium bg-bg_variant1 mx-auto rounded">Sign In </button>
+                ) }</div>
             </div>
         </div>
     );
