@@ -29,7 +29,7 @@ function Restaurants() {
     return (
         <div className="flex flex-col space-y-8 md:space-y-6 justify-center antialiased items-center h-1/2 w-100 caret-transparent">
             <div className="flex flex-col space-y-3 text-center px-3.5">
-                <span className="text-3xl sm:text-5xl font-semibold text-heading">
+                <span className="text-3xl sm:text-5xl font-extrabold text-heading ">
                     Uncover Dining Delights! 
                 </span>
                 <span className="font-semibold leading-5 block text-base sm:text-lg text-pretty text-default/65">

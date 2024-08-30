@@ -15,7 +15,7 @@ function NavBar() {
     return (
         <>
             <div className="w-fit">
-                <div className="flex flex-row space-x-1.5 text-sm font-medium">
+                <div className="flex flex-row space-x-1.5 text-sm font-medium ssm:space-x-2 ssm:text-base">
                     {navLinks.map((link, index) => (
                         <Link
                             key={index}

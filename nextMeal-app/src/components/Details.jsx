@@ -11,7 +11,7 @@ function Details({ restaurantDoc }) {
                         <span>
                             Address
                         </span>
-                        <span className="font-semibold text-ssm w-58 text-wrap">
+                        <span className="font-medium w-58 text-wrap">
                             {restaurantDoc.details.address}
                         </span>
                     </div>
@@ -19,7 +19,7 @@ function Details({ restaurantDoc }) {
                         <span>
                             Hours
                         </span>
-                        <span className="font-semibold text-ssm">
+                        <span className="font-medium">
                             <p>{restaurantDoc.details.hours.openhours}</p>
                             <p>{restaurantDoc.details.hours.opendays}</p>
                         </span>
@@ -28,7 +28,7 @@ function Details({ restaurantDoc }) {
                         <span>
                             Phone
                         </span>
-                        <span className="font-semibold text-ssm space-x-1"> 
+                        <span className="font-medium space-x-1"> 
                             {restaurantDoc.details.phone[0]}
                         </span>
                     </div>
@@ -36,10 +36,10 @@ function Details({ restaurantDoc }) {
                         <span>
                             Platforms 
                         </span>
-                        <span className="font-semibold text-ssm w-max-48 md:w-32 text-right">
-                            <a href={`${restaurantDoc.details.platforms.website}`} target="_blank" rel="noopener noreferrer" className="flex w-full text-wrap text-blue/90 truncate underline">
+                        <span className="font-medium w-max-48 md:w-32 text-right">
+                            <a href={`${restaurantDoc.details.platforms.website}`} target="_blank" rel="noopener noreferrer" className="flex w-full text-wrap truncate underline">
                                 {`${restaurantDoc.name}`}
-                                <OpenIcon fill='blue' height='10' width='10' />
+                                <OpenIcon fill='' />
                             </a>
                         </span>
                     </div>

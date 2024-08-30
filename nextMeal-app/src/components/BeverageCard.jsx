@@ -65,7 +65,7 @@ function BeverageCard({ beverage }) {
                 <div className="flex flex-col h-64 w-[11rem] rounded-xl sm:rounded-2xl px-1.5 py-1.5 md:px-2 md:py-2 text-sm bg-pure_white drop-shadow-sm text-default/75 caret-transparent text-center sm:h-64 sm:w-48 md:h-64">
                     <div className="relative h-36 md:h-44 w-full mx-auto bg-gray/35 rounded-lg sm:rounded-xl md:rounded-lg overflow-hidden">
                         <div className="absolute p-1 inset-0">
-                            <img src={`/assets/img/gallery/meals/beverages/${beverage.img}.webp`} alt='beverage-image' className="w-44 h-full object-scale-down hover:scale-110 transition-transform duration-200 ease-in-out" />
+                            <img src={`/assets/img/gallery/meals/beverages/${beverage.gallery?.[0]}.webp`} alt='beverage-image' className="w-44 h-full object-scale-down hover:scale-110 transition-transform duration-200 ease-in-out" />
                         </div>
                     </div>
                     <div className="flex flex-col space-y-1 sm:h-18 w-full px-1 py-1 rounded-md sm:px-3 justify-center items-start font-medium" >

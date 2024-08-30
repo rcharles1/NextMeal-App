@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate, NavLink } from 'react-router-dom';
 import { Bookmark, RatingBubble, CircleHalfFull, Share } from './svgs/InterfaceSvg';
 import Cart from './CartComponents/Cart';
+import Gallery from './Gallery';
 
 function RestaurantProfile() {
     const navigate = useNavigate();
@@ -169,11 +170,11 @@ function RestaurantProfile() {
                         <div className="flex justify-between items-center">
                             <h2 className="font-bold w-full text-xl md:text-lg text-wrap">{restaurantDoc.name}</h2>
                             <div className="flex space-x-1.5 mt-0.5">
-                                <Bookmark fill={favorite ? 'red' : 'none'}  stroke={favorite ? 'red' : 'gray'} height="25" width="25" />
-                                <Share fill={'gray'} height={25} width={25} />
+                                <Bookmark fill={favorite ? 'red' : 'none'}  stroke={favorite ? 'red' : 'black'} height="25" width="25" />
+                                <Share height={25} width={25} />
                             </div>
                         </div>
-                        <div className="flex flex-col md:flex-row space-x-1.5 items-left md:font-medium">
+                        <div className="flex flex-col md:flex-row ssm:space-x-1.5 items-left md:font-medium">
                             <div className='flex flex-row text-default/75 font-bold w-fit space-x-1 text-base md:text-ssm items-center'>
                                 <div className="flex -space-x-0.5">
                                     {[...new Array(totalBubbles)].map((_, index) => {
@@ -205,8 +206,7 @@ function RestaurantProfile() {
                                     <span className="">{`${reviewsCount} reviews`}</span>
                                 </div>
                             </div>
-                            <div className="hidden md:block border-r border-light_dark h-3"></div>
-                            <div className="flex space-x-1 text-ssm">
+                            <div className="flex space-x-1 text-sm">
                                 {restaurantDoc.cuisine.map((item, index, array) => {
                                     return (
                                     <p key={index}>
@@ -217,27 +217,27 @@ function RestaurantProfile() {
                                 })}
                             </div>
                         </div>
-                        <p className="md:font-medium">{restaurantDoc.details.hours.opendays} from {restaurantDoc.details.hours.openhours}</p>
+                        <p className="text-sm font-semibold pb-0.5">{restaurantDoc.details.hours.opendays} from {restaurantDoc.details.hours.openhours}</p>
                     </div>
                     
-                    <div className="h-64 sm:h-96 sm:mt-2 sm:rounded-none md:w-10/12 mx-auto rounded">
-                        <img src={`/assets/img/gallery/restaurants/${restaurantDoc.gallery.img1}.webp`} alt="restaurant-photo" className="object-cover l h-full w-full mx-auto" />
+                    <div className="h-fit sm:h-96 sm:mt-2 sm:rounded-none md:w-10/12 mx-auto rounded">
+                        <Gallery listingGallery={restaurantDoc.gallery} listing={restaurantDoc} />
                     </div>
 
                     <div className="flex flex-col w-full sm:flex-row sm:mt-4 md:mt-6 sm:p-2 sm:space-x-4 md:p-0 md:w-10/12 mx-auto">
-                        <div className="h-fit pb-6 sm:pb-0 p-5 bg-pure_white sm:rounded-lg md:rounded-xl sm:h-80 md:h-64 sm:w-6/12 flex flex-col sm:justify-top">
+                        <div className="h-fit pb-6 space-y-2 sm:pb-0 p-5 bg-pure_white sm:rounded-lg md:rounded-xl sm:h-80 md:h-64 sm:w-6/12 flex flex-col sm:justify-top">
                             <h4 className="font-semibold text-lg md:text-base">Ratings and reviews</h4>
                             <div className="max-h-56 md:max-h-32 p-1"> 
                                 {postedReviews.length === 0 ? <p className="text-base md:text-sm sm:mt-4">There are no reviews for {`${restaurantDoc.name}`}. Be the first to write one!</p> : <ReviewList reviews={postedReviews}  onReviewCount={handleReviewsCount} />  }
                             </div>
                             <a href='#allReviews'className="md:mt-6 underline font-semibold" >Read all reviews</a>
-                            <NavLink to={`/review/${restaurantDoc._id}`} className="bg-bg_variant1 p-2 w-11/12 md:w-full mx-auto mt-2 sm:mt-32 md:my-auto text-base text-center md:text-sm text-pure_white font-bold rounded-lg shadow shadow-sm active:bg-bg_variant1/80">Write a Review</NavLink>
+                            <NavLink to={`/review/${restaurantDoc._id}`} className="bg-bg_variant1 p-2 w-11/12 md:w-full mx-auto mt-2 sm:mt-32 md:my-auto text-lg text-center md:text-sm text-pure_white font-bold rounded-lg shadow-sm active:bg-bg_variant1/80">Write a Review</NavLink>
                         </div>
                         <div className="sm:hidden h-fit pb-6 p-5 bg-gray/35 sm:h-80 sm:w-6/12 flex flex-col space-y-2">
                             <h4 className="font-semibold text-center text-base">Ad Here</h4>
                         </div>
                         <div className="h-fit pb-6 p-5 w-full mx-auto bg-pure_white sm:h-80 md:h-64 sm:w-6/12 sm:rounded-lg md:rounded-xl flex flex-col space-y-2 sm:space-y-4 sm:justify-top">
-                            <h4 className="font-semibold text-lg md:text-base">Details</h4>
+                            <h4 className="font-bold text-lg md:text-base">Details</h4>
                             <Details restaurantDoc={restaurantDoc}/>
                             <a href='#allDetails'className="underline font-semibold" >See all details</a>
                         </div>
@@ -245,7 +245,7 @@ function RestaurantProfile() {
                             <h4 className="font-semibold text-center text-base">Ad Here</h4>
                         </div>
                         <div className="h-fit pb-6 p-5 bg-pure_white sm:h-80 md:h-64 sm:w-6/12 sm:rounded-lg md:rounded-xl flex flex-col space-y-2 sm:space-y-4 sm:justify-top">
-                            <h4 className="font-semibold text-lg md:text-base">Services and features</h4>
+                            <h4 className="font-bold text-lg md:text-base">Services and features</h4>
                             <RestaurantServices restaurantDoc={restaurantDoc}/>
                         </div>
                     </div>
@@ -253,7 +253,7 @@ function RestaurantProfile() {
                     <div className="h-2 pb-6 p-5 bg-gray/35 sm:bg-pure sm:h-1 sm:pb-0 flex flex-col space-y-2"></div>
 
                     <div className="h-fit w-full pb-6 bg-pure_white sm:rounded-lg md:rounded-xl md:mt-2 md:w-10/12 mx-auto flex flex-col space-y-2">
-                        <h4 className="font-semibold p-5 text-lg" >Best nearby restaurants in {`${restaurantDoc.locationData.district}`}</h4>
+                        <h4 className="font-bold p-5 text-lg" >See other nearby restaurants in {`${restaurantDoc.locationData.district}`}</h4>
                         <div className="bg-gray sm:bg-pure_white px-3 pb-3 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6 p-1 sm:px-2">
                             {nearbyRestaurants ? nearbyRestaurants.map(nearbyRestaurant => {
                                 return(
@@ -264,19 +264,19 @@ function RestaurantProfile() {
                     </div>
 
                     <div id="allDetails" className="h-fit pb-6 p-5 mb-4 md:mb-0 bg-pure_white mt-2 sm:mt-6 sm:rounded-lg md:rounded-xl sm:h-80 md:h-fit  md:w-10/12 mx-auto flex flex-col space-y-3 sm:space-y-4">
-                        <h4 className="font-semibold text-lg">Details and amenities</h4>
+                        <h4 className="font-bold text-lg">Details and amenities</h4>
                         <hr className="text-silver/30"></hr>
                         <div className="w-full h-fit sm:w-fit sm:flex md:space-x-2">
                             <div className="sm:w-5/12 p-1 md:space-y-1.5">
-                                <h5 className="font-semibold md:text-sm">ABOUT</h5>
+                                <h5 className="font-bold md:text-sm">ABOUT</h5>
                                 <p className="px-1 text-justify sm:text-start md:text-ssm mt-0.5">{restaurantDoc.description}</p>
                             </div>
                             <div className="p-2 md:space-y-1.5">
-                                <h5 className="font-semibold md:text-sm">AMENITIES</h5>
+                                <h5 className="font-bold py-1 md:text-sm">AMENITIES</h5>
                                 <RestaurantAmenities restaurantDoc={restaurantDoc} />
                             </div>
                             <div className="sm:w-5/12 px-4 p-1 md:space-y-1.5">
-                                <h5 className="font-semibold md:text-sm">LOCATION</h5>
+                                <h5 className="font-bold py-2 md:text-sm">LOCATION</h5>
                                 <div className="h-24 overflow-hidden sm:32 rounded-2xl md:rounded-lg">
                                     <MapComponent restaurantDoc={restaurantDoc}/>
                                 </div>

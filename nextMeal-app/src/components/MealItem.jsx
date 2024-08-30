@@ -181,7 +181,7 @@ function MealItem() {
                     </div>
 
                     <div className="h-64 sm:h-96 sm:mt-2 sm:rounded-none md:px-8 md:w-8/12 mx-auto rounded">
-                        <img src={`/assets/img/gallery/meals/food/${mealDetails.img}.webp`} alt="meal-photo" className="object-cover object-fill h-full w-full mx-auto" />
+                        <img src={`/assets/img/gallery/meals/food/${mealDetails.img}.webp`} alt="meal-photo" className="object-cover h-full w-full mx-auto" />
                     </div>
 
                     <div className="flex flex-col w-full sm:flex-row sm:mt-4 sm:p-2 sm:space-x-4 md:p-0 md:w-10/12 mx-auto">

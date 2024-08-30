@@ -71,7 +71,7 @@ passport.use(
         name: profile.displayName,
         picture: profile.photos[0].value
       }).save();
-
+      
       done(null, user);
     }
   )

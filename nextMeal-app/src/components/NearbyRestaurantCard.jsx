@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Bookmark, RatingBubble, CircleHalfFull } from '/src/components/svgs/InterfaceSvg';
 import { getMyFavorites } from '../features/wishlist/wishlistSlice';
-import Review from './ReviewComponents/Review';
 
 function NearbyRestaurantCard({ nearbyRestaurant }) {
     const navigate = useNavigate();
@@ -65,6 +64,8 @@ function NearbyRestaurantCard({ nearbyRestaurant }) {
             }
         },[favorite]
     ); 
+    
+    const restaurantName = nearbyRestaurant.name.replace(/\s+/g, '').toLowerCase();
 
     // Rating implementation
     const totalBubbles = 5;
@@ -78,7 +79,7 @@ function NearbyRestaurantCard({ nearbyRestaurant }) {
             {nearbyRestaurant ? 
                 <div className="bg-pure_white flex flex-col sm:flex-row sm:space-x-0 h-fit pb-4 sm:h-fit sm:pb-0 sm:w-full md: rounded-md md:rounded-lg overflow-hidden">
                     <div className="relative h-56 sm:h-32 sm:w-5/12 md:h-32 w-full mx-auto sm:rounded-lg md:rounded-xl overflow-hidden">
-                        <div className="absolute inset-0"><img src={`/assets/img/gallery/restaurants/${nearbyRestaurant.gallery.img1}.webp`} alt="restaurant-photo" className="w-full h-full object-cover md:object-fill" /></div>
+                        <div className="absolute inset-0"><img src={`/assets/img/gallery/restaurants/${restaurantName}/${nearbyRestaurant.gallery?.[0]}.webp`} alt="restaurant-photo" className="w-full h-full object-cover md:object-fill" /></div>
                     </div>
                     <div className="sm:w-6/12">
                         <div className="flex justify-between w-full p-3 sm:p-1 h-fit items-center">
@@ -115,7 +116,7 @@ function NearbyRestaurantCard({ nearbyRestaurant }) {
                                     })}
                                 </div>
                                 <div className="flex items-center space-x-0.5 sm:text-ssm font-semibold">
-                                    <span className="">{`${nearbyRestaurant.reviews.length} reviews`}</span>
+                                    <span className="">{`${nearbyRestaurant.reviews?.length} reviews`}</span>
                                 </div>
                             </div>
                             <div className="sm:hidden">

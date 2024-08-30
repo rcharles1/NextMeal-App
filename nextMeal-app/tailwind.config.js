@@ -20,7 +20,27 @@ export default {
       gray: '#e5e7eb',
       graphic_dark: '#ffffff',
       light_dark: '#B3ADA7',
-      silver: '#C0C0C0'
+      silver: '#C0C0C0',
+      tertiary: '#141C33',
+    },
+    screens: {
+      'ssm': '480px',
+      // => @media (min-width: 480px) { mobile landscape } 
+
+      'sm': '640px',
+      // => @media (min-width: 640px) { tablet portrait }
+
+      'md': '768px',
+      // => @media (min-width: 768px) { tablet landscape, laptop, desktop }
+
+      'lg': '1024px',
+      // => @media (min-width: 1024px) { desktop }
+
+      'xl': '1280px',
+      // => @media (min-width: 1280px) { large desktop, TV }
+
+      '2xl': '1536px',
+      // => @media (min-width: 1536px) { ultra screeens }
     },
     extend: {
       caretColor: {
@@ -69,6 +89,9 @@ export default {
           '-ms-overflow-style': 'none',
           'scrollbar-width': 'none',
         },
+        '.visual-gradient': {
+          'background-image': 'linear-gradient(to top, #141C33, transparent)',
+        }
       };
 
       addUtilities(newUtilities);

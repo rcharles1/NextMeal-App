@@ -2,26 +2,30 @@ import React from 'react';
 
 function QuickLinksComponent() {
     return (
-        <div className="flex w-full mx-auto md:w-full rounded h-fit p-2 md:px-4 justify-center items-center sm:space-y-1 caret-transparent font-semibold antialised">
-            <div className="px-10 w-full grid grid-cols-2 gap-2 md:px-4 md:grid-cols-4 md:gap-6 sm:py-1 sm:space-y-0">
-                <div class="rounded-lg border border-slate_white/50 hover:bg-gradient-to-b from-pure_white to-bg_variant1/15 drop-shadow-sm h-fit w-24 md:w-36 p-1 transition transform hover:-translate-y-1 ease-in-out delay-100">
-                    <div className="px-1 rounded-md text-center">
-                        <p className="text-sm mt-0.5"><span className="font-bold text-bg_variant1/90">NextMeal Coverage</span> Brings Nation-wide Compassion.</p>
+        <div className="flex w-full mx-auto rounded h-fit p-2 ssm:p-3 ssm:py-5 text-ssm ssm:text- justify-center items-center sm:space-y-1 caret-transparent font-semibold antialised">
+            <div className="px-10 w-full ssm:w-fit grid grid-cols-2 gap-2 md:px-4 ssm:grid-cols-4 ssm:gap-0 sm:space-y-0 items-center">
+                <div className="h-fit w-24 md:w-36">
+                    <div className="rounded-md text-center">
+                        <p className="text-bg_variant1/90 font-bold text-lg tracking-tighter ">Mutli-Regional</p>
+                        <p>Coverage of the country</p>
                     </div>
                 </div>
-                <div class="rounded-lg border border-slate_white/50 hover:bg-gradient-to-b from-pure_white to-bg_variant1/15 drop-shadow-sm h-fit w-24 md:w-36 p-1 transition transform hover:-translate-y-1 ease-in-out delay-100">
+                <div className="h-fit w-24 md:w-36">
                     <div className="px-1 rounded-md text-center">
-                        <p className="text-sm mt-0.5">Taste the Heart: Explore NextMeal’s <span className="text-bg_variant1/90 font-bold">67+</span> Culinary Partners!.</p>
+                        <p className="text-bg_variant1/90 font-bold text-lg tracking-tighter ">Over 100</p>
+                        <p> Culinary Partners!</p>
                     </div>
                 </div>
-                <div class="rounded-lg border border-slate_white/50 hover:bg-gradient-to-b from-pure_white to-bg_variant1/15 drop-shadow-sm h-fit w-24 md:w-36 p-1 transition transform hover:-translate-y-1 ease-in-out delay-100">
-                    <div className="px-1 rounded-md text-center">
-                        <p className="text-sm mt-0.5"><span className="text-bg_variant1/90 font-bold">150+ Meals</span>, 1 Mission: No One Goes Hungry!.</p>
+                <div className="h-fit w-24 md:w-36">
+                    <div className="text-center">
+                        <p className="text-bg_variant1/90 font-bold text-lg tracking-tighter ">150+ Meals</p>
+                        <p> No One Goes Hungry!</p>
                     </div>
                 </div>
-                <div class="rounded-lg border border-slate_white/50 hover:bg-gradient-to-b from-pure_white to-bg_variant1/15 drop-shadow-sm h-fit w-24 md:w-36 p-1 transition transform hover:-translate-y-1 ease-in-out delay-100">
-                    <div className="px-1 rounded-md text-center">
-                        <p className="text-sm mt-0.5">Cheers to Variety! With NextMeal's <span className="text-bg_variant1/90 font-bold">77+</span> beverage listings.</p>
+                <div className="h-fit w-24 md:w-36">
+                    <div className="text-center">
+                        <p className="text-bg_variant1/90 font-bold text-lg tracking-tighter ">180+ beverages</p>
+                        <p className=" mt-0.5">Cheers to Variety!</p>
                     </div>
                 </div>
             </div>

@@ -17,7 +17,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
   const state = useSelector(state => state.state);
-
+  
   return (
     <Router>
       <Routes>

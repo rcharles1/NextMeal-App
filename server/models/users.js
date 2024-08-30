@@ -21,18 +21,18 @@ const UserSchema = new Schema({
 });
 
 UserSchema.statics.findOrCreate = function findOrCreate(profile, cb) {
-    var userObj = new this();
-    this.findOne({googleId : profile.id},function(err,result){ 
-      if(!result){
-        userObj.googleId = profile.id;
-        userObj.email = profile.emails[0].value;
-        userObj.name = profile.displayName;
-        userObj.picture = profile.photos[0].value;
-        userObj.favorites = [];
-        userObj.save(cb);
-      }else{
-        cb(err,result);
-      }
+  var userObj = new this();
+  this.findOne({googleId : profile.id},function(err,result){ 
+    if(!result){
+      userObj.googleId = profile.id;
+      userObj.email = profile.emails[0].value;
+      userObj.name = profile.displayName;
+      userObj.picture = profile.photos[0].value;
+      userObj.favorites = [];
+      userObj.save(cb);
+    }else{
+      cb(err,result);
+    }
     });
 };
 

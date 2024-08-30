@@ -29,8 +29,8 @@ function Beverages() {
 
     return (
         <div className="flex flex-col caret-transparent w-100 h-2/3 space-y-8">
-            <div className="font-semibold text-3xl sm:text-5xl flex flex-col space-y-3 text-center "> 
-                <span className="w-10/12 mx-auto">Quenching Thirst, Igniting Change. </span>
+            <div className="flex flex-col space-y-3 text-center "> 
+                <span className="w-10/12 mx-auto font-extrabold text-3xl sm:text-5xl">Quenching Thirst, Igniting Change. </span>
                 <span className="font-semibold px-3 w-11/12 mx-auto leading-5 block text-base sm:text-lg text-pretty text-default/65">Thirst for Good. Every Sip Makes a Difference.</span>
             </div>
             <div className="flex flex-col space-y-3 rounded-sm w-full p-2">
