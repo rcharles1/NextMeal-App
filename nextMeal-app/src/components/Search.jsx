@@ -74,12 +74,12 @@ function SearchComponent() {
 
   return (
     <div>
-      <button onClick={handleOpenDialog} className={`${isDialogOpen ? 'collapse' : 'block'} caret-transparent flex flex-row md:w-96 space-x-1 md:space-x-1.5 md:p-1.5 md:px-3 md:pt-1.5 px-3 p-1 rounded-2xl outline outline-silver/30`}>
-        <Search fill={'silver'} height="25" width="25" />
+      <button onClick={handleOpenDialog} className={`${isDialogOpen ? 'collapse' : 'block'} caret-transparent flex flex-row md:w-96 space-x-1 md:space-x-1.5 md:p-1.5 md:px-3 md:pt-1.5 px-3 p-1 rounded-2xl outline-bg_variant1 outline`}>
+        <Search fill={'red'} />
         <input
           type="text"
           placeholder="Places to dine, meals to taste, drinks to have..."
-          className="p-0.5 px-1 w-32 sm:w-4 md:w-96 md:mt-0.5 text-base sm:text-sm text-default/75 rounded-lg caret-transparent font-semibold focus:outline-none"
+          className="p-0.5 px-1 w-32 sm:w-4 md:w-96 ssm:mt-0.5 text-base sm:text-sm lg:p-1.5 text-bg_variant1 caret-transparent font-semibold focus:outline-none bg-bg_variant1/0"
         />
       </button>
 
@@ -88,15 +88,15 @@ function SearchComponent() {
       ) : ''}
 
       {isDialogOpen && (
-        <div className="dialog fixed z-30 h-screen w-full bg-pure_white sm:rounded-lg absolute sm:max-top-0 left-0 p-3 sm:h-96 mx-auto sm:w-96 sm:my-5 sm:-ml-96 md:-mt-56 md:fixed md:top-72 md:left-2/3 sm:mx-auto -mt-16">
+        <div className="dialog z-30 h-screen w-full bg-pure_white sm:rounded-lg absolute sm:max-top-0 left-0 p-3 sm:h-80 mx-auto sm:w-96 sm:my-5 ssm:-ml-80 md:-mt-56 md:fixed md:top-72 md:left-2/3 -mt-16 lg:w-6/12 lg:p-5 lg:rounded-xl lg:-ml-96 lg:h-fit xl:w-8/12 xl:left-2/4 xl:h-2/3">
           {/* Dialog content */}
-          <div className="flex w-full space-x-4 border-b border-offset-4 items-center md:pb-1.5 md:space-x-0.5 md:p-0 border-silver/75 p-3">
+          <div className="flex w-full space-x-4 border-b border-offset-4 items-center md:pb-1.5 md:space-x-0.5 md:p-0 border-silver/75 p-3 lg:p-1 lg:pb-3 lg:justify-around">
             <button onClick={handleCloseDialog} >
-              <PreviousIcon fill={'silver'} height="25" width="20" />
+              <PreviousIcon/>
             </button>
             <div className="flex space-x-1 mt-0.5">
               <div className="hidden">
-                <Search fill={'silver'} height="20" width="20" />
+                <Search fill={'silver'} />
               </div>
               {showInputField && (
               <input
@@ -104,14 +104,14 @@ function SearchComponent() {
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
                 placeholder="Places to dine, meals to taste, drinks to have..."
-                className="capitalize p-1 min-w-72 text-sm md:text-ssm font-medium caret-bg_variant1 focus:outline-none"
+                className="capitalize p-1 min-w-72 text-sm md:text-base font-medium caret-bg_variant1 focus:outline-none lg:w-96 "
               />
             )}
             </div>
             <button onClick={handleClickSubmit} className="md:hidden">
               <Search fill={'silver'} height="20" width="20" />
             </button>
-            <button onClick={handleClickSubmit} className="hidden md:block bg-bg_variant1/70 text-pure_white font-semibold text-ssm rounded-lg p-1 px-1 ring-1 ring-bg_variant1/70 ring-offset-1  hover:bg-bg_variant1 hover:ring-bg_variant1">
+            <button onClick={handleClickSubmit} className="hidden md:block bg-bg_variant1/70 text-pure_white font-semibold text-ssm lg:text-sm lg:p-1.5 lg:px-2 xl:text-base xl:px-3 rounded-lg p-1 px-1 ring-1 ring-bg_variant1/70 ring-offset-1 hover:bg-bg_variant1 hover:ring-bg_variant1">
               Search
             </button>
           </div>
@@ -119,17 +119,17 @@ function SearchComponent() {
           <div className="h-fit p-2 px-6">
             <div>
               <div className={`flex mt-3 md:mt-1 items-center space-x-4 text-sm md:text-ssm font-medium`}>
-                <div className="bg-silver/15 size-12 rounded-lg p-1 px-2.5 py-3 md:px-4 md:py-4 items-center">
-                  <DirectionIcon stroke={'gray'} width="25" height="25" />
+                <div className="bg-silver/15 size-12 rounded-lg flex items-center justify-center lg:p-0">
+                  <div><DirectionIcon stroke={'gray'}/></div>
                 </div>
-                <p>Nearby</p>
+                <p className="lg:text-base">Nearby</p>
               </div>
             </div>
             <div id="searchResultDisplay" className="mt-5 h-fit">
               {noRecordMessage ? <p className="p-2 w-fit mx-auto text-base font-medium">{noRecordMessage}</p> : (
                 <div>
-                  <h3 className="text-sm font-semibold">What you are looking for</h3>
-                  <div className="h-2/4 p-2 md:max-h-56 mt-1.5 overflow-hidden overflow-y-auto scroll-smooth">
+                  <h3 className="text-sm font-bold lg:text-lg">What you are looking for</h3>
+                  <div className="h-2/4 p-2 ssm:max-h-56 xl:max-h-80 mt-1.5 overflow-hidden overflow-y-auto scroll-smooth">
                     {searchResults ? ( 
                       searchResults.map((result, index) => {
                         return (

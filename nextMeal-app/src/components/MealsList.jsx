@@ -139,14 +139,14 @@ function MealsList() {
       <div className="sticky top-0 z-50 w-full">
         <Header/>
       </div>
-      <div className='sticky w-full caret-transparent top-20 md:hidden sm:top-28 md:top-20 z-50 px-1 md:px-3 flex flex-row space-x-14 items-center justify-start caret-pure_white overflow-visible py-2 border-b-2 border-bg_variant2 backdrop-blur bg-opacity-70'> 
+      <div className='sticky w-full caret-transparent top-20 md:hidden sm:top-28 md:top-20 z-50 px-1 md:px-3 flex flex-row space-x-14 items-center justify-start overflow-visible py-2 border-b-2 border-bg_variant2 backdrop-blur bg-opacity-70'> 
         <div className="ml-3 sticky"><MenuIcon /></div>
         <div className="capitalize font-base h-6 w-fit"><Breadcrumbs/></div>
       </div>
       <div id='container' className="flex flex-col w-full mb-12 space-y-5 py-1 sm:py-2 md:py-4 md:px-2 h-fit transition-all duration-500">
-        <div className="w-full p-4 bg- bg-cover caret-transparent">
+        <div className="w-full p-4 bg-m3 bg-cover caret-transparent ">
           <div className="flex flex-col md:flex-row md:space-y-0 md:justify-between md:p-1 md:w-11/12 md:mx-auto items-center px-5 space-y-2">
-            <h1 className="w-fit text-2xl w-full sm:text-3xl md:text-xl font-semibold">Meals & Beverages</h1>
+            <h1 className="text-3xl w-full lg:text-5xl text-pure_white font-extrabold">Meals & Beverages</h1>
             <div>
               <SearchItem item={'Meals & Beverages'} onSearch={(result, resultCard) => {
                 handleSearch(result);
@@ -157,11 +157,11 @@ function MealsList() {
         </div>
 
         <div className="flex flex-col space-y-2 px-5 md:flex-row md:space-y-0 md:space-x-12 caret-transparent">
-          <div className="hidden md:block h-40 flex w-2/12">
+          <div className="hidden ssm:block h-40 w-2/12">
             <PosterCarousel size="small"/>
           </div>
          <div>
-          <h2 className="text-base sm:text-2xl md:text-base md:w-fit font-semibold">What's your mood?</h2>
+          <h2 className="text-xl ssm:text-2xl md:w-fit font-bold">What's your mood?</h2>
             <div className="flex flex-row w-full container-snap overflow-x-auto space-x-2 md:w-fit md:mt-2 p-3 overflow-hidden">
                 <MealCategory onCategorySelect={setSelectedMood} moodOption={moodOption} resetPage={() => setPage(0)}/>
             </div>
@@ -170,7 +170,7 @@ function MealsList() {
 
         {searchResults && searchResults.length > 0 ? (
           <div className="flex flex-col space-y-1 px-5 py-2">
-            <h1 className='text-base sm:text-2xl md:text-base font-semibold'>Featured</h1>
+            <h1 className='text-xl md:text-base font-bold'>Featured</h1>
             <div id='container' className='mx-auto w-full grid grid-cols-2 gap-y-2 gap-x-2 sm:grid-cols-3 sm:gap-8 lg:gap-5'>
               {(searchResultCard === 'beverages') ? searchResults.map((item) => <BeverageCard key={item._id} beverage={item}/> ) :  searchResults.map((item) => <MealCard key={item._id} meal={item} />)}
             </div>
@@ -179,7 +179,7 @@ function MealsList() {
 
       {mealitem ? (
         <div className="flex flex-col md:flex-row md:space-x-6 md:px-5 caret-transparent space-y-1 w-full">
-          <div className="hidden md:block h-fit w-2/12 bg-pure_white rounded-lg px-0.5 py-2">
+          <div className="hidden md:block h-fit w-2/12 bg-pure_white rounded-lg px-0.5 py-2 sticky top-2">
             { <FilterWidget onFiltersChange={handleFiltersChange} 
               onClose={closeFilterWidget}
               filters={filters}
@@ -189,22 +189,22 @@ function MealsList() {
           </div>
 
           <div className="flex flex-col w-full space-y-2 md:w-10/12">
-            <h1 className='text-base sm:text-lg md:text-base font-semibold px-5'>Browse all</h1>
-            <div className="flex flex-col md:p-0 justify-center md:justify-end space-y-1.5">
-              <div className="flex h-fit space-x-1 items-center justify-center mx-4 md:justify-end rounded-md">
+            <h1 className='text-lg font-bold px-5'>Browse all</h1>
+            <div className="flex flex-col md:p-0 justify-center md:justify-end space-y-1.5 relative">
+              <div className="flex h-fit space-x-2 items-center px-5 md:justify-end ">
                 <button 
                   onClick={() => setIsFilterWidgetVisible(!isFilterWidgetVisible)}
-                  className={`md:hidden flex space-x-1 sm:space-x-0 grow-0 border border-silver/35 rounded p-1 h-8 w-full sm:h-6 sm:text-xs items-center justify-center caret-transparent cursor-pointer ${(isFilterWidgetVisible || areFiltersActive()) ? 'bg-bg_variant1 text-slate_white' : ''} focus:text-slate_white focus:bg-bg_variant1`}
+                  className={`md:hidden text-base flex space-x-1 sm:space-x-0 grow-0 border border-silver/35 rounded p-1 h-8 w-full sm:h-6  items-center justify-center caret-transparent cursor-pointer ${(isFilterWidgetVisible || areFiltersActive()) ? 'bg-bg_variant1 text-slate_white' : ''} focus:text-slate_white focus:bg-bg_variant1`}
                 >
-                  <span className="font-medium">Filter by</span>
                   <Filter fill={(isFilterWidgetVisible || areFiltersActive()) ? 'white' : 'black'}  height={`${size === 'sm' ? '10' : '20'}`} width={`${size === 'sm' ? '10' : '20'}`}/>
+                  <span className="font-medium">Filter by</span>
                 </button>
                 <button 
                   onClick={() => setIsSortWidgetVisible(!isSortWidgetVisible)}
-                  className={`flex space-x-1 grow-0 border-2 border-silver/35 p-2 h-8 w-6/12 sm:space-x-0 md:space-x-1 sm:h-6 sm:text-xs md:w-20 sm:font-bold md:text-sm rounded items-center justify-center caret-transparent cursor-pointer ${(isSortWidgetVisible || isSortOptionActive()) ? 'bg-bg_variant1 text-slate_white border-none' : ''} focus:text-slate_white focus:bg-none relative`}
+                  className={`flex text-base space-x-1 grow-0 border-2 border-silver/35 p-2 h-8 w-full sm:space-x-0 md:space-x-1 sm:h-6 md:w-20 sm:font-bold  rounded items-center justify-center caret-transparent cursor-pointer ${(isSortWidgetVisible || isSortOptionActive()) ? 'bg-bg_variant1 text-slate_white border-none' : ''} focus:text-slate_white focus:bg-none relative`}
                 >
                   <Sort fill={(isSortWidgetVisible || isSortOptionActive()) ? 'white' : 'black'}  height={`${size === 'sm' ? '10' : '20'}`} width={`${size === 'sm' ? '10' : '20'}`}/>
-                  <span className="font-medium">Sort by</span>
+                  <span className="font-medium ssm:text-sm">Sort by</span>
                 </button>
               </div>
               {(isFilterWidgetVisible || isFilterActive) && <FilterWidget onFiltersChange={handleFiltersChange} 
@@ -213,14 +213,14 @@ function MealsList() {
                 onReset={resetFilters}
                 filterOptions={filterOption}
               />} 
-              <div className="absolute inset-y-0 right-20 top-3/4 z-30">
+              <div className="absolute top-10 right-2 ssm:inset-y-0 ssm:right-20 ssm:top-3/4 z-30">
                 {(isSortWidgetVisible || isSortActive) && <SortWidget onSortChange={handleSortChange} 
                   onClose={closeSortWidget}
                   sort={sort}
                 />}
               </div>
             </div>
-            <div id='container' className='mx-auto px-5 w-full grid grid-cols-2 gap-y-3 gap-x-2 sm:grid-cols-3 sm:gap-6 md:gap-x-0 md:gap-y-3 md:px-16 lg:grid-cols-4 lg:gap-5'>
+            <div id='container' className='mx-auto px-5 w-full grid grid-cols-2 gap-y-3 gap-x-2 ssm:pl-8 ssm:grid-cols-3 ssm:gap-x-0 ssm:gap-y-4'>
               {error === '' && (
                 (entryPoint === 'beverages' && card === 'beverages') 
                   ? mealitem.map((item) => <BeverageCard key={item._id} beverage={item}/> )
@@ -229,7 +229,7 @@ function MealsList() {
             </div>
             <div className="flex justify-end">
               {(mealitem.length > 0) && (error === '') && 
-                <button onClick={handleShowMore} className="mr-6 md:mr-20 font-medium text-xs md:text-ssm underline w-fit hover:text-bg_variant1">
+                <button onClick={handleShowMore} className="mr-6 md:mr-20 font-medium md:text-sm hover:underline w-fit ">
                   Show More
                 </button>
               }

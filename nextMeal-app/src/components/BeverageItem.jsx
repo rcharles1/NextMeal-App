@@ -50,9 +50,9 @@ function BeverageItem() {
             <div className="sticky top-0 z-50 w-full">
                 <Header />
             </div>
-            <div className='sticky w-full md:hidden caret-transparent top-20 sm:top-28 z-50 px-1 flex flex-row space-x-3 items-center justify-start caret-pure_white overflow-visible py-2 border-b-2 border-bg_variant2 backdrop-blur bg-opacity-70'> 
+            <div className='sticky w-full md:hidden caret-transparent top-20 sm:top-28 z-50 px-1 flex flex-row space-x-3 items-center justify-start overflow-visible py-2 border-b-2 border-bg_variant2 backdrop-blur bg-opacity-70'> 
                 <div className="ml-3 sticky"><MenuIcon /></div>
-                <div className="capitalize outline font-base h-6 min-w-72"><Breadcrumbs itemDoc={beverageDetails}/></div>
+                <div className="capitalize font-base h-6 min-w-72"><Breadcrumbs itemDoc={beverageDetails}/></div>
             </div>
            {beverageDetails ? (
                 <div key={beverageDetails._id} className="flex mt-2 flex-col w-full mx-auto mb-12 p-3 space-y-4 h-fit transition-all duration-500">
@@ -100,13 +100,13 @@ function BeverageItem() {
                         </div>
                     </div>
 
-                    <div className="flex flex-col hidden space-y-4 px-3 py-2 caret-transparent" >
+                    <div className="hidden space-y-4 px-3 py-2 caret-transparent" >
                         <div className="flex flex-row space-x-1 justify-around p-2">
                             <div id="quantity">
                                 <p className="font-bold md:text-sm w-fit mx-auto">QUANTITY</p>
                                 <div className="flex mt-3 flex-row space-x-0.5 items-center bg-light_dark/5 shadow-sm focus:bg-pure_white rounded">
                                     <button onClick={decrementQuantity} className="p-1"><MinusIcon stroke="black" /></button>
-                                    <input type="number" min="1" max="99" value={quantity} onChange={e => setQuantity(e.target.value)} className="text-center font-medium outline outline-silver/25 rounded-md w-7 text-center p-1" />
+                                    <input type="number" min="1" max="99" value={quantity} onChange={e => setQuantity(e.target.value)} className="text-center font-medium outline outline-silver/25 rounded-md w-7 p-1" />
                                     <button onClick={incrementQuantity} className="p-1"><PlusIcon stroke="black"/></button>
                                 </div>
                             </div>

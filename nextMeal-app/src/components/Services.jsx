@@ -9,7 +9,7 @@ function Services() {
                 <div className="h-fit ssm:w-5/12">
                     <Lottie animationData={menuAnimation} loop={true} speed={0.5}/>
                 </div>
-                <div className="font-semibold flex flex-col text-center ssm:text-start ssm:p-4 ssm:w-11/12"> 
+                <div className="font-semibold flex flex-col text-center ssm:text-start px-4 ssm:p-4 ssm:w-11/12"> 
                     <span className="text-3xl ssm:text-4xl xl:text-7xl font-extrabold">What is NextMeal and what services does it provide?</span>
                     <span className="mt-3 font-semibold px-3 leading-5 block text-base ssm:text-sm text-pretty text-default/60">
                         Away from helping you discover where and what you will get the next food for pleasure, we do the following in addition

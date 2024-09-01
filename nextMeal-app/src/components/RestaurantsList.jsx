@@ -112,12 +112,12 @@ function RestaurantsList() {
            <div className="sticky top-0 z-50 w-full">
                 <Header/>
            </div>
-           <div className='sticky w-full caret-transparent top-20 md:hidden sm:top-28 md:top-16 z-30 px-1 flex flex-row space-x-14 items-center justify-start caret-pure_white overflow-visible py-2 border-b-2 border-bg_variant2 backdrop-blur bg-opacity-70'> 
+           <div className='sticky w-full caret-transparent top-20 md:hidden sm:top-28 md:top-16 z-30 px-1 flex flex-row space-x-14 items-center justify-start overflow-visible py-2 border-b-2 border-bg_variant2 backdrop-blur bg-opacity-70'> 
                 <div className="ml-3 sticky"><MenuIcon /></div>
                 <div className="capitalize font-base h-6 w-64"><Breadcrumbs/></div>
             </div>
-           <div id='container' className={`flex flex-col mt-1 mb-12 space-y-5 px-5 py-1 sm:px-8 h-fit transition-all duration-500}`}>          
-                <div className="w-full p-4 bg-restaurant bg-cover">
+           <div id='container' className={`flex flex-col mt-1 mb-12 space-y-5 px-5 py-1 ssm:px-2 h-fit transition-all duration-500}`}>          
+                <div className="w-full p-4 bg-r2 bg-cover bg-right-bottom">
                     <div className="flex flex-col py-1.5 md:flex-row md:space-y-0 md:justify-between md:p-1 md:w-11/12 md:mx-auto items-center md:px-5 space-y-2">
                         <h1 className="w-full md:w-fit text-slate_white text-2xl sm:text-3xl md:text-xl font-semibold">Restaurants</h1>
                         <div>
@@ -132,16 +132,16 @@ function RestaurantsList() {
                     <div className="flex w-fit mx-auto space-x-3"><span className="outline outline-bg_variant1/75 w-3"></span><span className="outline outline-bg_variant1/75 w-8 "></span><span className="outline outline-bg_variant1/75 w-1"></span></div>
                 </div>
                 {searchResults && searchResults.length > 0 ? (
-                    <div className="flex flex-col space-y-1 py-2 ">
-                        <h1 className='text-base sm:text-xl font-semibold '>Featured</h1>
-                        <div id='container' className='mx-auto'>
+                    <div className="flex flex-col space-y-1 py-2 ssm:px-6">
+                        <h1 className='text-base sm:text-xl font-bold tracking-tight px-6 '>Featured</h1>
+                        <div id='container' className='mx-auto p-.5 w-full grid grid-cols-2 gap-y-2 ssm:w-11/12 ssm:grid-cols-3 ssm:px-4 ssm:gap-x-2 ssm:gap-y-4'>
                             {searchResults.map((item) => <RestaurantCard key={item._id} restaurant={item}/>)}
                         </div>
                     </div>
                 ) : ''}
                 {restaurants ? (
-                   <div className="flex flex-col md:flex-row md:space-x-6 md:px-5 caret-transparent">
-                       <div className="hidden md:block h-fit w-2/12 bg-pure_white rounded-lg px-0.5 py-2">
+                   <div className="flex flex-col ssm:flex-row ssm:space-x-6 ssm:px-5 caret-transparent ">
+                       <div className="hidden ssm:block h-fit w-2/12 bg-pure_white rounded-lg px-0.5 py-2 sticky top-2 lg:top-16">
                             { <FilterWidget onFiltersChange={handleFiltersChange} 
                                 onClose={closeFilterWidget}
                                 filters={filters}
@@ -182,7 +182,7 @@ function RestaurantsList() {
                                     filterOptions={restaurantFilterOptions}
                                 />} 
                             </div>
-                            <div id='container' className='mx-auto w-full grid grid-cols-2 gap-y-2 gap-x-2 sm:grid-cols-3 sm:gap-6 md:gap-x-0 md:gap-y-3 lg:grid-cols-4 lg:gap-5'>
+                            <div id='container' className='mx-auto w-full grid grid-cols-2 gap-y-2 gap-x-2 ssm:grid-cols-3 ssm:gap-6 ssm:gap-x-0 ssm:gap-y-3 lg:px-5 lg:gap-y-5 xl:grid-cols-4 xl:gap-x-2 '>
                                 {restaurants && (error === '') ? (
                                     restaurants.map((restaurant, i) => <RestaurantCard key={i} restaurant={restaurant} />)
                                 ) : '' }

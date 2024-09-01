@@ -29,9 +29,9 @@ function Meal() {
     return (
         <div className="flex flex-col w-100 h-2/3 space-y-6 caret-transparent">
             <div className="sm:px-3.5 px-8 flex flex-col space-y-3 text-center "> 
-                <span className="font-extrabold text-3xl sm:text-5xl ">Explore the Local's Favorite </span>
-                <span className="font-semibold leading-5 block text-base sm:text-lg text-pretty text-default/65">
-                    Nourishing Hope, One Bite at a Time.
+                <span className="font-extrabold text-3xl sm:text-5xl ">Discover the Local’s Favorite Meals</span>
+                <span className="font-semibold block text-center leading-relaxed ssm:text-base text-pretty text-default/65">
+                    From traditional recipes to modern twists, explore the flavors that define the region’s cuisine. Whether you’re a fan of hearty meals or light bites, there’s something delicious waiting for you.
                 </span>
             </div>
             <div className="flex flex-col space-y-3 rounded-sm w-full p-2">

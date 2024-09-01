@@ -76,6 +76,11 @@ export default {
         'graphicDots': "url('assets/img/bg/graphic_dots.svg')",
         'graphicRectangles': "url('/assets/img/bg/graphic-rectangles.webp')",
         'restaurant': "url('assets/vectors/restaurant-wallpaper.webp')",
+        'r1': "url('assets/img/bg/r1.webp')",
+        'r2': "url('assets/img/bg/r2.webp')",
+        'm1': "url('assets/img/bg/m1.webp')",
+        'm2': "url('assets/img/bg/m2.webp')",
+        'm3': "url('assets/img/bg/m3.webp')",
       }
     },
   },

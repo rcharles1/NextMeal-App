@@ -38,14 +38,14 @@ function HomePage() {
     };
 
     return (
-        <div className="flex flex-col bg-graphicDots caret-transparent h-full md:pb-12 bg-no-repeat bg-right-top">
-            <div className="flex flex-col md:flex-row md:justify-left items-center rounded-md md:mt-0 w-full text-headings/95 h-full px-4 md:px-1">
+        <div className="flex flex-col bg-graphicDots caret-transparent h-full md:pb-12 bg-no-repeat bg-right-top ">
+            <div className="flex flex-col md:flex-row md:justify-left items-center rounded-md md:mt-0 w-full h-full px-4 md:px-1 lg:w-11/12 lg:mx-auto lg:justify-between xl:h-lvh xl:items-center">
                 <div className="md:w-7/12 h-fit p-1">
-                    <div className="w-full h-fit ssm:mt-8 lg:mt-10 md:justify-center p-1">
-                        <h1 className="text-6xl ssm:text-5xl lg:text-6xl md:px-6 mt-16 md:mt-0 font-black text-center md:text-start">Discover Restaurants & Delicious Food</h1>
-                        <h1 className="text-xl ssm:text-xl lg:text-lg md:px-6 mt-4 ssm:mt-3 font-black sm:font-bold text-center md:text-start">Unveil your next delicious adventure!</h1>
+                    <div className="w-full h-fit ssm:mt-8 lg:mt-10 md:justify-center p-1 text-headings">
+                        <h1 className="text-6xl ssm:text-5xl lg:text-6xl md:px-6 mt-16 md:mt-0 font-black text-center md:text-start xl:text-7xl"><span className='text-bg_variant1'>Discover</span> Restaurants & Delicious Food</h1>
+                        <h1 className="text-xl xl:text-2xl md:px-6 mt-4 ssm:mt-3 font-extrabold text-center ssm:text-start">Unveil your next delicious adventure!</h1>
                     </div>
-                    <div className="hidden md:block p-2 h-fit w-fit mx-auto ssm:mt-4 md:ml-6">
+                    <div className="hidden md:block p-2 h-fit w-fit mx-auto xl:p-0 ssm:mt-4 md:ml-6">
                         <SearchComponent onClick={scrollTop}/>
                     </div>
                     <div className="cursor-pointer mt-4 mx-auto md:ml-7 rounded-xl ring-1 ring-pure_white ring-offset-1 p-1 md:h-fit w-fit">
@@ -57,7 +57,7 @@ function HomePage() {
                                 isOpen={modalIsOpen}
                                 onRequestClose={closeModal}
                                 contentLabel="Location Modal"
-                                className="h-96 md:h-56 w-11/12 md:w-4/12 p-8 md:p-3 bg-pure_white text-center rounded-xl mx-auto text-default text-lg justify-center -mt-0 z-100 mt-56 left-4 mt-20 md:mt-32"
+                                className="h-96 md:h-56 w-11/12 md:w-4/12 p-8 md:p-3 bg-pure_white text-center rounded-xl mx-auto text-default text-lg justify-center z-100  left-4 mt-20 md:mt-32"
                             >
                                 <div className="z-1000">
                                     <h2 className="text-2xl font-medium md:text-base md:font-semibold text-default/90">Save Your Location</h2>
@@ -90,13 +90,10 @@ function HomePage() {
                                 </div>
                                 <p className="capitalize text-base font-bold">{locationAddress}</p>
                         </div>
-                        ): <div onClick={openModal} ><Location /></div>}
+                        ): <div onClick={openModal} className="hidden" ><Location /></div>}
                     </div>
                 </div>
-                <div className="rounded w-full mt-2 p-1 h-fit sm:w-fit sm:mt-2 hidden">
-                 <Lottie animationData={menuAnimation} loop={true} speed={0.5}/>
-                </div>
-                <div className="rounded w-64 p-1 h-fit ssm:w-56">
+                <div className="rounded w-64 p-1 h-fit ssm:w-56 lg:w-80">
                     <Lottie animationData={poster3Animation} speed={0.5}/>
                 </div>
             </div>

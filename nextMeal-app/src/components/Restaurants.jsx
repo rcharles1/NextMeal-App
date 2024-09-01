@@ -32,8 +32,8 @@ function Restaurants() {
                 <span className="text-3xl sm:text-5xl font-extrabold text-heading ">
                     Uncover Dining Delights! 
                 </span>
-                <span className="font-semibold leading-5 block text-base sm:text-lg text-pretty text-default/65">
-                 Flavors with Purpose. Dine for a Cause at one of these spots 
+                <span className="font-semibold text-center leading-relaxed block ssm:text-base text-pretty text-default/65">
+                    Explore the best restaurants around and uncover delightful dining experiences that will tantalize your taste buds.
                 </span>
             </div>
             <div className="flex flex-col space-y-2 rounded-sm w-full p-2 md:px-1">
