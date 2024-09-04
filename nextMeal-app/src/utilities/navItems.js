@@ -55,8 +55,8 @@ export const navItems = [
         ]
     },
     { 
-        label: "Solutions",
-        mainLink: "solutions",
+        label: "Restaurants",
+        mainLink: "restaurantlistings",
         showDropdown: true,
         dropDownContent: [
             {
@@ -87,8 +87,8 @@ export const navItems = [
         ],
     },
     { 
-        label: "Portfolio", 
-        mainLink: "myPortfolio",
+        label: "Meals & Beverages", 
+        mainLink: "meallistings",
         showDropdown: true,
         dropDownContent: [
             {
@@ -119,7 +119,7 @@ export const navItems = [
         ],
     },
     { 
-        label: "Socials",
+        label: "Contact Us",
         mainLink: "contacts",
         showDropdown: true,
         dropDownContent: [

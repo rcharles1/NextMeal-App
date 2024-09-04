@@ -1,10 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import Header from '../Header';
-import MenuIcon from '../MenuIcon';
-import Breadcrumbs from '../BreadCrumbs';
 import RatingInput from '../RatingComponents/RatingInput';
 import CuisineDropdown from './CuisineDropdown';
-import Loading from '../Loading';
+import Loading from '../ComplementaryComponents/Loading';
 
 import { fetchRestaurantDoc, addReview } from '../../utilities/getData';
 import { reviewOptions, cuisineOptions } from '../../utilities/preferences';
@@ -12,7 +9,7 @@ import { reviewOptions, cuisineOptions } from '../../utilities/preferences';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import { ArrowUpIcon, ArrowDownIcon } from '../svgs/InterfaceSvg';
-import UploadAndDisplayImage from '../UploadandDisplayImage';
+import UploadAndDisplayImage from '../ComplementaryComponents/UploadandDisplayImage';
 
 const ReviewForm = () => {
   const navigate = useNavigate();
@@ -89,13 +86,6 @@ const ReviewForm = () => {
 
   return (
    <div className="h-screen caret-transparent sm:text-ssm">
-      <div className="sticky top-0 z-50 w-full">
-          <Header />
-      </div>
-      <div className='sticky w-full md:hidden caret-transparent top-20 sm:top-28 z-50 px-1 flex flex-row space-x-14 items-center justify-start caret-pure_white overflow-visible py-2 border-b-2 border-bg_variant2 backdrop-blur bg-opacity-70'> 
-          <div className="ml-3 sticky"><MenuIcon /></div>
-          <div className="capitalize font-base h-6 w-fit"><Breadcrumbs/></div>
-      </div>
       {restaurantDoc ? (
         <div id='content' className="p-2 sm:px-20 space-y-1 md:px-32 md:items-top md:flex md:justify-even md:space-x-10">
           <div className="h-fit p-5 md:p-1 md:w-3/12 md:sticky md:top-20">

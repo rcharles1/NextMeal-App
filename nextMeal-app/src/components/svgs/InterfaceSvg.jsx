@@ -1,11 +1,11 @@
 import React from 'react';
 
 export function CloseToMenu() {
-	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-5 ssm:h-8 md:h-4 lg:h-8" viewBox="0 0 24 24" ><g fill="none" stroke="#fafafa" strokeLinecap="round" strokeWidth={2}><path d="M5 5L12 12L19 5"><animate fill="freeze" attributeName="d" dur="0.4s" values="M5 5L12 12L19 5;M5 5L12 5L19 5"></animate></path><path d="M12 12H12"><animate fill="freeze" attributeName="d" dur="0.4s" values="M12 12H12;M5 12H19"></animate></path><path d="M5 19L12 12L19 19"><animate fill="freeze" attributeName="d" dur="0.4s" values="M5 19L12 12L19 19;M5 19L12 19L19 19"></animate></path></g></svg>);
+	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-6 ssm:h-8 md:h-4 lg:h-8" viewBox="0 0 24 24" ><g fill="none" stroke="#f8382f" strokeLinecap="round" strokeWidth={2}><path d="M5 5L12 12L19 5"><animate fill="freeze" attributeName="d" dur="0.4s" values="M5 5L12 12L19 5;M5 5L12 5L19 5"></animate></path><path d="M12 12H12"><animate fill="freeze" attributeName="d" dur="0.4s" values="M12 12H12;M5 12H19"></animate></path><path d="M5 19L12 12L19 19"><animate fill="freeze" attributeName="d" dur="0.4s" values="M5 19L12 12L19 19;M5 19L12 19L19 19"></animate></path></g></svg>);
 }
 
 export function MenuToClose() {
-	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-5 ssm:h-8 md:h-4 lg:h-8" viewBox="0 0 24 24" ><g fill="none" stroke="#fafafa" strokeLinecap="round" strokeWidth={2}><path d="M5 5L12 5L19 5"><animate fill="freeze" attributeName="d" dur="0.4s" values="M5 5L12 5L19 5;M5 5L12 12L19 5"></animate></path><path d="M5 12H19"><animate fill="freeze" attributeName="d" dur="0.4s" values="M5 12H19;M12 12H12"></animate></path><path d="M5 19L12 19L19 19"><animate fill="freeze" attributeName="d" dur="0.4s" values="M5 19L12 19L19 19;M5 19L12 12L19 19"></animate></path></g></svg>);
+	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-6 ssm:h-8 md:h-4 lg:h-8" viewBox="0 0 24 24" ><g fill="none" stroke="#f8382f" strokeLinecap="round" strokeWidth={2}><path d="M5 5L12 5L19 5"><animate fill="freeze" attributeName="d" dur="0.4s" values="M5 5L12 5L19 5;M5 5L12 12L19 5"></animate></path><path d="M5 12H19"><animate fill="freeze" attributeName="d" dur="0.4s" values="M5 12H19;M12 12H12"></animate></path><path d="M5 19L12 19L19 19"><animate fill="freeze" attributeName="d" dur="0.4s" values="M5 19L12 19L19 19;M5 19L12 12L19 19"></animate></path></g></svg>);
 }
 
 export function Filter({ fill}) {
@@ -178,4 +178,27 @@ export function MinusIcon({stroke}) {
 
 export function MdiLocation(props) {
 	return (<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}><path fill="#fafafa" d="M12 11.5A2.5 2.5 0 0 1 9.5 9A2.5 2.5 0 0 1 12 6.5A2.5 2.5 0 0 1 14.5 9a2.5 2.5 0 0 1-2.5 2.5M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7"></path></svg>);
+}
+
+export function TwitterIcon() {
+	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-5 md:h-5 lg:h-8" viewBox="0 0 16 16" ><path fill="#e7eefe" d="M9.294 6.928L14.357 1h-1.2L8.762 6.147L5.25 1H1.2l5.31 7.784L1.2 15h1.2l4.642-5.436L10.751 15h4.05zM7.651 8.852l-.538-.775L2.832 1.91h1.843l3.454 4.977l.538.775l4.491 6.47h-1.843z"></path></svg>);
+}
+
+export function WhatsappIcon() {
+	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-7 md:h-6 lg:h-8" viewBox="0 0 24 24" ><path fill="#e7eefe" d="M19.05 4.91A9.816 9.816 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91c0-2.65-1.03-5.14-2.9-7.01m-7.01 15.24c-1.48 0-2.93-.4-4.2-1.15l-.3-.18l-3.12.82l.83-3.04l-.2-.31a8.264 8.264 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24c2.2 0 4.27.86 5.82 2.42a8.183 8.183 0 0 1 2.41 5.83c.02 4.54-3.68 8.23-8.22 8.23m4.52-6.16c-.25-.12-1.47-.72-1.69-.81c-.23-.08-.39-.12-.56.12c-.17.25-.64.81-.78.97c-.14.17-.29.19-.54.06c-.25-.12-1.05-.39-1.99-1.23c-.74-.66-1.23-1.47-1.38-1.72c-.14-.25-.02-.38.11-.51c.11-.11.25-.29.37-.43s.17-.25.25-.41c.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31c-.22.25-.86.85-.86 2.07c0 1.22.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.23 3.74c.59.26 1.05.41 1.41.52c.59.19 1.13.16 1.56.1c.48-.07 1.47-.6 1.67-1.18c.21-.58.21-1.07.14-1.18s-.22-.16-.47-.28"></path></svg>);
+}
+
+export function PhoneIcon() {
+	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-7 md:h-6 lg:h-8" viewBox="0 0 256 256" ><path fill="#e7eefe" d="m222.37 158.46l-47.11-21.11l-.13-.06a16 16 0 0 0-15.17 1.4a8 8 0 0 0-.75.56L134.87 160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16 16 0 0 0 1.32-15.06v-.12L97.54 33.64a16 16 0 0 0-16.62-9.52A56.26 56.26 0 0 0 32 80c0 79.4 64.6 144 144 144a56.26 56.26 0 0 0 55.88-48.92a16 16 0 0 0-9.51-16.62M176 208A128.14 128.14 0 0 1 48 80a40.2 40.2 0 0 1 34.87-40a.6.6 0 0 0 0 .12l21 47l-20.67 24.74a6 6 0 0 0-.57.77a16 16 0 0 0-1 15.7c9.06 18.53 27.73 37.06 46.46 46.11a16 16 0 0 0 15.75-1.14a8 8 0 0 0 .74-.56L168.89 152l47 21.05h.11A40.21 40.21 0 0 1 176 208"></path></svg>);
+}
+
+export function InstagramIcon() {
+	return (<svg xmlns="http://www.w3.org/2000/svg"  className="h-7 md:h-6 lg:h-8" viewBox="0 0 24 24" ><g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} color="currentColor"><path d="M2.5 12c0-4.478 0-6.718 1.391-8.109S7.521 2.5 12 2.5c4.478 0 6.718 0 8.109 1.391S21.5 7.521 21.5 12c0 4.478 0 6.718-1.391 8.109S16.479 21.5 12 21.5c-4.478 0-6.718 0-8.109-1.391S2.5 16.479 2.5 12"></path><path d="M16.5 12a4.5 4.5 0 1 1-9 0a4.5 4.5 0 0 1 9 0m1.008-5.5h-.01"></path></g></svg>);
+}
+export function NextIcon() {
+	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-4 ssm:h- lg:h-5 xl:h-" viewBox="0 0 24 24" ><path fill="" d="M10.02 6L8.61 7.41L13.19 12l-4.58 4.59L10.02 18l6-6z"></path></svg>);
+}
+
+export function BreadcrumbIcon() {
+	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-5 ssm:h- lg:h-6 xl:h-" viewBox="0 0 24 24" ><path fill="" d="M2 6.5v11h7.914l5.5-5.5l-5.5-5.5zm2 2h5.086l3.5 3.5l-3.5 3.5H4zm10.586-1l4.5 4.5l-4.5 4.5L16 17.914L21.914 12L16 6.086z"></path></svg>);
 }
