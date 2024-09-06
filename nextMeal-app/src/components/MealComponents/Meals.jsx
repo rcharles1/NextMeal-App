@@ -23,7 +23,7 @@ function Meal() {
     }, []);
 
     const handleClick = event => {
-        navigate('/mealslist', { state: { entryPoint: 'meals' } });
+        navigate('/meallistings', { state: { entryPoint: 'meals' } });
     };
 
     return (

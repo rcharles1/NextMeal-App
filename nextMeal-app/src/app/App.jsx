@@ -2,11 +2,11 @@ import React from 'react';
 import Root from '../components/Root/Root';
 import SignIn from '../components/UserAuthentication/SignIn';
 import SignOut from '../components//UserAuthentication/SignOut';
-import RestaurantsList from '../components/RestaurantComponents/RestaurantsList';
-import RestaurantProfile from '../components/RestaurantComponents/RestaurantProfile';
-import MealsList from '../components/MealComponents/MealsList';
-import MealItem from '../components/MealComponents/MealItem';
-import BeverageItem from '../components/BeverageComponents/BeverageItem';
+import RestaurantListings from '../components/RestaurantComponents/RestaurantListings';
+import RestaurantListing from '../components/RestaurantComponents/RestaurantListing';
+import MealListings from '../components/MealComponents/MealListings';
+import MealListing from '../components/MealComponents/MealListing';
+import BeverageListing from '../components/BeverageComponents/BeverageListing';
 import PageError from '../components/ErrorComponents/PageError';
 import MyFavorites from '../components/WishlistComponent/FavoritesPage';
 import Authenticated from '../components/UserAuthentication/Authenticated';
@@ -26,12 +26,12 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/about" element={<About />} />
     <Route path="/contacts" element={<Contacts />} />
     <Route path="pageNotFound" element={<PageError />} />
-    <Route path="restaurantlistings" element={<RestaurantsList />} />
-    <Route path="/restaurantprofile/:id" element={<RestaurantProfile />} />
+    <Route path="restaurantlistings" element={<RestaurantListings />} />
+    <Route path="/restaurantlistings/:id" element={<RestaurantListing />} />
     <Route path="/review/:id" element={<ReviewForm />} />
-    <Route path="meallistings" element={<MealsList />} />
-    <Route path="mealitem/:id" element={<MealItem />} />
-    <Route path="beverageitem/:id" element={<BeverageItem />} />
+    <Route path="meallistings" element={<MealListings />} />
+    <Route path="meallistings/:id" element={<MealListing />} />
+    <Route path="beveragelistings/:id" element={<BeverageListing />} />
     <Route path="/myFavorites" element={<MyFavorites />} />
     <Route path="/signin" element={<SignIn />} />
     <Route path="/signout" element={<SignOut />} />

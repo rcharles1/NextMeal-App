@@ -38,7 +38,7 @@ function Header() {
    }
 
    return (
-    <div className="bg-pure_white flex items-center justify-between p-3 h-14 px-4 xl:h-12 xl:p-4 caret-transparent subpixel-antialiased">
+    <div className="bg-pure_white flex items-center justify-between p-3 h-14 px-4 xl:h-12 lg:px-9 lg:py-4 xl:p-4 caret-transparent subpixel-antialiased">
       <div>
          <img src={`/assets/img/next-meal-red.png`} alt="Logo" className="w-20"/>
       </div>
@@ -50,7 +50,7 @@ function Header() {
             <NavigationBar />
          </div>
          <div className="md:mt-0.5">{isAuthenticated ? <ProfileIcon colorTheme={colorTheme} /> : (
-            <button onClick={handleSignInSignOut} className="w-fit h-7 px-1.5 mt-0 text-sm text-slate_white font-bold bg-bg_variant1 mx-auto rounded">Sign In </button>
+            <button onClick={handleSignInSignOut} className="w-fit px-1.5 p-1 mt-0 text-base text-slate_white font-bold bg-bg_variant1 mx-auto rounded">Sign In </button>
          ) }</div>
       </div>
     </div>  

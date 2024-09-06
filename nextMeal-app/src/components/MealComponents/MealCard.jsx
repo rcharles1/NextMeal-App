@@ -76,13 +76,13 @@ function MealCard({ meal }) {
     return (
         <>
             {meal ? (
-                <div className="flex flex-col h-64 w-[11rem] rounded-xl sm:rounded-2xl caret-transparent px-1.5 md:px-2 md:py-2 pt-1.5 text-sm bg-pure_white drop-shadow-sm text-start text-default/75 sm:h-64 sm:w-48 md:h-64">
+                <div className="flex flex-col h-64 w-[11rem] rounded-xl sm:rounded-2xl caret-transparent px-1.5 md:px-2 md:py-2 pt-1.5 text-sm bg-pure_white drop-shadow-sm text-start text-default/75 ssm:w-56 ssm:h-64 ">
                     <div className="relative h-36 sm:h-36 md:h-44 w-full bg-gray/35 mx-auto rounded-lg sm:rounded-xl md:rounded-lg overflow-hidden">
                         <img src={`/assets/img/gallery/meals/food/${meal.gallery?.[0]}.webp`} alt='meal-image' className="w-full h-full object-contain object-center hover:scale-110 transition-transform duration-200 ease-in-out"/>
                     </div>
                     <div className="flex flex-col h-fit sm:h-18 w-full px-1 sm:px-2 mt-4  justify-center items-start" >
                         <div className="">
-                            <NavLink to={`/mealitem/${meal._id}`} className="hover:text-bg_variant1/55 text-sm text-wrap sm:text-base font-bold w-fit">{meal.name}</NavLink>
+                            <NavLink to={`/meallistings/${meal._id}`} className="hover:text-bg_variant1/55 text-sm text-wrap sm:text-base font-bold w-fit">{meal.name}</NavLink>
                         </div>
                         <div className="flex flex-row justify-between w-full text-xs items-center">
                             <div className="flex items-center space-x-1">

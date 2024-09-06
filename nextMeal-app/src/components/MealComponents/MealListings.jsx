@@ -1,6 +1,6 @@
 import { React, useState, useEffect, useCallback } from 'react';
 import SearchItem from '../SearchComponents/SearchItem';
-import MealCard from '../MealComponents/MealCard';
+import MealCard from './MealCard';
 import BeverageCard from '../BeverageComponents/BeverageCard';
 import MealCategory from '../ComplementaryComponents/Category';
 import FilterWidget from '../FiltersComponent/FilterWidget';
@@ -14,7 +14,7 @@ import { mealMoods, beverageMoods } from '../../utilities/moods';
 import { useLocation } from 'react-router-dom';
 import PosterCarousel from '../ComplementaryComponents/PostersSlideShow';
 
-function MealsList() {
+function MealListings() {
   const [mealitem, setMealItem] = useState([]);
   const [page, setPage] = useState(0); 
   const [selectedMood, setSelectedMood] = useState(null);
@@ -130,8 +130,8 @@ function MealsList() {
   };
 
   return (
-    <div className="flex flex-col h-lvh sm:w-full w-100 bg-bg_variant2 text-sm sm:text-base font-normal"> 
-      <div id='container' className="flex flex-col w-full mb-12 space-y-5 py-1 sm:py-2 md:py-4 md:px-2 h-fit transition-all duration-500">
+    <div className="flex flex-col h-fit sm:w-full w-100 bg-bg_variant2 text-sm sm:text-base font-normal"> 
+      <div id='container' className="flex flex-col w-full mb-12 space-y-5 py-1 sm:py-2 md:py-4 md:px-2  transition-all duration-500">
         <div className="w-full p-4 bg-m3 bg-cover caret-transparent ">
           <div className="flex flex-col md:flex-row md:space-y-0 md:justify-between md:p-1 md:w-11/12 md:mx-auto items-center px-5 space-y-2">
             <h1 className="text-3xl w-full lg:text-5xl text-pure_white font-extrabold">Meals & Beverages</h1>
@@ -143,16 +143,16 @@ function MealsList() {
             </div>
           </div>
         </div>
-
+        
         <div className="flex flex-col space-y-2 px-5 md:flex-row md:space-y-0 md:space-x-12 caret-transparent">
           <div className="hidden ssm:block h-40 w-2/12">
             <PosterCarousel size="small"/>
           </div>
          <div>
           <h2 className="text-xl ssm:text-2xl md:w-fit font-bold">What's your mood?</h2>
-            <div className="flex flex-row w-full container-snap overflow-x-auto space-x-2 md:w-fit md:mt-2 p-3 overflow-hidden">
-                <MealCategory onCategorySelect={setSelectedMood} moodOption={moodOption} resetPage={() => setPage(0)}/>
-            </div>
+          <div className="flex flex-row w-full container-snap overflow-x-auto space-x-2 ssm:mt-2 p-3 overflow-hidden">
+            <MealCategory onCategorySelect={setSelectedMood} moodOption={moodOption} resetPage={() => setPage(0)}/>
+          </div>
          </div>
         </div>
 
@@ -166,8 +166,8 @@ function MealsList() {
         ) : ''}
 
       {mealitem ? (
-        <div className="flex flex-col md:flex-row md:space-x-6 md:px-5 caret-transparent space-y-1 w-full h-screen">
-          <div className="hidden md:block h-fit w-2/12 bg-pure_white rounded-lg px-0.5 py-2 sticky top-2">
+        <div className="flex flex-col md:flex-row md:space-x-6 md:px-5 caret-transparent space-y-1 w-full">
+          <div className="hidden md:block h-fit w-2/12 bg-pure_white rounded-lg px-0.5 py-2 sticky top-20 lg:top-24">
             { <FilterWidget onFiltersChange={handleFiltersChange} 
               onClose={closeFilterWidget}
               filters={filters}
@@ -176,7 +176,7 @@ function MealsList() {
             />} 
           </div>
 
-          <div className="flex flex-col w-full space-y-2 md:w-10/12">
+          <div className="flex flex-col w-full space-y-2 h-fit md:w-10/12">
             <h1 className='text-lg font-bold px-5'>Browse all</h1>
             <div className="flex flex-col md:p-0 justify-center md:justify-end space-y-1.5 relative">
               <div className="flex h-fit space-x-2 items-center px-5 md:justify-end ">
@@ -208,7 +208,7 @@ function MealsList() {
                 />}
               </div>
             </div>
-            <div id='container' className='mx-auto px-5 w-full grid grid-cols-2 gap-y-3 gap-x-2 ssm:pl-8 ssm:grid-cols-3 ssm:gap-x-0 ssm:gap-y-4'>
+            <div id='container' className='mx-auto px-5 w-full grid grid-cols-2 gap-y-3 gap-x-2 ssm:pl-8 ssm:grid-cols-3 ssm:gap-x-0 ssm:gap-y-4 lg:grid-cols'>
               {error === '' && (
                 (entryPoint === 'beverages' && card === 'beverages') 
                   ? mealitem.map((item) => <BeverageCard key={item._id} beverage={item}/> )
@@ -227,8 +227,8 @@ function MealsList() {
         </div>
       ) : <p className="mx-auto font-bold text-sm text-default/55"> Fetching data. Please wait...</p>}
     </div>
-    </div>
+  </div>
   );
 }
 
-export default MealsList;
+export default MealListings;

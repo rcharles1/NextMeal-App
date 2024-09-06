@@ -24,7 +24,7 @@ function Beverages() {
     },[]);
 
     const handleClick = event => {
-        navigate('/mealslist',  { state: { entryPoint: 'beverages' } });
+        navigate('/meallistings',  { state: { entryPoint: 'beverages' } });
     };
 
     return (

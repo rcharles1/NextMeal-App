@@ -4,28 +4,7 @@ export const navItems = [
         label: "Home",
         mainLink: "",
         showDropdown: false,
-        dropDownContent: [
-            {
-                title: "Summary of Services",
-                link: "",
-                summary: "Get to know my set of services"
-            },
-            {
-                title: "Relevant Experiences and Projects",
-                link: "",
-                summary: "Go through my entire academic life, from curriculum structured education to online learning"
-            },
-            {
-                title: "Voice of Appreciation",
-                link: "",
-                summary: "Feedbacks from the public - testimonies"
-            },
-            {
-                title: "Get My CV & Resume",
-                link: "",
-                summary: "A brief summary of my skill set, qualifications and experiences"
-            }
-        ]
+        dropDownContent: []
     },
     { 
         label: "About",
@@ -33,90 +12,38 @@ export const navItems = [
         showDropdown: true,
         dropDownContent: [
             {
-                title: "About Me",
-                link: "/about/#aboutme",
-                summary: "Discover my origins and explore my life encounters up to the present day."
+                title: "About Us - NextMeal",
+                link: "/about/#aboutus",
+                summary: "Learn what we are, mission, and our cultural motive ."
             },
             {
-                title: "My Development Journey",
-                link: "/about/#developmentjourney",
-                summary: "Coding chronicles"
+                title: "Our Story and Journey",
+                link: "/about/#ourstory",
+                summary: "Get to know the motive, and founder behind NextMeal together with milestones achieved"
             },
             {
-                title: "My Services",
-                link: "/about/#myservices",
-                summary: "Get to know briefly what i can do for you as well"
+                title: "Our Services",
+                link: "/about/#ourservices",
+                summary: "Get to know briefly what we off you through our platform"
             },
             {
-                title: "How I Approach Things",
-                link: "/about/#myapproach",
-                summary: "My unique approach is the way forward for addressing important matters"
+                title: "Testmonials",
+                link: "/about/#testmonials",
+                summary: "Don’t just take our word for it. Here’s what our users have to say"
             }
         ]
     },
     { 
         label: "Restaurants",
         mainLink: "restaurantlistings",
-        showDropdown: true,
-        dropDownContent: [
-            {
-                title: "Comprehensive software development",
-                link: "/solutions",
-                summary: "Full-stack, mobile, and web development - Crafting web solutions from scratch or enhancing your existing platform."
-            },
-            {
-                title: "Advanced IT Services",
-                link: "/solutions",
-                summary: "Looking for a Systems Administrator, IT Officer, or Network Officer? I’ve got you covered!"
-            },
-            {
-                title: "Automation & Efficiency",
-                link: "/solutions",
-                summary: "Scripting & Automation, CI/CD Integration: Streamline your workflows and enhance efficiency."
-            },
-            {
-                title: "Data Management & Security",
-                link: "/solutions",
-                summary: "Need help managing your database infrastructure? How about adding extra security measures?"
-            },
-            {
-                title: "User Centric Designs",
-                link: "/solutions",
-                summary: "Want your brand to stand out with a unique logo, typography, and color choices? Experience intuitive UI/UX designs that bring your vision to life."
-            }
-        ],
+        showDropdown: false,
+        dropDownContent: [],
     },
     { 
         label: "Meals & Beverages", 
         mainLink: "meallistings",
-        showDropdown: true,
-        dropDownContent: [
-            {
-                title: "TCCIA's Website",
-                link: "/myPortfolio",
-                summary: "Enhancing the digital presence of a prestigious organization nationwide and beyond"
-            },
-            {
-                title: "W-Print",
-                link: "/myPortfolio",
-                summary: "Convenient printing at your fingertips—print directly from your Android smartphone."
-            },
-            {
-                title: "NextMeal",
-                link: "/myPortfolio",
-                summary: "A web platform that connects you to your favorite spots and helps you discover new places you’ll love."
-            },
-            {
-                title: "Tukio",
-                link: "/myPortfolio",
-                summary: "A thought brand design"
-            },
-            {
-                title: "ICT Officer TANESCO",
-                link: "/myPortfolio",
-                summary: "Professional and cooporate experience - being resourceful to the company"
-            },
-        ],
+        showDropdown: false,
+        dropDownContent: [],
     },
     { 
         label: "Contact Us",
@@ -124,35 +51,20 @@ export const navItems = [
         showDropdown: true,
         dropDownContent: [
             {
-                title: "GitHub",
-                link: "/contacts",
-                summary: "Checkout my different source codes"
+                title: "Let's Help You",
+                link: "/conatacts/#helpingyou",
+                summary: "Email or Call us Now"
             },
             {
-                title: "Figma",
-                link: "/contacts",
-                summary: "Explore efficient and effective designs"
+                title: "Why Reach Out ",
+                link: "/contacts/#whyreachout",
+                summary: "Get Assistance in Finding the Perfect Spot or Know the ABCs of becoming a partner"
             },
             {
-                title: "X",
-                link: "/contacts",
-                summary: "View my progress on coding challenges"
-            },
-            {
-                title: "LinkedIn",
-                link: "/contacts",
-                summary: "Checkout my experience"
-            },
-            {
-                title: "WhatsApp",
-                link: "/contacts",
-                summary: "Lets chat your solution. Chat with me in WhatsApp"
-            },
-            {
-                title: "Email",
-                link: "/contacts",
-                summary: "Checkout my email address"
-            },
+                title: "Stay Connected With Us",
+                link: "/contacts/#contactdetails",
+                summary: "Connect with us in across various platforms"
+            }
         ],
     },
 ];

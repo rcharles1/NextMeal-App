@@ -98,7 +98,6 @@ export default {
           'background-image': 'linear-gradient(to top, #141C33, transparent)',
         }
       };
-
       addUtilities(newUtilities);
     })
   ],

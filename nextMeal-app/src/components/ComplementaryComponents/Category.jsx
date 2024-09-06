@@ -12,7 +12,7 @@ function MealCategory({ onCategorySelect, moodOption, resetPage }) {
   };
 
   return (
-    <div className="w-full sm:w-fit sm:px-2 sm:mx-auto flex flex-row h-fit space-x-2 sm:space-x-4">
+    <div className="w-full sm:px-2 sm:mx-auto flex flex-row h-fit space-x-2 sm:space-x-4">
       {moodOption.map((item, index) => (
         <div key={index} className="flex flex-col space-y-1">
           <div 
@@ -24,7 +24,7 @@ function MealCategory({ onCategorySelect, moodOption, resetPage }) {
             >
               <item.svg fill={selected === index ? 'red' : 'black'}  height={`${size === 'sm' ? '65' : '35'}`} width={`${size === 'sm' ? '65' : '35'}`}/>
           </div>
-          <p className={`text-xs md:text-ssm font-medium text-center ${selected === index ? 'text-bg_variant1' : 'text-default/65'}`}>{item.text}</p>
+          <p className={`text-sm ssm:text-base text-center font-semibold ${selected === index ? 'text-bg_variant1' : 'text-default/65'}`}>{item.text}</p>
         </div>
       ))}
     </div>

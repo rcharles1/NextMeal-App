@@ -15,13 +15,14 @@ const Breadcrumbs = () => {
   }
 
   return (
-    <nav className={`${visibility} px-3 ssm:px-8 lg:px-12 cursor-pointer caret-transparent z-30  py-3 h-12 sticky top-12 lg:top-16 bg-slate_white/55 backdrop-blur`}>
+    <nav className={`${visibility} px-3 ssm:px-8 lg:px-19 cursor-pointer caret-transparent text-default/80  z-30 py-3 lg:py-2 h-12 sticky top-12 lg:top-14 bg-slate_white/55 backdrop-blur`}>
       <ul className="flex capitalize text-base font-medium p-1 py-1 px-2 ">
         <li className="flex space-x-1.5 items-center">
             <BreadcrumbIcon />
             <div className="flex">
               <Link to="/" className="">Home</Link>
             </div>
+            <NextIcon />
         </li>
         {pathnames.map((value, index, array) => {
           const to = `/${pathnames.slice(0, index + 1).join('/')}`;

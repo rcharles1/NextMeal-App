@@ -87,7 +87,7 @@ function RestaurantCard({ restaurant }) {
                     <div className="flex flex-col h-18 w-full md:h-fit px-1.5 text-start" >
                         <div className="flex justify-between w-full h-fit items-center">
                             <div className="text-sm text-wrap sm:text-base font-bold w-fit">
-                                <NavLink to={`/restaurantprofile/${restaurant._id}`} className="hover:text-bg_variant1/55 text-sm text-wrap sm:text-base font-bold w-fit" >{restaurant.name}</NavLink>
+                                <NavLink to={`/restaurantlistings/${restaurant._id}`} className="hover:text-bg_variant1/55 text-sm text-wrap sm:text-base font-bold w-fit" >{restaurant.name}</NavLink>
                             </div>
                         </div>
                         <div className="flex flex-row space-x-0.5 md:space-x-1b">

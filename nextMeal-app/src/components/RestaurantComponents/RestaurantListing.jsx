@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate, NavLink } from 'react-router-dom';
 import { Bookmark, RatingBubble, CircleHalfFull, Share } from '../svgs/InterfaceSvg';
 
-function RestaurantProfile() {
+function RestaurantListing() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { id } = useParams();
@@ -151,7 +151,7 @@ function RestaurantProfile() {
     let halfFilled = rating % 1 !== 0;
 
     return (
-        <div className="mx-auto text-base font-normal h-screen w-100  antialiased "> 
+        <div className="mx-auto text-base font-normal h-fit w-full subpixel-antialiased "> 
             { restaurantDoc ? (
                 <div className="sm:py-2 sm:px-4 flex flex-col bg-gray/35 caret-transparent">
                     <div className="p-1 px-4 sm:px-1 space-y-1 md:px-20 md:text-ssm">
@@ -285,4 +285,4 @@ function RestaurantProfile() {
     );
 }
 
-export default RestaurantProfile;
+export default RestaurantListing;

@@ -23,7 +23,7 @@ function Restaurants() {
     }, [])
 
     const handleClick = event => {
-        navigate('/restaurantsList');
+        navigate('/restaurantlistings');
     }
     
     return (

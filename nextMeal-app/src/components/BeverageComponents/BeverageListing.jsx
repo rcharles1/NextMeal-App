@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { CartAddIcon, CartRemoveIcon, Diamonds, CompanyIcon, PricetagIcon, VolumeIcon, PlusIcon, MinusIcon  } from '/src/components/svgs/InterfaceSvg';
 
-function BeverageItem() {
+function BeverageListing() {
     const dispatch = useDispatch();
     const { id } = useParams();
     const [quantity, setQuantity] = useState(1);
@@ -42,7 +42,7 @@ function BeverageItem() {
 
 
     return (
-        <div className="flex flex-col antialiased text-default/75 bg-bg_variant2 mx-auto text-base font-normal h-screen w-100 ">
+        <div className="flex flex-col antialiased text-default/75 bg-bg_variant2 mx-auto text-base font-normal h-fit w-100 ">
            {beverageDetails ? (
                 <div key={beverageDetails._id} className="flex mt-2 flex-col w-full mx-auto mb-12 p-3 space-y-4 h-fit transition-all duration-500">
                     <div className="h-fit w-full mx-auto">
@@ -69,7 +69,7 @@ function BeverageItem() {
                                 </div>
                             </div>
                             <div className="h-96 w-full">
-                                <img src={`/assets/img/gallery/meals/beverages/${beverageDetails.img}.webp`} alt='beverage photo' className="w-full h-full object-scale-down " />
+                                <img src={`/assets/img/gallery/meals/beverages/${beverageDetails.gallery?.[0]}.webp`} alt='beverage photo' className="w-full h-full object-scale-down " />
                             </div>
                         </div>
                     </div>
@@ -125,4 +125,4 @@ function BeverageItem() {
     );
 }
 
-export default BeverageItem;
+export default BeverageListing;

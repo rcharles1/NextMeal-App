@@ -9,7 +9,7 @@ import { navItems} from "../../utilities/navItems";
 function NavigationBar() {
     const { currentRoute, setCurrentRoute } = useNavigationNavBar();
     const [isMenuOpen, setIsMenuOpen] = useState(false); 
-    const [showDropdown, setShowDropdown] = useState(false);
+    const [showDropdown, setShowDropdown] = useState(true);
       
     return (
         <nav className="justify-center">
@@ -20,14 +20,14 @@ function NavigationBar() {
                         {navItems.map((item) => (
                             <li
                                 key={item.label}
-                                className={`cursor-pointer text-default/75 text-sm lg:text-base xl:text-xl font-semibold subpixel-antialiased p-1 lg:mt-0.5 lg:p-0 ${currentRoute === item.label ? 'border-b-2' : '' } `}
+                                className={`cursor-pointer text-base lg:text-base xl:text-xl font-semibold subpixel-antialiased p-1 lg:mt-0.5 lg:p-0 ${currentRoute === item.label ? 'border-b-2 text-bg_variant1' : 'text-default/65 ' } `}
                                 onMouseEnter={() => {
                                     setCurrentRoute(item.label);
                                     setShowDropdown(true)
                                 }}
                             >
                                 <NavLink smooth="true" to={`/${item.mainLink}`}>{item.label}</NavLink>
-                                {currentRoute === item.label && showDropdown && (
+                                {currentRoute === item.label && (item.showDropdown === showDropdown) && (
                                     <div 
                                         onMouseEnter={() => setShowDropdown(true)}
                                         onMouseLeave={() => setShowDropdown(false)}

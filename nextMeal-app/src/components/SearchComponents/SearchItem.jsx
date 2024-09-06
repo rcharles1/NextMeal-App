@@ -41,14 +41,14 @@ function SearchItem({ item, onSearch }) {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-row space-x-0.5 md:px-2 items-center px-3 md:items-center rounded-xl ssm:rounded-full w-80 sm:w-6/12 md:w-56 md:p-1 mx-auto bg-pure_white outline outline-none /25 caret-transparent">
+        <form onSubmit={handleSubmit} className="flex flex-row space-x-0.5 md:px-2 items-center px-3 md:items-center rounded-xl ssm:rounded-full w-80 ssm:w-64 lg:w-48 md:p-1 mx-auto bg-pure_white outline outline-none /25 cursor-none caret-transparent">
             <Search fill={'silver'} height="25" width="25" />
             <input
                 required
                 value={searchTerm}
                 onChange={handleInputChange}
                 placeholder={`Search ${item === 'Meals & Beverages' ? 'Meal or Beverage': 'Restaurant'} `}
-                className="capitalize p-3 caret-bg_variant1 md:px-1 md:p-0 w-full text-base sm:text-sm  md:text-ssm font-medium focus:outline-none cursor-pointer"
+                className="capitalize p-3 caret-bg_variant1 md:px-1 ssm:p-0 w-full text-base sm:text-sm ssm:text-sm lg:p-1 lg:w-9/12 font-medium focus:outline-none cursor-pointer"
             />
         </form>
     );

@@ -49,15 +49,15 @@ export function SignOut({fill}) {
 }
 
 export function Diamonds({fill}) {
-	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-3 md:h-4 lg:h-8" viewBox="0 0 24 24" ><path fill="none" stroke={fill} strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m10.831 20.413l-5.375-6.91c-.608-.783-.608-2.223 0-3l5.375-6.911a1.457 1.457 0 0 1 2.338 0l5.375 6.91c.608.783.608 2.223 0 3l-5.375 6.911a1.457 1.457 0 0 1-2.338 0"></path></svg>);
+	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-3" viewBox="0 0 24 24" ><path fill="none" stroke={fill} strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m10.831 20.413l-5.375-6.91c-.608-.783-.608-2.223 0-3l5.375-6.911a1.457 1.457 0 0 1 2.338 0l5.375 6.91c.608.783.608 2.223 0 3l-5.375 6.911a1.457 1.457 0 0 1-2.338 0"></path></svg>);
 }
 
 export function ArrowUp({fill}) {
-	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-5 md:h-8 lg:h-10" viewBox="0 0 24 24" ><path fill={fill} fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12s4.477 10 10 10s10-4.477 10-10m-13.53-.47a.75.75 0 0 1 0-1.06l3-3a.75.75 0 0 1 1.06 0l3 3a.75.75 0 1 1-1.06 1.06l-1.72-1.72V16a.75.75 0 0 1-1.5 0V9.81l-1.72 1.72a.75.75 0 0 1-1.06 0" clipRule="evenodd"></path></svg>);
+	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-8 ssm:h-19" viewBox="0 0 24 24" ><path fill={fill} fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12s4.477 10 10 10s10-4.477 10-10m-13.53-.47a.75.75 0 0 1 0-1.06l3-3a.75.75 0 0 1 1.06 0l3 3a.75.75 0 1 1-1.06 1.06l-1.72-1.72V16a.75.75 0 0 1-1.5 0V9.81l-1.72 1.72a.75.75 0 0 1-1.06 0" clipRule="evenodd"></path></svg>);
 }
 
 export function Search({fill}) {
-	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-5 md:h-4 lg:h-8" viewBox="0 0 24 24" ><g fill="none" stroke={fill} strokeWidth={2}><circle cx={11} cy={11} r={7}></circle><path strokeLinecap="round" d="m20 20l-3-3"></path></g></svg>);
+	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-5 md:h-4 lg:h-5" viewBox="0 0 24 24" ><g fill="none" stroke={fill} strokeWidth={2}><circle cx={11} cy={11} r={7}></circle><path strokeLinecap="round" d="m20 20l-3-3"></path></g></svg>);
 }
 
 export function Spinner1({fill}) {
@@ -97,7 +97,7 @@ export function CircleHalfFull({fill}) {
 }
 
 export function Share({fill}) {
-	return (<svg xmlns="http://www.w3.org/2000/svg"  className="h-5 md:h-4 lg:h-8" viewBox="0 0 24 24" ><path fill={fill} fillRule="evenodd" d="M16.5 2.25a3.25 3.25 0 0 0-3.2 3.824L8.57 9.386a.757.757 0 0 0-.068.053a3.25 3.25 0 1 0 0 5.121a.755.755 0 0 0 .068.054l4.73 3.312a3.25 3.25 0 1 0 .617-1.4l-4.479-3.135c.2-.422.312-.893.312-1.391s-.112-.97-.312-1.391l4.48-3.136A3.25 3.25 0 1 0 16.5 2.25M14.75 5.5a1.75 1.75 0 1 1 3.5 0a1.75 1.75 0 0 1-3.5 0M6.5 10.25a1.75 1.75 0 1 0 0 3.5a1.75 1.75 0 0 0 0-3.5m10 6.5a1.75 1.75 0 1 0 0 3.5a1.75 1.75 0 0 0 0-3.5" clipRule="evenodd"></path></svg>);
+	return (<svg xmlns="http://www.w3.org/2000/svg"  className="h-4 md:h-4 lg:h-8" viewBox="0 0 24 24" ><path fill={fill} fillRule="evenodd" d="M16.5 2.25a3.25 3.25 0 0 0-3.2 3.824L8.57 9.386a.757.757 0 0 0-.068.053a3.25 3.25 0 1 0 0 5.121a.755.755 0 0 0 .068.054l4.73 3.312a3.25 3.25 0 1 0 .617-1.4l-4.479-3.135c.2-.422.312-.893.312-1.391s-.112-.97-.312-1.391l4.48-3.136A3.25 3.25 0 1 0 16.5 2.25M14.75 5.5a1.75 1.75 0 1 1 3.5 0a1.75 1.75 0 0 1-3.5 0M6.5 10.25a1.75 1.75 0 1 0 0 3.5a1.75 1.75 0 0 0 0-3.5m10 6.5a1.75 1.75 0 1 0 0 3.5a1.75 1.75 0 0 0 0-3.5" clipRule="evenodd"></path></svg>);
 }
 
 export function LocationIcon({stroke, fill}) {
@@ -169,11 +169,11 @@ export function CloseIcon({fill}) {
 }
 
 export function PlusIcon({stroke}) {
-	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-6 md:h-4 lg:h-8" viewBox="0 0 24 24" ><path fill="none" stroke={stroke} strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 12h6m6 0h-6m0 0V6m0 6v6"></path></svg>);
+	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-4 md:h-4 lg:h-8" viewBox="0 0 24 24" ><path fill="none" stroke={stroke} strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 12h6m6 0h-6m0 0V6m0 6v6"></path></svg>);
 }
 
 export function MinusIcon({stroke}) {
-	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-6 md:h-4 lg:h-8" viewBox="0 0 24 24" ><path fill="none" stroke={stroke} strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 12h12"></path></svg>);
+	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-4 md:h-4 lg:h-8" viewBox="0 0 24 24" ><path fill="none" stroke={stroke} strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 12h12"></path></svg>);
 }
 
 export function MdiLocation(props) {
@@ -200,5 +200,5 @@ export function NextIcon() {
 }
 
 export function BreadcrumbIcon() {
-	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-5 ssm:h- lg:h-6 xl:h-" viewBox="0 0 24 24" ><path fill="" d="M2 6.5v11h7.914l5.5-5.5l-5.5-5.5zm2 2h5.086l3.5 3.5l-3.5 3.5H4zm10.586-1l4.5 4.5l-4.5 4.5L16 17.914L21.914 12L16 6.086z"></path></svg>);
+	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-5" viewBox="0 0 24 24" ><path fill="" d="M2 6.5v11h7.914l5.5-5.5l-5.5-5.5zm2 2h5.086l3.5 3.5l-3.5 3.5H4zm10.586-1l4.5 4.5l-4.5 4.5L16 17.914L21.914 12L16 6.086z"></path></svg>);
 }

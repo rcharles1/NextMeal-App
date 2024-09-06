@@ -31,8 +31,8 @@ function FilterWidget({ onFiltersChange, filters, onReset, onClose, filterOption
     const hasChanges = JSON.stringify(selectedFilters) !== JSON.stringify(filters);
 
     return (
-        <div className="w-full sm:w-11/12 mx-auto p-8 ssm:p-0 pb-6 ssm:pb-4 bg-pure_white outline-pure_white/20 shadow-sm md:shadow-none rounded-md caret-transparent">
-            <div className="flex justify-end h-fit mr-4 md:mt-4 md:hidden pb-2">
+        <div className="w-full sm:w-11/12 mx-auto p-8 ssm:p-0 pb-6 ssm:pb-4 bg-pure_white outline outline-pure_white/10 shadow-sm ssm:shadow-none rounded-md caret-transparent">
+            <div className="flex justify-end h-fit mr-4 md:mt-4 ssm:hidden pb-2">
                 <button onClick={handleCancelClick} className="rounded border border-light_dark/10 cursor-pointer ">
                     <img src="/assets/icon/close.svg" alt="close-icon" className="size-6 sm:size-10 md:size-8"/>
                 </button>
