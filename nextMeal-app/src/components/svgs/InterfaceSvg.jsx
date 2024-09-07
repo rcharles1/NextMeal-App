@@ -196,9 +196,9 @@ export function InstagramIcon() {
 	return (<svg xmlns="http://www.w3.org/2000/svg"  className="h-7 md:h-6 lg:h-8" viewBox="0 0 24 24" ><g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} color="currentColor"><path d="M2.5 12c0-4.478 0-6.718 1.391-8.109S7.521 2.5 12 2.5c4.478 0 6.718 0 8.109 1.391S21.5 7.521 21.5 12c0 4.478 0 6.718-1.391 8.109S16.479 21.5 12 21.5c-4.478 0-6.718 0-8.109-1.391S2.5 16.479 2.5 12"></path><path d="M16.5 12a4.5 4.5 0 1 1-9 0a4.5 4.5 0 0 1 9 0m1.008-5.5h-.01"></path></g></svg>);
 }
 export function NextIcon() {
-	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-4 ssm:h- lg:h-5 xl:h-" viewBox="0 0 24 24" ><path fill="" d="M10.02 6L8.61 7.41L13.19 12l-4.58 4.59L10.02 18l6-6z"></path></svg>);
+	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-4 lg:h-3" viewBox="0 0 24 24" ><path fill="" d="M10.02 6L8.61 7.41L13.19 12l-4.58 4.59L10.02 18l6-6z"></path></svg>);
 }
 
 export function BreadcrumbIcon() {
-	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-5" viewBox="0 0 24 24" ><path fill="" d="M2 6.5v11h7.914l5.5-5.5l-5.5-5.5zm2 2h5.086l3.5 3.5l-3.5 3.5H4zm10.586-1l4.5 4.5l-4.5 4.5L16 17.914L21.914 12L16 6.086z"></path></svg>);
+	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-4" viewBox="0 0 24 24" ><path fill="" d="M2 6.5v11h7.914l5.5-5.5l-5.5-5.5zm2 2h5.086l3.5 3.5l-3.5 3.5H4zm10.586-1l4.5 4.5l-4.5 4.5L16 17.914L21.914 12L16 6.086z"></path></svg>);
 }

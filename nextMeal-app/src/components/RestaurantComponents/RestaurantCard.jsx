@@ -80,19 +80,19 @@ function RestaurantCard({ restaurant }) {
     return (
         <>
             { restaurant ? (<div>
-                <div key={restaurant._id} className="flex flex-col h-60 w-44 space-y-3 rounded-xl sm:rounded-2xl px-1.5 py-1.5 md:px-2 md:py-2 md:rounded-2xl cursor-pointer bg-pure_white drop-shadow-sm text-sm text-start text-default/75 sm:w-48 md:h-72 md:w-56">
-                    <div className="relative h-36 sm:h-36 md:h-44 w-full mx-auto rounded-lg sm:rounded-xl md:rounded-lg overflow-hidden">
+                <div key={restaurant._id} className="flex flex-col h-60 w-44 space-y-3 rounded-xl ssm:rounded-2xl px-1.5 py-1.5 md:px-2 md:py-2 md:rounded-2xl cursor-pointer bg-pure_white drop-shadow-sm text-sm text-start text-default/75 ssm:h-72 ssm:w-56 lg:w-72 lg:h-80">
+                    <div className="relative h-36 ssm:h-44 lg:h-48 w-full mx-auto rounded-lg sm:rounded-xl md:rounded-lg overflow-hidden">
                         <img src={`/assets/img/gallery/restaurants/${restaurantName}/${restaurant.gallery?.[0]}.webp`} alt="meal-photo" className="object-cover h-full w-full mx-auto" />
                     </div>
                     <div className="flex flex-col h-18 w-full md:h-fit px-1.5 text-start" >
                         <div className="flex justify-between w-full h-fit items-center">
-                            <div className="text-sm text-wrap sm:text-base font-bold w-fit">
-                                <NavLink to={`/restaurantlistings/${restaurant._id}`} className="hover:text-bg_variant1/55 text-sm text-wrap sm:text-base font-bold w-fit" >{restaurant.name}</NavLink>
+                            <div className=" w-fit">
+                                <NavLink to={`/restaurantlistings/${restaurant._id}`} className="hover:text-bg_variant1/55 text-sm text-wrap ssm:text-base lg:text-lg font-bold w-fit" >{restaurant.name}</NavLink>
                             </div>
                         </div>
-                        <div className="flex flex-row space-x-0.5 md:space-x-1b">
-                            <span className="size-3 sm:size-3.5 md:size-2.5 mt-.5 md:-mt-0"><LocationIcon stroke="silver" fill="none"/></span>
-                            <span className="text-xs truncate font-normal">{restaurant.details.address[0]}</span>
+                        <div className="flex flex-row space-x-0.5 ssm:space-x-1.5">
+                            <span className="size-3 sm:size-3.5 md:size-2.5 mt-.5 md:-mt-0"><LocationIcon stroke="gray" fill="none"/></span>
+                            <span className="text-xs truncate font-normal ssm:text-ssm">{restaurant.details.address[0]}</span>
                         </div>
                         <div className="flex h-4 justify-between items-center mt-0.5">
                             <div className="flex flex-row space-x-0.5">
@@ -132,11 +132,11 @@ function RestaurantCard({ restaurant }) {
                             </div>
                             <div>
                                 <button onClick={handleWishlistClick} className="h-fit w-fit" >
-                                    <Bookmark fill={favorite ? 'red' : 'none'}  stroke={favorite ? 'red' : 'gray'} height="15" width="18" />
+                                    <Bookmark fill={favorite ? 'red' : 'none'}  stroke={favorite ? 'red' : 'gray'} />
                                 </button>
                             </div>
                         </div>
-                        <span className="mt-1 line-clamp-1 sm:line-clamp-2 md:line-clamp-2 text-sm sm:text-sm w-36 px-1 sm:w-48 sm:px-1.5 h-fit sm:mb-1 font-medium">{restaurant.description}</span>
+                        <span className="mt-1 line-clamp-1 md:line-clamp-2 text-sm w-full px-1 ssm:px-1.5 h-fit ssm:mb-1 font-medium">{restaurant.description}</span>
                     </div>
                 </div>
             </div>) : <Loading />

@@ -62,28 +62,31 @@ function BeverageCard({ beverage }) {
     return (
         <>
             { beverage ? (<>
-                <div className="flex flex-col h-64 w-[11rem] rounded-xl sm:rounded-2xl px-1.5 py-1.5 md:px-2 md:py-2 text-sm bg-pure_white drop-shadow-sm text-default/75 caret-transparent text-center sm:h-64 sm:w-48 md:h-64">
-                    <div className="relative h-36 md:h-44 w-full mx-auto bg-gray/35 rounded-lg sm:rounded-xl md:rounded-lg overflow-hidden">
+                <div className="flex flex-col h-64 w-[11rem] rounded-xl sm:rounded-2xl px-1.5 py-1.5 md:px-2 md:py-2 text-sm bg-pure_white drop-shadow-sm text-default/75 caret-transparent text-center ssm:h-64 ssm:w-56 lg:h-72 lg:w-64 ">
+                    <div className="relative h-36 ssm:h-44 w-full mx-auto bg-gray/35 rounded-lg ssm:rounded-xl lg:h-56 overflow-hidden">
                         <div className="absolute p-1 inset-0">
-                            <img src={`/assets/img/gallery/meals/beverages/${beverage.gallery?.[0]}.webp`} alt='beverage-image' className="w-44 h-full object-scale-down hover:scale-110 transition-transform duration-200 ease-in-out" />
+                            <img src={`/assets/img/gallery/meals/beverages/${beverage.gallery?.[0]}.webp`} alt='beverage-image' className="w-44 ssm:w-full h-full object-scale-down hover:scale-110 transition-transform duration-200 ease-in-out" />
                         </div>
                     </div>
                     <div className="flex flex-col space-y-1 sm:h-18 w-full px-1 py-1 rounded-md sm:px-3 justify-center items-start font-medium" >
                         <div className="flex justify-between w-full items-center">
                             <div className="">
-                                <NavLink to={`/beveragelistings/${beverage._id}`} className="hover:text-bg_variant1/55 text-sm text-wrap sm:text-base font-bold w-fit" >{beverage.name}</NavLink>
+                                <NavLink to={`/beveragelistings/${beverage._id}`} className="hover:text-bg_variant1/55 text-sm text-wrap ssm:text-base font-bold w-fit" >{beverage.name}</NavLink>
                             </div>
-                            <button onClick={handleFavoriteClick} className="flex h-fit w-fit sm:size-6" >
-                            <Bookmark fill={favorite ? 'red' : 'none'}  stroke={favorite ? 'red' : 'gray'} height="24" width="20" />
-                            </button>
                         </div>
-                        <div className="flex flex-col space-y-1 w-full px-2 h-fit text-start">
-                            <div className="flex justify-between items-center">
-                                <span className="text-xs">{beverage.size}</span>
-                                <span className="font-semibold text-xs flex justify-end">TZS {beverage.price}</span>
+                        <div>
+                            <button onClick={handleFavoriteClick} className="flex h-fit w-fit sm:size-6" >
+                                    <Bookmark fill={favorite ? 'red' : 'none'}  stroke={favorite ? 'red' : 'gray'} height="24" width="20" />
+                                </button>
                             </div>
-                            <span className="font-semibold">{beverage.brand}</span>
-                            
+                        <div className="flex justify-between w-full  h-fit text-start">
+                            <div className="flex space-x-1.5 font-semibold">
+                                <p className='flex space-x-0.5 text-sm'><p>TZS</p><p>{beverage.price}</p></p>
+                                <p className='font-medium'>{beverage.size}</p>
+                            </div>
+                            <div>
+                                <p className='truncate max-w-20'>{beverage.volume}</p>
+                            </div>
                         </div>
                     </div>
                 </div>

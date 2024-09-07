@@ -167,7 +167,7 @@ function MealListings() {
 
       {mealitem ? (
         <div className="flex flex-col md:flex-row md:space-x-6 md:px-5 caret-transparent space-y-1 w-full">
-          <div className="hidden md:block h-fit w-2/12 bg-pure_white rounded-lg px-0.5 py-2 sticky top-20 lg:top-24">
+          <div className="hidden md:block h-fit w-2/12 bg-pure_white rounded-lg px-0.5 py-2 sticky top-20 lg:top-28 lg:mt-12">
             { <FilterWidget onFiltersChange={handleFiltersChange} 
               onClose={closeFilterWidget}
               filters={filters}
@@ -208,7 +208,7 @@ function MealListings() {
                 />}
               </div>
             </div>
-            <div id='container' className='mx-auto px-5 w-full grid grid-cols-2 gap-y-3 gap-x-2 ssm:pl-8 ssm:grid-cols-3 ssm:gap-x-0 ssm:gap-y-4 lg:grid-cols'>
+            <div id='container' className='mx-auto px-5 w-full grid grid-cols-2 gap-y-3 gap-x-2 ssm:pl-8 ssm:grid-cols-3 ssm:gap-x-0 ssm:gap-y-4 lg:grid-cols-4 lg:gap-x-0 lg:px-4'>
               {error === '' && (
                 (entryPoint === 'beverages' && card === 'beverages') 
                   ? mealitem.map((item) => <BeverageCard key={item._id} beverage={item}/> )

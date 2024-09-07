@@ -30,11 +30,11 @@ function Root() {
     return (
         <>
             <div className="sticky top-0 z-50"><Header /></div>
-            <main className="h-fit">
-                <Breadcrumbs />
-                <Outlet />
-                <button className={`fixed bottom-10 right-7 rounded-full bg-pure_white h-fit w-fit ${showScroll ? 'visible' : 'invisible'}`} onClick={scrollTop}><ArrowUp fill="red" /></button>
-            </main>
+                <main className="h-fit">
+                    <Breadcrumbs />
+                    <Outlet />
+                    <button className={`fixed bottom-10 right-7 rounded-full bg-pure_white h-fit z-10 w-fit ${showScroll ? 'visible' : 'invisible'}`} onClick={scrollTop}><ArrowUp fill="red" /></button>
+                </main>
             <div><Footer /></div>
         </>
     );

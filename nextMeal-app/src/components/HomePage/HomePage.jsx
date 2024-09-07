@@ -11,6 +11,7 @@ import Lottie from 'lottie-react';
 import locationAnimation from '/public/assets/lotties/ping.json';
 import poster3Animation from '/public/assets/lotties/poster3.json';
 import SearchComponent from '../SearchComponents/Search';
+import Partnership from '../StakeholdersComponents/Partnerships';
 
 // Binding modal to root component to prevent screen readers when modal is opened. 
 // From index.html
@@ -107,6 +108,7 @@ function HomePage() {
                 <Restaurants />
                 <Meals />
                 <Beverages />
+                <Partnership />
             </div>
         </div>
     );

@@ -20,7 +20,7 @@ function NavigationBar() {
                         {navItems.map((item) => (
                             <li
                                 key={item.label}
-                                className={`cursor-pointer text-base lg:text-base xl:text-xl font-semibold subpixel-antialiased p-1 lg:mt-0.5 lg:p-0 ${currentRoute === item.label ? 'border-b-2 text-bg_variant1' : 'text-default/65 ' } `}
+                                className={`cursor-pointer text-base lg:text-base font-semibold subpixel-antialiased p-1 lg:mt-0.5 lg:p-0 ${currentRoute === item.label ? 'border-b-2 text-bg_variant1' : 'text-default/65 ' } `}
                                 onMouseEnter={() => {
                                     setCurrentRoute(item.label);
                                     setShowDropdown(true)

@@ -18,6 +18,7 @@ import ErrorBoundary from '../components/ErrorComponents/ErrorBoundary';
 
 import { useSelector } from 'react-redux';
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
+import Stakeholders from '../components/StakeholdersComponents/Stakeholders';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Root />} >
@@ -35,6 +36,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/myFavorites" element={<MyFavorites />} />
     <Route path="/signin" element={<SignIn />} />
     <Route path="/signout" element={<SignOut />} />
+    <Route path="/stakeholders" element={<Stakeholders />} />
   </Route>
 ));
 

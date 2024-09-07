@@ -37,7 +37,7 @@ function FilterWidget({ onFiltersChange, filters, onReset, onClose, filterOption
                     <img src="/assets/icon/close.svg" alt="close-icon" className="size-6 sm:size-10 md:size-8"/>
                 </button>
             </div>
-            <div className="grid grid-cols-1 divide-y-2 gap-1 p-3 md:p-1 divide-light_dark/10 h-96 lg:h-lvh overflow-hidden overflow-y-auto border-t-2 border-bg_variant1/10 ssm:border-none">
+            <div className="grid grid-cols-1 divide-y-2 gap-1 p-3 md:p-1 divide-light_dark/10 h-96 lg:h-screen overflow-hidden overflow-y-auto border-t-2 border-bg_variant1/10 ssm:border-none">
                 {filterOptions && filterOptions.map((filterOption, index) => (
                     <div key={index} className="flex h-fit flex-row justify-between sm:px-5 items-start items-top p-1 md:px-0 md:flex-col">
                         <span className="mt-2 font-semibold md:mt-0 md:font-bold text-base text-start">{filterOption.title}:</span>
@@ -54,7 +54,7 @@ function FilterWidget({ onFiltersChange, filters, onReset, onClose, filterOption
                                     >
                                     {value.text}
                                     </div>
-                                    <label className="hidden md:block flex-row mb-0.5 space-x-5 mt-1 justify-center items-center font-normal w-full text-ssm">
+                                    <label className="hidden md:block flex-row mb-0.5 space-x-5 mt-1 justify-center items-center font-normal w-full text-ssm lg:text-sm">
                                     <div className="flex w-fit">
                                         <input
                                         type="checkbox"
