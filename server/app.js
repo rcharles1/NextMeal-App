@@ -122,6 +122,9 @@ connectToDb((err) => {
     const userDetailsRouter = require('./routes/user');
     app.use('/userDetails', userDetailsRouter);
 
+    const getNameByIdRouter = require(`./routes/getNameById`);
+    app.use('/getNameById', getNameByIdRouter);
+
     app.listen(3000, () => {
       console.log('app listening on port 3000');
     });
