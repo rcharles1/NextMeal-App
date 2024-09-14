@@ -1,7 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 
-const filePath = path.resolve('client', 'node_modules', 'mongodb', 'lib', 'index.js');
+const isVercel = process.env.VERCEL === '1';
+const filePath = isVercel 
+    ? path.resolve('/vercel/path0/client/node_modules/mongodb/lib/index.js')
+    : path.resolve('client', 'node_modules', 'mongodb', 'lib', 'index.js');
 
 if (fs.existsSync(filePath)) {
     const fileContent = fs.readFileSync(filePath, 'utf8');
