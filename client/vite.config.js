@@ -14,16 +14,17 @@ export default defineConfig({
     }),
   ],
   build: {
+    outDir: 'dist',
     rollupOptions: {
-      // Additional Rollup options if needed
+     
     },
   },
   resolve: {
     alias: {
-      // Your aliases here
+      
     },
   },
   optimizeDeps: {
-    // Your optimization options here
+    
   },
 });
