@@ -24,12 +24,31 @@ const updateFileContent = (filePath, searchValue, replaceValue) => {
     }
 };
 
+// Function to create directories and files if they don't exist
+const ensureFileExists = (filePath, defaultContent = '') => {
+    const dir = path.dirname(filePath);
+    if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+        console.log(`Created directory: ${dir}`);
+    }
+    if (!fs.existsSync(filePath)) {
+        fs.writeFileSync(filePath, defaultContent, 'utf8');
+        console.log(`Created file: ${filePath}`);
+    }
+};
+
 // Update mongodb index.js file
 updateFileContent(mongodbFilePath, /require\('fs\/promises'\)/g, 'null');
 
-// Handle the ENOTDIR error by ensuring the path is correct
-if (fs.existsSync(emptyJsFilePath) && fs.lstatSync(emptyJsFilePath).isFile()) {
-    console.log(`File exists and is a file: ${emptyJsFilePath}`);
+// Ensure the empty.js file exists
+ensureFileExists(emptyJsFilePath, 'module.exports = {};');
+
+// Additional check for the ENOTDIR error
+const promisesPath = path.join(emptyJsFilePath, 'promises');
+if (fs.existsSync(promisesPath)) {
+    console.log(`Path exists: ${promisesPath}`);
 } else {
-    console.error('File does not exist or is not a file:', emptyJsFilePath);
+    console.error('Path does not exist:', promisesPath);
+    // Attempt to fix the path issue by creating a dummy file
+    ensureFileExists(promisesPath, '');
 }
