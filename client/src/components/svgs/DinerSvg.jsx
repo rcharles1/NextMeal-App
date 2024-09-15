@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 export function Diner({ fill, width, height }) {
     return (
@@ -23,6 +23,11 @@ export function Diner({ fill, width, height }) {
         </svg>
     );
 }
+Diner.propTypes = {
+    fill: PropTypes.string,
+    height: PropTypes.number,
+    width: PropTypes.number,
+};
 
 export function Lunch({ fill, width, height }) {
     return (
@@ -31,7 +36,17 @@ export function Lunch({ fill, width, height }) {
         </svg>
     );
 }
+Lunch.propTypes = {
+    fill: PropTypes.string,
+    height: PropTypes.number,
+    width: PropTypes.number,
+};
 
 export function CilDinner({ fill, width, height }) {
 	return (<svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 512 512" ><path fill={fill} d="M464 344.063c0-109.308-84.755-199.193-192-207.39V80h-32v56.673c-107.245 8.2-192 98.082-192 207.39v33.107h416Zm-32 1.107H80v-1.107c0-97.046 78.953-176 176-176s176 78.953 176 176ZM16 416h480v32H16z"></path></svg>);
 }
+CilDinner.propTypes = {
+    fill: PropTypes.string,
+    height: PropTypes.number,
+    width: PropTypes.number,
+};

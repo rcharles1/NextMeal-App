@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback }  from 'react';
+import { useState, useEffect, useCallback }  from 'react';
+import PropTypes from 'prop-types';
 import { updateFavoritesList } from '../../utilities/getData';
 
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -144,5 +145,9 @@ function RestaurantCard({ restaurant }) {
         </>
     );
 }
+
+RestaurantCard.propTypes = {
+    restaurant: PropTypes.object.isRequired,
+};
 
 export default RestaurantCard;

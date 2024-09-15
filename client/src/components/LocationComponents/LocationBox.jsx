@@ -25,11 +25,11 @@ function LocationAddress() {
     const longitude = position.coords.longitude;
   
     setLocationCoordinates(`${latitude},${longitude}`);
-  };
+  }
   
   function error(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
-  };
+  }
 
   useEffect(() => {
     const apiKey = import.meta.env.VITE_MAPTILER_API_KEY;

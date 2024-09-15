@@ -1,5 +1,4 @@
-import React from "react";
-import { socialPlatformContent } from "../../utilities/ssocialPlatformContent";
+
 import { TwitterIcon, WhatsappIcon, EmailIcon, PhoneIcon, InstagramIcon } from "../svgs/InterfaceSvg";
 
 function Contacts() {

@@ -1,4 +1,3 @@
-import React from "react";
 import { stakeholderdefinition, stakeholderapplicationsteps } from "../../utilities/content";
 
 function Stakeholders() {
@@ -8,7 +7,7 @@ function Stakeholders() {
                 <h3 className="font-bold text-lg capitalize text-winterWhite/90">On this page</h3>
                 <ul className="flex flex-col space-y-1 mt-2 pl-1 text-base">
                     <li><a href="#getinvolved">Get Involved</a></li>
-                    <li><a href="#whatyoudo">What You'll Do</a></li>
+                    <li><a href="#whatyoudo">What You&apos;ll Do</a></li>
                     <li><a href="joinus">How to Join</a></li>
                 </ul>
             </div>

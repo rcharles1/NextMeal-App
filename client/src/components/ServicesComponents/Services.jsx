@@ -1,4 +1,3 @@
-import React from 'react';
 import Lottie from 'lottie-react';
 import menuAnimation from '/public/assets/lotties/fast-food.json';
 import { services } from '../../utilities/services';

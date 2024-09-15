@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 
 const UploadAndDisplayImage = () => {
   const [selectedImage, setSelectedImage] = useState(null);

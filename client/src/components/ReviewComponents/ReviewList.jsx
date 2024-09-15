@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import { useEffect} from 'react';
 import Review from './Review';
 
  function ReviewList({ reviews, onReviewCount }) {
@@ -6,11 +6,11 @@ import Review from './Review';
    
    useEffect(() => {
       onReviewCount(count);
-   }, [count]);
+   }, [count, onReviewCount]);
 
    return reviews.map((review, index) => (
-      <div>
-         <Review key={index} author={review.googleId} content={review.content} />
+      <div key={index}>
+         <Review author={review.googleId} content={review.content} />
       </div>
    ));
   }

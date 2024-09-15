@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import { OpenIcon } from '../svgs/InterfaceSvg';
 
 function Details({ restaurantDoc }) {
@@ -48,5 +48,9 @@ function Details({ restaurantDoc }) {
         </>
     );
 }
+
+Details.propTypes = {
+    restaurantDoc: PropTypes.object.isRequired,
+};
 
 export default Details;

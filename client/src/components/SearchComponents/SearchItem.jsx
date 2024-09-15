@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Search } from '/src/components/svgs/InterfaceSvg';
 import { searchForMealOrBeverage, searchRestaurant } from '../../utilities/searchUtitlity';
 
@@ -54,5 +55,10 @@ function SearchItem({ item, onSearch }) {
         </form>
     );
 }
+
+SearchItem.propTypes = {
+    item: PropTypes.string.isRequired,
+    onSearch: PropTypes.func.isRequired,
+};
 
 export default SearchItem;

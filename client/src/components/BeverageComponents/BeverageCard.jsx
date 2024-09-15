@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback }  from 'react';
+import { useState, useEffect, useCallback }  from 'react';
 import { updateFavoritesList } from '../../utilities/getData';
 
 import { NavLink, useNavigate } from 'react-router-dom';

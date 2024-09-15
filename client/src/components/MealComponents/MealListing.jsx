@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import CollapsibleList from '../ComplementaryComponents/CollapsibleList';
 import ReviewList from '../ReviewComponents/ReviewList';
-import Cart from '../CartComponents/Cart';
 
 import { useParams, useNavigate, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -54,8 +53,8 @@ function MealListing() {
         }
     }, [mealDetails]);
     
-
-    const handleFavoriteClick = useCallback(
+    /* 
+        const handleFavoriteClick = useCallback(
         async () => {
             const userData = JSON.parse(localStorage.getItem('user'));
             if (!userData) {
@@ -91,6 +90,7 @@ function MealListing() {
             }
         },[favorite]
     ); 
+    */
 
     // Fetch reviews by listing id
     useEffect(() => {
@@ -105,7 +105,7 @@ function MealListing() {
             }
         };
         postedListingReviews();
-    }, [listingId]);
+    }, [listingId, id]);
 
     const handleReviewsCount = useCallback((count) => {
         setReviewsCount(count);
@@ -262,9 +262,9 @@ function MealListing() {
                         <div id="common-pairings" className="hidden md:block">
                             <h4 className="font-semibold text-base uppercase">Common Pairings</h4>
                             <div id='container' className="p-1 px-2 mt-2 grid grid-cols-4 gap-x-4 gap-y-4">
-                                {mealDetails.SpecialNotes.pairings.slice(0, showMore ? mealDetails.SpecialNotes.pairings.length : 4).map(dish => {
+                                {mealDetails.SpecialNotes.pairings.slice(0, showMore ? mealDetails.SpecialNotes.pairings.length : 4).map((dish, index) => {
                                     return (
-                                        <div className="h-40 w-36 sm:h-44 sm:w-48 drop-shadow-sm rounded-lg overflow-hidden caret-transparent cursor-pointer relative">
+                                        <div key={index} className="h-40 w-36 sm:h-44 sm:w-48 drop-shadow-sm rounded-lg overflow-hidden caret-transparent cursor-pointer relative">
                                             <img 
                                                 src={`/assets/img/gallery/meals/covers/${dish.image}.webp`} 
                                                 className="object-cover h-full w-full hover:scale-110 transition-transform duration-200 ease-in-out" 

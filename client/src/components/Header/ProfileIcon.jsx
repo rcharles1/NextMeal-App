@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { profileLinks } from '../../utilities/links'
 import { Bookmark, Account, CartIcon, SignOut } from '/src/components/svgs/InterfaceSvg';

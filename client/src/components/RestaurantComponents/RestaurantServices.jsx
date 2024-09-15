@@ -1,5 +1,5 @@
-import React from 'react';
 import { CheckIcon, UnCheckIcon } from '../svgs/InterfaceSvg';
+import PropTypes from 'prop-types';
 
 const servicesList = [
   { key: 'foodandBeverages', label: 'Food & Beverages' },
@@ -29,5 +29,9 @@ function RestaurantServices({ restaurantDoc }) {
     </div>
   );
 }
+
+RestaurantServices.propTypes = {
+  restaurantDoc: PropTypes.object.isRequired,
+};
 
 export default RestaurantServices;

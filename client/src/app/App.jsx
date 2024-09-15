@@ -1,4 +1,3 @@
-import React from 'react';
 import Root from '../components/Root/Root';
 import SignIn from '../components/UserAuthentication/SignIn';
 import SignOut from '../components//UserAuthentication/SignOut';

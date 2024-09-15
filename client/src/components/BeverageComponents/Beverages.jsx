@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import BeverageCard from './BeverageCard';
 import Loading from '../ComplementaryComponents/Loading';
 

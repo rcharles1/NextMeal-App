@@ -1,9 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import Header from '../Header';
-import MenuIcon from '../MenuIcon';
-import Breadcrumbs from '../BreadCrumbs';
+import  { useState, useEffect } from 'react';
 import RatingInput from '../RatingComponents/RatingInput';
-import Loading from '../Loading';
 
 import { fetchRestaurantDoc, addReview } from '../../utilities/getData';
 import { reviewOptions, cuisineOptions } from '../../utilities/preferences';
@@ -11,7 +7,6 @@ import { reviewOptions, cuisineOptions } from '../../utilities/preferences';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import { ArrowUpIcon, ArrowDownIcon } from '../svgs/InterfaceSvg';
-import UploadAndDisplayImage from '../UploadandDisplayImage';
 
 const CartForm = () => {
   const navigate = useNavigate();

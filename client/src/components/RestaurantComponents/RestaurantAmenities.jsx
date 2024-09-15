@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import { CheckIcon, UnCheckIcon } from '../svgs/InterfaceSvg';
 
 const servicesList = [
@@ -27,5 +27,8 @@ function RestaurantAmenities({ restaurantDoc }) {
     </div>
   );
 }
+RestaurantAmenities.propTypes = {
+  restaurantDoc: PropTypes.object.isRequired,
+};
 
 export default RestaurantAmenities;

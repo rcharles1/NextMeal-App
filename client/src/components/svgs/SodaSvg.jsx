@@ -1,6 +1,6 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
-function SodaSvg({ fill }) {
+export function SodaSvg({ fill }) {
     return (
         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
             width="64.000000pt" height="64.000000pt" viewBox="0 0 64.000000 64.000000"
@@ -24,4 +24,6 @@ function SodaSvg({ fill }) {
     );
 }
 
-export default SodaSvg;
+SodaSvg.propTypes = {
+    fill: PropTypes.string,
+};

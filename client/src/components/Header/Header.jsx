@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import NavBar from '../Header/NavBar.jsx';
 import { signIn } from '../../features/auth/authSlice.js';
 import SearchComponent from '../SearchComponents/Search.jsx';
-import MenuIcon from '../Header/MenuIcon.jsx';
 import ProfileIcon from '../Header/ProfileIcon.jsx';
 import NavigationBar from "../Header/NavigationBarComponent.jsx";
 

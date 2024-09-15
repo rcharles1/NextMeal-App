@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { getMyFavorites, fetchFavoriteItemDoc } from '../../utilities/getData';
 import RestaurantCard from '../RestaurantComponents/RestaurantCard';
 import MealCard from '../MealComponents/MealCard';
@@ -6,7 +6,6 @@ import BeverageCard from '../BeverageComponents/BeverageCard';
 
 function MyFavorites() {
     const [active, setActive] = useState('Restaurants');
-    const [error, setError] = useState(null);
     const [googleId, setGoogleId] = useState(null);
     const [favoriteItems, setFavoriteItems] = useState([]);
     const [itemData, setItemData] = useState([])
@@ -17,7 +16,6 @@ function MyFavorites() {
     }, []);
 
     useEffect(() => {
-        setError(null);
         setItemData([]);
         const favoriteItems = async () => {
             try {
@@ -25,7 +23,7 @@ function MyFavorites() {
                 localStorage.setItem('wishlist', JSON.stringify(response));
                 setFavoriteItems(response);
             } catch(error) {
-                setError(error);
+                console.log(error);
             }
         };
         favoriteItems();

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { signIn } from '../../features/auth/authSlice';
@@ -22,7 +22,7 @@ function Authenticated() {
       }
     };
     getCurrentUserData();
-  }, [dispatch]);
+  }, [dispatch, navigate]);
 
 
   useEffect(() => {

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 function Review({ author, content }) {
   const [authorDetails, setAuthorDetails] = useState({});
@@ -31,7 +32,12 @@ function Review({ author, content }) {
         <p className="text-sm md:text-ssm lineclamp-2">{content[0].reviewBody}</p>
       </div>
     </div>
-    );
-  }
+  );
+}
+
+Review.propTypes = {
+  author: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+};
   
 export default Review;

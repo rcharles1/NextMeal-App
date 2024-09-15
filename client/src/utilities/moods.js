@@ -1,4 +1,4 @@
-import { CilDinner, Diner } from '/src/components/svgs/DinerSvg.jsx';
+import { CilDinner } from '/src/components/svgs/DinerSvg.jsx';
 import { BbqSvg} from '/src/components/svgs/BbqSvg';
 import { PizzaSvg } from '/src/components/svgs/QuickEatsSvg';
 import { WineGlass, BeerMugs, SodaBottle, Juice, WaterBottle, GlassWhiskey } from '/src/components/svgs/DrinksSvg';

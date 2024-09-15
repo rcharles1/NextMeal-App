@@ -36,7 +36,7 @@ function HomePage() {
     function handleSubmit(event) {
         event.preventDefault()
         closeModal()
-    };
+    }
 
     const scrollTop = () =>{
         window.scrollTo({top: 72, behavior: 'smooth'});
@@ -56,7 +56,7 @@ function HomePage() {
                     <div className="cursor-pointer mt-4 mx-auto md:ml-7 rounded-xl ring-1 ring-pure_white ring-offset-1 p-1 md:h-fit w-fit">
                         <div>
                             {modalIsOpen ? (
-                                <div class="fixed inset-0 bg-default opacity-50" style={{ backdropFilter: 'blur(5px)' }}></div>
+                                <div className="fixed inset-0 bg-default opacity-50" style={{ backdropFilter: 'blur(5px)' }}></div>
                             ) : ''}
                             <Modal
                                 isOpen={modalIsOpen}

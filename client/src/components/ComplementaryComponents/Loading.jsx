@@ -1,4 +1,4 @@
-import React from 'react'; 
+
 import {Spinner2 } from '../svgs/InterfaceSvg'
 
 function Loading() {

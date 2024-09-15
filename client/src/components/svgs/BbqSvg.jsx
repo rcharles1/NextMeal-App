@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 export function BbqSvg({ fill, height, width }) {
     return (
@@ -48,3 +48,8 @@ export function BbqSvg({ fill, height, width }) {
         </svg>
     );
 }
+BbqSvg.propTypes = {
+    fill: PropTypes.string,
+    height: PropTypes.number,
+    width: PropTypes.number,
+};

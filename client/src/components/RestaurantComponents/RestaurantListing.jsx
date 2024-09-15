@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Details from './Details';
 import RestaurantServices from './RestaurantServices';
 import Loading from '../ComplementaryComponents/Loading';
@@ -32,6 +32,7 @@ function RestaurantListing() {
     const listingId = id;
 
     useEffect(() => {
+        setPage(0);
         const fetchRestaurantDetails = async () => {
             try {
                 const response = await fetchRestaurantDoc(id);
@@ -88,6 +89,7 @@ function RestaurantListing() {
         setFavorite(isFavorite);
     }, [id]);
 
+    /* 
     const handleWishlistClick = useCallback(
         async () => {
             const userData = JSON.parse(localStorage.getItem('user'));
@@ -124,6 +126,7 @@ function RestaurantListing() {
             }
         },[favorite]
     );    
+    */
 
     // Fetch reviews by listing id
     useEffect(() => {
@@ -138,7 +141,7 @@ function RestaurantListing() {
             }
         };
         postedListingReviews();
-    }, [listingId]);
+    }, [listingId, id]);
     
     const handleReviewsCount = useCallback((count) => {
         setReviewsCount(count);

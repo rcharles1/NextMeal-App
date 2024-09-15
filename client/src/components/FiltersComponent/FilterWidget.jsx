@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 function FilterWidget({ onFiltersChange, filters, onReset, onClose, filterOptions }) {
     const [selectedFilters, setSelectedFilters] = useState(filters);

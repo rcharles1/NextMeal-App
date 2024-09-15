@@ -10,7 +10,7 @@ export const searchForMealOrBeverage = async (searchTerm) => {
        throw new Error(`HTTP error! status: ${response.status}` )
     } catch (error) {
         console.error('Error:', error);
-        return { data: [], resultCard }; 
+        return { data: [] }; 
     }
 };
 

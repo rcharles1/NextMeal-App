@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink as Link } from 'react-router-dom';
 
 function Stakeholdership() {
@@ -7,7 +6,7 @@ function Stakeholdership() {
             <h1 className="text-3xl ssm:text-4xl lg:text-5xl font-extrabold text-center">Get Involved with NextMeal </h1>
             <h3 className="text-base text-center font-semibold text-default/50">Become a Partner, Sponsor or a Contributor </h3>
             <div className="mt-4 px-2 ssm:px-4">
-                <p className="mt-2">Join us in our mission to ensure no one goes hungry. Whether you're a restaurant owner looking to partner with us, a volunteer eager to lend a helping hand, or a food enthusiast wanting to explore and share culinary delights, NextMeal offers various ways to get involved.</p>
+                <p className="mt-2">Join us in our mission to ensure no one goes hungry. Whether you are a restaurant owner looking to partner with us, a volunteer eager to lend a helping hand, or a food enthusiast wanting to explore and share culinary delights, NextMeal offers various ways to get involved.</p>
                     <ul className="list-decimal ml-8 space-y-4">
                         <li className="mt-2 space-y-1 ssm:space-y-2">
                             <span className="font-bold">Partners</span>

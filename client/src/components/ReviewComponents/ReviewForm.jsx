@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import RatingInput from '../RatingComponents/RatingInput';
 import CuisineDropdown from './CuisineDropdown';
 import Loading from '../ComplementaryComponents/Loading';
@@ -57,7 +57,7 @@ const ReviewForm = () => {
     };
 
     postReview();
-  }, [content]);
+  }, [content, id]);
 
   const handleSubmit = (event) => {
     event.preventDefault();

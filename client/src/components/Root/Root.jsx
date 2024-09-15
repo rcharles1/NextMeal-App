@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Breadcrumbs from '../BreadCrumbs';
@@ -26,7 +26,7 @@ function Root() {
     useEffect(() => {
         window.addEventListener('scroll', checkScrollTop)
         return () => window.removeEventListener('scroll', checkScrollTop)
-    }, []);
+    }, [checkScrollTop]);
 
     const isVisible = location.pathname === '/' ? 'hidden' : 'block';
 

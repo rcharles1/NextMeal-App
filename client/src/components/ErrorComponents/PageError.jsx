@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Lottie from 'lottie-react';
 import errorAnimation from '/public/assets/lotties/restaurant-cat.json';
 import { useNavigate } from 'react-router-dom';

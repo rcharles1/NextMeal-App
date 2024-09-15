@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback }   from 'react';
+import { useState, useEffect, useCallback }   from 'react';
+import PropTypes from 'prop-types';
 
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -146,5 +147,8 @@ function NearbyRestaurantCard({ nearbyRestaurant }) {
     );
 }
 
+NearbyRestaurantCard.propTypes = {
+    nearbyRestaurant: PropTypes.object.isRequired,
+};
 
 export default NearbyRestaurantCard;

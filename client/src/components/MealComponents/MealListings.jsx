@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import SearchItem from '../SearchComponents/SearchItem';
 import MealCard from './MealCard';
 import BeverageCard from '../BeverageComponents/BeverageCard';
@@ -82,7 +82,7 @@ function MealListings() {
       }
     };
     fetchMealsBeverages();
-  }, [page, entryPoint, selectedMood, filters, sort]);  
+  }, [page, entryPoint, selectedMood, filters, sort, moodOption]);  
 
   const handleSearch = (result) => {
     setSearchResults(result);
@@ -149,7 +149,7 @@ function MealListings() {
             <PosterCarousel size="small"/>
           </div>
          <div>
-          <h2 className="text-xl ssm:text-2xl md:w-fit font-bold">What's your mood?</h2>
+          <h2 className="text-xl ssm:text-2xl md:w-fit font-bold">What&apos;s your mood?</h2>
           <div className="flex flex-row w-full container-snap overflow-x-auto space-x-2 ssm:mt-2 p-3 overflow-hidden">
             <MealCategory onCategorySelect={setSelectedMood} moodOption={moodOption} resetPage={() => setPage(0)}/>
           </div>

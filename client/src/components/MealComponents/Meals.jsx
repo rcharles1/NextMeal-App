@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import { useEffect, useState} from 'react';
 import MealCard from './MealCard';
 
 import { fetchAllMeals } from '../../utilities/getData';
@@ -22,7 +22,7 @@ function Meal() {
         fetchMeals();
     }, []);
 
-    const handleClick = event => {
+    const handleClick = () => {
         navigate('/meallistings', { state: { entryPoint: 'meals' } });
     };
 

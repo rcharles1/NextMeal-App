@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { EmailIcon } from '../svgs/InterfaceSvg';
 import { useMediaQuery } from 'react-responsive';
@@ -10,7 +9,7 @@ function SignIn() {
 
    let iconSize = isMediumScreen ? '20' : '30';
 
-   const handleSubmit = async event => {
+   const handleSubmit = async () => {
     navigate('/');
    };
 

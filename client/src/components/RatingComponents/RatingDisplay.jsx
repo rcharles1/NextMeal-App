@@ -1,5 +1,5 @@
-import React from 'react';
 import { RatingBubble, CircleHalfFull } from '../svgs/InterfaceSvg'; 
+import PropTypes from 'prop-types'; 
 
 const RatingDisplay = ({ rating }) => {
   const totalBubbles = 5;
@@ -36,6 +36,10 @@ const RatingDisplay = ({ rating }) => {
       </div>
     </div>
   );
+};
+
+RatingDisplay.propTypes = {
+  rating: PropTypes.number,
 };
 
 export default RatingDisplay;

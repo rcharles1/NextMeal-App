@@ -1,9 +1,9 @@
-import  React,{ useState } from 'react';
-import { sortOptions } from '../../utilities/preferences'
-
+import { useState } from 'react';
+import PropTypes from 'prop-types';
+import { sortOptions } from '../../utilities/preferences';
 import { Ascending, Descending, Rise, Fall } from '../svgs/InterfaceSvg';
 
-function SortWidget({ onSortChange, sort, onClose}) {
+function SortWidget({ onSortChange, sort, onClose }) {
     const [selectedSort, setSelectedSort] = useState(sort);
 
     const iconComponents = {
@@ -42,5 +42,11 @@ function SortWidget({ onSortChange, sort, onClose}) {
         </div>
     );
 }
+
+SortWidget.propTypes = {
+    onSortChange: PropTypes.func.isRequired,
+    sort: PropTypes.string.isRequired,
+    onClose: PropTypes.func.isRequired,
+};
 
 export default SortWidget;

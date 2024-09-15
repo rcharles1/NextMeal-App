@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import SearchItem from '../SearchComponents/SearchItem';
 import RestaurantCard from './RestaurantCard';
 import FilterWidget from '../FiltersComponent/FilterWidget';

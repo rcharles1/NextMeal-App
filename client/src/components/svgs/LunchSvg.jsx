@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 export function LunchSvg({ fill, width, height }) {
     return (
@@ -8,3 +8,9 @@ export function LunchSvg({ fill, width, height }) {
         </svg>
     );
 }
+
+LunchSvgSvg.propTypes = {
+    fill: PropTypes.string,
+    height: PropTypes.number,
+    width: PropTypes.number,
+};

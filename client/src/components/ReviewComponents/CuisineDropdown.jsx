@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 function CuisineDropdown({ cuisineOptions, onSelect }) {
   const [selectedCuisineOption, setSelectedCuisineOption] = useState(null);
@@ -32,5 +33,10 @@ function CuisineDropdown({ cuisineOptions, onSelect }) {
     </div>
   );
 }
+
+CuisineDropdown.propTypes = {
+  cuisineOptions: PropTypes.array.isRequired,
+  onSelect: PropTypes.func.isRequired,
+};
 
 export default CuisineDropdown;

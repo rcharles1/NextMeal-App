@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { updateFavoritesList } from '../../utilities/getData';
+import PropTypes from 'prop-types';
 
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -125,10 +126,14 @@ function MealCard({ meal }) {
                         <span className="mt-1.5 sm:mt-2 line-clamp-2 sm:line-clamp-2 md:line-clamp-2 text-sm sm:text-sm w-fit px-1 sm:w-full h-fit sm:mb-1 font-medium">{meal.description}</span>
                     </div>
                 </div>
-            ) : <p>Cooking...</p>
+            ) : <p>...</p>
             }
         </>
     );
 }
+
+MealCard.propTypes = {
+    meal: PropTypes.object.isRequired,
+};
 
 export default MealCard;

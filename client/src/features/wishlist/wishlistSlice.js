@@ -22,12 +22,12 @@ const wishlistSlice = createSlice({
   name: 'wishlist',
   initialState: [],
   reducers: {
-    clearWishlist: (state) => {
+    clearWishlist: () => {
       return [];
   }
   },
   extraReducers: (builder) => {
-    builder.addCase(getMyFavorites.fulfilled, (state, action) => {
+    builder.addCase(getMyFavorites.fulfilled, ( action) => {
       return action.payload;
     });
   },

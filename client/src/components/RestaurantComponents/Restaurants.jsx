@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import RestaurantCard from './RestaurantCard';
 
 import { fetchSampleRestaurants } from '../../utilities/getData';
@@ -22,7 +22,7 @@ function Restaurants() {
         fetchRestaurants();
     }, [])
 
-    const handleClick = event => {
+    const handleClick = () => {
         navigate('/restaurantlistings');
     }
     

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation, NavLink } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { search } from '../../utilities/searchUtitlity';
 
 import { Search, PreviousIcon, DirectionIcon } from '/src/components/svgs/InterfaceSvg';
@@ -30,7 +30,6 @@ function SearchComponent() {
       }
     } catch (error) {
       if (error === 404) {
-        setNoRecord();
         console.error('No matching data:', error);
       } else {
         console.error('Error fetching data:', error);
@@ -46,7 +45,7 @@ function SearchComponent() {
 
   useEffect(() => {
     handleSearch();
-  }, [validTerm]);
+  });
 
   const handleInputChange = (event) => {
     const inputValue = event.target.value;

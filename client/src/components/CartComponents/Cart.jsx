@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { CartIcon,  CloseIcon } from '../svgs/InterfaceSvg';
 import CartContents from './CartContents';
 

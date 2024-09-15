@@ -36,11 +36,11 @@ function MapComponent({ restaurantDoc }) {
             latitude: `${latitude}`,
             longitude: `${longitude}`
         });
-    };
+    }
   
     function error(err) {
         console.warn(`ERROR(${err.code}): ${err.message}`);
-    };
+    }
 
     const apiKey = import.meta.env.VITE_MAPTILER_API_KEY;
 

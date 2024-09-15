@@ -1,8 +1,7 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function SearchResultCardForRestaurant({ restaurant }) {
-    
     const restaurantName = restaurant.name.replace(/\s+/g, '').toLowerCase();
 
     return (
@@ -21,5 +20,8 @@ function SearchResultCardForRestaurant({ restaurant }) {
         </>
     );
 }
+SearchResultCardForRestaurant.propTypes = {
+    restaurant: PropTypes.object,
+};
 
 export default SearchResultCardForRestaurant;
