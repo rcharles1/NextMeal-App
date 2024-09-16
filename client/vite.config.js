@@ -5,7 +5,8 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      crypto: 'crypto-browserify'
+      crypto: 'crypto-browserify',
+      process: 'process/browser',
     }
   }
 });
