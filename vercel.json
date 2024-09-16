@@ -11,7 +11,6 @@
     }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "/client/dist/$1" },
     { "src": "/api/(.*)", "dest": "/server/src/$1" },
     { "src": "/auth/google", "dest": "/server/src/app.js" },
     { "src": "/auth/google/callback", "dest": "/server/src/app.js" },
@@ -23,6 +22,7 @@
     { "src": "/favorites/(.*)", "dest": "/server/src/routes/favorites.js" },
     { "src": "/reviews/(.*)", "dest": "/server/src/routes/reviews.js" },
     { "src": "/userDetails/(.*)", "dest": "/server/src/routes/user.js" },
-    { "src": "/getNameById/(.*)", "dest": "/server/src/routes/getNameById.js" }
+    { "src": "/getNameById/(.*)", "dest": "/server/src/routes/getNameById.js" },
+    { "src": "/(.*)", "dest": "/client/dist/$1" }
   ]
-}  
+}

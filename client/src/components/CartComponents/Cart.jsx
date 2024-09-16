@@ -26,7 +26,7 @@ function Cart() {
       ) : ''}
 
       {isDialogOpen && (
-        <div className="dialog fixed z-30 h-screen w-full bg-pure_white sm:rounded-lg absolute sm:max-top-0 left-0 p-4 sm:h-96 mx-auto sm:w-96 sm:my-5 sm:-ml-96 md:-mt-56 md:fixed md:top-72 md:left-2/3 sm:mx-auto -mt-10">
+        <div className="dialog z-30 h-screen w-full bg-pure_white sm:rounded-lg absolute sm:max-top-0 left-0 p-4 sm:h-96 mx-auto sm:w-96 sm:my-5 sm:-ml-96 md:-mt-56 md:fixed md:top-72 md:left-2/3 sm:mx-auto -mt-10">
           {/* Dialog content */}
           <div className="flex w-full space-x-4 border-b border-offset-4 items-center mt-2 md:pb-1.5 md:space-x-0.5 md:p-0 border-silver/75 p-3">
             <button onClick={handleCloseDialog} ><CloseIcon fill="black" /></button>

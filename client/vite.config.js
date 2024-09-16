@@ -1,30 +1,11 @@
 import { defineConfig } from 'vite';
-import {nodePolyfills} from 'vite-plugin-node-polyfills';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  plugins: [
-    nodePolyfills({
-      // Options for the plugin
-      globals: {
-        Buffer: true,
-        global: true,
-        process: true,
-      },
-      protocolImports: true,
-    }),
-  ],
-  build: {
-    outDir: 'dist',
-    rollupOptions: {
-     
-    },
-  },
+  plugins: [react()],
   resolve: {
     alias: {
-      
-    },
-  },
-  optimizeDeps: {
-    
-  },
+      crypto: 'crypto-browserify'
+    }
+  }
 });
