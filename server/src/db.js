@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 let dbConnection;
-const uri = process.env.VITE_MONGODB_URI;
+const uri = import.meta.env.VITE_MONGODB_URI;
 
 module.exports = {
     connectToDb: (cb) => {
