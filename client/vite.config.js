@@ -5,7 +5,7 @@ import NodePolyfillPlugin from 'node-polyfill-webpack-plugin';
 export default defineConfig({
   plugins: [
     react(),
-    NodePolyfillPlugin(),
+    new NodePolyfillPlugin(),
   ],
   resolve: {
     alias: {
