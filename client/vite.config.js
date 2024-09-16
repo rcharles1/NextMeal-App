@@ -1,11 +1,11 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { NodePolyfillPlugin }from 'node-polyfill-webpack-plugin';
+import NodePolyfillPlugin from 'node-polyfill-webpack-plugin';
 
 export default defineConfig({
   plugins: [
     react(),
-    NodePolyfillPlugin(),
+    new NodePolyfillPlugin(),
   ],
   resolve: {
     alias: {

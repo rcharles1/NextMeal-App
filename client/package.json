@@ -30,7 +30,6 @@
     "mongodb": "^6.8.1",
     "node-polyfill-webpack-plugin": "^4.0.0",
     "object-keys": "^1.1.1",
-    "process": "^0.11.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-map-gl": "^7.1.7",
