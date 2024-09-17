@@ -11,12 +11,14 @@ export default defineConfig({
     alias: {
       crypto: 'crypto-browserify',
       stream: 'stream-browserify',
+      process: 'process/browser',
     }
   },
   optimizeDeps: {
     esbuildOptions: {
       define: {
         global: 'globalThis',
+        process: 'process',
       },
       plugins: [
         NodeGlobalsPolyfillPlugin({
