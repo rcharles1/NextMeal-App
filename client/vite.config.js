@@ -17,7 +17,6 @@ export default defineConfig({
     esbuildOptions: {
       define: {
         global: 'globalThis',
-        process: 'process',
       },
       plugins: [
         NodeGlobalsPolyfillPlugin({
