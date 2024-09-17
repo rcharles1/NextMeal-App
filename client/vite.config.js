@@ -5,7 +5,7 @@ import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfil
 
 export default defineConfig({
   plugins: [
-    react()
+    react(),
   ],
   resolve: {
     alias: {
@@ -28,5 +28,9 @@ export default defineConfig({
         NodeModulesPolyfillPlugin(),
       ],
     },
+  },
+  build: {
+    minify: 'esbuild', // Ensure minification
+    sourcemap: false, // Disable sourcemaps for production
   },
 });
