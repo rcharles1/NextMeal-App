@@ -1,4 +1,4 @@
-import 'process/browser';
+import 'crypto-browserify';
 import 'stream-browserify';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -10,13 +10,13 @@ import { store, persistor } from '../src/app/store.js';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-   <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <App />
-    </PersistGate>
-  </Provider>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
+    </Provider>
   </React.StrictMode>,
-)
+);
 
 // The use of Provider follows up the use of the useSelector hook to access state: const state = useSelector(state => state.state) 
 // and useDispatch hoook to dispatch actions
