@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ObjectId } from 'mongodb';
-
-import { BreadcrumbIcon, NextIcon,  } from './svgs/InterfaceSvg';
+import { BreadcrumbIcon, NextIcon } from './svgs/InterfaceSvg';
 
 const Breadcrumbs = () => {
     const location = useLocation();
@@ -15,8 +13,10 @@ const Breadcrumbs = () => {
 
         const fetchNames = async () => {
             const newNames = {};
+            const idRegex = /^[a-f\d]{24}$/i; // Simple regex for 24-character hex strings
+
             for (const path of paths) {
-                if (ObjectId.isValid(path)) {
+                if (idRegex.test(path)) {
                     try {
                         const response = await fetch(`/api/getNameById/${path}`);
                         const data = await response.json();
