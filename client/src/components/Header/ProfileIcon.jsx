@@ -21,7 +21,7 @@ function ProfileIcon() {
     useEffect(() => {
         const getUserDetails = async () => {
           try {
-            const response = await fetch(`http://localhost:3000/userDetails/${googleId}`);
+            const response = await fetch(`https://nextmeal-server.onrender.com/userDetails/${googleId}`);
             if (response.ok) {
               const data = await response.json();
               setUserDetails(data);

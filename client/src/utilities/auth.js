@@ -7,7 +7,7 @@
 export const signInWithGoogleOAuth = async () => {
     try {
       // Redirect the user to the Google Sign-In page
-      window.location.assign('http://localhost:3000/auth/google');
+      window.location.assign('https://nextmeal-server.onrender.com/auth/google');
     } catch (error) {
       console.error('Error during sign-in:', error);
     }

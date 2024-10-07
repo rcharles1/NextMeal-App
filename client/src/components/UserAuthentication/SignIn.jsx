@@ -14,7 +14,7 @@ function SignIn() {
    };
 
    const handleGoogleSignIn = async () => {
-    window.location.href = 'http://localhost:3000/auth/google';
+    window.location.href = 'https://nextmeal-server.onrender.com/auth/google';
    };
     
     return (

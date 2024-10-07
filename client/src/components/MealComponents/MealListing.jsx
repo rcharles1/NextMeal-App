@@ -27,7 +27,7 @@ function MealListing() {
     useEffect(() => {
         const fetchMealDoc = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/meals//${id}`);
+                const response = await fetch(`https://nextmeal-server.onrender.com/meals//${id}`);
                 const data = await response.json();
                 setMealDetails(data);
             } catch (error) {

@@ -7,7 +7,7 @@ function Review({ author, content }) {
   useEffect(() => {
     const getAuthorDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/userDetails/${author}`);
+        const response = await fetch(`https://nextmeal-server.onrender.com/userDetails/${author}`);
         if (response.ok) {
           const data = await response.json();
           setAuthorDetails(data);

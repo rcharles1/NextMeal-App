@@ -1,7 +1,7 @@
 // Search Meals or Beverages by name
 export const searchForMealOrBeverage = async (searchTerm) => {
     try {
-        const response = await fetch(`http://localhost:3000/search/mealsorbeverages/${searchTerm}`);
+        const response = await fetch(`https://nextmeal-server.onrender.com/search/mealsorbeverages/${searchTerm}`);
        if (response.ok) {
             const data = await response.json();
             let resultCard = data.results[0].collection;
@@ -17,7 +17,7 @@ export const searchForMealOrBeverage = async (searchTerm) => {
 // Search for a single restaurant by name
 export const searchRestaurant = async (searchTerm) => {
     try {
-        const response = await fetch(`http://localhost:3000/search/restaurants/${searchTerm}`);
+        const response = await fetch(`https://nextmeal-server.onrender.com/search/restaurants/${searchTerm}`);
        if (response.ok) {
             const data = await response.json();
             return data;
@@ -31,7 +31,7 @@ export const searchRestaurant = async (searchTerm) => {
 // Search entire database for items by name, type, cuisine, region, and district from 3 collections(restaurants, meals, and beverages)
 export const search = async (validTerm) => {
     try {
-        const response = await fetch(`http://localhost:3000/search//${validTerm}`);
+        const response = await fetch(`https://nextmeal-server.onrender.com/search//${validTerm}`);
        if (response.ok) {
         const data = await response.json();
         if (data.success === false) {

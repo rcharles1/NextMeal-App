@@ -1,7 +1,7 @@
 /* -----------  Fetch requests for all items: meals, beverages or resturants  -----------  */
 // Fetch All Meals
 export const fetchAllMeals = async (page) => {
-    let url = `http://localhost:3000/meals/?${page}`;
+    let url = `https://nextmeal-server.onrender.com/?${page}`;
 
     try {
         const response = await fetch(url);
@@ -17,7 +17,7 @@ export const fetchAllMeals = async (page) => {
 
 // Sample restaurants
 export const fetchSampleRestaurants = async (page) => {
-    let url = `http://localhost:3000/restaurants/?${page}`;
+    let url = `https://nextmeal-server.onrender.com/restaurants/?${page}`;
 
     try {
         const response = await fetch(url);
@@ -33,7 +33,7 @@ export const fetchSampleRestaurants = async (page) => {
 
 // Fetch All Restaurants
 export const fetchAllRestaurants = async (page, filters, sort) => {
-    let url = `http://localhost:3000/restaurants/?`;
+    let url = `https://nextmeal-server.onrender.com/restaurants/?`;
     let params =  {p: page, sort:JSON.stringify(sort), ...filters};
     let queryParams = Object.keys(params).map(key => `${key}=${params[key]}`).join('&');
     url += queryParams;
@@ -52,7 +52,7 @@ export const fetchAllRestaurants = async (page, filters, sort) => {
 
 // Fetch All Nearby Restaurants
 export const fetchAllNearbyRestaurants = async (page, district, region ) => {
-    let url = `http://localhost:3000/restaurants/?`;
+    let url = `https://nextmeal-server.onrender.com/restaurants/?`;
     let params =  {p: page, district, region};
     let queryParams = Object.keys(params).map(key => `${key}=${params[key]}`).join('&');
     url += queryParams;
@@ -72,7 +72,7 @@ export const fetchAllNearbyRestaurants = async (page, district, region ) => {
 // Fetch All Beverages 
 export const fetchAllBeverages = async (page) => {
     try {
-        const response = await fetch(`http://localhost:3000/beverages/?p=${page}`);
+        const response = await fetch(`https://nextmeal-server.onrender.com/beverages/?p=${page}`);
         if (response.ok) {
             const data = await response.json();
             return data;
@@ -85,7 +85,7 @@ export const fetchAllBeverages = async (page) => {
 // Fetch Meals or Beverages
 export const fetchMealsOrBeverages = async (page, entrypoint, mood, filters, sort) => {
     const item = entrypoint === 'meals' ? 'meals' : 'beverages';
-    let url = `http://localhost:3000/${item}/?`;
+    let url = `https://nextmeal-server.onrender.com/${item}/?`;
 
     let openCard = item;
     let params =  {p: page, sort: JSON.stringify(sort), ...filters};
@@ -94,12 +94,12 @@ export const fetchMealsOrBeverages = async (page, entrypoint, mood, filters, sor
         params = {...params, mood};
         if (item === 'meals' && mood === 'Drinks') {
             openCard = 'beverages';
-            url = `http://localhost:3000/beverages/?p=${page}`;
+            url = `https://nextmeal-server.onrender.com/beverages/?p=${page}`;
         }
     }
 
     const queryParams = new URLSearchParams(params).toString();
-    url = `http://localhost:3000/${item}/?${queryParams}`;
+    url = `https://nextmeal-server.onrender.com/${item}/?${queryParams}`;
 
     try {
         const response = await fetch(url);
@@ -120,7 +120,7 @@ export const fetchMealsOrBeverages = async (page, entrypoint, mood, filters, sor
 // Fetch one Restaurant
 export const fetchRestaurantDoc = async (id) => {
     try {
-        const response = await fetch(`http://localhost:3000/restaurants//${id}`);
+        const response = await fetch(`https://nextmeal-server.onrender.com/restaurants//${id}`);
         const data = await response.json();
         return data;
     } catch (error) {
@@ -130,7 +130,7 @@ export const fetchRestaurantDoc = async (id) => {
 
 // Search similar drinks or beverages
 export const fetchAllSimilarBeverages = async (drinkCategory ) => {
-    let url = `http://localhost:3000/beverages/?`;
+    let url = `https://nextmeal-server.onrender.com/beverages/?`;
     let params =  {drinkCategory};
     let queryParams = Object.keys(params).map(key => `${key}=${params[key]}`).join('&');
     url += queryParams;
@@ -150,7 +150,7 @@ export const fetchAllSimilarBeverages = async (drinkCategory ) => {
 /* -----------  Authentication requests  -----------  */
 // Get User's data signined in via Google  
 export const fetchUserData = async () => {
-    const response = await fetch('http://localhost:3000/api/current_user', { 
+    const response = await fetch('https://nextmeal-server.onrender.com/api/current_user', { 
       method: 'GET',
       credentials: 'include'
     });
@@ -167,7 +167,7 @@ export const fetchUserData = async () => {
 /* -----------  Fetch requests for favorite items  ------------  */
 // Adds, or removes items from the favorites list
 export const updateFavoritesList = async (googleId, itemId, itemType) => {
-    const response = await fetch('http://localhost:3000/favorites', { 
+    const response = await fetch('https://nextmeal-server.onrender.com/favorites', { 
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -190,7 +190,7 @@ export const updateFavoritesList = async (googleId, itemId, itemType) => {
 
 // Fetch all favorite items
 export const getMyFavorites = async (googleId, active) => {
-    const response = await fetch(`http://localhost:3000/favorites//favoritesItems/?googleId=${googleId}&itemType=${active}`, { 
+    const response = await fetch(`https://nextmeal-server.onrender.com/favorites//favoritesItems/?googleId=${googleId}&itemType=${active}`, { 
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -209,11 +209,11 @@ export const getMyFavorites = async (googleId, active) => {
 export const fetchFavoriteItemDoc = async (id, cardType) => {
     let url;
     if (cardType === 'restaurant') {
-        url = `http://localhost:3000/restaurants/${id}`
+        url = `https://nextmeal-server.onrender.com/restaurants/${id}`
     } else if (cardType === 'meal') {
-        url = `http://localhost:3000/meals/${id}`;
+        url = `https://nextmeal-server.onrender.com/meals/${id}`;
     } else {
-        url = `http://localhost:3000/beverages/${id}`;
+        url = `https://nextmeal-server.onrender.com/beverages/${id}`;
     }
 
     try {
@@ -229,7 +229,7 @@ export const fetchFavoriteItemDoc = async (id, cardType) => {
 // Add Review
 export const addReview = async (createdAt, googleId, listingId, content) => {
     
-    const response = await fetch('http://localhost:3000/reviews/', { 
+    const response = await fetch('https://nextmeal-server.onrender.com/reviews/', { 
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -253,7 +253,7 @@ export const addReview = async (createdAt, googleId, listingId, content) => {
 
 // Get all reviews on a particular listing
 export const getListingReviews = async (listingId) => {
-    let url = `http://localhost:3000/reviews/?`;
+    let url = `https://nextmeal-server.onrender.com/reviews/?`;
     let params =  { listingId };
     let queryParams = Object.keys(params).map(key => `${key}=${params[key]}`).join('&');
     url += queryParams;
