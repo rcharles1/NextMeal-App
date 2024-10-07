@@ -1,7 +1,7 @@
 /* -----------  Fetch requests for all items: meals, beverages or resturants  -----------  */
 // Fetch All Meals
 export const fetchAllMeals = async (page) => {
-    let url = `https://nextmeal-server.onrender.com/?${page}`;
+    let url = `https://nextmeal-server.onrender.com/meals/?${page}`;
 
     try {
         const response = await fetch(url);

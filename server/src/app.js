@@ -11,13 +11,21 @@ const cors = require('cors');
 const crypto = require('crypto');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
+const allowedOrigins = ['http://localhost:5173', 'https://your-frontend-domain.com'];
 
 // App Configuration
 const app = express();
 app.use(express.json());
 app.use(helmet());
+
 app.use(cors({
-  origin: 'http://localhost:5173', 
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
 
@@ -132,8 +140,9 @@ connectToDb((err) => {
     const getNameByIdRouter = require(`./routes/getNameById`);
     app.use('/getNameById', getNameByIdRouter);
 
-    app.listen(3000, () => {
-      console.log('app listening on port 3000');
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+        console.log(`App listening on port ${PORT}`);
     });
   } else {
     console.error('Failed to connect to the database', err);

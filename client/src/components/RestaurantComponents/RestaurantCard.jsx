@@ -30,7 +30,7 @@ function RestaurantCard({ restaurant }) {
         
         const isFavorite = wishlist.some(item => item.id === targetRestaurantId);
         setFavorite(isFavorite);
-    }, [restaurant._id]);
+    }, [restaurant._id, wishlist]);
 
     const handleWishlistClick = useCallback(
         async () => {
@@ -66,7 +66,7 @@ function RestaurantCard({ restaurant }) {
             } catch (error) {
                 console.error('Error updating wishlist:', error);
             }
-        },[favorite]
+        },[favorite, googleId, navigate, restaurant._id]
     );    
     
     const restaurantName = restaurant.name.replace(/\s+/g, '').toLowerCase();
