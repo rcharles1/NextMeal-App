@@ -1,6 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
+const mongoose = require('mongoose');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const { connectToDb, getDb } = require('./db');
@@ -26,6 +28,11 @@ app.use(session({
   secret: secretKey,
   resave: false,
   saveUninitialized: false,
+  store: MongoStore.create({
+    mongoUrl: process.env.VITE_MONGODB_URI,
+    collectionName: 'sessions',
+    mongooseConnection: mongoose.connection // Reuse existing mongoose connection
+  }),
   cookie: {
     httpOnly: true, // Mitigates XSS attacks
     secure: false, 
