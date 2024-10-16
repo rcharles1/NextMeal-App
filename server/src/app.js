@@ -12,8 +12,8 @@ const crypto = require('crypto');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 
-const allowedOrigins = ['http://localhost:5173', 'https://next-meal-app-client.vercel.app/'];
-const redirectPaths = ['http://localhost:5173', 'https://next-meal-app-client.vercel.app/']
+const allowedOrigins = ['https://next-meal-app-client.vercel.app/'];
+const redirectPaths = ['https://next-meal-app-client.vercel.app/']
 
 // App Configuration
 const app = express();
