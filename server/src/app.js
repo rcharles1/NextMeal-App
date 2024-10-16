@@ -12,7 +12,8 @@ const crypto = require('crypto');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 
-const allowedOrigins = ['http://localhost:5173', 'http://your-frontend-domain.com'];
+const allowedOrigins = ['http://localhost:5173', 'https://next-meal-app-client.vercel.app/'];
+const redirectPaths = ['http://localhost:5173', 'https://next-meal-app-client.vercel.app/']
 
 // App Configuration
 const app = express();
@@ -85,7 +86,7 @@ passport.use(new GoogleStrategy({
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 app.get('/auth/google/callback', passport.authenticate('google'), (req, res) => {
-  res.redirect("http://localhost:5173/authenticated");
+  res.redirect(`${redirectPaths}/authenticated`);
 });
 
 app.get('/api/current_user', (req, res) => res.send(req.user));
