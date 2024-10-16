@@ -2,120 +2,96 @@ const express = require('express');
 const { ObjectId } = require('mongodb');
 const router = express.Router();
 
-let { getDatabase } = require('../app');
-let db = getDatabase();
-
 // Get all beverages in pagination
-router.get('/', (req, res) => {
-    const page = req.query.p || 0;
-    const beveragesPerPage = 18;
+router.get('/', async (req, res) => {
+  const page = req.query.p || 0;
+  const beveragesPerPage = 18;
+  let beverages = [];
 
-    let beverages = [];
+  // Contains a simple filtering system depending on moods and an advanced filtering
+  const mood = req.query.mood || null;
+  const drinkCategory = req.query.drinkCategory ? req.query.drinkCategory.split(',') : [];
+  let categoryValues = [...drinkCategory];
+  if (mood) {
+    categoryValues.push(mood);
+  }
+  let categoryFilter = categoryValues.length > 0 ? { category: { $in: categoryValues } } : {};
+  const type = req.query.type ? { type: { $in: req.query.type.split(',') } } : {};
+  const filters = { ...categoryFilter, ...type };
 
-    // Contains a simple filtering system depending on moods and an advanced filtering.
-    const mood = req.query.mood || null;
-    const drinkCategory = req.query.drinkCategory ? req.query.drinkCategory.split(',') : [];
-    let categoryValues = [...drinkCategory];
-    if (mood) {
-        categoryValues.push(mood);
-    }
-    let categoryFilter = categoryValues.length > 0 ? {category: {$in: categoryValues}} : {};
-
-    const type = req.query.type ? {type: {$in: req.query.type.split(',')}} : {};
-
-    const filters = {...categoryFilter, ...type};
-
-    query = {...filters}
-
-    // Sorting
-    const sortParam = req.query.sort ? JSON.parse(req.query.sort) : null;
-    let sortObject = {};
-
-    if (sortParam && sortParam.text && typeof sortParam.text === 'string') {
-        if (sortParam.text.includes('Price')) {
-            sortObject = { price: parseInt(sortParam.value) };
-        } else {
-            sortObject = { name: parseInt(sortParam.value) };
-        }
-    }
-
-    db.collection('beverages')
-        .find(query)
-        .sort(sortObject)
-        .skip(page * beveragesPerPage)
-        .limit(beveragesPerPage)
-        .forEach(beverage => beverages.push(beverage))
-        .then(() => {
-            res.status(200).json(beverages)
-        })
-        .catch(() => {
-            res.status(500).json({error: 'Could not fetch beverage documents'})
-        })
-})
-
-// Get one berverage
-router.get('/:id', (req, res) => {
-    if (ObjectId.isValid(req.params.id)) {
-        db.collection('beverages')
-            .findOne({_id: new ObjectId( req.params.id)})
-            .then(doc => {
-                res.status(200).json(doc)
-            })
-            .catch(err => {
-                res.status(500).json({err: 'Could not fetch the document'})
-            })
+  // Sorting
+  const sortParam = req.query.sort ? JSON.parse(req.query.sort) : null;
+  let sortObject = {};
+  if (sortParam && sortParam.text && typeof sortParam.text === 'string') {
+    if (sortParam.text.includes('Price')) {
+      sortObject = { price: parseInt(sortParam.value) };
     } else {
-        res.status(500).json({error: 'Not a valid doc id'})
+      sortObject = { name: parseInt(sortParam.value) };
     }
-})
+  }
+
+  try {
+    const beveragesCursor = req.db.collection('beverages').find(filters).sort(sortObject).skip(page * beveragesPerPage).limit(beveragesPerPage);
+    await beveragesCursor.forEach(beverage => beverages.push(beverage));
+    res.status(200).json(beverages);
+  } catch (error) {
+    console.error('Error fetching beverages:', error);
+    res.status(500).json({ error: 'Could not fetch beverage documents' });
+  }
+});
+
+// Get one beverage by ID
+router.get('/:id', async (req, res) => {
+  if (ObjectId.isValid(req.params.id)) {
+    try {
+      const doc = await req.db.collection('beverages').findOne({ _id: new ObjectId(req.params.id) });
+      res.status(200).json(doc);
+    } catch (err) {
+      res.status(500).json({ error: 'Could not fetch the document' });
+    }
+  } else {
+    res.status(500).json({ error: 'Not a valid doc id' });
+  }
+});
 
 // Create one beverage
-router.post('/', (req, res) => {
-    const beverage = req.body
+router.post('/', async (req, res) => {
+  const beverage = req.body;
+  try {
+    const result = await req.db.collection('beverages').insertOne(beverage);
+    res.status(201).json(result);
+  } catch (err) {
+    res.status(500).json({ error: 'Could not create new doc' });
+  }
+});
 
-    db.collection('beverages')
-        .insertOne(beverage)
-        .then(result => {
-            res.status(201).json(result)
-        })
-        .catch(err => {
-            res.status(500).json({err: 'Could not create new doc'})
-        })
-})
-
-// Delete one beverage
-router.delete('/:id', (req, res) => {
-
-    if (ObjectId.isValid(req.params.id)) {
-        db.collection('beverages')
-            .deleteOne({_id: new ObjectId( req.params.id)})
-            .then(result => {
-                res.status(200).json(result)
-            })
-            .catch(err => {
-                res.status(500).json({err: 'Could not delete the document'})
-            })
-    } else {
-        res.status(500).json({error: 'Not a valid doc id'})
+// Delete one beverage by ID
+router.delete('/:id', async (req, res) => {
+  if (ObjectId.isValid(req.params.id)) {
+    try {
+      const result = await req.db.collection('beverages').deleteOne({ _id: new ObjectId(req.params.id) });
+      res.status(200).json(result);
+    } catch (err) {
+      res.status(500).json({ error: 'Could not delete the document' });
     }
-})
+  } else {
+    res.status(500).json({ error: 'Not a valid doc id' });
+  }
+});
 
-// Update one beverage
-router.patch('/:id', (req, res) => {
-    const updates = req.body
-
-    if (ObjectId.isValid(req.params.id)) {
-        db.collection('beverages')
-            .updateOne({_id: new ObjectId( req.params.id)}, {$set: updates})
-            .then(result => {
-                res.status(200).json(result)
-            })
-            .catch(err => {
-                res.status(500).json({err: 'Could not update the document'})
-            })
-    } else {
-        res.status(500).json({error: 'Not a valid doc id'})
+// Update one beverage by ID
+router.patch('/:id', async (req, res) => {
+  const updates = req.body;
+  if (ObjectId.isValid(req.params.id)) {
+    try {
+      const result = await req.db.collection('beverages').updateOne({ _id: new ObjectId(req.params.id) }, { $set: updates });
+      res.status(200).json(result);
+    } catch (err) {
+      res.status(500).json({ error: 'Could not update the document' });
     }
-})
+  } else {
+    res.status(500).json({ error: 'Not a valid doc id' });
+  }
+});
 
 module.exports = router;

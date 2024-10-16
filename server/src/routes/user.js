@@ -1,4 +1,3 @@
-// user.js
 const express = require('express');
 const router = express.Router();
 const User = require('../models/users');
@@ -8,7 +7,6 @@ router.get('/', async (req, res) => {
   try {
     // Filter by user's id
     const userId = req.query.listingId ? { _id: { $in: req.query.listingId.split(',') } } : {};
-
     const userData = await User.find(userId);
     res.json(userData);
   } catch (error) {
@@ -19,25 +17,22 @@ router.get('/', async (req, res) => {
 
 // Route to get user details by Google ID
 router.get('/:googleId', async (req, res) => {
-    try {
-      const googleId = req.params.googleId;
-      const user = await User.findOne({ googleId });
-  
-      if (!user) {
-        return res.status(404).json({ error: 'User not found' });
-      }
-  
-      // Return user details (customize as needed)
-      res.json({
-        name: user.name,
-        email: user.email,
-        picture: user.picture,
-      });
-    } catch (error) {
-      console.error('Error fetching user details:', error);
-      res.status(500).json({ error: 'Internal server error' });
+  try {
+    const googleId = req.params.googleId;
+    const user = await User.findOne({ googleId });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
     }
-  });
-  
+    // Return user details (customize as needed)
+    res.json({
+      name: user.name,
+      email: user.email,
+      picture: user.picture,
+    });
+  } catch (error) {
+    console.error('Error fetching user details:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
-module.exports = router; 
+module.exports = router;

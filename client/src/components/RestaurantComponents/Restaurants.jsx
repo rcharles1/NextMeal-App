@@ -12,8 +12,9 @@ function Restaurants() {
 
     useEffect(() => {
         const fetchRestaurants = async () => {
+            const page = 0
             try {
-                const data = await fetchSampleRestaurants();
+                const data = await fetchSampleRestaurants(page);
                 setRestaurants(data);
             } catch (error) {
                 console.error('Error fetching restaurants:', error);

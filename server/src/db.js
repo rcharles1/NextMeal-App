@@ -2,23 +2,20 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 let dbConnection;
-const uri = process.env.VITE_MONGODB_URI;
 
-module.exports = {
-    connectToDb: (cb) => {
-        mongoose.connect(uri, 
-            {
-                ssl: true,
-                serverSelectionTimeoutMS: 5000,
-            })
-            .then((client) => {
-                dbConnection = client.connection;
-                return cb();
-            })
-            .catch(err => {
-                console.log(err);
-                return cb(err);
-            });
-    },
-    getDb: () => dbConnection 
+const connectToDb = async (cb) => {
+  try {
+    await mongoose.connect(process.env.VITE_MONGODB_URI, {
+      ssl: true,
+      serverSelectionTimeoutMS: 5000,
+    });
+    dbConnection = mongoose.connection;
+    console.log('Database connection established');
+    cb();
+  } catch (error) {
+    console.error('Database connection error:', error);
+    cb(error);
+  }
 };
+
+module.exports = { connectToDb };
