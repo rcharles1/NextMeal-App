@@ -17,7 +17,7 @@ export const fetchAllMeals = async (page) => {
 
 // Sample restaurants
 export const fetchSampleRestaurants = async () => {
-    let url = `http://localhost:3000/restaurants/`;
+    let url = `https://nextmeal-server.onrender.com/restaurants/`;
 
     try {
         const response = await fetch(url);
