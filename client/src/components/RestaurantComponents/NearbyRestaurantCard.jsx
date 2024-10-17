@@ -27,7 +27,7 @@ function NearbyRestaurantCard({ nearbyRestaurant }) {
         
         const isFavorite = wishlist.some(item => item.id === targetRestaurantId);
         setFavorite(isFavorite);
-    }, [nearbyRestaurant._id]);
+    }, [nearbyRestaurant._id, wishlist]);
 
     const handleWishlistClick = useCallback(
         async () => {
@@ -42,7 +42,7 @@ function NearbyRestaurantCard({ nearbyRestaurant }) {
             setFavorite(prevState => !prevState);
         
             // Update database with latest changes
-            const itemId = restaurant._id;
+            const itemId = nearbyRestaurant._id;
         
             try {
                 const response = await updateFavoritesList(googleId, itemId, itemType);
@@ -63,7 +63,7 @@ function NearbyRestaurantCard({ nearbyRestaurant }) {
             } catch (error) {
                 console.error('Error updating wishlist:', error);
             }
-        },[favorite]
+        },[favorite, googleId, navigate, nearbyRestaurant._id]
     ); 
     
     const restaurantName = nearbyRestaurant.name.replace(/\s+/g, '').toLowerCase();
@@ -90,7 +90,7 @@ function NearbyRestaurantCard({ nearbyRestaurant }) {
                         </div>
                         <div className="flex h-fit mx-3 sm:mx-1 -mt-2 sm:mt-0 w-fit justify-between items-center">
                             <div className='flex flex-row text-default/75 font-semibold w-fit space-x-1 text-base md:text-ssm items-center'>
-                                <div className="flex -space-x-0.5 sm:space-x-0">
+                                <div className="flex space-x-0">
                                     {[...new Array(totalBubbles)].map((_, index) => {
                                         if (index < filledBubbles) {
                                             // Full circle for filled ratings
@@ -110,19 +110,19 @@ function NearbyRestaurantCard({ nearbyRestaurant }) {
                                             // Empty circle for remaining ratings
                                             return (
                                                 <div key={index} className="flex " >
-                                                    <RatingBubble  fill={'none'} stroke={'red'} height={15} width={15}/>
+                                                    <RatingBubble  fill={'none'} stroke={'red'}/>
                                                 </div>
                                             );
                                         }
                                     })}
                                 </div>
-                                <div className="flex items-center space-x-0.5 sm:text-ssm font-semibold">
+                                <div className="flex items-center space-x-0.5 text-sm ssm:text-ssm font-semibold">
                                     <span className="">{`${nearbyRestaurant.reviews?.length} reviews`}</span>
                                 </div>
                             </div>
-                            <div className="sm:hidden">
+                            <div className="ssm:hidden">
                                 <button onClick={handleWishlistClick} className="h-fit w-fit" >
-                                    <Bookmark fill={favorite ? 'red' : 'none'}  stroke={favorite ? 'red' : 'gray'} height="20" width="24" />
+                                    <Bookmark fill={favorite ? 'red' : 'none'}  stroke={favorite ? 'red' : 'silver'}  />
                                 </button>
                             </div>
                         </div>

@@ -11,10 +11,7 @@ function Services() {
                 </div>
                 <div className="font-semibold flex flex-col text-center ssm:text-start px-4 ssm:p-4 ssm:w-11/12"> 
                     <span className="text-3xl ssm:text-4xl xl:text-7xl font-extrabold">What is NextMeal and what services does it provide?</span>
-                    <span className="mt-3 font-semibold px-3 leading-5 block text-base ssm:text-sm lg:text-base text-pretty text-default/60">
-                        Away from helping you discover where and what you will get the next food for pleasure, we do the following in addition
-                    </span>
-                    <p className="mt-3 ssm:mt-4 leading-relaxed text-start ssm:text-base lg:text-lg indent-2 p-1 text-default/75 font-normal">
+                    <p className="mt-3 ssm:mt-4 leading-relaxed text-start text-base lg:text-lg indent-2 p-1 text-default/75 font-normal">
                         Imagine a world where finding your next meal is as easy as a few taps on your phone. Next Meal is your compassionate companion, guiding you to nearby food and support services with just a touch. Whether you’re in need or looking to lend a helping hand, Next Meal connects you to a network of care and nourishment, ensuring no one goes hungry. Dive into a community where every meal shared is a step towards a brighter, more connected future.
                     </p>
                 </div>
@@ -27,8 +24,8 @@ function Services() {
                                 <img src={`${service.imageSRC}`} alt="vector"  className="object-cover w-full"/>
                             </div>
                             <div className="flex flex-col space-y-1.5 h-full ssm:h-fit md:space-y-0.5 pb-4 justify-center items-start px-2">
-                                <span className="font-bold text-lg ml-1">{service.title}</span>
-                                <span className="font-normal text-start text-base line-clamp-3 px-2">{service.text} </span>
+                                <span className="font-bold text-lg ml-1">{index + 1}. {service.title}</span>
+                                <span className="font-normal text-start text-base line-clamp-3 pl-1">{service.text} </span>
                             </div>
                         </div>
                     );

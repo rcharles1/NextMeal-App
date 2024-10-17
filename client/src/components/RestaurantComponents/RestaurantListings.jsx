@@ -105,7 +105,7 @@ function RestaurantListings() {
 
     return (
         <div className="flex flex-col h-fit w-100 bg-bg_variant2 text-sm sm:text-base font-normal antialiased"> 
-           <div id='container' className={`flex flex-col mt-1 mb-12 space-y-5 px-5 py-1 ssm:px-2 h-fit transition-all duration-500}`}>          
+           <div id='container' className={`flex flex-col mt-1 mb-12 space-y-5 px-2 py-1 ssm:px-2 h-fit transition-all duration-500}`}>          
                 <div className="w-full p-4 bg-r2 bg-cover bg-right-bottom">
                     <div className="flex flex-col py-1.5 md:flex-row md:space-y-0 md:justify-between md:p-1 md:w-11/12 md:mx-auto items-center md:px-5 space-y-2">
                         <h1 className="w-full md:w-fit text-slate_white text-3xl sm:text-3xl md:text-xl font-semibold">Restaurants</h1>

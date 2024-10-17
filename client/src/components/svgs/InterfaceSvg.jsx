@@ -61,7 +61,7 @@ export function Account() {
 }
 
 export function Bookmark({fill, stroke}) {
-	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-5 ssm:h-4 "viewBox="0 0 24 24" ><path fill={fill} stroke={stroke} strokeLinecap="round" strokeLinejoin="round" d="M16 3H8a2 2 0 0 0-2 2v16l6-3l6 3V5a2 2 0 0 0-2-2"></path></svg>);
+	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-4 ssm:h-4 "viewBox="0 0 24 24" ><path fill={fill} stroke={stroke} strokeLinecap="round" strokeLinejoin="round" d="M16 3H8a2 2 0 0 0-2 2v16l6-3l6 3V5a2 2 0 0 0-2-2"></path></svg>);
 }
 Bookmark.propTypes = {
     fill: PropTypes.string,
@@ -146,7 +146,7 @@ UnCheckIcon.propTypes = {
 };
 
 export function RatingBubble({fill, stroke}) {
-	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-3" viewBox="0 0 24 24"><circle cx={12} cy={12} r={9} fill={fill} stroke={stroke} strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}></circle></svg>);
+	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-2.5" viewBox="0 0 24 24"><circle cx={12} cy={12} r={9} fill={fill} stroke={stroke} strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}></circle></svg>);
 }
 RatingBubble.propTypes = {
     fill: PropTypes.string,
@@ -154,7 +154,7 @@ RatingBubble.propTypes = {
 };
 
 export function CircleHalfFull({fill}) {
-	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-3" viewBox="0 0 24 24"><path fill={fill} d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 2a8 8 0 0 1 8 8a8 8 0 0 1-8 8z"></path></svg>);
+	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-2.5" viewBox="0 0 24 24"><path fill={fill} d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 2a8 8 0 0 1 8 8a8 8 0 0 1-8 8z"></path></svg>);
 }
 CircleHalfFull.propTypes = {
     fill: PropTypes.string,
@@ -168,7 +168,7 @@ Share.propTypes = {
 };
 
 export function LocationIcon({stroke, fill}) {
-	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-5 ssm:h-3" viewBox="0 0 24 24" ><g fill={fill} stroke={stroke} strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}><path d="M12.56 20.82a.964.964 0 0 1-1.12 0C6.611 17.378 1.486 10.298 6.667 5.182A7.592 7.592 0 0 1 12 3c2 0 3.919.785 5.333 2.181c5.181 5.116.056 12.196-4.773 15.64"></path><path d="M12 12a2 2 0 1 0 0-4a2 2 0 0 0 0 4"></path></g></svg>);
+	return (<svg xmlns="http://www.w3.org/2000/svg" className="h-2.5 ssm:h-3" viewBox="0 0 24 24" ><g fill={fill} stroke={stroke} strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}><path d="M12.56 20.82a.964.964 0 0 1-1.12 0C6.611 17.378 1.486 10.298 6.667 5.182A7.592 7.592 0 0 1 12 3c2 0 3.919.785 5.333 2.181c5.181 5.116.056 12.196-4.773 15.64"></path><path d="M12 12a2 2 0 1 0 0-4a2 2 0 0 0 0 4"></path></g></svg>);
 }
 LocationIcon.propTypes = {
     fill: PropTypes.string,

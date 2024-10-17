@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
 import BeverageCard from './BeverageCard';
 import Loading from '../ComplementaryComponents/Loading';
@@ -36,7 +37,7 @@ function Beverages() {
                 </span>
             </div>
             <div className="flex flex-col space-y-3 rounded-sm w-full p-2 relative">
-                <div className={`absolute inset-0 bg-gradient-to-t from-slate_white to-transparent z-10 `}></div>
+                <div className={`absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-slate_white to-transparent z-10 `}></div>
                 {beverages ? (
                     <div className="bg-bg_variant2 grid grid-cols-2 gap-4 px-4 ssm:grid-cols-3 ssm:gap-x-0 ssm:px-14 lg:px-16 lg:grid-cols-4 lg:gap-x-0 mx-auto overflow-hidden py-2 w-full">
                         {beverages.slice(0, 6).map((beverage, i) => <BeverageCard key={i} beverage={beverage}/>)}

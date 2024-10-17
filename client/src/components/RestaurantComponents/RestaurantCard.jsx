@@ -92,7 +92,7 @@ function RestaurantCard({ restaurant }) {
                             </div>
                         </div>
                         <div className="flex flex-row space-x-0.5 ssm:space-x-1.5">
-                            <span className="size-3 sm:size-3.5 md:size-2.5 mt-.5 md:-mt-0"><LocationIcon stroke="gray" fill="none"/></span>
+                            <span className="ssm:size-3.5 md:size-2.5 mt-.5 md:-mt-0"><LocationIcon stroke="gray" fill="none"/></span>
                             <span className="text-xs truncate font-normal ssm:text-ssm">{restaurant.details.address[0]}</span>
                         </div>
                         <div className="flex h-4 justify-between items-center mt-0.5">

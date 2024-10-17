@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect, useCallback } from 'react';
 import Details from './Details';
 import RestaurantServices from './RestaurantServices';
@@ -221,8 +222,8 @@ function RestaurantListing() {
                             <div className="max-h-56 md:max-h-32 p-1"> 
                                 {postedReviews.length === 0 ? <p className="text-base md:text-sm sm:mt-4">There are no reviews for {`${restaurantDoc.name}`}. Be the first to write one!</p> : <ReviewList reviews={postedReviews}  onReviewCount={handleReviewsCount} />  }
                             </div>
-                            <a href='#allReviews'className="md:mt-6 underline font-semibold" >Read all reviews</a>
-                            <NavLink to={`/review/${restaurantDoc._id}`} className="bg-bg_variant1 p-2 w-11/12 md:w-full mx-auto mt-2 sm:mt-32 md:my-auto text-lg text-center md:text-sm text-pure_white font-bold rounded-lg shadow-sm active:bg-bg_variant1/80">Write a Review</NavLink>
+                            <a href='#allReviews'className={`${postedReviews.length == 0 ? 'hidden' : 'block'} md:mt-6 underline font-semibold `}>Read all reviews</a>
+                            <NavLink to={`/review/${restaurantDoc._id}`} className="bg-bg_variant1 p-2 w-11/12 md:w-full mx-auto mt-2 sm:mt-32 md:my-auto text-base ssm:text-lg text-center md:text-sm text-pure_white font-bold rounded-lg shadow-sm active:bg-bg_variant1/80">Write a Review</NavLink>
                         </div>
                         <div className="sm:hidden h-fit pb-6 p-5 bg-gray/35 sm:h-80 sm:w-6/12 flex flex-col space-y-2">
                             <h4 className="font-semibold text-center text-base">Ad Here</h4>
@@ -244,7 +245,7 @@ function RestaurantListing() {
                     <div className="h-2 pb-6 p-5 bg-gray/35 sm:bg-pure sm:h-1 sm:pb-0 flex flex-col space-y-2"></div>
 
                     <div className="h-fit w-full pb-6 bg-pure_white sm:rounded-lg md:rounded-xl md:mt-2 md:w-10/12 mx-auto flex flex-col space-y-2">
-                        <h4 className="font-bold p-5 text-lg" >See other nearby restaurants in {`${restaurantDoc.locationData.district}`}</h4>
+                        <h4 className="font-bold p-5 text-lg" >Nearby Restaurants around {`${restaurantDoc.locationData.district}`}</h4>
                         <div className="bg-gray sm:bg-pure_white px-3 pb-3 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6 p-1 sm:px-2">
                             {nearbyRestaurants ? nearbyRestaurants.map(nearbyRestaurant => {
                                 return(

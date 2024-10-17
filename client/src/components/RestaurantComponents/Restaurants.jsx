@@ -33,12 +33,12 @@ function Restaurants() {
                 <span className="text-3xl sm:text-5xl font-extrabold text-heading ">
                     Uncover Dining Delights! 
                 </span>
-                <span className="font-semibold text-center leading-relaxed block ssm:text-base lg:text-lg text-pretty ssm:w-11/12 mx-auto text-default/65">
-                    Explore the best restaurants around and uncover delightful dining experiences that will tantalize your taste buds.
+                <span className="font-semibold text-center leading-relaxed block w-11/12 ssm:text-base lg:text-lg text-pretty ssm:w-11/12 mx-auto text-default/65">
+                    Explore the best restaurants around and uncover delightful dining experiences
                 </span>
             </div>
             <div className="flex flex-col space-y-2 rounded-sm w-full p-2 md:px-1 lg:px-16 relative">
-                <div className={`absolute inset-0 bg-gradient-to-t from-slate_white to-transparent z-10 `}></div>
+                <div className={`absolute inset-x-0 bottom-0 bg-gradient-to-t h-1/2 from-slate_white to-transparent z-10 `}></div>
                 {restaurants ? (
                     <div className="bg-bg_variant2 grid grid-cols-2 gap-4 px-4 ssm:grid-cols-3 ssm:gap-x-0 ssm:px-14 ssm:gap-y-4 lg:grid-cols-4 lg:gap-x-0 mx-auto overflow-hidden py-2 w-full">
                         {restaurants.slice(0, 6).map((restaurant, i) => <RestaurantCard key={i} restaurant={restaurant} />)}

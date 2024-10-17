@@ -5,8 +5,8 @@ function QuickLinksComponent() {
             <div className="px-10 w-full ssm:w-fit grid grid-cols-2 gap-2 md:px-4 ssm:grid-cols-4 ssm:gap-0 sm:space-y-0 items-center">
                 <div className="h-fit w-24 md:w-36">
                     <div className="rounded-md text-center">
-                        <p className="text-bg_variant1/90 font-bold text-lg tracking-tighter ">Mutli-Regional</p>
-                        <p>Coverage of the country</p>
+                        <p className="text-bg_variant1/90 font-bold text-lg tracking-tighter ">Interregional</p>
+                        <p>Nationwide</p>
                     </div>
                 </div>
                 <div className="h-fit w-24 md:w-36">
