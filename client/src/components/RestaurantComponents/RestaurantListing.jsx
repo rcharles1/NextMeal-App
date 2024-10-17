@@ -29,6 +29,12 @@ function RestaurantListing() {
     const [error, setError] = useState('');
     const [postedReviews, setPostedReviews] = useState([]);
     const [reviewsCount, setReviewsCount] = useState(0);
+    const [showAll, setShowAll] = useState(false);
+    
+    const toggleShow = () => {
+        setShowAll(!showAll);
+    };
+      
     const itemType = 'restaurant';
     const listingId = id;
 
@@ -88,7 +94,7 @@ function RestaurantListing() {
         
         const isFavorite = wishlist.some(item => item.id === targetRestaurantId);
         setFavorite(isFavorite);
-    }, [id]);
+    }, [id, wishlist]);
 
     /* 
     const handleWishlistClick = useCallback(
@@ -198,12 +204,12 @@ function RestaurantListing() {
                                     <span className="">{`${reviewsCount} reviews`}</span>
                                 </div>
                             </div>
-                            <div className="flex space-x-1 text-sm">
+                            <div className="flex flex-wrap space-x-1 text-sm">
                                 {restaurantDoc.cuisine.map((item, index, array) => {
                                     return (
-                                    <p key={index}>
+                                    <p key={index} >
                                         {item}
-                                        {index !== array.length - 1 ? ',' : ''}
+                                        {index !== array.length - 1 ? ' | ' : ''}
                                     </p>
                                     );
                                 })}
@@ -255,7 +261,7 @@ function RestaurantListing() {
                         </div>
                     </div>
 
-                    <div id="allDetails" className="h-fit pb-6 p-5 mb-4 md:mb-0 bg-pure_white mt-2 sm:mt-6 sm:rounded-lg md:rounded-xl sm:h-80 md:h-fit  md:w-10/12 mx-auto flex flex-col space-y-3 sm:space-y-4">
+                    <div id="allDetails" className="h-fit w-11/12 pb-6 p-5 mb-4 md:mb-0 bg-pure_white mt-2 sm:mt-6 sm:rounded-lg md:rounded-xl sm:h-80 md:h-fit  md:w-10/12 mx-auto flex flex-col space-y-3 sm:space-y-4">
                         <h4 className="font-bold text-lg">Details and amenities</h4>
                         <hr className="text-silver/30"></hr>
                         <div className="w-full h-fit sm:w-fit sm:flex md:space-x-2">

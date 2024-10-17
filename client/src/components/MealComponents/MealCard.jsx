@@ -64,7 +64,7 @@ function MealCard({ meal }) {
             } catch (error) {
                 console.error('Error updating wishlist:', error);
             }
-        },[favorite]
+        },[favorite, googleId, meal._id, navigate]
     ); 
 
     // Rating implementation
@@ -77,7 +77,7 @@ function MealCard({ meal }) {
     return (
         <>
             {meal ? (
-                <div className="flex flex-col h-64 w-[11rem] rounded-xl sm:rounded-2xl caret-transparent px-1.5 md:px-2 md:py-2 pt-1.5 text-sm bg-pure_white drop-shadow-sm text-start text-default/75 ssm:w-56 ssm:h-64 ">
+                <div className="flex flex-col h-64 w-40 rounded-xl sm:rounded-2xl caret-transparent px-1.5 md:px-2 md:py-2 pt-1.5 text-sm bg-pure_white drop-shadow-sm text-start text-default/75 ssm:w-56 ssm:h-64 ">
                     <div className="relative h-36 sm:h-36 md:h-44 w-full bg-gray/35 mx-auto rounded-lg sm:rounded-xl md:rounded-lg overflow-hidden">
                         <img src={`/assets/img/gallery/meals/food/${meal.gallery?.[0]}.webp`} alt='meal-image' className="w-full h-full object-contain object-center hover:scale-110 transition-transform duration-200 ease-in-out"/>
                     </div>

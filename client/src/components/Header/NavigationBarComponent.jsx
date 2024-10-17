@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { NavLink } from 'react-router-dom';
 import useNavigationNavBar from "../../hooks/useNavigation";
@@ -56,17 +57,17 @@ function NavigationBar() {
 
                 {/* Show the close menu icon on small screens */}
                 {isMenuOpen ? (
-                    <div className="h-lvh w-full absolute top-0 left-0 bg-bg_variant1 z-50 p-6">
+                    <div className="h-lvh w-full absolute top-0 left-0 bg-bg_variant1 z-50 px-4">
                         <div className="w-full p-1 flex justify-end mt-5 ">
-                            <a onClick={() => setIsMenuOpen(false)} className="border border-pure_white rounded p-1"><CloseIcon fill='white' /></a>
+                            <a onClick={() => setIsMenuOpen(false)} className="outline outline-pure_white/50 rounded p-1"><CloseIcon fill='white' /></a>
                         </div>
-                            <div className="container mx-auto px-1 py-2 overflow-hidden mt-16 ">
-                            <ul className="flex flex-col space-y-3 text-center">
+                            <div className="container mx-auto px-1 py-2 overflow-hidden mt-1 ">
+                            <ul className="flex flex-col space-y-2 text-center">
                                 {navItems.map((item) => (
                                     <li
                                         key={item.label}
                                         className={classNames(
-                                            "cursor-pointer p-1 text-5xl font-black subpixel-antialiased text-slate_white/45",
+                                            "cursor-pointer p-1 text-5xl font-black subpixel-antialiased text-slate_white/55",
                                             {
                                                 "text-pure_white ":
                                                 currentRoute === item.label,

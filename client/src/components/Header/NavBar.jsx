@@ -1,11 +1,12 @@
-
+/* eslint-disable no-unused-vars */
+import { useState } from 'react';
 import { navLinks } from '../../utilities/links';
 import { Link, useLocation } from 'react-router-dom'; 
 
 function NavBar() {
     const [openNavWidget, setOpenNavWidget] = useState(false);
     const [isActive, setActive] = useState(false);
-    const location = useLocation(); // Get the current route location
+    const location = useLocation(); 
 
     const handleHover = () => {
         setOpenNavWidget((prevState) => !prevState);

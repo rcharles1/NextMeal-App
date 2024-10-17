@@ -34,7 +34,7 @@ function Header() {
    return (
     <div className="bg-pure_white w-full flex items-center justify-between p-3 h-14 px-2 xl:h-12 lg:px-9 lg:py-5 xl:p-4 xl:px-20 caret-transparent subpixel-antialiased">
       <div>
-         <img src={`/assets/img/next-meal-red.png`} alt="Logo" className="w-16 ssm:w-20 "/>
+         <img src={`/assets/img/next-meal-red.png`} alt="Logo" className="w-20"/>
       </div>
       <div className="flex space-x-1.5 p-1 items-center w-fit">
          <div className={`ssm:hidden md:mt-0.5 `}>
@@ -43,8 +43,8 @@ function Header() {
          <div>
             <NavigationBar />
          </div>
-         <div className="md:mt-0.5">{isAuthenticated ? <ProfileIcon colorTheme={colorTheme} /> : (
-            <button onClick={handleSignInSignOut} className="w-fit px-1.5 p-1 mt-0 text-sm ssm:text-base text-slate_white font-bold bg-bg_variant1 mx-auto rounded xl:text-sm xl:p-2">Sign In </button>
+         <div className="ssm:mt-0.5">{isAuthenticated ? <ProfileIcon colorTheme={colorTheme} /> : (
+            <button onClick={handleSignInSignOut} className="w-fit px-1.5 p-1 text-sm ssm:text-base text-slate_white font-bold bg-bg_variant1 mx-auto rounded xl:text-sm xl:p-2">Sign In </button>
          ) }</div>
       </div>
     </div>  

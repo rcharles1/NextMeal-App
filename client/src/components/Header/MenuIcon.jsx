@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';

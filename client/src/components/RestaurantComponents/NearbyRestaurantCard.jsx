@@ -117,7 +117,7 @@ function NearbyRestaurantCard({ nearbyRestaurant }) {
                                     })}
                                 </div>
                                 <div className="flex items-center space-x-0.5 text-sm ssm:text-ssm font-semibold">
-                                    <span className="">{`${nearbyRestaurant.reviews?.length} reviews`}</span>
+                                    <span >{`${nearbyRestaurant.reviews?.length} reviews`}</span>
                                 </div>
                             </div>
                             <div className="ssm:hidden">

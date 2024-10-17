@@ -45,9 +45,9 @@ function HomePage() {
     return (
         <div className="flex flex-col bg-graphicDots caret-transparent h-full md:pb-12 bg-no-repeat bg-right-top">
             <div className="flex flex-col md:flex-row md:justify-left items-center rounded-md md:mt-0 w-full h-full px-4 md:px-1 lg:w-11/12 lg:mx-auto lg:justify-between xl:h-lvh xl:items-center">
-                <div className="md:w-7/12 h-fit p-1">
+                <div className="w- overflow-hidden md:w-7/12 h-fit">
                     <div className="w-full h-fit ssm:mt-8 lg:mt-10 md:justify-center p-1 text-headings">
-                        <h1 className="text-6xl ssm:text-5xl lg:text-6xl md:px-6 mt-16 md:mt-0 font-black text-center md:text-start xl:text-7xl"><span className='text-bg_variant1'>Discover</span> Restaurants & Delicious Food</h1>
+                        <h1 className="text-5xl ssm:text-5xl lg:text-6xl md:px-6 mt-12 md:mt-0 font-black text-center md:text-start xl:text-7xl"><span className='text-bg_variant1'>Discover</span> Restaurants & Delicious Food</h1>
                         <h1 className="text-xl xl:text-2xl md:px-6 mt-4 ssm:mt-3 font-extrabold text-center ssm:text-start text-default/55">Start your next delicious adventure!</h1>
                     </div>
                     <div className="hidden md:block p-2 h-fit w-fit mx-auto xl:p-0 ssm:mt-4 md:ml-6">

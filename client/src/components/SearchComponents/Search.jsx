@@ -73,12 +73,12 @@ function SearchComponent() {
 
   return (
     <div>
-      <button onClick={handleOpenDialog} className={`${isDialogOpen ? 'collapse' : 'block'} caret-transparent flex flex-row items-center w-48 ssm:w-96 space-x-1 ssm:space-x-1.5 ssm:px-3 px-1 p-1 rounded-2xl outline-bg_variant1 outline`}>
+      <button onClick={handleOpenDialog} className={`${isDialogOpen ? 'collapse' : 'block'} caret-transparent flex flex-row items-center w-40 ssm:w-96 space-x-1 ssm:space-x-1.5 ssm:px-3 px- p-0.5 rounded-2xl outline-bg_variant1 outline`}>
         <Search fill={'red'} />
         <input
           type="text"
           placeholder="Places to dine, meals to taste, drinks to have..."
-          className="p-0.5 pr-2 w-32 sm:w-4 md:w-96 ssm:mt-0.5 text-ssm sm:text-sm lg:p-1.5 text-bg_variant1 caret-transparent font-semibold focus:outline-none bg-bg_variant1/0"
+          className="pr-2 w-32 sm:w-4 md:w-96 ssm:mt-0.5 text-ssm truncate sm:text-sm lg:p-1.5 text-bg_variant1 caret-transparent font-semibold focus:outline-none bg-bg_variant1/0"
         />
       </button>
 

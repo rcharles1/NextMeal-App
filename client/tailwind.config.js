@@ -6,6 +6,7 @@ export default {
     "./index.html",
     "./src/**/*.{jsx,js}",
   ],
+  darkMode: false,
   theme: {
     colors: {
       pure_white: '#ffffff',

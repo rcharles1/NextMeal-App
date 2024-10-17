@@ -34,10 +34,10 @@ function Meal() {
                     From traditional recipes to modern twists, explore the flavors that define the region’s cuisine
                 </span>
             </div>
-            <div className="flex flex-col space-y-3 rounded-sm w-full p-2 relative">
+            <div className="flex rounded-sm w-full px-3 relative">
                 <div className={`absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-slate_white to-transparent z-10 `}></div>
                 {meals ? (
-                    <div className="bg-bg_variant2 grid grid-cols-2 gap-4 px-4 ssm:grid-cols-3 ssm:gap-x-0 ssm:px-14 lg:grid-cols-4 lg:px-14 lg:gap-x-0 mx-auto overflow-hidden py-2 w-full">
+                    <div className="bg-bg_variant2 grid grid-cols-2 gap-x-2 gap-y-3 ssm:grid-cols-3 ssm:gap-x-0 ssm:px-14 lg:grid-cols-4 lg:px-14 lg:gap-x-0 mx-auto overflow-hidden py-2 w-full">
                         {meals.slice(0, 6).map((meal, i) => <MealCard key={i} meal={meal} />)}
                     </div>
                 ) : <Loading/>}

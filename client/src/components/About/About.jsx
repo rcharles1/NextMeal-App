@@ -1,6 +1,3 @@
-
-import { Link } from 'react-router-dom';
-
 function About() {
     return (
         <div className="w-full h-fit p-4 ssm:px-8 caret-transparent">
