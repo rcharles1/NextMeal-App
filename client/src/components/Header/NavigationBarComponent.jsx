@@ -16,7 +16,7 @@ function NavigationBar() {
         <nav className="justify-center">
             <div id="nav-link" className="flex">
                 {/* Show the navigation links from medium screens to beyond */}
-                <div className="hidden ssm:block">
+                <div className="hidden ssm:block sm:hidden md:block">
                     <ul className="flex space-x-2.5 xl:space-x-6">
                         {navItems.map((item) => (
                             <li
@@ -103,7 +103,7 @@ function NavigationBar() {
                     </div>
                 ) : (
                     // Show the hamburger icon
-                    <div className="block ssm:hidden relative" onClick={() => setIsMenuOpen(true)}>
+                    <div className="block ssm:hidden sm:block md:hidden relative" onClick={() => setIsMenuOpen(true)}>
                         <CloseToMenu />
                     </div>
                 )}

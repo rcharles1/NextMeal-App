@@ -32,11 +32,11 @@ function Header() {
    }
 
    return (
-    <div className="bg-pure_white w-full flex items-center justify-between p-3 h-14 px-2 xl:h-12 lg:px-9 lg:py-5 xl:p-4 xl:px-20 caret-transparent subpixel-antialiased">
+    <div className="bg-pure_white w-full flex items-center justify-between p-3 h-14 px-2 xl:h-12 lg:py-5 xl:p-4  caret-transparent subpixel-antialiased">
       <div>
          <img src={`/assets/img/next-meal-red.png`} alt="Logo" className="w-20"/>
       </div>
-      <div className="flex space-x-1.5 p-1 items-center w-fit">
+      <div className="flex space-x-1.5 lg:space-x-7 p-1 items-center w-fit">
          <div className={`ssm:hidden md:mt-0.5 `}>
             <SearchComponent colorTheme={colorTheme} />
          </div>

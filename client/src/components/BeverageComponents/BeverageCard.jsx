@@ -1,10 +1,9 @@
-/* eslint-disable react/prop-types */
-import { useState, useEffect, useCallback }  from 'react';
-import { updateFavoritesList } from '../../utilities/getData';
-
+import { useState, useEffect, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Bookmark } from '/src/components/svgs/InterfaceSvg';
+import { updateFavoritesList } from '../../utilities/getData';
 
 function BeverageCard({ beverage }) {
     const navigate = useNavigate();
@@ -16,85 +15,74 @@ function BeverageCard({ beverage }) {
     useEffect(() => {
         const userData = JSON.parse(localStorage.getItem('user'));
         setGoogleId(userData?.googleId);
-
-        const targetBeverageId = beverage._id;
-        
-        const isFavorite = wishlist.some(item => item.id === targetBeverageId);
-        setFavorite(isFavorite);
+        setFavorite(wishlist.some(item => item.id === beverage._id));
     }, [beverage._id, wishlist]);
 
-    const handleFavoriteClick = useCallback(
-        async () => {
-            const userData = JSON.parse(localStorage.getItem('user'));
-            if (!userData) {
-                // Redirect to sign-in page if user is not logged in
-                navigate('/signin');
-                return;
-            }
-        
-            // Toggle the favorite status
-            setFavorite(prevState => !prevState);
-        
-            // Update database with latest changes
-            const itemId = beverage._id;
-        
-            try {
-                const response = await updateFavoritesList(googleId, itemId, itemType);
-                console.log('Favorites updated successfully:', response);
-        
-                // Update local storage
-                const updatedWishlist = JSON.parse(localStorage.getItem('wishlist')) || {};
-        
-                if (favorite) {
-                    //Remove from favorites
-                    delete updatedWishlist[itemId];
-                } else {
-                    // Add to favorites
-                    updatedWishlist[itemId] = true;
-                }
-        
-                localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
-            } catch (error) {
-                console.error('Error updating wishlist:', error);
-            }
-        },[beverage._id, favorite, googleId, navigate]
-    );    
+    const handleFavoriteClick = useCallback(async () => {
+        const userData = JSON.parse(localStorage.getItem('user'));
+        if (!userData) {
+            navigate('/signin');
+            return;
+        }
+
+        try {
+            await updateFavoritesList(googleId, beverage._id, itemType);
+            setFavorite(prev => !prev);
+        } catch (error) {
+            console.error('Error updating wishlist:', error);
+        }
+    }, [beverage._id, googleId, navigate]);
+
+    if (!beverage) return null;
 
     return (
-        <>
-            { beverage ? (<>
-                <div className="flex flex-col h-56 w-40 rounded-xl sm:rounded-2xl px-1.5 py-1.5 md:px-2 md:py-2 text-sm bg-pure_white drop-shadow-sm text-default/75 caret-transparent text-center ssm:h-64 ssm:w-56 lg:h-72 lg:w-64 ">
-                    <div className="relative h-36 ssm:h-44 w-full mx-auto bg-gray/35 rounded-lg ssm:rounded-xl lg:h-56 overflow-hidden">
-                        <div className="absolute p-1 inset-0">
-                            <img src={`/assets/img/gallery/meals/beverages/${beverage.gallery?.[0]}.webp`} alt='beverage-image' className="w-44 ssm:w-full h-full object-scale-down hover:scale-110 transition-transform duration-200 ease-in-out" />
-                        </div>
-                    </div>
-                    <div className="flex flex-col space-y-1 sm:h-18 w-full px-1 py-1 overflow-hidden rounded-md sm:px-3 justify-center items-start font-medium" >
-                        <div className="flex justify-between w-full items-center">
-                            <div className="">
-                                <NavLink to={`/beveragelistings/${beverage._id}`} className="hover:text-bg_variant1/55 text-sm text-wrap ssm:text-base font-bold w-fit" >{beverage.name}</NavLink>
-                            </div>
-                        </div>
-                        <div>
-                            <button onClick={handleFavoriteClick} className="flex h-fit w-fit sm:size-6" >
-                                <Bookmark fill={favorite ? 'red' : 'none'}  stroke={favorite ? 'red' : 'gray'} height="24" width="20" />
-                            </button>
-                        </div>
-                        <div className="flex flex-wrap justify-between w-full text-start">
-                            <div className="flex space-x-1.5 font-semibold">
-                                <span className='flex space-x-0.5 text-sm'><p>TZS</p><p>{beverage.price}</p></span>
-                                <p className='font-medium'>{beverage.size}</p>
-                            </div>
-                            <div>
-                                <p className='truncate max-w-20'>{beverage.volume}</p>
-                            </div>
-                        </div>
+        <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden h-full flex flex-col">
+            {/* Beverage Image */}
+            <div className="relative pt-[100%] bg-gray-100 overflow-hidden">
+                <img
+                    src={`/assets/img/gallery/meals/beverages/${beverage.gallery?.[0]}.webp`}
+                    alt={beverage.name}
+                    className="absolute top-0 left-0 w-full h-full object-contain p-4 transition-transform duration-500 hover:scale-105"
+                />
+                <button
+                    onClick={handleFavoriteClick}
+                    className="absolute top-3 right-3 p-2 bg-white/80 rounded-full backdrop-blur-sm hover:bg-white transition-colors"
+                    aria-label={favorite ? 'Remove from favorites' : 'Add to favorites'}
+                >
+                    <Bookmark
+                        fill={favorite ? 'red' : 'none'}
+                        stroke={favorite ? 'red' : 'gray'}
+                        className="w-5 h-5"
+                    />
+                </button>
+            </div>
+
+            {/* Beverage Info */}
+            <div className="p-4 flex-grow flex flex-col">
+                <NavLink
+                    to={`/beveragelistings/${beverage._id}`}
+                    className="text-lg font-bold text-gray-900 hover:text-bg_variant1 transition-colors mb-2 line-clamp-1"
+                >
+                    {beverage.name}
+                </NavLink>
+
+                <div className="flex justify-between items-center mt-auto">
+                    <div className="space-y-1">
+                        <p className="text-sm font-semibold text-gray-900">
+                            TZS {beverage.price}
+                        </p>
+                        <p className="text-base text-gray-100">
+                            {beverage.size} • {beverage.volume}
+                        </p>
                     </div>
                 </div>
-            </>) : <p>Fetching data. Please wait..</p>
-            }
-        </>
+            </div>
+        </div>
     );
 }
+
+BeverageCard.propTypes = {
+    beverage: PropTypes.object.isRequired,
+};
 
 export default BeverageCard;

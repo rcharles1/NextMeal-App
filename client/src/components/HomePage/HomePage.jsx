@@ -1,23 +1,20 @@
 import { useState } from 'react';
-import Location from '../LocationComponents/LocationBox';
+import Modal from 'react-modal';
+import Lottie from 'lottie-react';
+import { FiMapPin, FiPhone, FiClock, FiHeart } from 'react-icons/fi';
 import QuickLinksComponent from '../ComplementaryComponents/QuickLinks';
 import Services from '../ServicesComponents/Services';
 import Restaurants from '../RestaurantComponents/Restaurants';
 import Meals from '../MealComponents/Meals';
 import Beverages from '../BeverageComponents/Beverages';
-
-import Modal from 'react-modal';
-import Lottie from 'lottie-react';
-import locationAnimation from '/public/assets/lotties/ping.json';
-import poster3Animation from '/public/assets/lotties/poster3.json';
 import SearchComponent from '../SearchComponents/Search';
 import Stakeholdership from '../StakeholdersComponents/Stakeholdership';
+import locationAnimation from '/public/assets/lotties/ping.json';
+import foodDeliveryAnimation from '/public/assets/lotties/food-delivery.json';
 
-// Binding modal to root component to prevent screen readers when modal is opened. 
-// From index.html
-Modal.setAppElement('#root')
+Modal.setAppElement('#root');
 
-function HomePage() {
+const HomePage = () => {
     const [modalIsOpen, setIsOpen] = useState(false);
     const [locationAddress, setLocationAddress] = useState('');
 
@@ -25,91 +22,178 @@ function HomePage() {
         setLocationAddress(event.target.value);
     };
 
-    function openModal() {
-        setIsOpen(true);
-    }
+    const openModal = () => setIsOpen(true);
+    const closeModal = () => setIsOpen(false);
 
-    function closeModal() {
-        setIsOpen(false);
-    }
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        closeModal();
+    };
 
-    function handleSubmit(event) {
-        event.preventDefault()
-        closeModal()
-    }
-
-    const scrollTop = () =>{
-        window.scrollTo({top: 72, behavior: 'smooth'});
+    const scrollTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     return (
-        <div className="flex flex-col bg-graphicDots caret-transparent h-full md:pb-12 bg-no-repeat bg-right-top">
-            <div className="flex flex-col md:flex-row md:justify-left items-center rounded-md md:mt-0 w-full h-full px-4 md:px-1 lg:w-11/12 lg:mx-auto lg:justify-between xl:h-lvh xl:items-center">
-                <div className="w- overflow-hidden md:w-7/12 h-fit">
-                    <div className="w-full h-fit ssm:mt-8 lg:mt-10 md:justify-center p-1 text-headings">
-                        <h1 className="text-5xl ssm:text-5xl lg:text-6xl md:px-6 mt-12 md:mt-0 font-black text-center md:text-start xl:text-7xl"><span className='text-bg_variant1'>Discover</span> Restaurants & Delicious Food</h1>
-                        <h1 className="text-xl xl:text-2xl md:px-6 mt-4 ssm:mt-3 font-extrabold text-center ssm:text-start text-default/55">Start your next delicious adventure!</h1>
-                    </div>
-                    <div className="hidden md:block p-2 h-fit w-fit mx-auto xl:p-0 ssm:mt-4 md:ml-6">
-                        <SearchComponent onClick={scrollTop}/>
-                    </div>
-                    <div className="cursor-pointer mt-4 mx-auto md:ml-7 rounded-xl ring-1 ring-pure_white ring-offset-1 p-1 md:h-fit w-fit">
-                        <div>
-                            {modalIsOpen ? (
-                                <div className="fixed inset-0 bg-default opacity-50" style={{ backdropFilter: 'blur(5px)' }}></div>
-                            ) : ''}
-                            <Modal
-                                isOpen={modalIsOpen}
-                                onRequestClose={closeModal}
-                                contentLabel="Location Modal"
-                                className="h-96 md:h-56 w-11/12 md:w-4/12 p-8 md:p-3 bg-pure_white text-center rounded-xl mx-auto text-default text-lg justify-center z-100  left-4 mt-20 md:mt-32"
-                            >
-                                <div className="z-1000">
-                                    <h2 className="text-2xl font-medium md:text-base md:font-semibold text-default/90">Save Your Location</h2>
-                                    <div className="mx-auto w-24 md:w-10">
-                                    <Lottie animationData={locationAnimation} loop={true} speed={1}/>
-                                    </div>
-                                    <p className="mt-2 md:mt-1 md:text-sm">We need to know your location to suggest nearby spots</p>
-                                    <form onSubmit={handleSubmit} className="flex flex-col mt-2">
-                                        <input 
-                                        value={locationAddress}
-                                        onChange={handleChange}
-                                        type="text"
-                                        required
-                                        name="location"
-                                        placeholder="Enter region" 
-                                        className="bg-gray/40 capitalize rounded-md p-2 text-base px-3 md:p-1 md:px-2 md:text-sm w-8/12 mx-auto focus:bg-silver/20 focus:outline-bg_variant1"
-                                        />
-                                        <button type="submit"className="bg-bg_variant1 p-2 md:p-1 w-8/12 mt-6 md:mt-4 mx-auto rounded-md md:text-sm text-pure_white font-medium">Save</button>
-                                    </form>
-                                    <div>
-                                        <button onClick={closeModal} className="focus:bg-bg_variant1 p-2 md:p-1 w-8/12 mx-auto rounded-md md:text-sm text-bg_variant1/90 focus:text-pure_white font-medium">Use Default</button>
-                                    </div>
-                                </div>
-                            </Modal>
+        <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 caret-transparent">
+            {/* Navigation Bar */}
+            <nav className="sticky top-0 z-50 bg-pure_white/5 backdrop-blur-lg shadow-sm">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex justify-between items-center h-16">
+                        <div className="flex items-center">
+                            <span className="text-2xl font-bold text-bg_variant1">NextMeal</span>
                         </div>
-                        {locationAddress ? (
-                            <div className="flex flex-row items-center space-x-3 md:space-x-2 md:px-3 h-12 w-fit outline sm:h-16 md:h-8 sm:w-fit p-3 md:p-1 border border-slate_white/30 rounded-md drop-shadow">
-                                <div className="size-8 sm:size-10 md:size-4 justify-center items center flex">
-                                <img src='/assets/icon/location.svg' alt='Location Icon'/>
-                                </div>
-                                <p className="capitalize text-base font-bold">{locationAddress}</p>
+                        <div className="hidden md:flex items-center space-x-8">
+                            <a href="#restaurants" className="text-gray-700 hover:text-bg_variant1 transition">Restaurants</a>
+                            <a href="#meals" className="text-gray-700 hover:text-bg_variant1 transition">Meals</a>
+                            <a href="#beverages" className="text-gray-700 hover:text-bg_variant1 transition">Beverages</a>
+                            <a href="#partners" className="text-gray-700 hover:text-bg_variant1 transition">Partners</a>
                         </div>
-                        ): <div onClick={openModal} className="hidden" ><Location /></div>}
+                        <button 
+                            onClick={openModal}
+                            className="flex items-center gap-2 px-2.5 py-1 bg-bg_variant1 text-pure_white text-base ring-2 ring-offset-2 ring-bg_variant1 rounded-full hover:bg-bg_variant1/90 transition-colors"
+                        >
+                            <FiMapPin className="w-5 h-5" />
+                            <span className="hidden sm:inline">Set Location</span>
+                        </button>
                     </div>
                 </div>
-                <div className="rounded w-64 p-1 h-fit ssm:w-56 lg:w-80">
-                    <Lottie animationData={poster3Animation} speed={0.5}/>
+            </nav>
+
+            {/* Hero Section */}
+            <section className="relative overflow-hidden">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div className="text-center lg:text-left">
+                            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
+                                <span className="text-bg_variant1">Discover</span> Local Food Gems
+                            </h1>
+                            <p className="text-lg text-gray-600 max-w-lg mx-auto lg:mx-0 mb-8">
+                                Find the best restaurants, meals, and beverages in your area with just a few taps
+                            </p>
+                            
+                            <div className="max-w-xl mx-auto lg:mx-0 mb-8">
+                                <SearchComponent onClick={scrollTop} />
+                            </div>
+                            
+                            <div className="flex flex-wrap justify-center lg:justify-start gap-4 md:text-base">
+                                <div className="flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
+                                    <FiClock className="text-bg_variant1 mr-2" />
+                                    <span>Fast Delivery</span>
+                                </div>
+                                <div className="flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
+                                    <FiHeart className="text-bg_variant1 mr-2" />
+                                    <span>Curated Selection</span>
+                                </div>
+                                <div className="flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
+                                    <FiPhone className="text-bg_variant1 mr-2" />
+                                    <span>Easy Ordering</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div className="relative">
+                            <div className="absolute inset-0 bg-gradient-to-r from-bg_variant1/10 to-transparent rounded-3xl -rotate-6"></div>
+                            <Lottie 
+                                animationData={foodDeliveryAnimation} 
+                                className="w-full h-auto"
+                                loop={true}
+                            />
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div className="mt-16 md:-mt-6 bg-pure_white shadow-2xl shadow-silver rounded-lg w-9/12 mx-auto"><QuickLinksComponent /></div>
-            <div className="flex flex-col mt-16 space-y-16 h-fit py-6 w-full">
+            </section>
+
+            {/* Stats Section */}
+            <section className="py-12">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <QuickLinksComponent />
+                </div>
+            </section>
+
+            {/* Main Content */}
+            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-24">
                 <Services />
-                <Restaurants />
-                <Meals />
-                <Beverages />
-                <Stakeholdership />
-            </div>
+                <div id="restaurants"><Restaurants /></div>
+                <div id="meals"><Meals /></div>
+                <div id="beverages"><Beverages /></div>
+                <div id="partners"><Stakeholdership /></div>
+            </main>
+
+            {/* Footer */}
+            <footer className="bg-gray-900 text-white py-12">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div>
+                        <h3 className="text-xl font-bold mb-4">NextMeal</h3>
+                        <p className="text-gray-400">Connecting food lovers with the best local dining experiences</p>
+                    </div>
+                    <div>
+                        <h4 className="font-semibold mb-4">Explore</h4>
+                        <ul className="space-y-2">
+                            <li><a href="#restaurants" className="text-gray-400 hover:text-white transition">Restaurants</a></li>
+                            <li><a href="#meals" className="text-gray-400 hover:text-white transition">Meals</a></li>
+                            <li><a href="#beverages" className="text-gray-400 hover:text-white transition">Beverages</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 className="font-semibold mb-4">Company</h4>
+                        <ul className="space-y-2">
+                            <li><a href="#" className="text-gray-400 hover:text-white transition">About Us</a></li>
+                            <li><a href="#" className="text-gray-400 hover:text-white transition">Careers</a></li>
+                            <li><a href="#partners" className="text-gray-400 hover:text-white transition">Partnerships</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 className="font-semibold mb-4">Support</h4>
+                        <ul className="space-y-2">
+                            <li><a href="#" className="text-gray-400 hover:text-white transition">Help Center</a></li>
+                            <li><a href="#" className="text-gray-400 hover:text-white transition">Contact Us</a></li>
+                            <li><a href="#" className="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-gray-800 text-center text-gray-400">
+                    <p>© {new Date().getFullYear()} NextMeal. All rights reserved.</p>
+                </div>
+            </footer>
+
+            {/* Location Modal */}
+            <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                contentLabel="Location Modal"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl p-8 w-11/12 max-w-md"
+                overlayClassName="fixed inset-0 bg-black/50 backdrop-blur-sm"
+            >
+                <div className="space-y-6 text-center">
+                    <h2 className="text-2xl font-bold text-gray-900">Save Your Location</h2>
+                    <div className="mx-auto w-32">
+                        <Lottie animationData={locationAnimation} loop speed={1} />
+                    </div>
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                        <input
+                            value={locationAddress}
+                            onChange={handleChange}
+                            type="text"
+                            required
+                            placeholder="Enter your city or region"
+                            className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-bg_variant1 focus:outline-none"
+                        />
+                        <button
+                            type="submit"
+                            className="w-full py-3 bg-bg_variant1 text-white rounded-lg hover:bg-bg_variant1/90 transition-colors font-medium"
+                        >
+                            Save Location
+                        </button>
+                    </form>
+                    <button
+                        onClick={closeModal}
+                        className="text-bg_variant1 hover:text-bg_variant1/80 transition-colors font-medium"
+                    >
+                        Cancel
+                    </button>
+                </div>
+            </Modal>
         </div>
     );
 }

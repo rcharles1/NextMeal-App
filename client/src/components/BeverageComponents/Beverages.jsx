@@ -1,56 +1,68 @@
-/* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
-import BeverageCard from './BeverageCard';
-import Loading from '../ComplementaryComponents/Loading';
-
-import { fetchAllBeverages } from '../../utilities/getData';
-
 import { useNavigate } from 'react-router-dom';
+import BeverageCard from './BeverageCard';
+import { fetchAllBeverages } from '../../utilities/getData';
+import Loading from '../ComplementaryComponents/Loading';
 
 function Beverages() {
     const navigate = useNavigate();
     const [beverages, setBeverages] = useState([]);
-    const [selected, setSelected] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchBeverages = async () => {
+            setIsLoading(true);
             try {
                 const data = await fetchAllBeverages();
                 setBeverages(data);
             } catch (error) {
                 console.error('Error fetching beverage details:', error);
+            } finally {
+                setIsLoading(false);
             }
         };
         fetchBeverages();
-    },[]);
+    }, []);
 
-    const handleClick = event => {
-        navigate('/meallistings',  { state: { entryPoint: 'beverages' } });
+    const handleViewAll = () => {
+        navigate('/meallistings', { state: { entryPoint: 'beverages' } });
     };
 
     return (
-        <div className="flex flex-col caret-transparent w-100 h-2/3 space-y-8">
-            <div className="flex flex-col space-y-3 text-center "> 
-                <span className="w-10/12 mx-auto font-extrabold text-3xl sm:text-5xl"> Cheers to Great Taste</span>
-                <span className="font-semibold px-3 w-11/12 mx-auto text-center leading-relaxed block ssm:w-10/12 ssm:text-basetext-pretty text-default/65">
+        <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20">
+            {/* Header */}
+            <div className="text-center mb-12 md:mb-16">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    Cheers to Great Taste
+                </h2>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
                     Dive into a world of refreshing beverages that not only quench your thirst but also ignite a passion for exceptional dining experiences
-                </span>
+                </p>
             </div>
-            <div className="flex flex-col space-y-3 rounded-sm w-full p-1 relative">
-                <div className={`absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-slate_white to-transparent z-10 `}></div>
-                {beverages ? (
-                    <div className="bg-bg_variant2 grid grid-cols-2 gap-x-1 gap-y-3 px-2 ssm:grid-cols-3 ssm:gap-x-0 ssm:px-14 lg:px-16 lg:grid-cols-4 lg:gap-x-0 mx-auto overflow-hidden py-2 w-full">
-                        {beverages.slice(0, 6).map((beverage, i) => <BeverageCard key={i} beverage={beverage}/>)}
-                    </div>
-                ) : <Loading/> }
-                <div className="absolute inset-x-0 bottom-12 left-1/2 transform -translate-x-1/2 w-fit z-10 bg-bg_variant1 px-2.5 rounded-3xl">
-                   <button className="text-sm tracking-wide text-slate_white font-bold p-2" onClick={() => {
-                       handleClick();
-                       setSelected('drink');
-                   }} >See All Beverages</button>
-                </div>
+
+            {/* Beverages Grid */}
+            <div className="relative">
+                {isLoading ? (
+                    <Loading />
+                ) : (
+                    <>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+                            {beverages.slice(0, 8).map((beverage) => (
+                                <BeverageCard key={beverage._id} beverage={beverage} />
+                            ))}
+                        </div>
+                        <div className="flex justify-center mt-10">
+                            <button
+                                onClick={handleViewAll}
+                                className="bg-bg_variant1 hover:bg-bg_variant1/90 text-pure_white text-base font-semibold py-3 px-6 rounded-full transition-colors duration-300 shadow-md"
+                            >
+                                View All Beverages
+                            </button>
+                        </div>
+                    </>
+                )}
             </div>
-        </div>
+        </section>
     );
 }
 

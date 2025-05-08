@@ -32,7 +32,7 @@ function Root() {
 
     return (
         <>
-            <div className="sticky top-0 z-50"><Header /></div>
+            <div className="sticky top-0 hidden z-50"><Header /></div>
                 <main className="h-fit">
                     <div className={`${isVisible} sticky top-12 z-30`}><Breadcrumbs /></div>
                     <Outlet />

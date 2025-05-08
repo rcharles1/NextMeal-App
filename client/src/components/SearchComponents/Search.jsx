@@ -73,7 +73,7 @@ function SearchComponent() {
 
   return (
     <div>
-      <button onClick={handleOpenDialog} className={`${isDialogOpen ? 'collapse' : 'block'} caret-transparent flex flex-row items-center w-40 ssm:w-96 space-x-1 ssm:space-x-1.5 ssm:px-3 px- p-0.5 rounded-2xl outline-bg_variant1 outline`}>
+      <button onClick={handleOpenDialog} className={`${isDialogOpen ? 'collapse' : 'block'} caret-transparent flex flex-row items-center w-full ssm:w-96 space-x-1 ssm:space-x-1.5 ssm:px-3 px- p-0.5 rounded-2xl outline-bg_variant1 outline`}>
         <Search fill={'red'} />
         <input
           type="text"

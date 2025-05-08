@@ -1,55 +1,71 @@
 import { useEffect, useState } from 'react';
-import RestaurantCard from './RestaurantCard';
-
-import { fetchSampleRestaurants } from '../../utilities/getData';
-
 import { useNavigate } from 'react-router-dom';
+import RestaurantCard from './RestaurantCard';
+import { fetchSampleRestaurants } from '../../utilities/getData';
 import Loading from '../ComplementaryComponents/Loading';
 
 function Restaurants() {
     const navigate = useNavigate();
     const [restaurants, setRestaurants] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchRestaurants = async () => {
-            const page = 0
+            setIsLoading(true);
             try {
-                const data = await fetchSampleRestaurants(page);
+                const data = await fetchSampleRestaurants(0);
                 setRestaurants(data);
             } catch (error) {
                 console.error('Error fetching restaurants:', error);
+            } finally {
+                setIsLoading(false);
             }
         };
         fetchRestaurants();
-    }, [])
+    }, []);
 
     const handleClick = () => {
         navigate('/restaurantlistings');
-    }
-    
+    };
+
     return (
-        <div className="flex flex-col space-y-8 md:space-y-6 justify-center antialiased items-center h-1/2 w-100 caret-transparent">
-            <div className="flex flex-col space-y-3 text-center px-3.5">
-                <span className="text-3xl sm:text-5xl font-extrabold text-heading ">
-                    Uncover Dining Delights! 
-                </span>
-                <span className="font-semibold text-center leading-relaxed block w-11/12 ssm:text-base lg:text-lg text-pretty ssm:w-11/12 mx-auto text-default/65">
+        <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20">
+            {/* Header */}
+            <div className="text-center mb-12 md:mb-16">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    Uncover Dining Delights!
+                </h2>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
                     Explore the best restaurants around and uncover delightful dining experiences
-                </span>
-            </div>
-            <div className="flex flex-col rounded-sm w-full md:px-1 lg:px-16 relative">
-                <div className={`absolute inset-x-0 bottom-0 bg-gradient-to-t h-1/2 from-slate_white to-transparent z-10 `}></div>
-                {restaurants ? (
-                    <div className="bg-bg_variant2 grid grid-cols-2 gap-y-4 ssm:grid-cols-3 ssm:gap-x-0 ssm:px-14 ssm:gap-y-4 lg:grid-cols-4 lg:gap-x-0 mx-auto overflow-hidden py-2 w-full">
-                        {restaurants.slice(0, 6).map((restaurant, i) => <RestaurantCard key={i} restaurant={restaurant} />)}
-                    </div>
-                ) : <Loading />}
-                <div className="absolute inset-x-0 bottom-12 left-1/2 transform -translate-x-1/2 w-fit z-10 bg-bg_variant1 px-2.5 rounded-3xl">
-                    <button onClick={handleClick} className="text-sm tracking-wide text-slate_white font-bold p-2">See All Restaurants</button>
-                </div>
+                </p>
             </div>
 
-        </div>
+            {/* Restaurant Grid */}
+            <div className="relative">
+                {isLoading ? (
+                    <Loading />
+                ) : (
+                    <>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+                            {restaurants.slice(0, 4).map((restaurant) => (
+                                <RestaurantCard 
+                                    key={restaurant._id} 
+                                    restaurant={restaurant} 
+                                />
+                            ))}
+                        </div>
+                        <div className="flex justify-center mt-8">
+                            <button
+                                onClick={handleClick}
+                                className="bg-bg_variant1 hover:bg-bg_variant1/90 text-pure_white text-base font-semibold py-3 px-6 rounded-full transition-colors duration-300 shadow-md"
+                            >
+                                View All Restaurants
+                            </button>
+                        </div>
+                    </>
+                )}
+            </div>
+        </section>
     );
 }
 

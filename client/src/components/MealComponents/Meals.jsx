@@ -1,52 +1,69 @@
-import { useEffect, useState} from 'react';
-import MealCard from './MealCard';
-
-import { fetchAllMeals } from '../../utilities/getData';
-
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import MealCard from './MealCard';
+import { fetchAllMeals } from '../../utilities/getData';
 import Loading from '../ComplementaryComponents/Loading';
 
-function Meal() {
+function Meals() {
     const navigate = useNavigate();
     const [meals, setMeals] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchMeals = async () => {
+            setIsLoading(true);
             try {
                 const data = await fetchAllMeals();
                 setMeals(data);
             } catch (error) {
                 console.error('Error fetching meals:', error);
+            } finally {
+                setIsLoading(false);
             }
         };
         fetchMeals();
     }, []);
 
-    const handleClick = () => {
+    const handleViewAll = () => {
         navigate('/meallistings', { state: { entryPoint: 'meals' } });
     };
 
     return (
-        <div className="flex flex-col w-100 h-2/3 space-y-6 caret-transparent">
-            <div className="sm:px-3.5 px-5 flex flex-col space-y-3 text-center "> 
-                <span className="font-extrabold text-3xl sm:text-5xl ssm:w-11/12 mx-auto">Discover the Local’s Favorite Meals</span>
-                <span className="font-semibold block text-center leading-relaxed ssm:text-base lg:text-lg w-11/12 mx-auto text-pretty text-default/65">
-                    From traditional recipes to modern twists, explore the flavors that define the region’s cuisine
-                </span>
+        <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20">
+            {/* Header */}
+            <div className="text-center mb-12 md:mb-16">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    Discover the Local&apos;s Favorite Meals
+                </h2>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                    From traditional recipes to modern twists, explore the flavors that define the region&apos;s cuisine
+                </p>
             </div>
-            <div className="flex rounded-sm w-full px-3 relative">
-                <div className={`absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-slate_white to-transparent z-10 `}></div>
-                {meals ? (
-                    <div className="bg-bg_variant2 grid grid-cols-2 gap-x-2 gap-y-3 ssm:grid-cols-3 ssm:gap-x-0 ssm:px-14 lg:grid-cols-4 lg:px-14 lg:gap-x-0 mx-auto overflow-hidden py-2 w-full">
-                        {meals.slice(0, 6).map((meal, i) => <MealCard key={i} meal={meal} />)}
-                    </div>
-                ) : <Loading/>}
-                <div className="absolute inset-x-0 bottom-12 left-1/2 transform -translate-x-1/2 w-fit z-10 bg-bg_variant1 px-2.5 rounded-3xl">
-                   <button onClick={handleClick} className="text-sm tracking-wide text-slate_white font-bold p-2">See All Meals </button>
-                </div>
+
+            {/* Meals Grid */}
+            <div className="relative">
+                {isLoading ? (
+                    <Loading />
+                ) : (
+                    <>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+                            {meals.slice(0, 4).map((meal) => (
+                                <MealCard key={meal._id} meal={meal} />
+                            ))}
+                        </div>
+                        <div className="flex justify-center mt-10">
+                            <button
+                                onClick={handleViewAll}
+                                className="bg-bg_variant1 hover:bg-bg_variant1/90 text-pure_white text-base font-semibold py-3 px-6 rounded-full transition-colors duration-300 shadow-md"
+                            >
+                                View All Meals
+                            </button>
+                        </div>
+                    </>
+                )}
             </div>
-        </div>
+        </section>
     );
 }
 
-export default Meal;
+export default Meals;

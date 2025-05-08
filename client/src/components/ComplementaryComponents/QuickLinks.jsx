@@ -1,31 +1,45 @@
-
 function QuickLinksComponent() {
     return (
-        <div className="flex w-full mx-auto rounded h-fit p-2 ssm:p-3 ssm:py-5 text-ssm ssm:text- justify-center items-center sm:space-y-1 caret-transparent font-semibold antialised">
-            <div className="px-10 w-full ssm:w-fit grid grid-cols-2 gap-2 md:px-4 ssm:grid-cols-4 ssm:gap-0 sm:space-y-0 items-center">
-                <div className="h-fit w-24 md:w-36">
-                    <div className="rounded-md text-center">
-                        <p className="text-bg_variant1/90 font-bold text-lg tracking-tighter ">Interregional</p>
-                        <p>Nationwide</p>
-                    </div>
+        <div className="w-full max-w-7xl mx-auto p-4 sm:p-6 caret-transparent">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+                {/* Stat 1 */}
+                <div className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
+                    <p className="text-bg_variant1 font-bold truncate text-xl sm:text-2xl md:text-3xl mb-1">
+                       Zonal
+                    </p>
+                    <p className="text-gray-600 text-sm sm:text-base">
+                        Nationwide Coverage
+                    </p>
                 </div>
-                <div className="h-fit w-24 md:w-36">
-                    <div className="px-1 rounded-md text-center">
-                        <p className="text-bg_variant1/90 font-bold text-lg tracking-tighter ">Over 100</p>
-                        <p> Culinary Partners!</p>
-                    </div>
+
+                {/* Stat 2 */}
+                <div className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
+                    <p className="text-bg_variant1 font-bold text-xl sm:text-2xl md:text-3xl mb-1">
+                        100+
+                    </p>
+                    <p className="text-gray-600 text-sm sm:text-base">
+                        Culinary Partners
+                    </p>
                 </div>
-                <div className="h-fit w-24 md:w-36">
-                    <div className="text-center">
-                        <p className="text-bg_variant1/90 font-bold text-lg tracking-tighter ">150+ Meals</p>
-                        <p> No One Goes Hungry!</p>
-                    </div>
+
+                {/* Stat 3 */}
+                <div className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
+                    <p className="text-bg_variant1 font-bold text-xl sm:text-2xl md:text-3xl mb-1">
+                        150+
+                    </p>
+                    <p className="text-gray-600 text-sm sm:text-base">
+                        Delicious Meals
+                    </p>
                 </div>
-                <div className="h-fit w-24 md:w-36">
-                    <div className="text-center">
-                        <p className="text-bg_variant1/90 font-bold text-lg tracking-tighter ">180+ beverages</p>
-                        <p className=" mt-0.5">Cheers to Variety!</p>
-                    </div>
+
+                {/* Stat 4 */}
+                <div className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
+                    <p className="text-bg_variant1 font-bold text-xl sm:text-2xl md:text-3xl mb-1">
+                        180+
+                    </p>
+                    <p className="text-gray-600 text-sm sm:text-base">
+                        Refreshing Beverages
+                    </p>
                 </div>
             </div>
         </div>

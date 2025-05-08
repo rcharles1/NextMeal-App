@@ -15,7 +15,6 @@ import Contacts from '../components/Contact/Contact';
 import HomePage from '../components/HomePage/HomePage';
 import ErrorBoundary from '../components/ErrorComponents/ErrorBoundary';
 
-import { useSelector } from 'react-redux';
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 import Stakeholders from '../components/StakeholdersComponents/Stakeholders';
 
@@ -40,7 +39,6 @@ const router = createBrowserRouter(createRoutesFromElements(
 ));
 
 function App() {
-  const state = useSelector(state => state.state);
 
   return (
     <ErrorBoundary >
