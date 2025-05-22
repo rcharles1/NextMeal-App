@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { BreadcrumbIcon, NextIcon } from './svgs/InterfaceSvg';
+import { BreadcrumbIcon } from './svgs/InterfaceSvg';
 
 const Breadcrumbs = () => {
     const location = useLocation();
@@ -13,7 +13,7 @@ const Breadcrumbs = () => {
 
         const fetchNames = async () => {
             const newNames = {};
-            const idRegex = /^[a-f\d]{24}$/i; // Simple regex for 24-character hex strings
+            const idRegex = /^[a-f\d]{24}$/i;
 
             for (const path of paths) {
                 if (idRegex.test(path)) {
@@ -36,32 +36,39 @@ const Breadcrumbs = () => {
     }, [location]);
 
     return (
-        <div className={`px-3 lg:px-19 cursor-pointer caret-transparent text-default/80 z-30 py-3 lg:py-2 h-12 lg:h-fit sticky top-12 lg:top-14 xl:top-12 bg-slate_white/55 backdrop-blur`}>
-            <ul className="flex capitalize text-base lg:text-sm font-medium p-1 py-1 px-2 overflow-hidden">
-                <li className="flex space-x-1 ssm:space-x-1.5 items-center">
-                    <BreadcrumbIcon />
-                    <div className="flex">
-                        <Link to="/" >Home</Link>
-                    </div>
-                    <NextIcon />
-                </li>
-                {pathnames.map((value, index, array) => {
-                    const to = `/${pathnames.slice(0, index + 1).join('/')}`;
-                    const decodedSegment = decodeURIComponent(value);
-                    const displayName = names[decodedSegment] || decodedSegment;
+        <div className="px-4 lg:px-8 py-3 sticky top-14 bg-white/90 backdrop-blur-sm z-30 shadow-sm">
+            <nav className="max-w-screen-xl mx-auto">
+                <ol className="flex items-center space-x-2 text-sm font-medium text-gray-500">
+                    <li className="flex items-center">
+                        <Link to="/" className="text-blue-600 hover:text-blue-700 transition-colors">
+                            <BreadcrumbIcon className="w-4 h-4" />
+                        </Link>
+                    </li>
+                    {pathnames.map((value, index) => {
+                        const to = `/${pathnames.slice(0, index + 1).join('/')}`;
+                        const decodedSegment = decodeURIComponent(value);
+                        const displayName = names[decodedSegment] || decodedSegment;
+                        const isLast = index === pathnames.length - 1;
 
-                    return (
-                        <div key={index} className="flex items-center">
-                            {index === array.length - 1 ? <NextIcon /> : ''}
-                            <li key={to}>
-                                <Link to={to} className="truncate w-2">
-                                    <span>{displayName}</span>
-                                </Link>
+                        return (
+                            <li key={to} className="flex items-center">
+                                <svg className="w-4 h-4 mx-2 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                                </svg>
+                                {isLast ? (
+                                    <span className="text-gray-700 truncate max-w-[160px]">
+                                        {displayName}
+                                    </span>
+                                ) : (
+                                    <Link to={to} className="text-gray-600 hover:text-gray-900 transition-colors truncate max-w-[160px]">
+                                        {displayName}
+                                    </Link>
+                                )}
                             </li>
-                        </div>
-                    );
-                })}
-            </ul>
+                        );
+                    })}
+                </ol>
+            </nav>
         </div>
     );
 };

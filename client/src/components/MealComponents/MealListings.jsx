@@ -130,7 +130,7 @@ function MealListings() {
   };
 
   return (
-    <div className="flex flex-col h-fit sm:w-full w-100 bg-bg_variant2 text-sm sm:text-base font-normal"> 
+    <div className="flex flex-col h-fit sm:w-full w-100 bg-bg_variant2 text-sm sm:text-base font-normal max-w-[80rem] mx-auto"> 
       <div id='container' className="flex flex-col w-full mb-12 space-y-5 py-1 sm:py-2 md:py-4 md:px-2  transition-all duration-500">
         <div className="w-full p-4 bg-m3 bg-cover caret-transparent ">
           <div className="flex flex-col md:flex-row md:space-y-0 md:justify-between md:p-1 md:w-11/12 md:mx-auto items-center px-5 space-y-2">

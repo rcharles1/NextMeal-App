@@ -1,21 +1,29 @@
-const mongoose = require('mongoose');
-require('dotenv').config();
+import dotenv from 'dotenv';
+import { MongoClient } from 'mongodb';
 
-let dbConnection;
+const uri = process.env.MONGODB_URI;
+if (!uri) throw new Error('Missing MONGODB_URI');
 
-const connectToDb = async (cb) => {
-  try {
-    await mongoose.connect(process.env.VITE_MONGODB_URI, {
-      ssl: true,
-      serverSelectionTimeoutMS: 5000,
-    });
-    dbConnection = mongoose.connection;
-    console.log('Database connection established');
-    cb();
-  } catch (error) {
-    console.error('Database connection error:', error);
-    cb(error);
-  }
+const clientOptions = {
+  serverSelectionTimeoutMS: 10000,
+  socketTimeoutMS: 30000,
+  retryWrites: true,
+  appName: 'next-meal-db'
 };
 
-module.exports = { connectToDb };
+let client;
+let isConnected = false;
+
+export const connectToDb = async () => {
+  if (isConnected) return client;
+  try {
+    client = new MongoClient(uri, clientOptions);
+    await client.connect();
+    isConnected = true;
+    console.log('Connected to MongoDB');
+    return client;
+  } catch (error) {
+    console.error('Connection failed:', error);
+    throw error;
+  }
+};

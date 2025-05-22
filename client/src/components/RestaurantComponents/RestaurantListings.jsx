@@ -104,7 +104,7 @@ function RestaurantListings() {
     };
 
     return (
-        <div className="flex flex-col h-fit w-100 bg-bg_variant2 text-sm sm:text-base font-normal antialiased"> 
+        <div className="flex flex-col h-fit w-100 bg-bg_variant2 text-sm sm:text-base font-normal antialiased max-w-[80rem] mx-auto"> 
            <div id='container' className={`flex flex-col mt-1 mb-12 space-y-5 px-2 py-1 ssm:px-2 h-fit transition-all duration-500}`}>          
                 <div className="w-full p-4 bg-r2 bg-cover bg-right-bottom">
                     <div className="flex flex-col py-1.5 md:flex-row md:space-y-0 md:justify-between md:p-1 md:w-11/12 md:mx-auto items-center md:px-5 space-y-2">
@@ -129,8 +129,8 @@ function RestaurantListings() {
                     </div>
                 ) : ''}
                 {restaurants ? (
-                   <div className="flex flex-col ssm:flex-row ssm:space-x-6 ssm:px-5 caret-transparent ">
-                       <div className="hidden ssm:block h-fit w-2/12 bg-pure_white rounded-lg px-0.5 py-2 sticky top-20 lg:top-24">
+                   <div className="flex flex-col ssm:flex-row ssm:space-x-6 caret-transparent ">
+                       <div className="hidden ssm:block h-fit bg-pure_white rounded-lg px-0.5 py-2 sticky top-20 lg:top-24">
                             { <FilterWidget onFiltersChange={handleFiltersChange} 
                                 onClose={closeFilterWidget}
                                 filters={filters}

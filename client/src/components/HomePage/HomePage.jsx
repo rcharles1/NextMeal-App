@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Modal from 'react-modal';
 import Lottie from 'lottie-react';
-import { FiMapPin, FiPhone, FiClock, FiHeart } from 'react-icons/fi';
+import { FiPhone, FiClock, FiHeart } from 'react-icons/fi';
 import QuickLinksComponent from '../ComplementaryComponents/QuickLinks';
 import Services from '../ServicesComponents/Services';
 import Restaurants from '../RestaurantComponents/Restaurants';
@@ -22,7 +22,7 @@ const HomePage = () => {
         setLocationAddress(event.target.value);
     };
 
-    const openModal = () => setIsOpen(true);
+    // const openModal = () => setIsOpen(true);
     const closeModal = () => setIsOpen(false);
 
     const handleSubmit = (event) => {
@@ -37,7 +37,7 @@ const HomePage = () => {
     return (
         <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 caret-transparent">
             {/* Navigation Bar */}
-            <nav className="sticky top-0 z-50 bg-pure_white/5 backdrop-blur-lg shadow-sm">
+            {/* <nav className="sticky top-0 z-50 bg-pure_white/5 backdrop-blur-lg shadow-sm">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-16">
                         <div className="flex items-center">
@@ -58,7 +58,7 @@ const HomePage = () => {
                         </button>
                     </div>
                 </div>
-            </nav>
+            </nav> */}
 
             {/* Hero Section */}
             <section className="relative overflow-hidden">
@@ -119,43 +119,6 @@ const HomePage = () => {
                 <div id="beverages"><Beverages /></div>
                 <div id="partners"><Stakeholdership /></div>
             </main>
-
-            {/* Footer */}
-            <footer className="bg-gray-900 text-white py-12">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
-                    <div>
-                        <h3 className="text-xl font-bold mb-4">NextMeal</h3>
-                        <p className="text-gray-400">Connecting food lovers with the best local dining experiences</p>
-                    </div>
-                    <div>
-                        <h4 className="font-semibold mb-4">Explore</h4>
-                        <ul className="space-y-2">
-                            <li><a href="#restaurants" className="text-gray-400 hover:text-white transition">Restaurants</a></li>
-                            <li><a href="#meals" className="text-gray-400 hover:text-white transition">Meals</a></li>
-                            <li><a href="#beverages" className="text-gray-400 hover:text-white transition">Beverages</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 className="font-semibold mb-4">Company</h4>
-                        <ul className="space-y-2">
-                            <li><a href="#" className="text-gray-400 hover:text-white transition">About Us</a></li>
-                            <li><a href="#" className="text-gray-400 hover:text-white transition">Careers</a></li>
-                            <li><a href="#partners" className="text-gray-400 hover:text-white transition">Partnerships</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 className="font-semibold mb-4">Support</h4>
-                        <ul className="space-y-2">
-                            <li><a href="#" className="text-gray-400 hover:text-white transition">Help Center</a></li>
-                            <li><a href="#" className="text-gray-400 hover:text-white transition">Contact Us</a></li>
-                            <li><a href="#" className="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-gray-800 text-center text-gray-400">
-                    <p>© {new Date().getFullYear()} NextMeal. All rights reserved.</p>
-                </div>
-            </footer>
 
             {/* Location Modal */}
             <Modal

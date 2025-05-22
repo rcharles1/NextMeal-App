@@ -1,13 +1,13 @@
 function About() {
     return (
-        <div className="w-full h-fit p-4 ssm:px-8 caret-transparent">
+        <div className="w-full h-fit p-4 ssm:px-8 caret-transparent max-w-[90rem] mx-auto">
             <div className="about2-gradient p-1">
                 <h1 className="font-black text-3xl tracking-wide gradient-text lg:text-5xl text-bg_variant1/90">About Us</h1>
             </div>
             <div className="ssm:flex ssm:space-x-6">
-                <div className="hidden ssm:block w-6/12 p-2 h-fit sticky top-28">
+                <div className="hidden ssm:block w-2/12 p-2 h-fit sticky top-28">
                     <h3 className="font-bold text-lg capitalize text-winterWhite/90 lg:text-base">On this page</h3>
-                    <ul className="flex flex-col ssm:space-y-1 lg:space-y-2 mt-2 pl-1 text-sm">
+                    <ul className="flex flex-col ssm:space-y-1 lg:space-y-2 mt-2 pl-1 text-sm lg:text-[0.8rem]">
                         <li><a href="#aboutus">About Us</a></li>
                         <li><a href="#ourstory">Our Story</a></li>
                         <li><a href="#ourservices">What We Offer</a></li>

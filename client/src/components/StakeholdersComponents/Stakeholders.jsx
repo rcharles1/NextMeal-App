@@ -2,8 +2,8 @@ import { stakeholderdefinition, stakeholderapplicationsteps } from "../../utilit
 
 function Stakeholders() {
     return (
-        <div className="min-h-screen w-full p-4 text-default/75 space-y-3 max-w-[105rem] mx-auto pb-10 ssm:flex ssm:space-x-6 ssm:space-y-0">
-            <div className="hidden ssm:block w-52 p-2 h-fit sticky top-8">
+        <div className="min-h-screen w-full p-4 text-default/75 space-y-3 max-w-[80rem] mx-auto pb-10 ssm:flex ssm:space-x-6 ssm:space-y-0">
+            <div className="hidden w-52 p-2 h-fit sticky top-8">
                 <h3 className="font-bold text-lg capitalize text-winterWhite/90">On this page</h3>
                 <ul className="flex flex-col space-y-1 mt-2 pl-1 text-base">
                     <li><a href="#getinvolved">Get Involved</a></li>
@@ -11,7 +11,7 @@ function Stakeholders() {
                     <li><a href="joinus">How to Join</a></li>
                 </ul>
             </div>
-            <div className="h-lvh overflow-hidden overflow-y-auto container-snap">
+            <div className="h-fit">
                 <h1 id="getinvolved" className="text-3xl lg:text-5xl font-extrabold">Get Involved with us</h1>
                 <div className="space-y-2 p-1">
                     <p>Join NextMeal, the dynamic restaurant discovery platform! Whether you’re a restaurant owner, a business seeking sponsorship, or an individual ready to share content, there’s a unique and enriching experience waiting for you.</p>

@@ -1,7 +1,7 @@
 {
   "scripts": {
     "build": "webpack --mode production",
-    "start": "node app.js"
+    "start": "/src/node app.js"
   },
   "dependencies": {
     "connect-mongo": "^5.1.0",
@@ -12,7 +12,8 @@
     "express-rate-limit": "^7.2.0",
     "express-session": "^1.18.0",
     "helmet": "^7.1.0",
-    "mongoose": "^8.4.0",
+    "mongodb": "^6.16.0",
+    "mongoose": "^8.14.2",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
     "redux-persist": "^6.0.0"

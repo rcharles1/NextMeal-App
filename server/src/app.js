@@ -2,27 +2,27 @@ require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
-const mongoose = require('mongoose');
+const { MongoClient, ObjectId } = require('mongodb');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const { connectToDb } = require('./db');
-const User = require('./models/users');
 const cors = require('cors');
 const crypto = require('crypto');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
+const { connectToDb, getDb } = require('./db');
 
 const allowedOrigins = ['https://next-meal-app-client.vercel.app', 'http://localhost:5173'];
-const redirectPaths = ['https://next-meal-app-client.vercel.app/']
+const redirectPaths = ['https://next-meal-app-client.vercel.app/'];
 
 // App Configuration
 const app = express();
 
-app.use(express.json());
+// Security Middleware
 app.use(helmet());
+app.use(express.json());
 app.use(cors({
   origin: function (origin, callback) {
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+    if (allowedOrigins.includes(origin) || !origin) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
@@ -31,105 +31,136 @@ app.use(cors({
   credentials: true,
 }));
 
-// Handle preflight requests
-app.options('*', cors());
-app.options('/*', (req, res) => res.sendStatus(204));
-
-const secretKey = crypto.randomBytes(64).toString('hex');
+// Rate Limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100 // limit each IP to 100 requests per windowMs
+});
+app.use(limiter);
 
 // Session Configuration
-app.use(session({
-  secret: secretKey,
-  resave: false,
-  saveUninitialized: false,
-  store: MongoStore.create({
-    mongoUrl: process.env.VITE_MONGODB_URI,
-    collectionName: 'sessions',
-    mongooseConnection: mongoose.connection,
-  }),
-  cookie: {
-    httpOnly: true, // Mitigates XSS attacks
-    secure: false,
-    maxAge: 24 * 60 * 60 * 1000,
-  },
-}));
+const secretKey = crypto.randomBytes(64).toString('hex');
+let sessionStore;
 
-app.use(passport.initialize());
-app.use(passport.session());
+// Initialize Database Connection First
+(async () => {
+  try {
+    const client = await connectToDb();
+    const db = getDb();
 
-passport.serializeUser((user, done) => done(null, user.id));
+    // Initialize session store after successful connection
+    sessionStore = MongoStore.create({
+      clientPromise: Promise.resolve(client),
+      dbName: 'nextmeal',
+      collectionName: 'sessions',
+    });
 
-passport.deserializeUser((id, done) => {
-  User.findById(id).then(user => done(null, user)).catch(err => done(err, null));
-});
+    // Configure session middleware
+    app.use(session({
+      secret: secretKey,
+      resave: false,
+      saveUninitialized: false,
+      store: sessionStore,
+      cookie: {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        maxAge: 24 * 60 * 60 * 1000,
+        sameSite: 'lax'
+      }
+    }));
 
-// Passport and Google OAuth setup
-passport.use(new GoogleStrategy({
-  clientID: process.env.GOOGLE_CLIENT_ID,
-  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: '/auth/google/callback',
-}, async (accessToken, refreshToken, profile, done) => {
-  const existingUser = await User.findOne({ googleId: profile.id });
-  if (existingUser) {
-    return done(null, existingUser);
+    // Passport Configuration
+    app.use(passport.initialize());
+    app.use(passport.session());
+
+    passport.serializeUser((user, done) => done(null, user._id.toString()));
+
+    passport.deserializeUser(async (id, done) => {
+      try {
+        const user = await db.collection('users').findOne({ _id: new ObjectId(id) });
+        done(null, user);
+      } catch (err) {
+        done(err, null);
+      }
+    });
+
+    // Google OAuth Strategy
+    passport.use(new GoogleStrategy({
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: '/auth/google/callback',
+    }, async (accessToken, refreshToken, profile, done) => {
+      try {
+        const existingUser = await db.collection('users').findOne({ googleId: profile.id });
+        
+        if (existingUser) return done(null, existingUser);
+
+        const newUser = {
+          googleId: profile.id,
+          email: profile.emails[0].value,
+          name: profile.displayName,
+          picture: profile.photos[0].value,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        };
+
+        const result = await db.collection('users').insertOne(newUser);
+        done(null, { ...newUser, _id: result.insertedId });
+      } catch (err) {
+        done(err, null);
+      }
+    }));
+
+    // Routes
+    app.use((req, res, next) => {
+      req.db = db;
+      next();
+    });
+
+    // Auth Routes
+    app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+    app.get('/auth/google/callback', 
+      passport.authenticate('google', { failureRedirect: '/login' }),
+      (req, res) => res.redirect(`${redirectPaths[0]}/authenticated`)
+    );
+
+    app.get('/api/current_user', (req, res) => res.send(req.user));
+
+    // Application Routes
+    const routes = [
+      { path: '/restaurants', router: require('./routes/restaurants') },
+      { path: '/meals', router: require('./routes/meals') },
+      { path: '/beverages', router: require('./routes/beverages') },
+      { path: '/search', router: require('./routes/search') },
+      { path: '/favorites', router: require('./routes/favorites') },
+      { path: '/reviews', router: require('./routes/reviews') },
+      { path: '/userDetails', router: require('./routes/user') },
+      { path: '/getNameById', router: require('./routes/getNameById') }
+    ];
+
+    routes.forEach(({ path, router }) => app.use(path, router));
+
+    // Error Handling
+    app.use((err, req, res, next) => {
+      console.error(err.stack);
+      res.status(500).json({ error: 'An internal error occurred' });
+    });
+
+    // Start Server
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+
+  } catch (err) {
+    console.error('Failed to initialize application:', err);
+    process.exit(1);
   }
-  const user = new User({
-    googleId: profile.id,
-    email: profile.emails[0].value,
-    name: profile.displayName,
-    picture: profile.photos[0].value,
-  });
-  await user.save();
-  done(null, user);
-}));
+})();
 
-app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-
-app.get('/auth/google/callback', passport.authenticate('google'), (req, res) => {
-  res.redirect(`${redirectPaths}/authenticated`);
-});
-
-app.get('/api/current_user', (req, res) => res.send(req.user));
-
-// Connect to DB and set up routes
-connectToDb((err) => {
-    if (!err) {
-      // Middleware to attach db to request object
-      app.use((req, res, next) => {
-        req.db = mongoose.connection.db;
-        next();
-      });
-  
-      // Import routes after middleware to ensure db is attached
-      const restaurantRouter = require('../src/routes/restaurants');
-      const mealsRouter = require('./routes/meals');
-      const beveragesRouter = require('./routes/beverages');
-      const searchRouter = require('./routes/search');
-      const favoriteRouter = require('./routes/favorites');
-      const reviewsRouter = require('./routes/reviews');
-      const userDetailsRouter = require('./routes/user');
-      const getNameByIdRouter = require('./routes/getNameById');
-  
-      app.use('/restaurants', restaurantRouter);
-      app.use('/meals', mealsRouter);
-      app.use('/beverages', beveragesRouter);
-      app.use('/search', searchRouter);
-      app.use('/favorites', favoriteRouter);
-      app.use('/reviews', reviewsRouter);
-      app.use('/userDetails', userDetailsRouter);
-      app.use('/getNameById', getNameByIdRouter);
-  
-      const PORT = process.env.PORT || 3000;
-      app.listen(PORT, () => {
-        console.log(`App listening on port ${PORT}`);
-      });
-    } else {
-      console.error('Failed to connect to the database', err);
-    }
-});  
-
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err);
-  res.status(500).json({ error: 'An internal error occurred' });
+// Cleanup on shutdown
+process.on('SIGINT', async () => {
+  await closeConnection();
+  process.exit(0);
 });

@@ -97,7 +97,20 @@ export default {
         },
         '.visual-gradient': {
           'background-image': 'linear-gradient(to top, #141C33, transparent)',
-        }
+        },
+         '.custom-scrollbar::-webkit-scrollbar' : {
+          'width': '5px'
+        },
+        '.custom-scrollbar::-webkit-scrollbar-track ' : {
+          'background':' #D8EDE4'
+        },
+        '.custom-scrollbar::-webkit-scrollbar-thumb' : {
+          'background': '#014E2C',
+         ' border-radius': '4px'
+        },
+        '.custom-scrollbar::-webkit-scrollbar-thumb:hover ' : {
+          'background': '#555'
+        },
       };
       addUtilities(newUtilities);
     })

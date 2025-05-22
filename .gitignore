@@ -75,3 +75,7 @@ dist
 
 # DynamoDB Local files
 .dynamodb/
+
+# .gitignore
+/certs/*
+!/certs/global-bundle.pem

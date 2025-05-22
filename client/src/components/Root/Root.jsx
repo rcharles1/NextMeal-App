@@ -31,15 +31,15 @@ function Root() {
     const isVisible = location.pathname === '/' ? 'hidden' : 'block';
 
     return (
-        <>
-            <div className="sticky top-0 hidden z-50"><Header /></div>
-                <main className="h-fit">
-                    <div className={`${isVisible} sticky top-12 z-30`}><Breadcrumbs /></div>
-                    <Outlet />
-                    <button className={`fixed bottom-10 right-7 rounded-full bg-pure_white h-fit z-10 w-fit ${showScroll ? 'visible' : 'invisible'}`} onClick={scrollTop}><ArrowUp fill="red" /></button>
-                </main>
+        <div className='overflow-hidden'>
+            <div className="sticky top-0 z-50"><Header /></div>
+            <main className="h-fit">
+                <div className={`${isVisible} sticky top-12 z-30`}><Breadcrumbs /></div>
+                <Outlet />
+                <button className={`fixed bottom-10 right-7 rounded-full bg-pure_white h-fit z-10 w-fit ${showScroll ? 'visible' : 'invisible'}`} onClick={scrollTop}><ArrowUp fill="red" /></button>
+            </main>
             <div><Footer /></div>
-        </>
+        </div>
     );
 }
 
